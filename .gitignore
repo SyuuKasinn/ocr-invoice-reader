@@ -45,3 +45,12 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Font files (avoid large binaries and license issues)
+fonts/*.ttf
+fonts/*.ttc
+fonts/*.otf
+!fonts/README.md
+
+# Docker volumes
+data/

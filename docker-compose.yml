@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  ocr-invoice-reader:
+    build: .
+    image: ocr-invoice-reader:latest
+    container_name: ocr-invoice-reader
+
+    volumes:
+      # Mount input data directory
+      - ./data:/app/data
+      # Mount results output directory
+      - ./results:/app/results
+      # Optional: Mount custom fonts
+      - ./fonts:/app/fonts:ro
+
+    environment:
+      - PYTHONUNBUFFERED=1
+      - LANG=C.UTF-8
+      - LC_ALL=C.UTF-8
+
+    # Use CPU by default
+    command: >
+      ocr-enhanced
+      --image /app/data/invoice.pdf
+      --output-dir /app/results
+      --visualize
+      --use-cpu
+      --lang ch
+
+    # For GPU support, uncomment below:
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]

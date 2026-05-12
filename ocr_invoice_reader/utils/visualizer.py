@@ -27,39 +27,60 @@ class OCRVisualizer:
         self.text_color = (255, 0, 0)  # Red for OCR text boxes
 
     def _load_font(self, size: int = 18):
-        """Load font for drawing text"""
+        """Load font for drawing text with Docker support"""
         try:
-            # Try common font paths with indices for TTC files
+            # Get package root directory for bundled fonts
+            pkg_root = Path(__file__).parent.parent.parent
+            bundled_fonts = pkg_root / "fonts"
+
+            # Font configurations: (path, index, description)
             font_configs = [
-                ("C:/Windows/Fonts/msyh.ttc", 0),      # Microsoft YaHei
-                ("C:/Windows/Fonts/simhei.ttf", None),  # SimHei
-                ("C:/Windows/Fonts/simsun.ttc", 0),     # SimSun
-                ("C:/Windows/Fonts/STXIHEI.TTF", None), # STXihei
-                ("/System/Library/Fonts/PingFang.ttc", 0),  # macOS
-                ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", None),  # Linux
+                # Bundled fonts (for Docker/portable deployment)
+                (bundled_fonts / "WenQuanYiMicroHei.ttf", None, "Bundled WenQuanYi Micro Hei"),
+                (bundled_fonts / "msyh.ttc", 0, "Bundled Microsoft YaHei"),
+
+                # System fonts - Windows
+                ("C:/Windows/Fonts/msyh.ttc", 0, "Microsoft YaHei (Windows)"),
+                ("C:/Windows/Fonts/simhei.ttf", None, "SimHei (Windows)"),
+                ("C:/Windows/Fonts/simsun.ttc", 0, "SimSun (Windows)"),
+                ("C:/Windows/Fonts/STXIHEI.TTF", None, "STXihei (Windows)"),
+
+                # System fonts - macOS
+                ("/System/Library/Fonts/PingFang.ttc", 0, "PingFang (macOS)"),
+                ("/System/Library/Fonts/STHeiti Light.ttc", 0, "STHeiti (macOS)"),
+
+                # System fonts - Linux (common in Docker)
+                ("/usr/share/fonts/truetype/wqy/wqy-microhei.ttc", 0, "WenQuanYi Micro Hei"),
+                ("/usr/share/fonts/truetype/wqy/wqy-zenhei.ttc", 0, "WenQuanYi Zen Hei"),
+                ("/usr/share/fonts/truetype/arphic/uming.ttc", 0, "AR PL UMing"),
+                ("/usr/share/fonts/truetype/droid/DroidSansFallbackFull.ttf", None, "Droid Sans Fallback"),
+                ("/usr/share/fonts/opentype/noto/NotoSansCJK-Regular.ttc", 0, "Noto Sans CJK"),
+                ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", None, "DejaVu Sans"),
             ]
 
-            for font_path, index in font_configs:
+            for font_path, index, desc in font_configs:
                 try:
-                    if Path(font_path).exists():
+                    font_path = Path(font_path)
+                    if font_path.exists():
                         if index is not None:
                             # TTC file with index
-                            font = ImageFont.truetype(font_path, size, index=index)
+                            font = ImageFont.truetype(str(font_path), size, index=index)
                         else:
                             # Regular TTF file
-                            font = ImageFont.truetype(font_path, size)
-                        print(f"  Loaded font: {font_path}")
+                            font = ImageFont.truetype(str(font_path), size)
+                        print(f"  ✓ Loaded font: {desc}")
                         return font
                 except Exception as e:
-                    print(f"  Failed to load {font_path}: {e}")
                     continue
 
             # Fallback - warn user
-            print("  Warning: No suitable Chinese font found, text may display as squares")
-            print("  Please install Microsoft YaHei (msyh.ttc) or SimHei (simhei.ttf)")
+            print("  ⚠ Warning: No suitable Chinese font found, text may display as squares")
+            print("  → For Docker: Install fonts with 'apt-get install fonts-wqy-microhei'")
+            print("  → For local: Install Microsoft YaHei (msyh.ttc) or SimHei (simhei.ttf)")
+            print("  → Or place font files in: fonts/WenQuanYiMicroHei.ttf")
             return ImageFont.load_default()
         except Exception as e:
-            print(f"  Font loading error: {e}")
+            print(f"  ✗ Font loading error: {e}")
             return ImageFont.load_default()
 
     def visualize_regions(
