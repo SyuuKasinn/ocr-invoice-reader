@@ -42,6 +42,24 @@ pip install -e .
 pip install -e ".[dev]"
 ```
 
+### Docker Deployment 🐳
+
+For containerized deployment with pre-configured Chinese fonts:
+
+```bash
+# Using Docker Compose (recommended)
+docker-compose up --build
+
+# Or using Docker CLI
+docker build -t ocr-invoice-reader .
+docker run -it --rm \
+  -v $(pwd)/data:/app/data \
+  -v $(pwd)/results:/app/results \
+  ocr-invoice-reader ocr-enhanced --image /app/data/invoice.pdf --visualize --use-cpu
+```
+
+📖 **See [DOCKER_DEPLOYMENT.md](DOCKER_DEPLOYMENT.md) for detailed Docker setup and font configuration**
+
 ## 🚀 Quick Start
 
 ### Command Line Usage
