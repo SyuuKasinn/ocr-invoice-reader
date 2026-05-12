@@ -38,7 +38,7 @@ Examples:
     parser.add_argument('--output-dir', type=str, default='results', help='Output directory')
     parser.add_argument('--visualize', action='store_true', help='Generate visualization')
     parser.add_argument('--use-cpu', action='store_true', help='Force CPU mode')
-    parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan'], help='OCR language')
+    parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language (default: ch, recommended for mixed documents)')
 
     args = parser.parse_args()
 
@@ -90,7 +90,7 @@ Examples:
         print(f"Total pages: {len(all_results)}")
 
         total_regions = sum(len(r['regions']) for r in all_results)
-        total_tables = sum(1 for r in all_results for region in r['regions'] if region['type'] == 'table')
+        total_tables = sum(1 for r in all_results for region in r['regions'] if region.type == 'table')
 
         print(f"Total regions: {total_regions}")
         print(f"Total tables: {total_tables}")
@@ -104,10 +104,12 @@ Examples:
             print(f"  Regions: {len(result['regions'])}")
 
             for i, region in enumerate(result['regions'], 1):
-                if region['type'] == 'table':
-                    print(f"    Region {i}: {region['type']} ({region.get('rows', '?')}x{region.get('columns', '?')})")
+                if region.type == 'table':
+                    rows = getattr(region, 'rows', '?')
+                    columns = getattr(region, 'columns', '?')
+                    print(f"    Region {i}: {region.type} ({rows}x{columns})")
                 else:
-                    print(f"    Region {i}: {region['type']}")
+                    print(f"    Region {i}: {region.type}")
 
         # Save results for all pages
         print("\n" + "="*60)
@@ -120,10 +122,31 @@ Examples:
             page_num = result['page_number']
             page_name = Path(result['image_path']).stem
 
+            # Convert regions to dict for JSON serialization
+            result_dict = {
+                'page_number': result['page_number'],
+                'method': result['method'],
+                'image_path': result['image_path'],
+                'regions': []
+            }
+            for region in result['regions']:
+                region_dict = {
+                    'type': region.type,
+                    'bbox': region.bbox,
+                    'confidence': region.confidence,
+                    'text': region.text,
+                    'table_html': region.table_html if region.table_html else None
+                }
+                if hasattr(region, 'rows'):
+                    region_dict['rows'] = region.rows
+                if hasattr(region, 'columns'):
+                    region_dict['columns'] = region.columns
+                result_dict['regions'].append(region_dict)
+
             # Individual JSON
             page_json = output_dir / f"{page_name}.json"
             with open(page_json, 'w', encoding='utf-8') as f:
-                json.dump(result, f, indent=2, ensure_ascii=False)
+                json.dump(result_dict, f, indent=2, ensure_ascii=False)
             print(f"  Page {page_num} JSON: {page_json.name}")
 
             # Individual TXT
@@ -133,17 +156,42 @@ Examples:
                 f.write(f"{'='*60}\n\n")
 
                 for i, region in enumerate(result['regions'], 1):
-                    f.write(f"[Region {i} - {region['type']}]\n")
-                    f.write(region.get('text', '') + '\n\n')
+                    f.write(f"[Region {i} - {region.type}]\n")
+                    f.write(region.text + '\n\n')
             print(f"  Page {page_num} TXT: {page_txt.name}")
 
         # Save combined JSON
         print("\nCombined files:")
         json_output = output_dir / f"{input_name}_all_pages.json"
+
+        # Convert all results to dict format
+        pages_dict = []
+        for result in all_results:
+            result_dict = {
+                'page_number': result['page_number'],
+                'method': result['method'],
+                'image_path': result['image_path'],
+                'regions': []
+            }
+            for region in result['regions']:
+                region_dict = {
+                    'type': region.type,
+                    'bbox': region.bbox,
+                    'confidence': region.confidence,
+                    'text': region.text,
+                    'table_html': region.table_html if region.table_html else None
+                }
+                if hasattr(region, 'rows'):
+                    region_dict['rows'] = region.rows
+                if hasattr(region, 'columns'):
+                    region_dict['columns'] = region.columns
+                result_dict['regions'].append(region_dict)
+            pages_dict.append(result_dict)
+
         output_data = {
             'document': input_name,
             'total_pages': len(all_results),
-            'pages': all_results
+            'pages': pages_dict
         }
 
         with open(json_output, 'w', encoding='utf-8') as f:
@@ -161,8 +209,8 @@ Examples:
                 f.write(f"{'='*60}\n\n")
 
                 for i, region in enumerate(result['regions'], 1):
-                    f.write(f"[Region {i} - {region['type']}]\n")
-                    f.write(region.get('text', '') + '\n\n')
+                    f.write(f"[Region {i} - {region.type}]\n")
+                    f.write(region.text + '\n\n')
 
                 f.write('\n\n')
 
@@ -180,7 +228,7 @@ Examples:
 
             for result in all_results:
                 page_num = result['page_number']
-                page_tables = [r for r in result['regions'] if r['type'] == 'table' and r.get('table_html')]
+                page_tables = [r for r in result['regions'] if r.type == 'table' and r.table_html]
 
                 if page_tables:
                     f.write(f'<h2>Page {page_num}</h2>')
@@ -188,7 +236,7 @@ Examples:
                     for region in page_tables:
                         table_count += 1
                         f.write(f'<h3>Table {table_count}</h3>')
-                        f.write(region['table_html'])
+                        f.write(region.table_html)
 
             f.write('</body></html>')
 
@@ -228,10 +276,10 @@ Examples:
                 viz_regions = []
                 for region in result['regions']:
                     viz_region = {
-                        'type': region['type'],
-                        'bbox': region['bbox'],
-                        'confidence': region.get('confidence', 0.0),
-                        'text': region.get('text', ''),
+                        'type': region.type,
+                        'bbox': region.bbox,
+                        'confidence': region.confidence,
+                        'text': region.text,
                     }
 
                     # Add OCR boxes for all regions (including tables)
@@ -239,7 +287,7 @@ Examples:
                         # Use existing OCR boxes
                         if 'ocr_boxes' in result:
                             region_boxes = []
-                            x1, y1, x2, y2 = region['bbox']
+                            x1, y1, x2, y2 = region.bbox
                             for box in result['ocr_boxes']:
                                 bx1, by1, bx2, by2 = box['bbox']
                                 # Check if box center is inside region
@@ -251,8 +299,8 @@ Examples:
                             viz_region['ocr_boxes'] = []
                     else:
                         # For ppstructure_enhanced method, run OCR on this region to get detailed boxes
-                        if region.get('text'):  # Only if region has text
-                            x1, y1, x2, y2 = region['bbox']
+                        if region.text:  # Only if region has text
+                            x1, y1, x2, y2 = region.bbox
                             roi = img[y1:y2, x1:x2]
 
                             try:

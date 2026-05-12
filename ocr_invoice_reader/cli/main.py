@@ -3,7 +3,11 @@ Main CLI entry point for document extraction
 """
 import argparse
 import sys
+import io
 from pathlib import Path
+
+# Fix Windows encoding
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 from ocr_invoice_reader.extractors.document_extractor import DocumentExtractor
 from ocr_invoice_reader import __version__
@@ -72,9 +76,9 @@ Examples:
     parser.add_argument(
         '--lang',
         type=str,
-        default='japan',
+        default='ch',
         choices=['ch', 'en', 'japan', 'korean', 'latin'],
-        help='OCR language (default: japan)'
+        help='OCR language (default: ch, recommended for mixed documents)'
     )
 
     args = parser.parse_args()

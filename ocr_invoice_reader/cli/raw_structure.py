@@ -72,7 +72,7 @@ Examples:
         type=str,
         default='ch',
         choices=['ch', 'en', 'japan', 'korean', 'latin'],
-        help='OCR language (default: ch)'
+        help='OCR language (default: ch, recommended for mixed documents)'
     )
 
     args = parser.parse_args()

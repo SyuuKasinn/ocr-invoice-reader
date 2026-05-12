@@ -13,6 +13,8 @@ try:
 except ImportError:
     PPSTRUCTURE_AVAILABLE = False
 
+from ocr_invoice_reader.processors.structure_analyzer import LayoutRegion
+
 
 class EnhancedStructureAnalyzer:
     """Enhanced structure analyzer with better table detection"""
@@ -90,18 +92,18 @@ class EnhancedStructureAnalyzer:
         for item in result:
             region_type = item.get('type', 'text')
             bbox = item.get('bbox', [0, 0, 100, 100])
+            confidence = item.get('confidence', 0.0)
 
-            region_info = {
-                'type': region_type,
-                'bbox': bbox,
-                'confidence': item.get('confidence', 0.0),
-                'text': '',
-                'table_html': None,
-            }
+            # Create LayoutRegion object
+            region = LayoutRegion(
+                region_type=region_type,
+                bbox=bbox,
+                confidence=confidence
+            )
 
             if region_type == 'table':
-                region_info['table_html'] = item.get('res', {}).get('html', '')
-                print(f"    ✓ Table region: {len(region_info['table_html'])} chars")
+                region.table_html = item.get('res', {}).get('html', '')
+                print(f"    ✓ Table region: {len(region.table_html)} chars")
             else:
                 res = item.get('res', [])
                 if isinstance(res, list):
@@ -111,10 +113,10 @@ class EnhancedStructureAnalyzer:
                             texts.append(line.get('text', ''))
                         elif isinstance(line, (list, tuple)) and len(line) >= 2:
                             texts.append(str(line[1][0]))
-                    region_info['text'] = '\n'.join(texts)
+                    region.text = '\n'.join(texts)
                     print(f"    ✓ {region_type} region: {len(texts)} lines")
 
-            regions.append(region_info)
+            regions.append(region)
 
         return {
             'method': 'ppstructure_enhanced',
@@ -164,7 +166,7 @@ class EnhancedStructureAnalyzer:
             'ocr_boxes': boxes  # Include raw OCR boxes for further analysis
         }
 
-    def _detect_table_regions(self, boxes: List[Dict], img_shape: Tuple) -> List[Dict]:
+    def _detect_table_regions(self, boxes: List[Dict], img_shape: Tuple) -> List[LayoutRegion]:
         """Detect table regions based on coordinate analysis"""
 
         if not boxes:
@@ -210,13 +212,14 @@ class EnhancedStructureAnalyzer:
 
                 # Add as text region
                 if row_sorted:
-                    table_regions.append({
-                        'type': 'title' if i < len(rows) * 0.2 else 'text',
-                        'bbox': self._get_region_bbox(row_sorted),
-                        'confidence': sum(b['confidence'] for b in row_sorted) / len(row_sorted),
-                        'text': ' '.join(b['text'] for b in row_sorted),
-                        'table_html': None,
-                    })
+                    region_type = 'title' if i < len(rows) * 0.2 else 'text'
+                    region = LayoutRegion(
+                        region_type=region_type,
+                        bbox=self._get_region_bbox(row_sorted),
+                        confidence=sum(b['confidence'] for b in row_sorted) / len(row_sorted)
+                    )
+                    region.text = ' '.join(b['text'] for b in row_sorted)
+                    table_regions.append(region)
 
         # Don't forget the last table
         if current_table and len(current_table) >= 2:
@@ -224,7 +227,7 @@ class EnhancedStructureAnalyzer:
 
         return table_regions
 
-    def _create_table_region(self, table_rows: List[Tuple]) -> Dict:
+    def _create_table_region(self, table_rows: List[Tuple]) -> LayoutRegion:
         """Create a table region from detected rows"""
         all_boxes = []
         for _, row in table_rows:
@@ -238,15 +241,20 @@ class EnhancedStructureAnalyzer:
 
         table_html = f"<table>{''.join(html_rows)}</table>"
 
-        return {
-            'type': 'table',
-            'bbox': self._get_region_bbox(all_boxes),
-            'confidence': sum(b['confidence'] for b in all_boxes) / len(all_boxes),
-            'text': '\n'.join([' | '.join(b['text'] for b in row) for _, row in table_rows]),
-            'table_html': table_html,
-            'rows': len(table_rows),
-            'columns': max(len(row) for _, row in table_rows),
-        }
+        # Create LayoutRegion
+        region = LayoutRegion(
+            region_type='table',
+            bbox=self._get_region_bbox(all_boxes),
+            confidence=sum(b['confidence'] for b in all_boxes) / len(all_boxes)
+        )
+        region.text = '\n'.join([' | '.join(b['text'] for b in row) for _, row in table_rows])
+        region.table_html = table_html
+
+        # Store additional table info as attributes
+        region.rows = len(table_rows)
+        region.columns = max(len(row) for _, row in table_rows)
+
+        return region
 
     def _get_region_bbox(self, boxes: List[Dict]) -> List[int]:
         """Get bounding box for a group of boxes"""

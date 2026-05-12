@@ -65,8 +65,5 @@ setup(
         ],
     },
     include_package_data=True,
-    package_data={
-        "ocr_invoice_reader": ["config/*.json", "config/*.yaml"],
-    },
     zip_safe=False,
 )

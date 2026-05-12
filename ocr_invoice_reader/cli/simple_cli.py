@@ -3,7 +3,11 @@ Simple CLI for basic OCR (legacy functionality)
 """
 import argparse
 import sys
+import io
 from pathlib import Path
+
+# Fix Windows encoding
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 
 from ocr_invoice_reader.extractors.simple_ocr import SimpleOCR
 from ocr_invoice_reader import __version__
@@ -77,9 +81,9 @@ Examples:
     parser.add_argument(
         '--lang',
         type=str,
-        default='japan',
-        choices=['ch', 'en', 'japan', 'korean'],
-        help='OCR language (default: japan)'
+        default='ch',
+        choices=['ch', 'en', 'japan', 'korean', 'latin'],
+        help='OCR language (default: ch, recommended for mixed documents)'
     )
     parser.add_argument(
         '--confidence',
