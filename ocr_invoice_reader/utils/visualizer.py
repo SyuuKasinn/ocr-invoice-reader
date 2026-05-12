@@ -29,22 +29,37 @@ class OCRVisualizer:
     def _load_font(self, size: int = 18):
         """Load font for drawing text"""
         try:
-            # Try common font paths
-            font_paths = [
-                "C:/Windows/Fonts/msyh.ttc",      # Microsoft YaHei
-                "C:/Windows/Fonts/simhei.ttf",    # SimHei
-                "C:/Windows/Fonts/simsun.ttc",    # SimSun
-                "/System/Library/Fonts/PingFang.ttc",  # macOS
-                "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf",  # Linux
+            # Try common font paths with indices for TTC files
+            font_configs = [
+                ("C:/Windows/Fonts/msyh.ttc", 0),      # Microsoft YaHei
+                ("C:/Windows/Fonts/simhei.ttf", None),  # SimHei
+                ("C:/Windows/Fonts/simsun.ttc", 0),     # SimSun
+                ("C:/Windows/Fonts/STXIHEI.TTF", None), # STXihei
+                ("/System/Library/Fonts/PingFang.ttc", 0),  # macOS
+                ("/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf", None),  # Linux
             ]
 
-            for font_path in font_paths:
-                if Path(font_path).exists():
-                    return ImageFont.truetype(font_path, size)
+            for font_path, index in font_configs:
+                try:
+                    if Path(font_path).exists():
+                        if index is not None:
+                            # TTC file with index
+                            font = ImageFont.truetype(font_path, size, index=index)
+                        else:
+                            # Regular TTF file
+                            font = ImageFont.truetype(font_path, size)
+                        print(f"  Loaded font: {font_path}")
+                        return font
+                except Exception as e:
+                    print(f"  Failed to load {font_path}: {e}")
+                    continue
 
-            # Fallback
+            # Fallback - warn user
+            print("  Warning: No suitable Chinese font found, text may display as squares")
+            print("  Please install Microsoft YaHei (msyh.ttc) or SimHei (simhei.ttf)")
             return ImageFont.load_default()
-        except:
+        except Exception as e:
+            print(f"  Font loading error: {e}")
             return ImageFont.load_default()
 
     def visualize_regions(

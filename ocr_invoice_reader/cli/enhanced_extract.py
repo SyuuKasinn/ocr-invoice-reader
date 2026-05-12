@@ -144,6 +144,8 @@ Examples:
                     region_dict['rows'] = region.rows
                 if hasattr(region, 'columns'):
                     region_dict['columns'] = region.columns
+                if hasattr(region, 'ocr_boxes'):
+                    region_dict['ocr_boxes'] = region.ocr_boxes
                 result_dict['regions'].append(region_dict)
 
             # Individual JSON
@@ -287,17 +289,9 @@ Examples:
 
                     # Add OCR boxes for all regions (including tables)
                     if result.get('method') == 'coordinate_based':
-                        # Use existing OCR boxes
-                        if 'ocr_boxes' in result:
-                            region_boxes = []
-                            x1, y1, x2, y2 = region.bbox
-                            for box in result['ocr_boxes']:
-                                bx1, by1, bx2, by2 = box['bbox']
-                                # Check if box center is inside region
-                                cx, cy = (bx1 + bx2) / 2, (by1 + by2) / 2
-                                if x1 <= cx <= x2 and y1 <= cy <= y2:
-                                    region_boxes.append(box)
-                            viz_region['ocr_boxes'] = region_boxes
+                        # Use existing OCR boxes from region
+                        if hasattr(region, 'ocr_boxes') and region.ocr_boxes:
+                            viz_region['ocr_boxes'] = region.ocr_boxes
                         else:
                             viz_region['ocr_boxes'] = []
                     else:

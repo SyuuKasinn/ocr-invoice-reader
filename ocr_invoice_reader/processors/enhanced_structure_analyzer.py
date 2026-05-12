@@ -254,6 +254,9 @@ class EnhancedStructureAnalyzer:
         region.rows = len(table_rows)
         region.columns = max(len(row) for _, row in table_rows)
 
+        # Store OCR boxes for visualization
+        region.ocr_boxes = all_boxes
+
         return region
 
     def _get_region_bbox(self, boxes: List[Dict]) -> List[int]:
