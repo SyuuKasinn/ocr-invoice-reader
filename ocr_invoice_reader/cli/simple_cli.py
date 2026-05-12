@@ -6,14 +6,17 @@ import sys
 import io
 from pathlib import Path
 
-# Fix Windows encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
 from ocr_invoice_reader.extractors.simple_ocr import SimpleOCR
 from ocr_invoice_reader import __version__
 
 
 def main():
+    # Fix Windows encoding (do it inside main, after argparse)
+    if sys.platform == 'win32':
+        try:
+            sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+        except (AttributeError, ValueError):
+            pass  # Already wrapped or not needed
     """Main entry point for simple OCR CLI"""
     parser = argparse.ArgumentParser(
         prog="ocr-simple",

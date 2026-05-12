@@ -7,14 +7,17 @@ import io
 import json
 from pathlib import Path
 
-# Fix Windows encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
 from ocr_invoice_reader.processors.structure_analyzer import StructureAnalyzer
 from ocr_invoice_reader import __version__
 
 
 def main():
+    # Fix Windows encoding (do it inside main, after argparse)
+    if sys.platform == 'win32':
+        try:
+            sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+        except (AttributeError, ValueError):
+            pass  # Already wrapped or not needed
     """CLI for raw PP-Structure output"""
     parser = argparse.ArgumentParser(
         prog="ocr-raw",

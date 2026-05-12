@@ -9,9 +9,6 @@ from pathlib import Path
 from datetime import datetime
 from typing import List, Dict
 
-# Fix Windows encoding
-sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
-
 from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedStructureAnalyzer
 from ocr_invoice_reader.processors.file_handler import FileProcessor
 from ocr_invoice_reader import __version__
@@ -19,6 +16,12 @@ from ocr_invoice_reader import __version__
 
 def main():
     """Enhanced extraction CLI"""
+    # Fix Windows encoding (do it inside main, after argparse)
+    if sys.platform == 'win32':
+        try:
+            sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
+        except (AttributeError, ValueError):
+            pass  # Already wrapped or not needed
     parser = argparse.ArgumentParser(
         prog="ocr-enhanced",
         description="Enhanced OCR with Better Table Detection",
