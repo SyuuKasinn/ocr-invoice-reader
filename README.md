@@ -203,24 +203,6 @@ ocr-invoice-reader/
 └── README.md                       # This file
 ```
 
-## 📈 Performance
-
-### Recognition Quality
-
-| Method | Regions Detected | Table Detection | Accuracy | Speed (CPU) |
-|--------|-----------------|-----------------|----------|-------------|
-| **ocr-enhanced** | 8-13 per page | ✅ 2-3 tables | **90%+** | 5-6s/page |
-| ocr-raw | 1-3 per page | ⚠️ Limited | 70-80% | 4-5s/page |
-| ocr-extract | N/A | ❌ None | 40-60% | 4-5s/page |
-| ocr-simple | N/A | ❌ None | 85-95% | 2-3s/page |
-
-### Multi-Page Processing
-
-- **10-page PDF**: ~60 seconds (CPU mode)
-- **Automatic batching**: All pages processed sequentially
-- **Individual outputs**: One visualization per page
-- **Combined data**: Single JSON/TXT with all pages
-
 ## 🎨 Visualization Features
 
 - **OCR Text Boxes**: Red polygons around each recognized text
