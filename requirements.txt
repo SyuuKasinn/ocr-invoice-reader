@@ -1,0 +1,20 @@
+paddleocr==2.8.1
+paddlepaddle==3.0.0
+opencv-python>=4.8.0
+numpy<2.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+Pillow>=10.0.0
+matplotlib>=3.7.0
+tqdm>=4.65.0
+# Data models
+pydantic>=2.0.0
+# Text correction
+autocorrect>=2.6.0
+pycorrector>=1.0.0
+# PDF processing
+pdf2image>=1.16.0
+PyMuPDF>=1.23.0
+# Archive processing
+py7zr>=0.20.0
+rarfile>=4.1
