@@ -32,20 +32,22 @@ A comprehensive Python package for extracting structured information from invoic
 
 ### Sample Visualization Output
 
-![Sample Invoice Visualization](images/examples/sample_invoice_visualization.jpg)
+![International Express Waybill Visualization](images/examples/sample_invoice_visualization.jpg)
+
+*Example: International express waybill with mixed Chinese/English text showing comprehensive OCR detection*
 
 **What you see in the visualization:**
 - 🔴 **Red Polygons**: OCR text boxes showing character-level detection
-- 🟧 **Orange Boxes**: Table regions with structure detection
-- 🔵 **Blue Boxes**: Title and header regions
-- 🟢 **Green Boxes**: Plain text regions
-- 📝 **Text Labels**: Recognized text displayed above each region
+- 🟧 **Orange Boxes**: Table regions with structure detection (shown at top-left with confidence score 0.95)
+- 🟦 **Blue Boxes**: Title and header regions (e.g., "INTERNATIONAL EXPRESS WAYBILL")
+- 🟢 **Green Boxes**: Plain text and form field regions
+- 📝 **Text Labels**: Recognized text displayed above each region (Chinese, English, barcodes)
 
 ### Quick Example
 
 ```bash
-# Process a multi-page invoice with visualization
-ocr-enhanced --image invoice.pdf --lang japan --visualize --use-cpu
+# Process international waybill with mixed languages
+ocr-enhanced --image waybill.pdf --lang ch --visualize --use-cpu
 ```
 
 **Output generates:**
