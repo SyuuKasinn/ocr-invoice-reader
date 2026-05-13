@@ -28,6 +28,22 @@ A comprehensive Python package for extracting structured information from invoic
 | **ocr-extract** | Structured field extraction | Document classification |
 | **ocr-simple** | Simple text extraction | Quick text-only needs |
 
+## 🖥️ Desktop GUI Application
+
+**Want a user-friendly graphical interface?** Try the drag-and-drop desktop application:
+
+### **[OCR Invoice Reader GUI](https://github.com/SyuuKasinn/ocr-invoice-reader-gui)** 🎯
+
+- **Drag & Drop Interface**: Simply drag PDF or image files into the app
+- **Real-time Visualization**: See OCR results with color-coded boxes instantly
+- **Multi-tab Results**: Visualization, JSON data, extracted text, and HTML tables
+- **Cross-platform**: Works on Windows, macOS, and Linux
+- **No Command Line Required**: Perfect for non-technical users
+
+[**View GUI Screenshots →**](https://github.com/SyuuKasinn/ocr-invoice-reader-gui#-demo)
+
+---
+
 ## 🖼️ Visual Examples
 
 ### Sample Visualization Output
