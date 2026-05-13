@@ -28,6 +28,46 @@ A comprehensive Python package for extracting structured information from invoic
 | **ocr-extract** | Structured field extraction | Document classification |
 | **ocr-simple** | Simple text extraction | Quick text-only needs |
 
+## 🖼️ Visual Examples
+
+### Sample Visualization Output
+
+![Sample Invoice Visualization](images/examples/sample_invoice_visualization.jpg)
+
+**What you see in the visualization:**
+- 🔴 **Red Polygons**: OCR text boxes showing character-level detection
+- 🟧 **Orange Boxes**: Table regions with structure detection
+- 🔵 **Blue Boxes**: Title and header regions
+- 🟢 **Green Boxes**: Plain text regions
+- 📝 **Text Labels**: Recognized text displayed above each region
+
+### Quick Example
+
+```bash
+# Process a multi-page invoice with visualization
+ocr-enhanced --image invoice.pdf --lang japan --visualize --use-cpu
+```
+
+**Output generates:**
+- Precise text box coordinates for each character
+- Region type classification (table/title/text)
+- Confidence scores per region
+- HTML table extraction for structured data
+- One visualization image per page
+
+### Multi-Language Support
+
+| Language | Sample Document | Recognition Quality |
+|----------|----------------|-------------------|
+| 🇨🇳 Chinese | 中文发票、运单 | ⭐⭐⭐⭐⭐ Excellent |
+| 🇯🇵 Japanese | インボイス、送り状 | ⭐⭐⭐⭐⭐ Excellent |
+| 🇬🇧 English | Invoice, Waybill | ⭐⭐⭐⭐⭐ Excellent |
+| 🇰🇷 Korean | 송장, 운송장 | ⭐⭐⭐⭐ Good |
+
+**💡 Tip**: Use `--lang ch` for mixed-language documents (e.g., Japanese invoice with English company names).
+
+> 📚 **See [VISUAL_EXAMPLES.md](VISUAL_EXAMPLES.md) for detailed examples, use cases, and comparison of all four extraction modes.**
+
 ## 📦 Installation
 
 ### Quick Install
@@ -187,78 +227,6 @@ print(f"Confidence: {document.confidence:.1%}")
   "confidence": 0.55
 }
 ```
-
-## 🖼️ Visual Examples
-
-### Input vs Output Comparison
-
-<table>
-<tr>
-<td width="50%">
-
-**Original Document**
-- Raw invoice/waybill image
-- Multi-page PDF support
-- Various document layouts
-
-</td>
-<td width="50%">
-
-**OCR Visualization Result**
-- Red polygons: Detected text regions
-- Color-coded boxes: Region types
-- Extracted text overlay
-
-</td>
-</tr>
-</table>
-
-### Sample Visualization Output
-
-![Sample Invoice Visualization](images/examples/sample_invoice_visualization.jpg)
-
-The visualization features include:
-- 🔴 **Red Polygons**: OCR text boxes showing character-level detection
-- 🟧 **Orange Boxes**: Table regions with structure detection
-- 🔵 **Blue Boxes**: Title and header regions
-- 🟢 **Green Boxes**: Plain text regions
-- 📝 **Text Labels**: Recognized text displayed above each region
-
-**Example:** Multi-page invoice processing with Japanese text
-
-```bash
-ocr-enhanced --image invoice.pdf --lang japan --visualize --use-cpu
-```
-
-Output generates visualization for each page showing:
-- Precise text box coordinates
-- Region type classification
-- Confidence scores per region
-- HTML table extraction for structured data
-
-> 💡 **See [VISUAL_EXAMPLES.md](VISUAL_EXAMPLES.md) for more detailed examples, use cases, and comparison of all four extraction modes.**
-
-### Four Extraction Modes Comparison
-
-| Mode | Visual Output | Best Use Case | Example |
-|------|--------------|---------------|---------|
-| **ocr-enhanced** | Full visualization with regions | Production invoices | Table detection + text |
-| **ocr-raw** | PP-Structure boxes | Debugging | Original PaddleOCR output |
-| **ocr-extract** | Field highlighting | Document classification | Key fields only |
-| **ocr-simple** | Text overlay only | Quick extraction | Plain text documents |
-
-### Multi-Language Support Examples
-
-The system processes documents in multiple languages with high accuracy:
-
-| Language | Sample Document | Recognition Quality |
-|----------|----------------|-------------------|
-| 🇨🇳 Chinese | 中文发票、运单 | ⭐⭐⭐⭐⭐ Excellent |
-| 🇯🇵 Japanese | インボイス、送り状 | ⭐⭐⭐⭐⭐ Excellent |
-| 🇬🇧 English | Invoice, Waybill | ⭐⭐⭐⭐⭐ Excellent |
-| 🇰🇷 Korean | 송장, 운송장 | ⭐⭐⭐⭐ Good |
-
-**Mixed Language Support**: Use `--lang ch` for documents containing multiple languages (e.g., Japanese invoice with English company names).
 
 ## 🏗️ Project Structure
 
