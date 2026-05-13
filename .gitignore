@@ -38,6 +38,8 @@ results/
 *.png
 *.pdf
 !examples/142816_structure.jpg
+!images/examples/*.jpg
+!images/examples/*.png
 
 # OS
 .DS_Store
