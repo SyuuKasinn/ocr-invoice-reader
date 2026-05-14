@@ -14,6 +14,7 @@ except ImportError:
     PPSTRUCTURE_AVAILABLE = False
 
 from ocr_invoice_reader.processors.structure_analyzer import LayoutRegion
+from ocr_invoice_reader.utils.text_processor import TextProcessor
 
 
 class EnhancedStructureAnalyzer:
@@ -25,6 +26,7 @@ class EnhancedStructureAnalyzer:
 
         self.use_gpu = use_gpu
         self.lang = lang
+        self.text_processor = TextProcessor()
         device = 'gpu' if use_gpu else 'cpu'
 
         print("Initializing Enhanced PP-Structure with OCR v4 models...")
@@ -43,8 +45,8 @@ class EnhancedStructureAnalyzer:
             rec_model_dir=None,  # Will auto-download ch_PP-OCRv4_rec
             # Enhanced table detection parameters
             table_max_len=488,
-            layout_score_threshold=0.3,  # Lower threshold to detect more regions
-            layout_nms_threshold=0.3,     # Lower NMS for overlapping regions
+            layout_score_threshold=0.4,  # Balanced threshold
+            layout_nms_threshold=0.4,    # Balanced NMS for overlapping regions
         )
 
         # Separate OCR engine for better text recognition with v4 models
@@ -56,8 +58,9 @@ class EnhancedStructureAnalyzer:
             # PaddleOCR v4 models - 30% faster than v3
             det_model_dir=None,  # Will auto-download corresponding v4 det model
             rec_model_dir=None,  # Will auto-download corresponding v4 rec model
-            det_db_thresh=0.2,      # Lower threshold for text detection
-            det_db_box_thresh=0.4,  # More sensitive box detection
+            det_db_thresh=0.3,      # Balanced threshold for text detection
+            det_db_box_thresh=0.5,  # Balanced box detection
+            rec_batch_num=6,        # Batch processing for better performance
         )
 
         print("Enhanced PP-Structure initialized")
@@ -116,9 +119,16 @@ class EnhancedStructureAnalyzer:
                     texts = []
                     for line in res:
                         if isinstance(line, dict):
-                            texts.append(line.get('text', ''))
+                            text = line.get('text', '')
                         elif isinstance(line, (list, tuple)) and len(line) >= 2:
-                            texts.append(str(line[1][0]))
+                            text = str(line[1][0])
+                        else:
+                            continue
+
+                        # Process text to fix concatenation issues
+                        text = self.text_processor.process_ocr_result(text, split_words=True)
+                        texts.append(text)
+
                     region.text = '\n'.join(texts)
                     print(f"    ✓ {region_type} region: {len(texts)} lines")
 
@@ -150,9 +160,12 @@ class EnhancedStructureAnalyzer:
                 x1, y1 = box_np[:, 0].min(), box_np[:, 1].min()
                 x2, y2 = box_np[:, 0].max(), box_np[:, 1].max()
 
+                # Process text to improve quality
+                processed_text = self.text_processor.process_ocr_result(text, split_words=True)
+
                 boxes.append({
                     'bbox': [int(x1), int(y1), int(x2), int(y2)],
-                    'text': text,
+                    'text': processed_text,
                     'confidence': conf,
                     'center_y': (y1 + y2) / 2,
                     'center_x': (x1 + x2) / 2,
@@ -178,6 +191,30 @@ class EnhancedStructureAnalyzer:
         if not boxes:
             return []
 
+        # Filter out noise boxes (single characters that are likely artifacts)
+        filtered_boxes = []
+        for box in boxes:
+            text = box['text'].strip()
+            # Keep box if:
+            # 1. Text has more than 1 character, OR
+            # 2. It's a number or common punctuation, OR
+            # 3. Text has high confidence (>0.98) and is part of a larger structure
+            if len(text) > 1 or text.isdigit() or text in '.,;:()[]{}+-=':
+                filtered_boxes.append(box)
+            elif box['confidence'] > 0.98 and len(text) == 1:
+                # Single character with very high confidence - might be valid
+                # Check if it's surrounded by other boxes (not isolated)
+                nearby_boxes = [b for b in boxes if b != box and
+                               abs(b['center_y'] - box['center_y']) < 50 and
+                               abs(b['center_x'] - box['center_x']) < 200]
+                if len(nearby_boxes) > 0:
+                    filtered_boxes.append(box)
+
+        if not filtered_boxes:
+            return []
+
+        boxes = filtered_boxes
+
         # Group boxes by horizontal position (columns)
         # Group boxes by vertical position (rows)
 
@@ -187,7 +224,7 @@ class EnhancedStructureAnalyzer:
         # Detect rows (boxes at similar Y positions)
         rows = []
         current_row = [sorted_boxes[0]]
-        row_threshold = 30  # pixels tolerance
+        row_threshold = 35  # pixels tolerance (increased for better grouping)
 
         for box in sorted_boxes[1:]:
             if abs(box['center_y'] - current_row[-1]['center_y']) < row_threshold:
@@ -197,41 +234,102 @@ class EnhancedStructureAnalyzer:
                 current_row = [box]
         rows.append(current_row)
 
-        print(f"    Detected {len(rows)} rows")
+        print(f"    Detected {len(rows)} rows (from {len(boxes)} filtered boxes)")
 
         # Detect table-like patterns (multiple rows with similar column structure)
         table_regions = []
         current_table = []
+        min_table_rows = 3  # Minimum rows to be considered a table (increased for better detection)
 
         for i, row in enumerate(rows):
             # Sort boxes in row by X position
             row_sorted = sorted(row, key=lambda b: b['center_x'])
 
+            # Filter out very short text in single-item rows (likely noise)
+            if len(row_sorted) == 1:
+                text = row_sorted[0]['text'].strip()
+                # Skip single character rows unless they're numbers or in top 30%
+                if len(text) <= 1 and not text.isdigit() and i > len(rows) * 0.3:
+                    continue
+
             if len(row_sorted) >= 2:  # Row has multiple columns
                 current_table.append((i, row_sorted))
             else:
                 # Single column - might be title or section header
-                if current_table and len(current_table) >= 2:
+                # Check if we should extend current table (might be a merged row)
+                if current_table:
+                    last_table_row = current_table[-1]
+                    # If this single-column row is close to the table, it might be part of it
+                    if i - last_table_row[0] <= 2:  # Within 2 rows
+                        # Add to table as a full-width row
+                        current_table.append((i, row_sorted))
+                        continue
+
+                if current_table and len(current_table) >= min_table_rows:
                     # Save current table
                     table_regions.append(self._create_table_region(current_table))
                     current_table = []
 
-                # Add as text region
+                # Add as text region (with minimum text length check)
                 if row_sorted:
-                    region_type = 'title' if i < len(rows) * 0.2 else 'text'
+                    combined_text = ' '.join(b['text'] for b in row_sorted).strip()
+
+                    # Skip if text is too short (likely noise)
+                    if len(combined_text) < 2:
+                        continue
+
+                    # Determine region type based on position and content
+                    if i < len(rows) * 0.15 and len(combined_text) < 50:
+                        region_type = 'title'
+                    else:
+                        region_type = 'text'
+
                     region = LayoutRegion(
                         region_type=region_type,
                         bbox=self._get_region_bbox(row_sorted),
                         confidence=sum(b['confidence'] for b in row_sorted) / len(row_sorted)
                     )
-                    region.text = ' '.join(b['text'] for b in row_sorted)
+                    region.text = combined_text
                     table_regions.append(region)
 
         # Don't forget the last table
-        if current_table and len(current_table) >= 2:
+        if current_table and len(current_table) >= min_table_rows:
             table_regions.append(self._create_table_region(current_table))
 
+        # Post-process: merge adjacent table regions if they're close
+        table_regions = self._merge_adjacent_tables(table_regions)
+
+        # Filter out empty or near-empty regions
+        table_regions = self._filter_empty_regions(table_regions)
+
         return table_regions
+
+    def _filter_empty_regions(self, regions: List[LayoutRegion]) -> List[LayoutRegion]:
+        """Filter out empty or near-empty regions"""
+        filtered = []
+
+        for region in regions:
+            # Check if region has meaningful content
+            text = region.text.strip() if region.text else ''
+
+            # Skip if:
+            # 1. Text is empty
+            # 2. Text is too short (< 2 chars) and not a number
+            # 3. Text is only whitespace or punctuation
+            if not text:
+                continue
+
+            if len(text) < 2 and not text.isdigit():
+                continue
+
+            # Check if text is only punctuation/symbols
+            if all(c in '.,;:!?()[]{}|-_/' for c in text):
+                continue
+
+            # Keep this region
+            filtered.append(region)
+
+        return filtered
 
     def _create_table_region(self, table_rows: List[Tuple]) -> LayoutRegion:
         """Create a table region from detected rows"""
@@ -276,3 +374,108 @@ class EnhancedStructureAnalyzer:
         y2 = max(b['bbox'][3] for b in boxes)
 
         return [x1, y1, x2, y2]
+
+    def _merge_adjacent_tables(self, regions: List[LayoutRegion]) -> List[LayoutRegion]:
+        """Merge adjacent table regions that are likely part of the same table"""
+        if len(regions) < 2:
+            return regions
+
+        merged = []
+        i = 0
+
+        while i < len(regions):
+            current = regions[i]
+
+            # Only try to merge tables
+            if current.region_type != 'table':
+                merged.append(current)
+                i += 1
+                continue
+
+            # Look ahead for adjacent tables
+            j = i + 1
+            tables_to_merge = [current]
+
+            while j < len(regions):
+                next_region = regions[j]
+
+                # Check if next region is a table and is close vertically
+                if next_region.region_type == 'table':
+                    # Calculate vertical distance
+                    current_bottom = current.bbox[3]
+                    next_top = next_region.bbox[1]
+                    vertical_gap = next_top - current_bottom
+
+                    # Check horizontal overlap
+                    current_left = current.bbox[0]
+                    current_right = current.bbox[2]
+                    next_left = next_region.bbox[0]
+                    next_right = next_region.bbox[2]
+
+                    horizontal_overlap = min(current_right, next_right) - max(current_left, next_left)
+                    overlap_ratio = horizontal_overlap / max(current_right - current_left, next_right - next_left)
+
+                    # Merge if: close vertically AND significant horizontal overlap
+                    if vertical_gap < 100 and overlap_ratio > 0.5:
+                        tables_to_merge.append(next_region)
+                        current = next_region  # Update current for next iteration
+                        j += 1
+                    else:
+                        break
+                else:
+                    # Non-table region, stop merging
+                    break
+
+            # Merge collected tables
+            if len(tables_to_merge) > 1:
+                merged_region = self._merge_table_regions(tables_to_merge)
+                merged.append(merged_region)
+                i = j
+            else:
+                merged.append(current)
+                i += 1
+
+        return merged
+
+    def _merge_table_regions(self, table_regions: List[LayoutRegion]) -> LayoutRegion:
+        """Merge multiple table regions into one"""
+        # Calculate merged bounding box
+        x1 = min(r.bbox[0] for r in table_regions)
+        y1 = min(r.bbox[1] for r in table_regions)
+        x2 = max(r.bbox[2] for r in table_regions)
+        y2 = max(r.bbox[3] for r in table_regions)
+
+        # Merge text
+        merged_text = '\n'.join(r.text for r in table_regions if r.text)
+
+        # Merge HTML
+        merged_html = ''
+        for r in table_regions:
+            if hasattr(r, 'table_html') and r.table_html:
+                # Extract table body content
+                html = r.table_html.replace('<table>', '').replace('</table>', '')
+                merged_html += html
+
+        if merged_html:
+            merged_html = f'<table>{merged_html}</table>'
+
+        # Calculate average confidence
+        avg_confidence = sum(r.confidence for r in table_regions) / len(table_regions)
+
+        # Create merged region
+        merged = LayoutRegion(
+            region_type='table',
+            bbox=[x1, y1, x2, y2],
+            confidence=avg_confidence
+        )
+        merged.text = merged_text
+        merged.table_html = merged_html if merged_html else None
+
+        # Sum rows and columns
+        total_rows = sum(getattr(r, 'rows', 0) for r in table_regions)
+        max_columns = max(getattr(r, 'columns', 0) for r in table_regions)
+
+        merged.rows = total_rows
+        merged.columns = max_columns
+
+        return merged
