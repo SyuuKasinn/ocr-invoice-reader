@@ -83,18 +83,43 @@ class EnhancedStructureAnalyzer:
             if result and len(result) > 1:
                 # Multiple regions detected - process them
                 print(f"  PP-Structure detected {len(result)} regions")
+
+                # Check region types
+                region_types = [item.get('type', 'unknown') for item in result]
+                table_count = region_types.count('table')
+
+                print(f"    Region types: {dict((t, region_types.count(t)) for t in set(region_types))}")
+
+                # If no tables detected but we expect them (invoice-like documents)
+                # Use coordinate-based analysis which is better at finding tables
+                if table_count == 0:
+                    print("  ⚠ No tables detected by PP-Structure")
+                    print("  Using coordinate-based analysis for better table detection...")
+                    return self._coordinate_based_analysis(img, image_path)
+
                 processed_result = self._process_ppstructure_result(result, img, image_path)
 
                 # Validate: check if we have meaningful content
-                has_content = any(
-                    len(r.text.strip()) > 20 for r in processed_result['regions']
+                total_text_length = sum(
+                    len(r.text.strip()) for r in processed_result['regions']
                     if hasattr(r, 'text') and r.text
                 )
 
-                if has_content:
+                # Check if we have reasonable amount of content
+                # For typical invoices, expect at least 200 chars
+                has_sufficient_content = total_text_length > 200
+
+                # Also check if there are any table regions with content
+                has_tables = any(
+                    r.type == 'table' and len(r.text.strip()) > 50
+                    for r in processed_result['regions']
+                    if hasattr(r, 'text') and r.text
+                )
+
+                if has_sufficient_content or has_tables:
                     return processed_result
                 else:
-                    print("  ⚠ PP-Structure regions have minimal content")
+                    print(f"  ⚠ PP-Structure found insufficient content ({total_text_length} chars)")
                     print("  Falling back to coordinate-based analysis...")
                     return self._coordinate_based_analysis(img, image_path)
             else:
