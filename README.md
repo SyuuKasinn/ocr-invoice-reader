@@ -90,28 +90,41 @@ ocr-enhanced --image invoice.pdf --lang ch --visualize
 ocr-enhanced --image invoice.pdf --lang ch --use-cpu
 ```
 
-### 🤖 LLM Integration (NEW!)
+### 🤖 LLM Integration (NEW! - Auto Setup)
 
-Enable AI-powered post-processing for automatic field extraction:
+Enable AI-powered post-processing with **automatic Ollama installation**:
 
 ```bash
-# Install Ollama
-# Download from: https://ollama.ai/download
+# Automatic setup (recommended)
+ocr-enhanced --image invoice.pdf --lang ch --use-llm --auto-setup-ollama
 
-# Pull a small model (CPU-friendly)
-ollama pull qwen2.5:0.5b
-
-# Use LLM with OCR
+# Or interactive setup
 ocr-enhanced --image invoice.pdf --lang ch --use-llm
+# Choose option 1 when prompted
 ```
+
+**What gets installed automatically:**
+- ✅ Ollama service (if not installed)
+- ✅ LLM model (qwen2.5:0.5b by default)
+- ✅ All dependencies configured
 
 **LLM Features:**
 - ✅ Text correction (fix OCR errors)
 - ✅ Auto-extract invoice fields (number, date, amount, etc.)
 - ✅ Document classification (invoice/receipt/waybill)
 - ✅ CPU-friendly models (300MB-2GB)
+- ✅ Database-ready CSV export
 
-See [LLM_INTEGRATION_GUIDE.md](LLM_INTEGRATION_GUIDE.md) for details.
+**Manual setup (if needed):**
+```bash
+# One-time setup
+ocr-setup-ollama
+
+# Then use normally
+ocr-enhanced --image invoice.pdf --lang ch --use-llm
+```
+
+See [AUTO_SETUP_GUIDE.md](AUTO_SETUP_GUIDE.md) or [LLM_INTEGRATION_GUIDE.md](LLM_INTEGRATION_GUIDE.md) for details.
 
 ### Output
 
@@ -120,16 +133,18 @@ The command generates a timestamped output directory:
 ```
 results/
 └── 20260514_123456/
-    ├── invoice_page_0001.json       # Page 1 structured data
-    ├── invoice_page_0001.txt        # Page 1 extracted text
+    ├── invoice_page_0001.json       # Page 1 structured data (JSON)
+    ├── invoice_page_0001.txt        # Page 1 OCR text
     ├── invoice_page_0001_llm.txt    # Page 1 LLM analysis (if --use-llm)
-    ├── invoice_all_pages.json       # All pages combined (JSON)
-    ├── invoice_all_pages.txt        # All pages combined (text)
-    ├── invoice_llm_analysis.txt     # LLM analysis summary (if --use-llm)
-    ├── invoice_all_tables.html      # HTML tables
+    ├── invoice_page_0001_llm.csv    # Page 1 LLM fields (CSV, if --use-llm)
     ├── invoice_page_0001_viz.jpg    # Visualization (if --visualize)
-    ├── extraction_summary.csv       # Summary CSV (batch mode)
-    └── extraction_items.csv         # Items CSV (batch mode)
+    ├── ...
+    ├── invoice_all_pages.json       # All pages combined (JSON)
+    ├── invoice_all_pages.txt        # All pages OCR text
+    ├── invoice_all_tables.html      # All tables (HTML)
+    ├── invoice_summary.csv          # Page summary (CSV, always)
+    ├── invoice_llm_analysis.txt     # LLM analysis summary (if --use-llm)
+    └── invoice_llm.csv              # LLM extracted fields summary (CSV, if --use-llm)
 ```
 
 ### Python API

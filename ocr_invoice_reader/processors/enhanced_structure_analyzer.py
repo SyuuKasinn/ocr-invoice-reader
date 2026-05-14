@@ -75,7 +75,7 @@ class EnhancedStructureAnalyzer:
             table=True,
             ocr=True,
             show_log=False,
-            lang='ch',
+            lang=self.lang,  # Use the lang parameter from constructor
             device=device,
             use_angle_cls=False,
             # PaddleOCR v4 models (faster and more accurate)

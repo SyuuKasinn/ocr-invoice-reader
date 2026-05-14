@@ -5,6 +5,7 @@ import argparse
 import sys
 import io
 import json
+import csv
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict
@@ -44,6 +45,7 @@ Examples:
     parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language (default: ch, recommended for mixed documents)')
     parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing (requires Ollama)')
     parser.add_argument('--llm-model', type=str, default='qwen2.5:0.5b', help='LLM model for post-processing (default: qwen2.5:0.5b)')
+    parser.add_argument('--auto-setup-ollama', action='store_true', help='Automatically setup Ollama without prompts (installs if needed)')
 
     args = parser.parse_args()
 
@@ -73,12 +75,77 @@ Examples:
         llm_processor = None
         if args.use_llm:
             from ocr_invoice_reader.utils.llm_processor import create_llm_processor
+            from ocr_invoice_reader.utils.ollama_manager import OllamaManager
+
             print("\nInitializing LLM processor...")
+
+            # Try to create directly first
             llm_processor = create_llm_processor(args.llm_model)
+
             if llm_processor:
                 print(f"✓ LLM ready: {args.llm_model}")
             else:
-                print("✗ LLM not available, continuing without post-processing")
+                # LLM not available, try auto setup
+                print("✗ LLM not available")
+
+                if args.auto_setup_ollama:
+                    # Fully automatic mode
+                    print("\nAutomatic setup mode (--auto-setup-ollama)")
+                    manager = OllamaManager()
+                    success, message = manager.setup(args.llm_model, auto_confirm=True)
+
+                    if success:
+                        llm_processor = create_llm_processor(args.llm_model)
+                        if llm_processor:
+                            print(f"✓ LLM setup successful")
+                        else:
+                            print(f"✗ LLM still unavailable, continuing with OCR only")
+                    else:
+                        print(f"{message}")
+                        print("Continuing with OCR only mode")
+                else:
+                    # Interactive mode
+                    print("\nOllama service is not running or not installed")
+                    print("Options:")
+                    print("  1. Automatic setup of Ollama (recommended)")
+                    print("  2. View manual setup instructions")
+                    print("  3. Skip LLM features, continue with OCR only")
+
+                    choice = input("\nPlease choose (1/2/3): ").strip()
+
+                    if choice == '1':
+                        # Interactive automatic setup
+                        print("\nStarting automatic setup...")
+                        manager = OllamaManager()
+                        success, message = manager.setup(args.llm_model, auto_confirm=False)
+
+                        if success:
+                            llm_processor = create_llm_processor(args.llm_model)
+                            if llm_processor:
+                                print(f"\n✓ LLM setup successful, starting processing")
+                            else:
+                                print(f"\n✗ LLM still unavailable, continuing with OCR only")
+                        else:
+                            print(f"\n{message}")
+                            print("Continuing with OCR only mode")
+
+                    elif choice == '2':
+                        print("\n" + "=" * 60)
+                        print("Manual Ollama Setup")
+                        print("=" * 60)
+                        print("1. Visit: https://ollama.ai/download")
+                        print("2. Download and install Ollama (Windows version)")
+                        print("3. After installation, run in command line:")
+                        print(f"   ollama pull {args.llm_model}")
+                        print("4. Re-run this command:")
+                        print(f"   ocr-enhanced --image <file> --use-llm")
+                        print("\nOr use automatic installation mode:")
+                        print(f"   ocr-enhanced --image <file> --use-llm --auto-setup-ollama")
+                        print("=" * 60)
+                        return 0
+
+                    else:
+                        print("\nContinuing with OCR only mode (without LLM)")
 
         # Process all pages
         all_results = []
@@ -251,7 +318,39 @@ Examples:
                         f.write(f"[Processing Error]\n")
                         f.write(f"{result['llm_error']}\n")
 
-                print(f"  Page {page_num} LLM: {page_llm_txt.name}")
+                print(f"  Page {page_num} LLM TXT: {page_llm_txt.name}")
+
+                # Individual LLM CSV (if LLM fields were extracted)
+                if 'llm_extracted_fields' in result and 'error' not in result.get('llm_extracted_fields', {}):
+                    page_llm_csv = output_dir / f"{page_name}_llm.csv"
+                    fields = result['llm_extracted_fields']
+
+                    # Create database-friendly row
+                    row = {
+                        'page': result['page_number'],
+                        'doc_type': result.get('llm_document_type', {}).get('type', ''),
+                        'confidence': result.get('llm_document_type', {}).get('confidence', '')
+                    }
+
+                    # Add all extracted fields, handling nested data
+                    for key, value in fields.items():
+                        # Convert lists/dicts to JSON string for database storage
+                        if isinstance(value, (list, dict)):
+                            row[key] = json.dumps(value, ensure_ascii=False)
+                        else:
+                            row[key] = value if value else ''
+
+                    # Sort keys: page, doc_type, confidence first, then alphabetical
+                    priority_keys = ['page', 'doc_type', 'confidence']
+                    other_keys = sorted([k for k in row.keys() if k not in priority_keys])
+                    all_keys = [k for k in priority_keys if k in row] + other_keys
+
+                    with open(page_llm_csv, 'w', newline='', encoding='utf-8-sig') as f:
+                        writer = csv.DictWriter(f, fieldnames=all_keys)
+                        writer.writeheader()
+                        writer.writerow(row)
+
+                    print(f"  Page {page_num} LLM CSV: {page_llm_csv.name}")
 
         # Save combined JSON
         print("\nCombined files:")
@@ -335,6 +434,23 @@ Examples:
 
         print(f"  Tables: {tables_output} ({table_count} tables)")
 
+        # Save basic CSV summary (all pages)
+        csv_summary = output_dir / f"{input_name}_summary.csv"
+        with open(csv_summary, 'w', newline='', encoding='utf-8-sig') as f:
+            writer = csv.writer(f)
+            writer.writerow(['Page', 'Method', 'Regions', 'Tables', 'Text_Length'])
+
+            for result in all_results:
+                page_num = result['page_number']
+                method = result['method']
+                region_count = len(result['regions'])
+                table_count_page = sum(1 for r in result['regions'] if r.type == 'table')
+                text_length = sum(len(r.text or '') for r in result['regions'])
+
+                writer.writerow([page_num, method, region_count, table_count_page, text_length])
+
+        print(f"  Summary CSV: {csv_summary.name}")
+
         # Save LLM analysis summary (if LLM was used)
         llm_results = [r for r in all_results if 'llm_document_type' in r or 'llm_extracted_fields' in r]
         if llm_results:
@@ -380,6 +496,49 @@ Examples:
                         f.write(f"  {result['llm_error']}\n\n")
 
             print(f"  LLM Analysis: {llm_output.name} ({len(llm_results)} pages)")
+
+            # Save CSV if LLM extracted fields
+            csv_data = []
+            for result in llm_results:
+                if 'llm_extracted_fields' in result and 'error' not in result.get('llm_extracted_fields', {}):
+                    fields = result['llm_extracted_fields']
+
+                    # Create database-friendly row
+                    row = {
+                        'page': result['page_number'],
+                        'doc_type': result.get('llm_document_type', {}).get('type', ''),
+                        'confidence': result.get('llm_document_type', {}).get('confidence', '')
+                    }
+
+                    # Add all extracted fields, handling nested data
+                    for key, value in fields.items():
+                        # Convert lists/dicts to JSON string for database storage
+                        if isinstance(value, (list, dict)):
+                            row[key] = json.dumps(value, ensure_ascii=False)
+                        else:
+                            row[key] = value if value else ''
+
+                    csv_data.append(row)
+
+            if csv_data:
+                csv_output = output_dir / f"{input_name}_llm.csv"
+
+                # Get all unique field names, with proper ordering
+                all_keys = set()
+                for row in csv_data:
+                    all_keys.update(row.keys())
+
+                # Sort: page, doc_type, confidence first, then alphabetical
+                priority_keys = ['page', 'doc_type', 'confidence']
+                other_keys = sorted([k for k in all_keys if k not in priority_keys])
+                all_keys = [k for k in priority_keys if k in all_keys] + other_keys
+
+                with open(csv_output, 'w', newline='', encoding='utf-8-sig') as f:
+                    writer = csv.DictWriter(f, fieldnames=all_keys)
+                    writer.writeheader()
+                    writer.writerows(csv_data)
+
+                print(f"  LLM CSV: {csv_output.name} ({len(csv_data)} records)")
 
         # Visualize if requested
         if args.visualize:

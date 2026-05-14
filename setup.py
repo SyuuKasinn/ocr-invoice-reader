@@ -68,6 +68,7 @@ setup(
             "ocr-raw=ocr_invoice_reader.cli.raw_structure:main",
             "ocr-enhanced=ocr_invoice_reader.cli.enhanced_extract:main",
             "ocr-api=ocr_invoice_reader.cli.api_server:main",
+            "ocr-setup-ollama=ocr_invoice_reader.cli.setup_ollama:main",
         ],
     },
     include_package_data=True,
