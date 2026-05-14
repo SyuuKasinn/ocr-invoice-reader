@@ -1,0 +1,28 @@
+PAGE 9
+============================================================
+
+[Region 1 - table]
+INTERNATIONAL EXPRESS WAYBILL | 报美
+Express | http://www.ldxpress.com
+1 From Shipper/发件人 | HTL | 820111182656
+Accountnumber发件人账号 | Customername发件人名 | Phonenumber发件人电话 | 5 Delivery To/收货方信息（如与进口商地址不一致）
+202111421日建贸易 | 徐燕妹 | 021-64400148 | Companynamel公司名称
+Customer Companyname,address 发件人公司、地址 | 15021275972 | Delive | address/地址 | KLYOTA | Planning | CO.L大 | SHIPPER
+SHANGHAI NIKKEN TRADING CO.,LTD | 千葉市川市河原18-8
+18-8 Kawacra Ichikawa-shichiba272-0lol JAPA
+A809,Xinyi city,1618 Yishan Road Shanghai China
+Post Code/ZIPCode/邮编 | Country/国家
+272-0101 | JAPAW
+Contactperson/联系人 | Phone/电话
+Full description ofcontents/ 货物明细 | 6 | 清田樣宽 | Special Delivery Instructions/特别配送指示（如有特殊要求请在此记载） | 047-395-1534
+Cargocategory货物类别 | Doc | 文件口 | Parcel | 包裹口 | Rigid Package | 硬包装口
+Givecontentandquantity物品名称（
+Declared Value声明价值
+Importer/进口商
+Company! | name,address进口商收件公司名、地址:
+31 | Shipment details/包装明细 | 日建株式会社
+Total numberof | packages/总个数 | 实际重量 | Total Weight | Midth | Height | 東 都 港 区 洪 松 町 二 7 B 心 一 儿 2
+4 | 运费支付方:发件人 | Payer account number and | 体积重量 | Volume Weight | 收件方口 | insurance details/付款方式 | 第三方口 | kg | 2: | 3: | CM | CM* | CM* | CM* | CM | CM | Contactperson/联系人 | Phone/电话 | Park Building2 F2-7-13 Hamamatsucho Minato-ku Toky | Zip Code/邮编
+Taxpayby | Freight Payby Sender | Pickedup Date/取件日期 | 进口关税支付方:发件人口 | Sender | Destination duties/taxesif left blankreceiverpaysduties/taxes | Consignee | Consignee | 收件方口 | 3rd Party | Shipper'ssignature/发件人签章 | 第三方 | Brdi Part | 5: | 4: | CM* | CM* | Consignee'ssignature/收件人签章 | CM* | CM* | CM | CM | 石山裕刚 | Tracking Number/运单号码 | 080-8844-3983 | Pickedupby取件人 | 105-0013 | 鸿硕物流
+年月 | AMPM | HTL8 | 820111182656 | 年Y
+
