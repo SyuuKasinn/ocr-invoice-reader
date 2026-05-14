@@ -81,9 +81,22 @@ class EnhancedStructureAnalyzer:
             result = self.structure_engine(img)
 
             if result and len(result) > 1:
-                # Multiple regions detected - good!
+                # Multiple regions detected - process them
                 print(f"  PP-Structure detected {len(result)} regions")
-                return self._process_ppstructure_result(result, img, image_path)
+                processed_result = self._process_ppstructure_result(result, img, image_path)
+
+                # Validate: check if we have meaningful content
+                has_content = any(
+                    len(r.text.strip()) > 20 for r in processed_result['regions']
+                    if hasattr(r, 'text') and r.text
+                )
+
+                if has_content:
+                    return processed_result
+                else:
+                    print("  ⚠ PP-Structure regions have minimal content")
+                    print("  Falling back to coordinate-based analysis...")
+                    return self._coordinate_based_analysis(img, image_path)
             else:
                 print(f"  PP-Structure only found {len(result) if result else 0} region(s)")
                 print("  Falling back to coordinate-based analysis...")
@@ -112,7 +125,29 @@ class EnhancedStructureAnalyzer:
 
             if region_type == 'table':
                 region.table_html = item.get('res', {}).get('html', '')
-                print(f"    ✓ Table region: {len(region.table_html)} chars")
+
+                # Extract text from table result
+                table_text = ""
+                res = item.get('res', {})
+                if isinstance(res, dict):
+                    # Try to get text from HTML
+                    html = res.get('html', '')
+                    if html:
+                        # Simple HTML text extraction
+                        import re
+                        # Remove HTML tags
+                        text_only = re.sub(r'<[^>]+>', ' ', html)
+                        text_only = re.sub(r'\s+', ' ', text_only).strip()
+                        table_text = text_only
+
+                # Fallback: If table content is empty or too short, use OCR on table region
+                if not table_text or len(table_text) < 10:
+                    print(f"    ⚠ Table region has empty/minimal content, using OCR fallback...")
+                    table_text = self._ocr_table_region(img, bbox)
+                    region.table_html = ""  # Clear invalid HTML
+
+                region.text = table_text
+                print(f"    ✓ Table region: {len(table_text)} chars")
             else:
                 res = item.get('res', [])
                 if isinstance(res, list):
@@ -239,7 +274,7 @@ class EnhancedStructureAnalyzer:
         # Detect table-like patterns (multiple rows with similar column structure)
         table_regions = []
         current_table = []
-        min_table_rows = 3  # Minimum rows to be considered a table (increased for better detection)
+        min_table_rows = 2  # Minimum rows to be considered a table (lowered to catch more tables)
 
         for i, row in enumerate(rows):
             # Sort boxes in row by X position
@@ -374,6 +409,57 @@ class EnhancedStructureAnalyzer:
         y2 = max(b['bbox'][3] for b in boxes)
 
         return [x1, y1, x2, y2]
+
+    def _ocr_table_region(self, img: np.ndarray, bbox: List[int]) -> str:
+        """
+        OCR a specific table region when PP-Structure fails
+
+        Args:
+            img: Full image
+            bbox: Bounding box [x1, y1, x2, y2]
+
+        Returns:
+            Extracted text from the region
+        """
+        try:
+            # Extract region from image
+            x1, y1, x2, y2 = bbox
+            x1, y1 = max(0, int(x1)), max(0, int(y1))
+            x2, y2 = min(img.shape[1], int(x2)), min(img.shape[0], int(y2))
+
+            # Add padding for better recognition
+            padding = 10
+            x1 = max(0, x1 - padding)
+            y1 = max(0, y1 - padding)
+            x2 = min(img.shape[1], x2 + padding)
+            y2 = min(img.shape[0], y2 + padding)
+
+            region_img = img[y1:y2, x1:x2]
+
+            if region_img.size == 0:
+                return ""
+
+            # Run OCR on the region
+            ocr_result = self.ocr_engine.ocr(region_img, cls=False)
+
+            if not ocr_result or not ocr_result[0]:
+                return ""
+
+            # Extract and process text
+            lines = []
+            for line in ocr_result[0]:
+                if line:
+                    _, (text, conf) = line
+                    if conf > 0.5:  # Only use high confidence results
+                        # Process text
+                        text = self.text_processor.process_ocr_result(text, split_words=True)
+                        lines.append(text)
+
+            return '\n'.join(lines)
+
+        except Exception as e:
+            print(f"      Error in OCR fallback: {e}")
+            return ""
 
     def _merge_adjacent_tables(self, regions: List[LayoutRegion]) -> List[LayoutRegion]:
         """Merge adjacent table regions that are likely part of the same table"""

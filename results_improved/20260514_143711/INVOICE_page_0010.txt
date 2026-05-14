@@ -1,0 +1,17 @@
+PAGE 10
+============================================================
+
+[Region 1 - table]
+
+
+[Region 2 - table]
+
+
+[Region 3 - table_caption]
+目的地
+JAPAN
+TO:
+
+[Region 4 - table_caption]
+TERMS OF PAYMENT:
+

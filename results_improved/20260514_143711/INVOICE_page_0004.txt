@@ -1,0 +1,17 @@
+PAGE 4
+============================================================
+
+[Region 1 - text]
+SHANGHAI CROPOZAKICO.,LTD.
+
+[Region 2 - table]
+
+
+[Region 3 - table_caption]
+RM211HESENCOMMERCECENTER,
+NO.1600WEST YANANROAD
+TEL:021-5238-5710
+
+[Region 4 - header]
+IUIAL INVUILE
+

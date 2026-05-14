@@ -1,0 +1,56 @@
+PAGE 3
+============================================================
+
+[Region 1 - title]
+林
+
+[Region 2 - title]
+道
+
+[Region 3 - title]
+际
+
+[Region 4 - table]
+国 | INTERNATIONALEXPRESSWAYBILL
+Express | http://www.ldxpress.com
+HTL | 506539704996
+FromShipperl发件人 | 5DeliveryTo/收货方信息（如与进口商地址不一致）
+Accountnumber发件人账号 | Customer name 发件人名|Phone number发件人电话
+202117902 | 021-5238-5710 | 株会社
+CustomerCompanyname，address 发件人公司、地址 | SHANGHAICROPOZAK<I | C.,LTD | 2F | Deliveryaddress/地址 | 夕部 | ①SHIPPER生联
+
+[Region 5 - text]
+Floness
+
+[Region 6 - text]
+業部才不/人夕化学業部东都流年
+
+[Region 7 - text]
+RM2Il HESEN COMMERCE CENTER
+
+[Region 8 - table]
+UDIGUDWBST YAN AN ROAD. ShAKHA | Country/国家 | Jabon
+Contactperson/联系人 | Phone/电话
+Floness | 075-223-（111
+
+[Region 9 - text]
+SpecialDeliveryInstructions/特别配送指示（如有特殊要求请在此记载）
+
+[Region 10 - text]
+2Fulldescriptionofcontents/ 货物明细
+
+[Region 11 - table]
+Cargocategory货物类别 | 文件口 | 包裹口 | 硬包装口
+Parce | Rigid Pack | age
+DeclaredValue声明价值 | Givecontentandquantity物品名称 | 正式报关.佐川旅送 | 7 | Importer/进口商 | Companyname/进口商收件公司名
+
+[Region 12 - text]
+DAIMATSUCO..71)
+
+[Region 13 - table]
+3 | Total numberof | Shipmentdetails/包装明细 | Total Weight | enght | Width | Height | Delivery address/地址 | HARADUKU | W飞NOBUILDInk MO.301.
+packages/总 | 个数 | 实际重量 | Volume Weight | CM | 3-S5-13SENDAGAYASHIBUYA-KCU
+4Payeracd | 运费支付方： | FreightPayby | laxpayby | Destination duties/taxesifle | 进口关税支付方：发件人 | Sender | ount number | 发件人 | Sendei | 体积重量 | signee | 收件方口 | Consignee | 收件方口 | insurance details/付款方式 | kreceiverpays duties/taxes | 3rdParty | 第三方口 | 第三口 | g | 2:1 | 3:1 | CM | CM | CM* | CM* | CM | CM | CM | CM* | ZOCM | CM | CM | CM | Contactperson/联系人 | TrackingNumber/运单号码 | 70KO | Mr.SHIMAMWRA | Phone/电话 | 03-6K34-053 | Pickedupby取件人 | ZipCode/邮编
+PickedupDate/取件日期 | Shipper'ssignature/发件人签章 | Consignee'ssignature/收件人签章 | 鸿硕物流
+M | AMPM | HTL506539704996 | 年
+
