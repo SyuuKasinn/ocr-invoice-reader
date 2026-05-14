@@ -1,13 +1,15 @@
 # OCR Invoice Reader
 
-> 🚀 **Now with PaddleOCR v4 models - 30-37% faster!**
+> 🚀 **Version 2.2 - REST API, CSV Export & Enhanced Performance!**
 
 Document information extraction system using PaddleOCR and PP-Structure. Extract structured information from invoices, waybills, and business documents with advanced table detection.
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![PaddleOCR](https://img.shields.io/badge/PaddleOCR-v4-orange)](https://github.com/PaddlePaddle/PaddleOCR)
-[![Version](https://img.shields.io/badge/version-2.1.0-blue)](setup.py)
+[![Version](https://img.shields.io/badge/version-2.2.6-blue)](setup.py)
+
+📚 **[Complete Documentation Index](DOCUMENTATION_INDEX.md)** | 🚀 **[API Guide](docs/API_USAGE.md)** | ⚡ **[Performance Tips](PERFORMANCE_OPTIMIZATION.md)**
 
 ---
 

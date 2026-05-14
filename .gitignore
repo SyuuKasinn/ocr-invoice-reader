@@ -42,11 +42,13 @@ htmlcov/
 .tox/
 .hypothesis/
 
-# OCR Results
+# OCR Results (keep only examples)
 results/
+results_*/
 output/
 temp/
 *.log
+*_test.txt
 
 # PaddleOCR Cache
 .paddleocr/
