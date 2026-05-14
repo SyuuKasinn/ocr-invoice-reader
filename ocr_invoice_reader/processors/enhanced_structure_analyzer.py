@@ -387,7 +387,7 @@ class EnhancedStructureAnalyzer:
             current = regions[i]
 
             # Only try to merge tables
-            if current.region_type != 'table':
+            if current.type != 'table':
                 merged.append(current)
                 i += 1
                 continue
@@ -400,7 +400,7 @@ class EnhancedStructureAnalyzer:
                 next_region = regions[j]
 
                 # Check if next region is a table and is close vertically
-                if next_region.region_type == 'table':
+                if next_region.type == 'table':
                     # Calculate vertical distance
                     current_bottom = current.bbox[3]
                     next_top = next_region.bbox[1]

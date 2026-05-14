@@ -1,0 +1,2 @@
+document_type,document_number,date,sender_company,sender_address,sender_phone,sender_contact,receiver_company,receiver_address,receiver_phone,receiver_contact,item_count,subtotal,tax,total_amount,currency,notes,reference,confidence,extraction_method,source_file
+invoice,TEST-001,2024-05-14,Test Company Inc,123 Test Street,555-1234,,Customer Corp,456 Customer Ave,555-5678,,2,,,2000.0,JPY,,,95.00%,test,
