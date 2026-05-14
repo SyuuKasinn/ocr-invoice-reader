@@ -1,0 +1,26 @@
+PAGE 2
+============================================================
+
+[Region 1 - table]
+SEKI AOI TECHNO | ADD: | A2-5, Jiaye Road Fang Guan Indu
+(WUXI) CO.,LTD. | Binhu Development District.
+Wuxi city,Jiangsu, China
+TEL: | +86-510-85620380-8021
+INVOICE
+DATE:07-Apr-25
+INVOICE N | S E K 2 0 2 5 0 4 0 7
+CONSIGNEE & ADDRESS | PAYMENT TERM: | T/T
+SEKI AOI TECHNO CO.,LTD. | TERM OF SALE | DDUJAPAN
+7 Aza syaguchi,Oaza Kubota | PURCHASE ORDER
+Japan444-0102 | NUMBER:
+T E L : + 8 1 - 5 6 4 - 6 2 - 2 0 0 0 | VESSEL NAME:
+YOSHIKAWA | SHIPPING DATE:
+PORT OF LOADING: | Wuxi,China
+PORT OF DISCHARGE: | Nagoya,Japan
+PACKING:
+No | Item | Part No | Description of Goods | i Part Name | Qty | USS | Unit Price | USS | Amount Price
+1 | E D Z - P 0 9 5 Z T 0 0 1 C E | BASE（PLATEVer.E) | 42 | PCS | 35.18 | $1,477.56
+..
+TOTAL | $1,477.56
+MADE IN CHINA
+

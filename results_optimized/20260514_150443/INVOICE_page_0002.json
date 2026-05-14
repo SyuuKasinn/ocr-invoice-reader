@@ -1,0 +1,635 @@
+{
+  "page_number": 2,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images__cfe6jip\\INVOICE_page_0002.png",
+  "regions": [
+    {
+      "type": "table",
+      "bbox": [
+        231,
+        347,
+        1639,
+        2573
+      ],
+      "confidence": 0.9449951414968453,
+      "text": "SEKI AOI TECHNO | ADD: | A2-5, Jiaye Road Fang Guan Indu\n(WUXI) CO.,LTD. | Binhu Development District.\nWuxi city,Jiangsu, China\nTEL: | +86-510-85620380-8021\nINVOICE\nDATE:07-Apr-25\nINVOICE N | S E K 2 0 2 5 0 4 0 7\nCONSIGNEE & ADDRESS | PAYMENT TERM: | T/T\nSEKI AOI TECHNO CO.,LTD. | TERM OF SALE | DDUJAPAN\n7 Aza syaguchi,Oaza Kubota | PURCHASE ORDER\nJapan444-0102 | NUMBER:\nT E L : + 8 1 - 5 6 4 - 6 2 - 2 0 0 0 | VESSEL NAME:\nYOSHIKAWA | SHIPPING DATE:\nPORT OF LOADING: | Wuxi,China\nPORT OF DISCHARGE: | Nagoya,Japan\nPACKING:\nNo | Item | Part No | Description of Goods | i Part Name | Qty | USS | Unit Price | USS | Amount Price\n1 | E D Z - P 0 9 5 Z T 0 0 1 C E | BASE（PLATEVer.E) | 42 | PCS | 35.18 | $1,477.56\n..\nTOTAL | $1,477.56\nMADE IN CHINA",
+      "table_html": "<table><tr><td>SEKI AOI TECHNO</td><td>ADD:</td><td>A2-5, Jiaye Road Fang Guan Indu</td></tr><tr><td>(WUXI) CO.,LTD.</td><td>Binhu Development District.</td></tr><tr><td>Wuxi city,Jiangsu, China</td></tr><tr><td>TEL:</td><td>+86-510-85620380-8021</td></tr><tr><td>INVOICE</td></tr><tr><td>DATE:07-Apr-25</td></tr><tr><td>INVOICE N</td><td>S E K 2 0 2 5 0 4 0 7</td></tr><tr><td>CONSIGNEE & ADDRESS</td><td>PAYMENT TERM:</td><td>T/T</td></tr><tr><td>SEKI AOI TECHNO CO.,LTD.</td><td>TERM OF SALE</td><td>DDUJAPAN</td></tr><tr><td>7 Aza syaguchi,Oaza Kubota</td><td>PURCHASE ORDER</td></tr><tr><td>Japan444-0102</td><td>NUMBER:</td></tr><tr><td>T E L : + 8 1 - 5 6 4 - 6 2 - 2 0 0 0</td><td>VESSEL NAME:</td></tr><tr><td>YOSHIKAWA</td><td>SHIPPING DATE:</td></tr><tr><td>PORT OF LOADING:</td><td>Wuxi,China</td></tr><tr><td>PORT OF DISCHARGE:</td><td>Nagoya,Japan</td></tr><tr><td>PACKING:</td></tr><tr><td>No</td><td>Item</td><td>Part No</td><td>Description of Goods</td><td>i Part Name</td><td>Qty</td><td>USS</td><td>Unit Price</td><td>USS</td><td>Amount Price</td></tr><tr><td>1</td><td>E D Z - P 0 9 5 Z T 0 0 1 C E | BASE（PLATEVer.E)</td><td>42</td><td>PCS</td><td>35.18</td><td>$1,477.56</td></tr><tr><td>..</td></tr><tr><td>TOTAL</td><td>$1,477.56</td></tr><tr><td>MADE IN CHINA</td></tr></table>",
+      "rows": 21,
+      "columns": 10,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            385,
+            347,
+            762,
+            398
+          ],
+          "text": "SEKI AOI TECHNO",
+          "confidence": 0.9258293509483337,
+          "center_y": 372.5,
+          "center_x": 573.5
+        },
+        {
+          "bbox": [
+            799,
+            355,
+            905,
+            395
+          ],
+          "text": "ADD:",
+          "confidence": 0.9287673830986023,
+          "center_y": 375.0,
+          "center_x": 852.0
+        },
+        {
+          "bbox": [
+            949,
+            347,
+            1415,
+            399
+          ],
+          "text": "A2-5, Jiaye Road Fang Guan Indu",
+          "confidence": 0.9537387490272522,
+          "center_y": 373.0,
+          "center_x": 1182.0
+        },
+        {
+          "bbox": [
+            381,
+            402,
+            707,
+            450
+          ],
+          "text": "(WUXI) CO.,LTD.",
+          "confidence": 0.9277049899101257,
+          "center_y": 426.0,
+          "center_x": 544.0
+        },
+        {
+          "bbox": [
+            949,
+            402,
+            1338,
+            450
+          ],
+          "text": "Binhu Development District.",
+          "confidence": 0.9549860954284668,
+          "center_y": 426.0,
+          "center_x": 1143.5
+        },
+        {
+          "bbox": [
+            949,
+            453,
+            1364,
+            508
+          ],
+          "text": "Wuxi city,Jiangsu, China",
+          "confidence": 0.8987898826599121,
+          "center_y": 480.5,
+          "center_x": 1156.5
+        },
+        {
+          "bbox": [
+            953,
+            508,
+            1041,
+            552
+          ],
+          "text": "TEL:",
+          "confidence": 0.984837532043457,
+          "center_y": 530.0,
+          "center_x": 997.0
+        },
+        {
+          "bbox": [
+            1092,
+            512,
+            1437,
+            548
+          ],
+          "text": "+86-510-85620380-8021",
+          "confidence": 0.9951761364936829,
+          "center_y": 530.0,
+          "center_x": 1264.5
+        },
+        {
+          "bbox": [
+            751,
+            588,
+            986,
+            651
+          ],
+          "text": "INVOICE",
+          "confidence": 0.9682492017745972,
+          "center_y": 619.5,
+          "center_x": 868.5
+        },
+        {
+          "bbox": [
+            1301,
+            650,
+            1609,
+            706
+          ],
+          "text": "DATE:07-Apr-25",
+          "confidence": 0.9243239760398865,
+          "center_y": 678.0,
+          "center_x": 1455.0
+        },
+        {
+          "bbox": [
+            373,
+            701,
+            624,
+            765
+          ],
+          "text": "INVOICE N",
+          "confidence": 0.95771324634552,
+          "center_y": 733.0,
+          "center_x": 498.5
+        },
+        {
+          "bbox": [
+            660,
+            709,
+            960,
+            757
+          ],
+          "text": "S E K 2 0 2 5 0 4 0 7",
+          "confidence": 0.9978504776954651,
+          "center_y": 733.0,
+          "center_x": 810.0
+        },
+        {
+          "bbox": [
+            297,
+            760,
+            664,
+            812
+          ],
+          "text": "CONSIGNEE & ADDRESS",
+          "confidence": 0.980627179145813,
+          "center_y": 786.0,
+          "center_x": 480.5
+        },
+        {
+          "bbox": [
+            803,
+            764,
+            1037,
+            804
+          ],
+          "text": "PAYMENT TERM:",
+          "confidence": 0.9372574090957642,
+          "center_y": 784.0,
+          "center_x": 920.0
+        },
+        {
+          "bbox": [
+            1092,
+            768,
+            1155,
+            808
+          ],
+          "text": "T/T",
+          "confidence": 0.9944315552711487,
+          "center_y": 788.0,
+          "center_x": 1123.5
+        },
+        {
+          "bbox": [
+            374,
+            808,
+            781,
+            855
+          ],
+          "text": "SEKI AOI TECHNO CO.,LTD.",
+          "confidence": 0.9515283107757568,
+          "center_y": 831.5,
+          "center_x": 577.5
+        },
+        {
+          "bbox": [
+            803,
+            808,
+            1012,
+            844
+          ],
+          "text": "TERM OF SALE",
+          "confidence": 0.9237990379333496,
+          "center_y": 826.0,
+          "center_x": 907.5
+        },
+        {
+          "bbox": [
+            1235,
+            808,
+            1418,
+            848
+          ],
+          "text": "DDUJAPAN",
+          "confidence": 0.9960065484046936,
+          "center_y": 828.0,
+          "center_x": 1326.5
+        },
+        {
+          "bbox": [
+            374,
+            840,
+            803,
+            900
+          ],
+          "text": "7 Aza syaguchi,Oaza Kubota",
+          "confidence": 0.9562236070632935,
+          "center_y": 870.0,
+          "center_x": 588.5
+        },
+        {
+          "bbox": [
+            795,
+            844,
+            1096,
+            892
+          ],
+          "text": "PURCHASE ORDER",
+          "confidence": 0.9518924951553345,
+          "center_y": 868.0,
+          "center_x": 945.5
+        },
+        {
+          "bbox": [
+            381,
+            892,
+            608,
+            932
+          ],
+          "text": "Japan444-0102",
+          "confidence": 0.9882001280784607,
+          "center_y": 912.0,
+          "center_x": 494.5
+        },
+        {
+          "bbox": [
+            803,
+            881,
+            960,
+            932
+          ],
+          "text": "NUMBER:",
+          "confidence": 0.9678409695625305,
+          "center_y": 906.5,
+          "center_x": 881.5
+        },
+        {
+          "bbox": [
+            374,
+            932,
+            707,
+            983
+          ],
+          "text": "T E L : + 8 1 - 5 6 4 - 6 2 - 2 0 0 0",
+          "confidence": 0.9830909371376038,
+          "center_y": 957.5,
+          "center_x": 540.5
+        },
+        {
+          "bbox": [
+            810,
+            932,
+            1026,
+            972
+          ],
+          "text": "VESSEL NAME:",
+          "confidence": 0.9132582545280457,
+          "center_y": 952.0,
+          "center_x": 918.0
+        },
+        {
+          "bbox": [
+            381,
+            983,
+            528,
+            1023
+          ],
+          "text": "YOSHIKAWA",
+          "confidence": 0.9927937984466553,
+          "center_y": 1003.0,
+          "center_x": 454.5
+        },
+        {
+          "bbox": [
+            810,
+            980,
+            1037,
+            1016
+          ],
+          "text": "SHIPPING DATE:",
+          "confidence": 0.947376549243927,
+          "center_y": 998.0,
+          "center_x": 923.5
+        },
+        {
+          "bbox": [
+            806,
+            1020,
+            1096,
+            1067
+          ],
+          "text": "PORT OF LOADING:",
+          "confidence": 0.9286726713180542,
+          "center_y": 1043.5,
+          "center_x": 951.0
+        },
+        {
+          "bbox": [
+            1239,
+            1020,
+            1448,
+            1071
+          ],
+          "text": "Wuxi,China",
+          "confidence": 0.9604417085647583,
+          "center_y": 1045.5,
+          "center_x": 1343.5
+        },
+        {
+          "bbox": [
+            806,
+            1064,
+            1125,
+            1111
+          ],
+          "text": "PORT OF DISCHARGE:",
+          "confidence": 0.9426825046539307,
+          "center_y": 1087.5,
+          "center_x": 965.5
+        },
+        {
+          "bbox": [
+            1242,
+            1071,
+            1455,
+            1111
+          ],
+          "text": "Nagoya,Japan",
+          "confidence": 0.9683700203895569,
+          "center_y": 1091.0,
+          "center_x": 1348.5
+        },
+        {
+          "bbox": [
+            803,
+            1111,
+            957,
+            1151
+          ],
+          "text": "PACKING:",
+          "confidence": 0.9490290284156799,
+          "center_y": 1131.0,
+          "center_x": 880.0
+        },
+        {
+          "bbox": [
+            235,
+            1243,
+            268,
+            1272
+          ],
+          "text": "No",
+          "confidence": 0.8597859144210815,
+          "center_y": 1257.5,
+          "center_x": 251.5
+        },
+        {
+          "bbox": [
+            231,
+            1203,
+            312,
+            1243
+          ],
+          "text": "Item",
+          "confidence": 0.9950278997421265,
+          "center_y": 1223.0,
+          "center_x": 271.5
+        },
+        {
+          "bbox": [
+            374,
+            1239,
+            498,
+            1279
+          ],
+          "text": "Part No",
+          "confidence": 0.9310917258262634,
+          "center_y": 1259.0,
+          "center_x": 436.0
+        },
+        {
+          "bbox": [
+            374,
+            1199,
+            711,
+            1246
+          ],
+          "text": "Description of Goods",
+          "confidence": 0.9710823893547058,
+          "center_y": 1222.5,
+          "center_x": 542.5
+        },
+        {
+          "bbox": [
+            649,
+            1235,
+            814,
+            1276
+          ],
+          "text": "i Part Name",
+          "confidence": 0.9298469424247742,
+          "center_y": 1255.5,
+          "center_x": 731.5
+        },
+        {
+          "bbox": [
+            946,
+            1199,
+            1012,
+            1243
+          ],
+          "text": "Qty",
+          "confidence": 0.9814316630363464,
+          "center_y": 1221.0,
+          "center_x": 979.0
+        },
+        {
+          "bbox": [
+            1239,
+            1239,
+            1312,
+            1279
+          ],
+          "text": "USS",
+          "confidence": 0.8892812728881836,
+          "center_y": 1259.0,
+          "center_x": 1275.5
+        },
+        {
+          "bbox": [
+            1239,
+            1199,
+            1404,
+            1239
+          ],
+          "text": "Unit Price",
+          "confidence": 0.9481647610664368,
+          "center_y": 1219.0,
+          "center_x": 1321.5
+        },
+        {
+          "bbox": [
+            1429,
+            1235,
+            1514,
+            1276
+          ],
+          "text": "USS",
+          "confidence": 0.771735668182373,
+          "center_y": 1255.5,
+          "center_x": 1471.5
+        },
+        {
+          "bbox": [
+            1425,
+            1187,
+            1639,
+            1247
+          ],
+          "text": "Amount Price",
+          "confidence": 0.962899923324585,
+          "center_y": 1217.0,
+          "center_x": 1532.0
+        },
+        {
+          "bbox": [
+            281,
+            1280,
+            323,
+            1320
+          ],
+          "text": "1",
+          "confidence": 0.9815574884414673,
+          "center_y": 1300.0,
+          "center_x": 302.0
+        },
+        {
+          "bbox": [
+            370,
+            1276,
+            957,
+            1323
+          ],
+          "text": "E D Z - P 0 9 5 Z T 0 0 1 C E | BASE（PLATEVer.E)",
+          "confidence": 0.9606359004974365,
+          "center_y": 1299.5,
+          "center_x": 663.5
+        },
+        {
+          "bbox": [
+            993,
+            1279,
+            1059,
+            1320
+          ],
+          "text": "42",
+          "confidence": 0.996408224105835,
+          "center_y": 1299.5,
+          "center_x": 1026.0
+        },
+        {
+          "bbox": [
+            1059,
+            1279,
+            1210,
+            1320
+          ],
+          "text": "PCS",
+          "confidence": 0.9579592347145081,
+          "center_y": 1299.5,
+          "center_x": 1134.5
+        },
+        {
+          "bbox": [
+            1290,
+            1276,
+            1385,
+            1320
+          ],
+          "text": "35.18",
+          "confidence": 0.9981403350830078,
+          "center_y": 1298.0,
+          "center_x": 1337.5
+        },
+        {
+          "bbox": [
+            1455,
+            1276,
+            1627,
+            1327
+          ],
+          "text": "$1,477.56",
+          "confidence": 0.9701102375984192,
+          "center_y": 1301.5,
+          "center_x": 1541.0
+        },
+        {
+          "bbox": [
+            1433,
+            2073,
+            1466,
+            2094
+          ],
+          "text": "..",
+          "confidence": 0.5107870101928711,
+          "center_y": 2083.5,
+          "center_x": 1449.5
+        },
+        {
+          "bbox": [
+            1242,
+            2445,
+            1371,
+            2486
+          ],
+          "text": "TOTAL",
+          "confidence": 0.9927444458007812,
+          "center_y": 2465.5,
+          "center_x": 1306.5
+        },
+        {
+          "bbox": [
+            1466,
+            2445,
+            1624,
+            2486
+          ],
+          "text": "$1,477.56",
+          "confidence": 0.9907575249671936,
+          "center_y": 2465.5,
+          "center_x": 1545.0
+        },
+        {
+          "bbox": [
+            381,
+            2533,
+            623,
+            2573
+          ],
+          "text": "MADE IN CHINA",
+          "confidence": 0.9438139200210571,
+          "center_y": 2553.0,
+          "center_x": 502.0
+        }
+      ]
+    }
+  ]
+}

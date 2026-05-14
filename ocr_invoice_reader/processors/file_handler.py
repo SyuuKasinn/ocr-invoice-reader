@@ -312,7 +312,7 @@ class FileProcessor:
         初始化文件处理器
 
         Args:
-            dpi: PDF转图片的分辨率
+            dpi: PDF转图片的分辨率（默认300，保证精度）
         """
         self.dpi = dpi
         self.pdf_handler = PDFHandler() if (PYMUPDF_AVAILABLE or PDF2IMAGE_AVAILABLE) else None

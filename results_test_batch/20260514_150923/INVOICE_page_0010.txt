@@ -1,0 +1,17 @@
+PAGE 10
+============================================================
+
+[Region 1 - table]
+唛头号码 图号 图纸版本 品种规格 数量 净重 单价 金额 Marks&Numbers No. Rev. Descriptions of Goods Quantity N.W. Unit Price Amount SK CTN NO. : MADE IN CHINA U1C-001P-05 05 12系外 PCS 792 KGS 7.9 (JPY) 457 (JPY) 361944 铝制支架Semiconductorequipment components (JPY) TOTAL: BANK OF CHINA,SHANGHAI,YISHAN ROAD SUB-BRANCH SWIFT CODE:BKCHCNBJ300 A/C NO.OF BENEFICIARY:JPY:442983239167 361,944 NOTES BENEFICIARY'SBANK: Signed by:
+
+[Region 2 - table]
+上海日建贸易有限公司 SHANGHAI NIKKEN TRDAING CO.,LTD. A809,Xinyi city,1618Yishan Road,Shanghai 201103 TEL:021-64400148FAX:021-64400276 商业发票 COMMERCIAL INVOICE To:KIYOTA planning Co.Ltd Invoice No. 18-8 Kawara,Ichikawa-shi,Chiba, 272-0101,Japan NIKKEN-KYT-25001 Mr.KIYOTA 发票编号 ATTN: T: 047-395-1534 F: 047-395-1534 Date.7-Apr-25 IMPORTER: NIKKEN CORPORATION CO.,LTD 日期 Park Building 2F,2-7-13 Hamamatsucho,Minato-ku,Tokyo 105-0013 ATTN: Yugo Ishiyama T:080-8844-3983 F: 03-6450-1609 From:
+
+[Region 3 - table_caption]
+目的地
+JAPAN
+TO:
+
+[Region 4 - table_caption]
+TERMS OF PAYMENT:
+

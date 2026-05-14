@@ -1,0 +1,1391 @@
+{
+  "page_number": 9,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images_nzkymu34\\INVOICE_page_0009.png",
+  "regions": [
+    {
+      "type": "table",
+      "bbox": [
+        63,
+        185,
+        3368,
+        2262
+      ],
+      "confidence": 0.9530262335350639,
+      "text": "INTERNATIONAL EXPRESS WAYBILL | 报美\nExpress | http://www.ldxpress.com\n1 From Shipper/发件人 | HTL | 820111182656\nAccountnumber发件人账号 | Customername发件人名 | Phonenumber发件人电话 | 5 Delivery To/收货方信息（如与进口商地址不一致）\n202111421日建贸易 | 徐燕妹 | 021-64400148 | Companynamel公司名称\nCustomer Companyname,address 发件人公司、地址 | 15021275972 | Delive | address/地址 | KLYOTA | Planning | CO.L大 | SHIPPER\nSHANGHAI NIKKEN TRADING CO.,LTD | 千葉市川市河原18-8\n18-8 Kawacra Ichikawa-shichiba272-0lol JAPA\nA809,Xinyi city,1618 Yishan Road Shanghai China\nPost Code/ZIPCode/邮编 | Country/国家\n272-0101 | JAPAW\nContactperson/联系人 | Phone/电话\nFull description ofcontents/ 货物明细 | 6 | 清田樣宽 | Special Delivery Instructions/特别配送指示（如有特殊要求请在此记载） | 047-395-1534\nCargocategory货物类别 | Doc | 文件口 | Parcel | 包裹口 | Rigid Package | 硬包装口\nGivecontentandquantity物品名称（\nDeclared Value声明价值\nImporter/进口商\nCompany! | name,address进口商收件公司名、地址:\n31 | Shipment details/包装明细 | 日建株式会社\nTotal numberof | packages/总个数 | 实际重量 | Total Weight | Midth | Height | 東 都 港 区 洪 松 町 二 7 B 心 一 儿 2\n4 | 运费支付方:发件人 | Payer account number and | 体积重量 | Volume Weight | 收件方口 | insurance details/付款方式 | 第三方口 | kg | 2: | 3: | CM | CM* | CM* | CM* | CM | CM | Contactperson/联系人 | Phone/电话 | Park Building2 F2-7-13 Hamamatsucho Minato-ku Toky | Zip Code/邮编\nTaxpayby | Freight Payby Sender | Pickedup Date/取件日期 | 进口关税支付方:发件人口 | Sender | Destination duties/taxesif left blankreceiverpaysduties/taxes | Consignee | Consignee | 收件方口 | 3rd Party | Shipper'ssignature/发件人签章 | 第三方 | Brdi Part | 5: | 4: | CM* | CM* | Consignee'ssignature/收件人签章 | CM* | CM* | CM | CM | 石山裕刚 | Tracking Number/运单号码 | 080-8844-3983 | Pickedupby取件人 | 105-0013 | 鸿硕物流\n年月 | AMPM | HTL8 | 820111182656 | 年Y",
+      "table_html": "<table><tr><td>INTERNATIONAL EXPRESS WAYBILL</td><td>报美</td></tr><tr><td>Express</td><td>http://www.ldxpress.com</td></tr><tr><td>1 From Shipper/发件人</td><td>HTL</td><td>820111182656</td></tr><tr><td>Accountnumber发件人账号</td><td>Customername发件人名</td><td>Phonenumber发件人电话</td><td>5 Delivery To/收货方信息（如与进口商地址不一致）</td></tr><tr><td>202111421日建贸易</td><td>徐燕妹</td><td>021-64400148</td><td>Companynamel公司名称</td></tr><tr><td>Customer Companyname,address 发件人公司、地址</td><td>15021275972</td><td>Delive</td><td>address/地址</td><td>KLYOTA</td><td>Planning</td><td>CO.L大</td><td>SHIPPER</td></tr><tr><td>SHANGHAI NIKKEN TRADING CO.,LTD</td><td>千葉市川市河原18-8</td></tr><tr><td>18-8 Kawacra Ichikawa-shichiba272-0lol JAPA</td></tr><tr><td>A809,Xinyi city,1618 Yishan Road Shanghai China</td></tr><tr><td>Post Code/ZIPCode/邮编</td><td>Country/国家</td></tr><tr><td>272-0101</td><td>JAPAW</td></tr><tr><td>Contactperson/联系人</td><td>Phone/电话</td></tr><tr><td>Full description ofcontents/ 货物明细</td><td>6</td><td>清田樣宽</td><td>Special Delivery Instructions/特别配送指示（如有特殊要求请在此记载）</td><td>047-395-1534</td></tr><tr><td>Cargocategory货物类别</td><td>Doc</td><td>文件口</td><td>Parcel</td><td>包裹口</td><td>Rigid Package</td><td>硬包装口</td></tr><tr><td>Givecontentandquantity物品名称（</td></tr><tr><td>Declared Value声明价值</td></tr><tr><td>Importer/进口商</td></tr><tr><td>Company!</td><td>name,address进口商收件公司名、地址:</td></tr><tr><td>31</td><td>Shipment details/包装明细</td><td>日建株式会社</td></tr><tr><td>Total numberof</td><td>packages/总个数</td><td>实际重量</td><td>Total Weight</td><td>Midth</td><td>Height</td><td>東 都 港 区 洪 松 町 二 7 B 心 一 儿 2</td></tr><tr><td>4</td><td>运费支付方:发件人</td><td>Payer account number and</td><td>体积重量</td><td>Volume Weight</td><td>收件方口</td><td>insurance details/付款方式</td><td>第三方口</td><td>kg</td><td>2:</td><td>3:</td><td>CM</td><td>CM*</td><td>CM*</td><td>CM*</td><td>CM</td><td>CM</td><td>Contactperson/联系人</td><td>Phone/电话</td><td>Park Building2 F2-7-13 Hamamatsucho Minato-ku Toky</td><td>Zip Code/邮编</td></tr><tr><td>Taxpayby</td><td>Freight Payby Sender</td><td>Pickedup Date/取件日期</td><td>进口关税支付方:发件人口</td><td>Sender</td><td>Destination duties/taxesif left blankreceiverpaysduties/taxes</td><td>Consignee</td><td>Consignee</td><td>收件方口</td><td>3rd Party</td><td>Shipper'ssignature/发件人签章</td><td>第三方</td><td>Brdi Part</td><td>5:</td><td>4:</td><td>CM*</td><td>CM*</td><td>Consignee'ssignature/收件人签章</td><td>CM*</td><td>CM*</td><td>CM</td><td>CM</td><td>石山裕刚</td><td>Tracking Number/运单号码</td><td>080-8844-3983</td><td>Pickedupby取件人</td><td>105-0013</td><td>鸿硕物流</td></tr><tr><td>年月</td><td>AMPM</td><td>HTL8</td><td>820111182656</td><td>年Y</td></tr></table>",
+      "rows": 23,
+      "columns": 28,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            991,
+            217,
+            2243,
+            281
+          ],
+          "text": "INTERNATIONAL EXPRESS WAYBILL",
+          "confidence": 0.9867400527000427,
+          "center_y": 249.0,
+          "center_x": 1617.0
+        },
+        {
+          "bbox": [
+            2602,
+            185,
+            2865,
+            273
+          ],
+          "text": "报美",
+          "confidence": 0.754707396030426,
+          "center_y": 229.0,
+          "center_x": 2733.5
+        },
+        {
+          "bbox": [
+            396,
+            343,
+            813,
+            445
+          ],
+          "text": "Express",
+          "confidence": 0.9949160814285278,
+          "center_y": 394.0,
+          "center_x": 604.5
+        },
+        {
+          "bbox": [
+            1297,
+            348,
+            1944,
+            423
+          ],
+          "text": "http://www.ldxpress.com",
+          "confidence": 0.9889588356018066,
+          "center_y": 385.5,
+          "center_x": 1620.5
+        },
+        {
+          "bbox": [
+            81,
+            501,
+            619,
+            554
+          ],
+          "text": "1 From Shipper/发件人",
+          "confidence": 0.933926522731781,
+          "center_y": 527.5,
+          "center_x": 350.0
+        },
+        {
+          "bbox": [
+            2377,
+            472,
+            2552,
+            522
+          ],
+          "text": "HTL",
+          "confidence": 0.995373547077179,
+          "center_y": 497.0,
+          "center_x": 2464.5
+        },
+        {
+          "bbox": [
+            2602,
+            469,
+            3220,
+            529
+          ],
+          "text": "820111182656",
+          "confidence": 0.9977725148200989,
+          "center_y": 499.0,
+          "center_x": 2911.0
+        },
+        {
+          "bbox": [
+            63,
+            550,
+            577,
+            600
+          ],
+          "text": "Accountnumber发件人账号",
+          "confidence": 0.9933554530143738,
+          "center_y": 575.0,
+          "center_x": 320.0
+        },
+        {
+          "bbox": [
+            640,
+            550,
+            1121,
+            600
+          ],
+          "text": "Customername发件人名",
+          "confidence": 0.9916790723800659,
+          "center_y": 575.0,
+          "center_x": 880.5
+        },
+        {
+          "bbox": [
+            1111,
+            550,
+            1621,
+            600
+          ],
+          "text": "Phonenumber发件人电话",
+          "confidence": 0.9938002824783325,
+          "center_y": 575.0,
+          "center_x": 1366.0
+        },
+        {
+          "bbox": [
+            1698,
+            561,
+            2844,
+            625
+          ],
+          "text": "5 Delivery To/收货方信息（如与进口商地址不一致）",
+          "confidence": 0.9746824502944946,
+          "center_y": 593.0,
+          "center_x": 2271.0
+        },
+        {
+          "bbox": [
+            130,
+            611,
+            562,
+            671
+          ],
+          "text": "202111421日建贸易",
+          "confidence": 0.9970808029174805,
+          "center_y": 641.0,
+          "center_x": 346.0
+        },
+        {
+          "bbox": [
+            714,
+            600,
+            858,
+            668
+          ],
+          "text": "徐燕妹",
+          "confidence": 0.9981958866119385,
+          "center_y": 634.0,
+          "center_x": 786.0
+        },
+        {
+          "bbox": [
+            1136,
+            614,
+            1459,
+            675
+          ],
+          "text": "021-64400148",
+          "confidence": 0.9979977011680603,
+          "center_y": 644.5,
+          "center_x": 1297.5
+        },
+        {
+          "bbox": [
+            1698,
+            621,
+            2152,
+            686
+          ],
+          "text": "Companynamel公司名称",
+          "confidence": 0.9718805551528931,
+          "center_y": 653.5,
+          "center_x": 1925.0
+        },
+        {
+          "bbox": [
+            70,
+            696,
+            1069,
+            760
+          ],
+          "text": "Customer Companyname,address 发件人公司、地址",
+          "confidence": 0.9670584201812744,
+          "center_y": 728.0,
+          "center_x": 569.5
+        },
+        {
+          "bbox": [
+            1134,
+            688,
+            1534,
+            789
+          ],
+          "text": "15021275972",
+          "confidence": 0.9985592365264893,
+          "center_y": 738.5,
+          "center_x": 1334.0
+        },
+        {
+          "bbox": [
+            1716,
+            760,
+            1796,
+            785
+          ],
+          "text": "Delive",
+          "confidence": 0.9693973660469055,
+          "center_y": 772.5,
+          "center_x": 1756.0
+        },
+        {
+          "bbox": [
+            1856,
+            756,
+            2078,
+            792
+          ],
+          "text": "address/地址",
+          "confidence": 0.9932504892349243,
+          "center_y": 774.0,
+          "center_x": 1967.0
+        },
+        {
+          "bbox": [
+            2145,
+            682,
+            2334,
+            742
+          ],
+          "text": "KLYOTA",
+          "confidence": 0.8701741099357605,
+          "center_y": 712.0,
+          "center_x": 2239.5
+        },
+        {
+          "bbox": [
+            2432,
+            678,
+            2718,
+            757
+          ],
+          "text": "Planning",
+          "confidence": 0.9199256300926208,
+          "center_y": 717.5,
+          "center_x": 2575.0
+        },
+        {
+          "bbox": [
+            2705,
+            655,
+            2945,
+            751
+          ],
+          "text": "CO.L大",
+          "confidence": 0.7039588093757629,
+          "center_y": 703.0,
+          "center_x": 2825.0
+        },
+        {
+          "bbox": [
+            3305,
+            607,
+            3368,
+            945
+          ],
+          "text": "SHIPPER",
+          "confidence": 0.9929903745651245,
+          "center_y": 776.0,
+          "center_x": 3336.5
+        },
+        {
+          "bbox": [
+            102,
+            806,
+            914,
+            866
+          ],
+          "text": "SHANGHAI NIKKEN TRADING CO.,LTD",
+          "confidence": 0.9585341811180115,
+          "center_y": 836.0,
+          "center_x": 508.0
+        },
+        {
+          "bbox": [
+            1711,
+            763,
+            2508,
+            878
+          ],
+          "text": "千葉市川市河原18-8",
+          "confidence": 0.9576874375343323,
+          "center_y": 820.5,
+          "center_x": 2109.5
+        },
+        {
+          "bbox": [
+            1719,
+            862,
+            3214,
+            977
+          ],
+          "text": "18-8 Kawacra Ichikawa-shichiba272-0lol JAPA",
+          "confidence": 0.8557141423225403,
+          "center_y": 919.5,
+          "center_x": 2466.5
+        },
+        {
+          "bbox": [
+            120,
+            948,
+            1364,
+            1009
+          ],
+          "text": "A809,Xinyi city,1618 Yishan Road Shanghai China",
+          "confidence": 0.9652512073516846,
+          "center_y": 978.5,
+          "center_x": 742.0
+        },
+        {
+          "bbox": [
+            1705,
+            1055,
+            2145,
+            1104
+          ],
+          "text": "Post Code/ZIPCode/邮编",
+          "confidence": 0.9797217845916748,
+          "center_y": 1079.5,
+          "center_x": 1925.0
+        },
+        {
+          "bbox": [
+            2556,
+            1048,
+            2798,
+            1108
+          ],
+          "text": "Country/国家",
+          "confidence": 0.9864698648452759,
+          "center_y": 1078.0,
+          "center_x": 2677.0
+        },
+        {
+          "bbox": [
+            2136,
+            1085,
+            2427,
+            1180
+          ],
+          "text": "272-0101",
+          "confidence": 0.983963668346405,
+          "center_y": 1132.5,
+          "center_x": 2281.5
+        },
+        {
+          "bbox": [
+            2832,
+            1071,
+            3085,
+            1170
+          ],
+          "text": "JAPAW",
+          "confidence": 0.911119282245636,
+          "center_y": 1120.5,
+          "center_x": 2958.5
+        },
+        {
+          "bbox": [
+            1709,
+            1165,
+            2102,
+            1214
+          ],
+          "text": "Contactperson/联系人",
+          "confidence": 0.9794273376464844,
+          "center_y": 1189.5,
+          "center_x": 1905.5
+        },
+        {
+          "bbox": [
+            2556,
+            1165,
+            2770,
+            1214
+          ],
+          "text": "Phone/电话",
+          "confidence": 0.9919902682304382,
+          "center_y": 1189.5,
+          "center_x": 2663.0
+        },
+        {
+          "bbox": [
+            127,
+            1243,
+            953,
+            1293
+          ],
+          "text": "Full description ofcontents/ 货物明细",
+          "confidence": 0.9295675754547119,
+          "center_y": 1268.0,
+          "center_x": 540.0
+        },
+        {
+          "bbox": [
+            1716,
+            1278,
+            1761,
+            1307
+          ],
+          "text": "6",
+          "confidence": 0.9342214465141296,
+          "center_y": 1292.5,
+          "center_x": 1738.5
+        },
+        {
+          "bbox": [
+            2095,
+            1172,
+            2429,
+            1286
+          ],
+          "text": "清田樣宽",
+          "confidence": 0.656013548374176,
+          "center_y": 1229.0,
+          "center_x": 2262.0
+        },
+        {
+          "bbox": [
+            1782,
+            1264,
+            3178,
+            1332
+          ],
+          "text": "Special Delivery Instructions/特别配送指示（如有特殊要求请在此记载）",
+          "confidence": 0.9530727863311768,
+          "center_y": 1298.0,
+          "center_x": 2480.0
+        },
+        {
+          "bbox": [
+            2742,
+            1211,
+            3178,
+            1271
+          ],
+          "text": "047-395-1534",
+          "confidence": 0.9738860130310059,
+          "center_y": 1241.0,
+          "center_x": 2960.0
+        },
+        {
+          "bbox": [
+            63,
+            1314,
+            520,
+            1367
+          ],
+          "text": "Cargocategory货物类别",
+          "confidence": 0.9684348106384277,
+          "center_y": 1340.5,
+          "center_x": 291.5
+        },
+        {
+          "bbox": [
+            587,
+            1353,
+            654,
+            1396
+          ],
+          "text": "Doc",
+          "confidence": 0.8760408759117126,
+          "center_y": 1374.5,
+          "center_x": 620.5
+        },
+        {
+          "bbox": [
+            584,
+            1314,
+            728,
+            1367
+          ],
+          "text": "文件口",
+          "confidence": 0.9809672236442566,
+          "center_y": 1340.5,
+          "center_x": 656.0
+        },
+        {
+          "bbox": [
+            777,
+            1357,
+            879,
+            1396
+          ],
+          "text": "Parcel",
+          "confidence": 0.9897753596305847,
+          "center_y": 1376.5,
+          "center_x": 828.0
+        },
+        {
+          "bbox": [
+            788,
+            1314,
+            946,
+            1367
+          ],
+          "text": "包裹口",
+          "confidence": 0.9427804946899414,
+          "center_y": 1340.5,
+          "center_x": 867.0
+        },
+        {
+          "bbox": [
+            981,
+            1346,
+            1213,
+            1406
+          ],
+          "text": "Rigid Package",
+          "confidence": 0.9620736837387085,
+          "center_y": 1376.0,
+          "center_x": 1097.0
+        },
+        {
+          "bbox": [
+            1012,
+            1314,
+            1206,
+            1364
+          ],
+          "text": "硬包装口",
+          "confidence": 0.938349187374115,
+          "center_y": 1339.0,
+          "center_x": 1109.0
+        },
+        {
+          "bbox": [
+            67,
+            1403,
+            745,
+            1452
+          ],
+          "text": "Givecontentandquantity物品名称（",
+          "confidence": 0.9914439916610718,
+          "center_y": 1427.5,
+          "center_x": 406.0
+        },
+        {
+          "bbox": [
+            63,
+            1452,
+            517,
+            1502
+          ],
+          "text": "Declared Value声明价值",
+          "confidence": 0.9899580478668213,
+          "center_y": 1477.0,
+          "center_x": 290.0
+        },
+        {
+          "bbox": [
+            1800,
+            1488,
+            2162,
+            1538
+          ],
+          "text": "Importer/进口商",
+          "confidence": 0.9781240820884705,
+          "center_y": 1513.0,
+          "center_x": 1981.0
+        },
+        {
+          "bbox": [
+            1723,
+            1555,
+            1916,
+            1605
+          ],
+          "text": "Company!",
+          "confidence": 0.9696313142776489,
+          "center_y": 1580.0,
+          "center_x": 1819.5
+        },
+        {
+          "bbox": [
+            1891,
+            1545,
+            2640,
+            1609
+          ],
+          "text": "name,address进口商收件公司名、地址:",
+          "confidence": 0.9603198170661926,
+          "center_y": 1577.0,
+          "center_x": 2265.5
+        },
+        {
+          "bbox": [
+            84,
+            1637,
+            158,
+            1665
+          ],
+          "text": "31",
+          "confidence": 0.8823351860046387,
+          "center_y": 1651.0,
+          "center_x": 121.0
+        },
+        {
+          "bbox": [
+            169,
+            1619,
+            745,
+            1669
+          ],
+          "text": "Shipment details/包装明细",
+          "confidence": 0.9596558809280396,
+          "center_y": 1644.0,
+          "center_x": 457.0
+        },
+        {
+          "bbox": [
+            1708,
+            1590,
+            2205,
+            1691
+          ],
+          "text": "日建株式会社",
+          "confidence": 0.9609274864196777,
+          "center_y": 1640.5,
+          "center_x": 1956.5
+        },
+        {
+          "bbox": [
+            67,
+            1680,
+            366,
+            1726
+          ],
+          "text": "Total numberof",
+          "confidence": 0.9578914642333984,
+          "center_y": 1703.0,
+          "center_x": 216.5
+        },
+        {
+          "bbox": [
+            67,
+            1719,
+            380,
+            1768
+          ],
+          "text": "packages/总个数",
+          "confidence": 0.9889923930168152,
+          "center_y": 1743.5,
+          "center_x": 223.5
+        },
+        {
+          "bbox": [
+            415,
+            1715,
+            591,
+            1765
+          ],
+          "text": "实际重量",
+          "confidence": 0.998248815536499,
+          "center_y": 1740.0,
+          "center_x": 503.0
+        },
+        {
+          "bbox": [
+            407,
+            1665,
+            640,
+            1723
+          ],
+          "text": "Total Weight",
+          "confidence": 0.9876699447631836,
+          "center_y": 1694.0,
+          "center_x": 523.5
+        },
+        {
+          "bbox": [
+            1273,
+            1680,
+            1354,
+            1708
+          ],
+          "text": "Midth",
+          "confidence": 0.8547488451004028,
+          "center_y": 1694.0,
+          "center_x": 1313.5
+        },
+        {
+          "bbox": [
+            1473,
+            1683,
+            1575,
+            1708
+          ],
+          "text": "Height",
+          "confidence": 0.9602543711662292,
+          "center_y": 1695.5,
+          "center_x": 1524.0
+        },
+        {
+          "bbox": [
+            1697,
+            1625,
+            3211,
+            1798
+          ],
+          "text": "東 都 港 区 洪 松 町 二 7 B 心 一 儿 2",
+          "confidence": 0.6981034278869629,
+          "center_y": 1711.5,
+          "center_x": 2454.0
+        },
+        {
+          "bbox": [
+            67,
+            1875,
+            120,
+            1918
+          ],
+          "text": "4",
+          "confidence": 0.8971341252326965,
+          "center_y": 1896.5,
+          "center_x": 93.5
+        },
+        {
+          "bbox": [
+            63,
+            1925,
+            535,
+            1989
+          ],
+          "text": "运费支付方:发件人",
+          "confidence": 0.9967968463897705,
+          "center_y": 1957.0,
+          "center_x": 299.0
+        },
+        {
+          "bbox": [
+            109,
+            1871,
+            570,
+            1925
+          ],
+          "text": "Payer account number and",
+          "confidence": 0.9498817324638367,
+          "center_y": 1898.0,
+          "center_x": 339.5
+        },
+        {
+          "bbox": [
+            418,
+            1822,
+            584,
+            1861
+          ],
+          "text": "体积重量",
+          "confidence": 0.9910725355148315,
+          "center_y": 1841.5,
+          "center_x": 501.0
+        },
+        {
+          "bbox": [
+            418,
+            1776,
+            682,
+            1825
+          ],
+          "text": "Volume Weight",
+          "confidence": 0.9910243153572083,
+          "center_y": 1800.5,
+          "center_x": 550.0
+        },
+        {
+          "bbox": [
+            527,
+            1928,
+            742,
+            1989
+          ],
+          "text": "收件方口",
+          "confidence": 0.9811233282089233,
+          "center_y": 1958.5,
+          "center_x": 634.5
+        },
+        {
+          "bbox": [
+            544,
+            1864,
+            988,
+            1925
+          ],
+          "text": "insurance details/付款方式",
+          "confidence": 0.940381646156311,
+          "center_y": 1894.5,
+          "center_x": 766.0
+        },
+        {
+          "bbox": [
+            752,
+            1925,
+            953,
+            1985
+          ],
+          "text": "第三方口",
+          "confidence": 0.9841740727424622,
+          "center_y": 1955.0,
+          "center_x": 852.5
+        },
+        {
+          "bbox": [
+            949,
+            1818,
+            984,
+            1854
+          ],
+          "text": "kg",
+          "confidence": 0.9727824926376343,
+          "center_y": 1836.0,
+          "center_x": 966.5
+        },
+        {
+          "bbox": [
+            1020,
+            1854,
+            1051,
+            1889
+          ],
+          "text": "2:",
+          "confidence": 0.7397958636283875,
+          "center_y": 1871.5,
+          "center_x": 1035.5
+        },
+        {
+          "bbox": [
+            1020,
+            1932,
+            1058,
+            1967
+          ],
+          "text": "3:",
+          "confidence": 0.8187732100486755,
+          "center_y": 1949.5,
+          "center_x": 1039.0
+        },
+        {
+          "bbox": [
+            1164,
+            1843,
+            1255,
+            1900
+          ],
+          "text": "CM",
+          "confidence": 0.9918400645256042,
+          "center_y": 1871.5,
+          "center_x": 1209.5
+        },
+        {
+          "bbox": [
+            1157,
+            1921,
+            1269,
+            1974
+          ],
+          "text": "CM*",
+          "confidence": 0.9703059792518616,
+          "center_y": 1947.5,
+          "center_x": 1213.0
+        },
+        {
+          "bbox": [
+            1357,
+            1921,
+            1466,
+            1974
+          ],
+          "text": "CM*",
+          "confidence": 0.9537407755851746,
+          "center_y": 1947.5,
+          "center_x": 1411.5
+        },
+        {
+          "bbox": [
+            1364,
+            1839,
+            1462,
+            1896
+          ],
+          "text": "CM*",
+          "confidence": 0.9853233695030212,
+          "center_y": 1867.5,
+          "center_x": 1413.0
+        },
+        {
+          "bbox": [
+            1568,
+            1839,
+            1642,
+            1896
+          ],
+          "text": "CM",
+          "confidence": 0.9889273643493652,
+          "center_y": 1867.5,
+          "center_x": 1605.0
+        },
+        {
+          "bbox": [
+            1564,
+            1921,
+            1649,
+            1974
+          ],
+          "text": "CM",
+          "confidence": 0.9816759824752808,
+          "center_y": 1947.5,
+          "center_x": 1606.5
+        },
+        {
+          "bbox": [
+            1697,
+            1892,
+            2106,
+            1964
+          ],
+          "text": "Contactperson/联系人",
+          "confidence": 0.9698139429092407,
+          "center_y": 1928.0,
+          "center_x": 1901.5
+        },
+        {
+          "bbox": [
+            2208,
+            1900,
+            2422,
+            1950
+          ],
+          "text": "Phone/电话",
+          "confidence": 0.9884806871414185,
+          "center_y": 1925.0,
+          "center_x": 2315.0
+        },
+        {
+          "bbox": [
+            1694,
+            1757,
+            3274,
+            1886
+          ],
+          "text": "Park Building2 F2-7-13 Hamamatsucho Minato-ku Toky",
+          "confidence": 0.9019266963005066,
+          "center_y": 1821.5,
+          "center_x": 2484.0
+        },
+        {
+          "bbox": [
+            2801,
+            1896,
+            3073,
+            1957
+          ],
+          "text": "Zip Code/邮编",
+          "confidence": 0.9888354539871216,
+          "center_y": 1926.5,
+          "center_x": 2937.0
+        },
+        {
+          "bbox": [
+            144,
+            2109,
+            316,
+            2148
+          ],
+          "text": "Taxpayby",
+          "confidence": 0.9920957088470459,
+          "center_y": 2128.5,
+          "center_x": 230.0
+        },
+        {
+          "bbox": [
+            63,
+            1982,
+            461,
+            2028
+          ],
+          "text": "Freight Payby Sender",
+          "confidence": 0.9742763638496399,
+          "center_y": 2005.0,
+          "center_x": 262.0
+        },
+        {
+          "bbox": [
+            67,
+            2145,
+            482,
+            2195
+          ],
+          "text": "Pickedup Date/取件日期",
+          "confidence": 0.9881188869476318,
+          "center_y": 2170.0,
+          "center_x": 274.5
+        },
+        {
+          "bbox": [
+            77,
+            2067,
+            559,
+            2116
+          ],
+          "text": "进口关税支付方:发件人口",
+          "confidence": 0.9914649128913879,
+          "center_y": 2091.5,
+          "center_x": 318.0
+        },
+        {
+          "bbox": [
+            380,
+            2102,
+            503,
+            2152
+          ],
+          "text": "Sender",
+          "confidence": 0.9936429858207703,
+          "center_y": 2127.0,
+          "center_x": 441.5
+        },
+        {
+          "bbox": [
+            67,
+            2017,
+            988,
+            2067
+          ],
+          "text": "Destination duties/taxesif left blankreceiverpaysduties/taxes",
+          "confidence": 0.9670992493629456,
+          "center_y": 2042.0,
+          "center_x": 527.5
+        },
+        {
+          "bbox": [
+            520,
+            1974,
+            700,
+            2032
+          ],
+          "text": "Consignee",
+          "confidence": 0.9944286346435547,
+          "center_y": 2003.0,
+          "center_x": 610.0
+        },
+        {
+          "bbox": [
+            572,
+            2098,
+            743,
+            2156
+          ],
+          "text": "Consignee",
+          "confidence": 0.9949318766593933,
+          "center_y": 2127.0,
+          "center_x": 657.5
+        },
+        {
+          "bbox": [
+            584,
+            2063,
+            784,
+            2113
+          ],
+          "text": "收件方口",
+          "confidence": 0.9918262958526611,
+          "center_y": 2088.0,
+          "center_x": 684.0
+        },
+        {
+          "bbox": [
+            748,
+            1966,
+            897,
+            2025
+          ],
+          "text": "3rd Party",
+          "confidence": 0.9907816648483276,
+          "center_y": 1995.5,
+          "center_x": 822.5
+        },
+        {
+          "bbox": [
+            583,
+            2145,
+            1079,
+            2198
+          ],
+          "text": "Shipper'ssignature/发件人签章",
+          "confidence": 0.9759004712104797,
+          "center_y": 2171.5,
+          "center_x": 831.0
+        },
+        {
+          "bbox": [
+            797,
+            2055,
+            940,
+            2117
+          ],
+          "text": "第三方",
+          "confidence": 0.998197078704834,
+          "center_y": 2086.0,
+          "center_x": 868.5
+        },
+        {
+          "bbox": [
+            809,
+            2109,
+            928,
+            2134
+          ],
+          "text": "Brdi Part",
+          "confidence": 0.9114479422569275,
+          "center_y": 2121.5,
+          "center_x": 868.5
+        },
+        {
+          "bbox": [
+            1009,
+            2081,
+            1062,
+            2127
+          ],
+          "text": "5:",
+          "confidence": 0.8324497938156128,
+          "center_y": 2104.0,
+          "center_x": 1035.5
+        },
+        {
+          "bbox": [
+            1013,
+            2006,
+            1062,
+            2049
+          ],
+          "text": "4:",
+          "confidence": 0.7492552995681763,
+          "center_y": 2027.5,
+          "center_x": 1037.5
+        },
+        {
+          "bbox": [
+            1160,
+            1999,
+            1266,
+            2056
+          ],
+          "text": "CM*",
+          "confidence": 0.9526305198669434,
+          "center_y": 2027.5,
+          "center_x": 1213.0
+        },
+        {
+          "bbox": [
+            1164,
+            2077,
+            1269,
+            2131
+          ],
+          "text": "CM*",
+          "confidence": 0.9752466678619385,
+          "center_y": 2104.0,
+          "center_x": 1216.5
+        },
+        {
+          "bbox": [
+            1118,
+            2148,
+            1642,
+            2198
+          ],
+          "text": "Consignee'ssignature/收件人签章",
+          "confidence": 0.9613175988197327,
+          "center_y": 2173.0,
+          "center_x": 1380.0
+        },
+        {
+          "bbox": [
+            1357,
+            1999,
+            1466,
+            2053
+          ],
+          "text": "CM*",
+          "confidence": 0.9625298380851746,
+          "center_y": 2026.0,
+          "center_x": 1411.5
+        },
+        {
+          "bbox": [
+            1361,
+            2077,
+            1466,
+            2131
+          ],
+          "text": "CM*",
+          "confidence": 0.9811418652534485,
+          "center_y": 2104.0,
+          "center_x": 1413.5
+        },
+        {
+          "bbox": [
+            1564,
+            1996,
+            1645,
+            2053
+          ],
+          "text": "CM",
+          "confidence": 0.9778653383255005,
+          "center_y": 2024.5,
+          "center_x": 1604.5
+        },
+        {
+          "bbox": [
+            1564,
+            2077,
+            1645,
+            2131
+          ],
+          "text": "CM",
+          "confidence": 0.9790371060371399,
+          "center_y": 2104.0,
+          "center_x": 1604.5
+        },
+        {
+          "bbox": [
+            1719,
+            1957,
+            2095,
+            2045
+          ],
+          "text": "石山裕刚",
+          "confidence": 0.9865763187408447,
+          "center_y": 2001.0,
+          "center_x": 1907.0
+        },
+        {
+          "bbox": [
+            1702,
+            2035,
+            2120,
+            2085
+          ],
+          "text": "Tracking Number/运单号码",
+          "confidence": 0.9791603088378906,
+          "center_y": 2060.0,
+          "center_x": 1911.0
+        },
+        {
+          "bbox": [
+            2207,
+            1956,
+            2732,
+            2039
+          ],
+          "text": "080-8844-3983",
+          "confidence": 0.9818474054336548,
+          "center_y": 1997.5,
+          "center_x": 2469.5
+        },
+        {
+          "bbox": [
+            2513,
+            2027,
+            2876,
+            2092
+          ],
+          "text": "Pickedupby取件人",
+          "confidence": 0.9892333149909973,
+          "center_y": 2059.5,
+          "center_x": 2694.5
+        },
+        {
+          "bbox": [
+            2851,
+            1963,
+            3154,
+            2046
+          ],
+          "text": "105-0013",
+          "confidence": 0.9730346202850342,
+          "center_y": 2004.5,
+          "center_x": 3002.5
+        },
+        {
+          "bbox": [
+            2984,
+            2122,
+            3204,
+            2199
+          ],
+          "text": "鸿硕物流",
+          "confidence": 0.9989877939224243,
+          "center_y": 2160.5,
+          "center_x": 3094.0
+        },
+        {
+          "bbox": [
+            155,
+            2198,
+            316,
+            2262
+          ],
+          "text": "年月",
+          "confidence": 0.9787264466285706,
+          "center_y": 2230.0,
+          "center_x": 235.5
+        },
+        {
+          "bbox": [
+            330,
+            2198,
+            580,
+            2262
+          ],
+          "text": "AMPM",
+          "confidence": 0.943355143070221,
+          "center_y": 2230.0,
+          "center_x": 455.0
+        },
+        {
+          "bbox": [
+            1775,
+            2205,
+            1965,
+            2255
+          ],
+          "text": "HTL8",
+          "confidence": 0.9204003810882568,
+          "center_y": 2230.0,
+          "center_x": 1870.0
+        },
+        {
+          "bbox": [
+            1941,
+            2202,
+            2412,
+            2251
+          ],
+          "text": "820111182656",
+          "confidence": 0.9976374506950378,
+          "center_y": 2226.5,
+          "center_x": 2176.5
+        },
+        {
+          "bbox": [
+            2974,
+            2191,
+            3016,
+            2259
+          ],
+          "text": "年Y",
+          "confidence": 0.9767860174179077,
+          "center_y": 2225.0,
+          "center_x": 2995.0
+        }
+      ]
+    }
+  ]
+}

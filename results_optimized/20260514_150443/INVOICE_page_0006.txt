@@ -1,0 +1,26 @@
+PAGE 6
+============================================================
+
+[Region 1 - title]
+COMMERCIAL INVOICE
+
+[Region 2 - table]
+Shipper/Exporter | Date
+Kun Shan Apices Tech Automation Co.,Ltd. | 2025.04.07
+No.928,Shuixiu Road Chengbei
+Kunshan City 215316 Jiangsu Province, China
+Contact:Bunny
+Tel:+86(0512)3683-2469
+Bill/Ship to | Terms of Delivery and payment
+Company:UGO,Inc | EXW and T/T
+Address:9 F,Higashi-Kanda 1-7-8,Chiyoda-ku,
+Tokyo, Japan 101-0031
+Contact:Mr.Kimihiko Sato
+Tel:+81-3-5846-9967
+Depart from | Final destination | Country of Origin
+Kunshan,China | Tokyo,Japan | China
+（料号） | Item No. | （货物名称） | Description | Image | （材料） | Material | QTY | （数量） | Unit Price | (CNY) | (CNY) | Amount
+R Y 0 - 0 1 1 9 - 0 0 2 | LED tape for UGV | PVC+Copper | 70 PCS | 65 | 4550
+R Y 0 - 0 1 2 5 - 0 0 1 | USB microphone for UGV | Plastic+copper | 10 PCS | 62 | 620
+***Made in China*** | Total | 80 | 5,170
+

@@ -1,0 +1,647 @@
+{
+  "page_number": 6,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images_nzkymu34\\INVOICE_page_0006.png",
+  "regions": [
+    {
+      "type": "title",
+      "bbox": [
+        945,
+        95,
+        1576,
+        146
+      ],
+      "confidence": 0.9781965613365173,
+      "text": "COMMERCIAL INVOICE",
+      "table_html": null
+    },
+    {
+      "type": "table",
+      "bbox": [
+        103,
+        185,
+        2347,
+        2164
+      ],
+      "confidence": 0.9815998241013172,
+      "text": "Shipper/Exporter | Date\nKun Shan Apices Tech Automation Co.,Ltd. | 2025.04.07\nNo.928,Shuixiu Road Chengbei\nKunshan City 215316 Jiangsu Province, China\nContact:Bunny\nTel:+86(0512)3683-2469\nBill/Ship to | Terms of Delivery and payment\nCompany:UGO,Inc | EXW and T/T\nAddress:9 F,Higashi-Kanda 1-7-8,Chiyoda-ku,\nTokyo, Japan 101-0031\nContact:Mr.Kimihiko Sato\nTel:+81-3-5846-9967\nDepart from | Final destination | Country of Origin\nKunshan,China | Tokyo,Japan | China\n（料号） | Item No. | （货物名称） | Description | Image | （材料） | Material | QTY | （数量） | Unit Price | (CNY) | (CNY) | Amount\nR Y 0 - 0 1 1 9 - 0 0 2 | LED tape for UGV | PVC+Copper | 70 PCS | 65 | 4550\nR Y 0 - 0 1 2 5 - 0 0 1 | USB microphone for UGV | Plastic+copper | 10 PCS | 62 | 620\n***Made in China*** | Total | 80 | 5,170",
+      "table_html": "<table><tr><td>Shipper/Exporter</td><td>Date</td></tr><tr><td>Kun Shan Apices Tech Automation Co.,Ltd.</td><td>2025.04.07</td></tr><tr><td>No.928,Shuixiu Road Chengbei</td></tr><tr><td>Kunshan City 215316 Jiangsu Province, China</td></tr><tr><td>Contact:Bunny</td></tr><tr><td>Tel:+86(0512)3683-2469</td></tr><tr><td>Bill/Ship to</td><td>Terms of Delivery and payment</td></tr><tr><td>Company:UGO,Inc</td><td>EXW and T/T</td></tr><tr><td>Address:9 F,Higashi-Kanda 1-7-8,Chiyoda-ku,</td></tr><tr><td>Tokyo, Japan 101-0031</td></tr><tr><td>Contact:Mr.Kimihiko Sato</td></tr><tr><td>Tel:+81-3-5846-9967</td></tr><tr><td>Depart from</td><td>Final destination</td><td>Country of Origin</td></tr><tr><td>Kunshan,China</td><td>Tokyo,Japan</td><td>China</td></tr><tr><td>（料号）</td><td>Item No.</td><td>（货物名称）</td><td>Description</td><td>Image</td><td>（材料）</td><td>Material</td><td>QTY</td><td>（数量）</td><td>Unit Price</td><td>(CNY)</td><td>(CNY)</td><td>Amount</td></tr><tr><td>R Y 0 - 0 1 1 9 - 0 0 2</td><td>LED tape for UGV</td><td>PVC+Copper</td><td>70 PCS</td><td>65</td><td>4550</td></tr><tr><td>R Y 0 - 0 1 2 5 - 0 0 1</td><td>USB microphone for UGV</td><td>Plastic+copper</td><td>10 PCS</td><td>62</td><td>620</td></tr><tr><td>***Made in China***</td><td>Total</td><td>80</td><td>5,170</td></tr></table>",
+      "rows": 18,
+      "columns": 13,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            103,
+            194,
+            384,
+            245
+          ],
+          "text": "Shipper/Exporter",
+          "confidence": 0.9786553382873535,
+          "center_y": 219.5,
+          "center_x": 243.5
+        },
+        {
+          "bbox": [
+            1618,
+            185,
+            1707,
+            250
+          ],
+          "text": "Date",
+          "confidence": 0.9899961948394775,
+          "center_y": 217.5,
+          "center_x": 1662.5
+        },
+        {
+          "bbox": [
+            111,
+            274,
+            690,
+            322
+          ],
+          "text": "Kun Shan Apices Tech Automation Co.,Ltd.",
+          "confidence": 0.9437861442565918,
+          "center_y": 298.0,
+          "center_x": 400.5
+        },
+        {
+          "bbox": [
+            1624,
+            278,
+            1782,
+            318
+          ],
+          "text": "2025.04.07",
+          "confidence": 0.9971505403518677,
+          "center_y": 298.0,
+          "center_x": 1703.0
+        },
+        {
+          "bbox": [
+            103,
+            336,
+            528,
+            391
+          ],
+          "text": "No.928,Shuixiu Road Chengbei",
+          "confidence": 0.9763318300247192,
+          "center_y": 363.5,
+          "center_x": 315.5
+        },
+        {
+          "bbox": [
+            103,
+            406,
+            727,
+            461
+          ],
+          "text": "Kunshan City 215316 Jiangsu Province, China",
+          "confidence": 0.9811995029449463,
+          "center_y": 433.5,
+          "center_x": 415.0
+        },
+        {
+          "bbox": [
+            111,
+            486,
+            321,
+            526
+          ],
+          "text": "Contact:Bunny",
+          "confidence": 0.9835994243621826,
+          "center_y": 506.0,
+          "center_x": 216.0
+        },
+        {
+          "bbox": [
+            107,
+            548,
+            483,
+            599
+          ],
+          "text": "Tel:+86(0512)3683-2469",
+          "confidence": 0.9937013983726501,
+          "center_y": 573.5,
+          "center_x": 295.0
+        },
+        {
+          "bbox": [
+            107,
+            625,
+            288,
+            676
+          ],
+          "text": "Bill/Ship to",
+          "confidence": 0.9744469523429871,
+          "center_y": 650.5,
+          "center_x": 197.5
+        },
+        {
+          "bbox": [
+            1620,
+            621,
+            2115,
+            676
+          ],
+          "text": "Terms of Delivery and payment",
+          "confidence": 0.9874625205993652,
+          "center_y": 648.5,
+          "center_x": 1867.5
+        },
+        {
+          "bbox": [
+            111,
+            705,
+            384,
+            746
+          ],
+          "text": "Company:UGO,Inc",
+          "confidence": 0.9747745394706726,
+          "center_y": 725.5,
+          "center_x": 247.5
+        },
+        {
+          "bbox": [
+            1628,
+            702,
+            1823,
+            742
+          ],
+          "text": "EXW and T/T",
+          "confidence": 0.9430858492851257,
+          "center_y": 722.0,
+          "center_x": 1725.5
+        },
+        {
+          "bbox": [
+            103,
+            779,
+            734,
+            826
+          ],
+          "text": "Address:9 F,Higashi-Kanda 1-7-8,Chiyoda-ku,",
+          "confidence": 0.8732554316520691,
+          "center_y": 802.5,
+          "center_x": 418.5
+        },
+        {
+          "bbox": [
+            103,
+            851,
+            425,
+            907
+          ],
+          "text": "Tokyo, Japan 101-0031",
+          "confidence": 0.9965527653694153,
+          "center_y": 879.0,
+          "center_x": 264.0
+        },
+        {
+          "bbox": [
+            107,
+            939,
+            487,
+            987
+          ],
+          "text": "Contact:Mr.Kimihiko Sato",
+          "confidence": 0.9649162292480469,
+          "center_y": 963.0,
+          "center_x": 297.0
+        },
+        {
+          "bbox": [
+            107,
+            1016,
+            410,
+            1064
+          ],
+          "text": "Tel:+81-3-5846-9967",
+          "confidence": 0.9841292500495911,
+          "center_y": 1040.0,
+          "center_x": 258.5
+        },
+        {
+          "bbox": [
+            314,
+            1100,
+            517,
+            1151
+          ],
+          "text": "Depart from",
+          "confidence": 0.9982039928436279,
+          "center_y": 1125.5,
+          "center_x": 415.5
+        },
+        {
+          "bbox": [
+            723,
+            1100,
+            982,
+            1140
+          ],
+          "text": "Final destination",
+          "confidence": 0.97944575548172,
+          "center_y": 1120.0,
+          "center_x": 852.5
+        },
+        {
+          "bbox": [
+            1882,
+            1104,
+            2166,
+            1148
+          ],
+          "text": "Country of Origin",
+          "confidence": 0.980721652507782,
+          "center_y": 1126.0,
+          "center_x": 2024.0
+        },
+        {
+          "bbox": [
+            306,
+            1192,
+            524,
+            1232
+          ],
+          "text": "Kunshan,China",
+          "confidence": 0.9728052616119385,
+          "center_y": 1212.0,
+          "center_x": 415.0
+        },
+        {
+          "bbox": [
+            757,
+            1192,
+            945,
+            1232
+          ],
+          "text": "Tokyo,Japan",
+          "confidence": 0.9714552164077759,
+          "center_y": 1212.0,
+          "center_x": 851.0
+        },
+        {
+          "bbox": [
+            1982,
+            1188,
+            2067,
+            1232
+          ],
+          "text": "China",
+          "confidence": 0.9968153238296509,
+          "center_y": 1210.0,
+          "center_x": 2024.5
+        },
+        {
+          "bbox": [
+            207,
+            1309,
+            332,
+            1360
+          ],
+          "text": "（料号）",
+          "confidence": 0.9832935929298401,
+          "center_y": 1334.5,
+          "center_x": 269.5
+        },
+        {
+          "bbox": [
+            207,
+            1265,
+            351,
+            1316
+          ],
+          "text": "Item No.",
+          "confidence": 0.9944543838500977,
+          "center_y": 1290.5,
+          "center_x": 279.0
+        },
+        {
+          "bbox": [
+            613,
+            1305,
+            808,
+            1356
+          ],
+          "text": "（货物名称）",
+          "confidence": 0.9604459404945374,
+          "center_y": 1330.5,
+          "center_x": 710.5
+        },
+        {
+          "bbox": [
+            616,
+            1261,
+            808,
+            1312
+          ],
+          "text": "Description",
+          "confidence": 0.9680435061454773,
+          "center_y": 1286.5,
+          "center_x": 712.0
+        },
+        {
+          "bbox": [
+            1102,
+            1278,
+            1227,
+            1339
+          ],
+          "text": "Image",
+          "confidence": 0.9934554100036621,
+          "center_y": 1308.5,
+          "center_x": 1164.5
+        },
+        {
+          "bbox": [
+            1425,
+            1305,
+            1557,
+            1356
+          ],
+          "text": "（材料）",
+          "confidence": 0.9979522228240967,
+          "center_y": 1330.5,
+          "center_x": 1491.0
+        },
+        {
+          "bbox": [
+            1421,
+            1265,
+            1565,
+            1305
+          ],
+          "text": "Material",
+          "confidence": 0.9909313917160034,
+          "center_y": 1285.0,
+          "center_x": 1493.0
+        },
+        {
+          "bbox": [
+            1703,
+            1252,
+            1814,
+            1317
+          ],
+          "text": "QTY",
+          "confidence": 0.9914979338645935,
+          "center_y": 1284.5,
+          "center_x": 1758.5
+        },
+        {
+          "bbox": [
+            1698,
+            1305,
+            1819,
+            1356
+          ],
+          "text": "（数量）",
+          "confidence": 0.9943698644638062,
+          "center_y": 1330.5,
+          "center_x": 1758.5
+        },
+        {
+          "bbox": [
+            1922,
+            1253,
+            2093,
+            1313
+          ],
+          "text": "Unit Price",
+          "confidence": 0.9986624717712402,
+          "center_y": 1283.0,
+          "center_x": 2007.5
+        },
+        {
+          "bbox": [
+            1945,
+            1305,
+            2081,
+            1356
+          ],
+          "text": "(CNY)",
+          "confidence": 0.9703158140182495,
+          "center_y": 1330.5,
+          "center_x": 2013.0
+        },
+        {
+          "bbox": [
+            2211,
+            1312,
+            2340,
+            1352
+          ],
+          "text": "(CNY)",
+          "confidence": 0.9761308431625366,
+          "center_y": 1332.0,
+          "center_x": 2275.5
+        },
+        {
+          "bbox": [
+            2207,
+            1261,
+            2347,
+            1312
+          ],
+          "text": "Amount",
+          "confidence": 0.9957018494606018,
+          "center_y": 1286.5,
+          "center_x": 2277.0
+        },
+        {
+          "bbox": [
+            151,
+            1532,
+            406,
+            1583
+          ],
+          "text": "R Y 0 - 0 1 1 9 - 0 0 2",
+          "confidence": 0.9985113143920898,
+          "center_y": 1557.5,
+          "center_x": 278.5
+        },
+        {
+          "bbox": [
+            550,
+            1524,
+            878,
+            1586
+          ],
+          "text": "LED tape for UGV",
+          "confidence": 0.9791419506072998,
+          "center_y": 1555.0,
+          "center_x": 714.0
+        },
+        {
+          "bbox": [
+            1368,
+            1520,
+            1606,
+            1584
+          ],
+          "text": "PVC+Copper",
+          "confidence": 0.9845454096794128,
+          "center_y": 1552.0,
+          "center_x": 1487.0
+        },
+        {
+          "bbox": [
+            1682,
+            1516,
+            1828,
+            1580
+          ],
+          "text": "70 PCS",
+          "confidence": 0.9779377579689026,
+          "center_y": 1548.0,
+          "center_x": 1755.0
+        },
+        {
+          "bbox": [
+            1974,
+            1528,
+            2030,
+            1575
+          ],
+          "text": "65",
+          "confidence": 0.9990406036376953,
+          "center_y": 1551.5,
+          "center_x": 2002.0
+        },
+        {
+          "bbox": [
+            2218,
+            1524,
+            2318,
+            1579
+          ],
+          "text": "4550",
+          "confidence": 0.9997256398200989,
+          "center_y": 1551.5,
+          "center_x": 2268.0
+        },
+        {
+          "bbox": [
+            159,
+            1871,
+            399,
+            1912
+          ],
+          "text": "R Y 0 - 0 1 2 5 - 0 0 1",
+          "confidence": 0.9957260489463806,
+          "center_y": 1891.5,
+          "center_x": 279.0
+        },
+        {
+          "bbox": [
+            491,
+            1864,
+            934,
+            1915
+          ],
+          "text": "USB microphone for UGV",
+          "confidence": 0.9426615238189697,
+          "center_y": 1889.5,
+          "center_x": 712.5
+        },
+        {
+          "bbox": [
+            1357,
+            1856,
+            1610,
+            1916
+          ],
+          "text": "Plastic+copper",
+          "confidence": 0.9711993336677551,
+          "center_y": 1886.0,
+          "center_x": 1483.5
+        },
+        {
+          "bbox": [
+            1690,
+            1861,
+            1827,
+            1912
+          ],
+          "text": "10 PCS",
+          "confidence": 0.9609398245811462,
+          "center_y": 1886.5,
+          "center_x": 1758.5
+        },
+        {
+          "bbox": [
+            1974,
+            1861,
+            2030,
+            1912
+          ],
+          "text": "62",
+          "confidence": 0.9988956451416016,
+          "center_y": 1886.5,
+          "center_x": 2002.0
+        },
+        {
+          "bbox": [
+            2229,
+            1857,
+            2310,
+            1915
+          ],
+          "text": "620",
+          "confidence": 0.9994459748268127,
+          "center_y": 1886.0,
+          "center_x": 2269.5
+        },
+        {
+          "bbox": [
+            461,
+            2083,
+            997,
+            2164
+          ],
+          "text": "***Made in China***",
+          "confidence": 0.9987558126449585,
+          "center_y": 2123.5,
+          "center_x": 729.0
+        },
+        {
+          "bbox": [
+            1421,
+            2102,
+            1565,
+            2157
+          ],
+          "text": "Total",
+          "confidence": 0.9990307092666626,
+          "center_y": 2129.5,
+          "center_x": 1493.0
+        },
+        {
+          "bbox": [
+            1716,
+            2098,
+            1790,
+            2157
+          ],
+          "text": "80",
+          "confidence": 0.9993482828140259,
+          "center_y": 2127.5,
+          "center_x": 1753.0
+        },
+        {
+          "bbox": [
+            2196,
+            2094,
+            2343,
+            2160
+          ],
+          "text": "5,170",
+          "confidence": 0.9989388585090637,
+          "center_y": 2127.0,
+          "center_x": 2269.5
+        }
+      ]
+    }
+  ]
+}

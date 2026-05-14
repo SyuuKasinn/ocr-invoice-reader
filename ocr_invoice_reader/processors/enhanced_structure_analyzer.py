@@ -15,18 +15,21 @@ except ImportError:
 
 from ocr_invoice_reader.processors.structure_analyzer import LayoutRegion
 from ocr_invoice_reader.utils.text_processor import TextProcessor
+from ocr_invoice_reader.utils.image_optimizer import ImageOptimizer
 
 
 class EnhancedStructureAnalyzer:
     """Enhanced structure analyzer with better table detection"""
 
-    def __init__(self, use_gpu: bool = True, lang: str = 'ch'):
+    def __init__(self, use_gpu: bool = True, lang: str = 'ch', optimize_images: bool = False):
         if not PPSTRUCTURE_AVAILABLE:
             raise ImportError("PaddleOCR not available")
 
         self.use_gpu = use_gpu
         self.lang = lang
+        self.optimize_images = optimize_images
         self.text_processor = TextProcessor()
+        self.image_optimizer = ImageOptimizer(max_size=2000) if optimize_images else None
         device = 'gpu' if use_gpu else 'cpu'
 
         print("Initializing Enhanced PP-Structure with OCR v4 models...")
@@ -72,6 +75,10 @@ class EnhancedStructureAnalyzer:
         img = cv2.imdecode(np.fromfile(image_path, dtype=np.uint8), cv2.IMREAD_COLOR)
         if img is None:
             raise ValueError(f"Cannot read image: {image_path}")
+
+        # Optimize image for faster processing
+        if self.image_optimizer:
+            img = self.image_optimizer.optimize(img, verbose=False)
 
         print(f"\n[Enhanced Analysis] {Path(image_path).name}")
 

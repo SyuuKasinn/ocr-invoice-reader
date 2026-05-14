@@ -1,0 +1,29 @@
+PAGE 7
+============================================================
+
+[Region 1 - title]
+INTERNATIONAL EXPRESS WAYBILL
+
+[Region 2 - table]
+Express | http://www.ldxpress.com
+1 From Shipper/发件人 | HTL | 820110714441
+Accountnumber发件人账号 | Customername发件人名 | Phonenumber发件人电话 | 5 Deliveny To/收货方信息（如与进口商地址不一致）
+202111944三德 | 86-21-65011199 | Companynamel公司名称 | ASUICO.,TD
+Customer Companyname,address发件人公司、地址
+SHANG HAI SAN DE CO.,LTD | Delivery address/地址 | 3 - 4 - 2 , J U J O N A K A H A R A | SHIPPER
+RM.B.302 A NO.147 YANG SHU PU R D , S H A N G H A I CHINA | KITAKU,To<yo
+Post Cc | l Country/国家 | APAN
+Contactp | 井樣 | Phon | 电话 | -3907-8311
+2 Full descriptionofcontents/货物明细 | Special Delivery Instructions特 | 等别配送指示 | （如有特殊要求请在此记载）
+Cargocategory货物类别 | Givecontentandquantity物品名称（ | DOC | 文件口 | Parcel | 包裹 | Rigid Package | 硬包装口 | 报关
+Declared Value声明价值 | 7 | Importer/进口商
+Companyname,address进口商收件公司名、地址:
+3 | Shipment detailsl 包装明细
+Total numberof | packags/总个数 | 实际重量 | Total Weight | kg | 长 | Lenght | 宽 | Width | Height | 高
+Volume Weight | CM | CM* | CM
+体积重量 | 4 Payeraccountnumberandinsurance details/付款方式 | Kg | e M | CM* | CM
+运费支付方: | 发件人 | 收件方口 | 第三方口 | 1862169188
+Freight Payby | Sender | Consignee | 3rd Party | 5 M.
+Taxpayby | Pickedup Date/取件日期 | 进口关税支付方:发件人 | Destination duties/taxesif left bla | Sender | Consignee | 收件方口 | kreceiverpaysduties/taxes | Shipper's signature/发件人签章 | 3rd Party | 第三方口 | 5: | CM* | Consignee'ssignature/收件人签章 | 运单号码 | Pickedupby取件人 | HL | 鸿硕物流
+AMPM | HTL | 820110714441 | 202547
+

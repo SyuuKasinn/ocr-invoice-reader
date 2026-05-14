@@ -1,0 +1,55 @@
+{
+  "page_number": 4,
+  "method": "ppstructure_enhanced",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images__cfe6jip\\INVOICE_page_0004.png",
+  "regions": [
+    {
+      "type": "text",
+      "bbox": [
+        1357,
+        281,
+        1949,
+        318
+      ],
+      "confidence": 0.0,
+      "text": "SHANGHAI C R O P O Z A K I C O . , L T D .",
+      "table_html": null
+    },
+    {
+      "type": "table",
+      "bbox": [
+        182,
+        497,
+        2320,
+        2867
+      ],
+      "confidence": 0.0,
+      "text": "Sold to DAIMATSU CO.,LTD CROP-20250407 InvoiceNo.andDate DATED 20250407 HARAJUKUUENOBUILDINGNO,3013-5513SENDAGAYASHIBUYA KU TOKYO JAPAN TEL:03-6434-0531 Contract No. CO-135,137 MrSHIMAMURA Send to 大松株式会社 RefNo. S/# 2F部 Floness 事业部才/业部京都物流庫 6048154京都市中京区室町通四条上儿 電話番号： 0752231111FAX番号0752230003 PAYMENT: Term/MethodofPayment Meansof TransportandRoute Shipped Per Saling on or about (L/CNO.) Ship Commercial Value Marks&Nos. Trucking No. From To SHANGHAI CHINA OSAKA JAPAN (via) ItemNO. Quantity Unit Price Description of Goods Amount FOB SHA 757008 PE100%Jacquard Fabric 152.7M RMBCNY80.00 CNY 12,216.00 148CM210G/SM 757005# CNY2,100.00 Pe100#PrintedFabric 150cm*96GSM 42M RMBCNY50.00 630051# Polyester100% Embroidery Fabric 145cm*135GSM 14.5M RMB CNY111.30 CNY1,613.85 0.00set 0.00pCs roll 0.00cons CNY15,929.85 TOTAL 0 cartons 209.20 m 0.00 hank 0.00doze 0.00ds 0bales COUNTRYOFORIGIN:CHINA",
+      "table_html": "<html><body><table><tbody><tr><td>Sold to DAIMATSU CO.,LTD CROP-20250407</td><td colspan=\"2\">InvoiceNo.andDate DATED 20250407</td></tr><tr><td>HARAJUKUUENOBUILDINGNO,3013-5513SENDAGAYASHIBUYA KU TOKYO JAPAN TEL:03-6434-0531</td><td colspan=\"2\">Contract No. CO-135,137</td></tr><tr><td>MrSHIMAMURA Send to 大松株式会社</td><td colspan=\"2\">RefNo. S/#</td></tr><tr><td>2F部 Floness 事业部才/业部京都物流庫 6048154京都市中京区室町通四条上儿 電話番号： 0752231111FAX番号0752230003 PAYMENT:</td><td colspan=\"2\">Term/MethodofPayment</td></tr><tr><td>Meansof TransportandRoute Shipped Per Saling on or about (L/CNO.) Ship</td><td colspan=\"2\">Commercial Value Marks&Nos.</td></tr><tr><td>Trucking No. From To</td><td colspan=\"2\"></td></tr><tr><td colspan=\"3\">SHANGHAI CHINA OSAKA JAPAN (via)</td></tr><tr><td colspan=\"3\">ItemNO. Quantity Unit Price Description of Goods Amount FOB SHA</td></tr><tr><td colspan=\"3\">757008 PE100%Jacquard Fabric 152.7M RMBCNY80.00 CNY 12,216.00 148CM210G/SM</td></tr><tr><td colspan=\"3\">757005# CNY2,100.00 Pe100#PrintedFabric 150cm*96GSM</td></tr><tr><td colspan=\"3\">42M RMBCNY50.00</td></tr><tr><td colspan=\"3\">630051# Polyester100% Embroidery Fabric 145cm*135GSM</td></tr><tr><td colspan=\"3\">14.5M RMB CNY111.30 CNY1,613.85</td></tr><tr><td colspan=\"3\">0.00set 0.00pCs roll 0.00cons CNY15,929.85 TOTAL 0 cartons 209.20 m 0.00 hank 0.00doze 0.00ds 0bales COUNTRYOFORIGIN:CHINA</td></tr></tbody></table></body></html>"
+    },
+    {
+      "type": "table_caption",
+      "bbox": [
+        1351,
+        373,
+        1905,
+        501
+      ],
+      "confidence": 0.0,
+      "text": "R M 2 1 1 H E S E N C O M M E R C E C E N T E R ,\nN O . 1 6 0 0 W E S T YANANROAD\nT E L : 0 2 1 - 5 2 3 8 - 5 7 1 0",
+      "table_html": null
+    },
+    {
+      "type": "header",
+      "bbox": [
+        236,
+        360,
+        651,
+        396
+      ],
+      "confidence": 0.0,
+      "text": "IUIAL INVUILE",
+      "table_html": null
+    }
+  ]
+}
