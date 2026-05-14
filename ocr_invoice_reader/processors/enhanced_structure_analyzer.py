@@ -93,7 +93,7 @@ class EnhancedStructureAnalyzer:
                 # If no tables detected but we expect them (invoice-like documents)
                 # Use coordinate-based analysis which is better at finding tables
                 if table_count == 0:
-                    print("  ⚠ No tables detected by PP-Structure")
+                    print("  WARNING: No tables detected by PP-Structure")
                     print("  Using coordinate-based analysis for better table detection...")
                     return self._coordinate_based_analysis(img, image_path)
 
