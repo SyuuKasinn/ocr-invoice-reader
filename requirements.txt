@@ -18,3 +18,5 @@ PyMuPDF>=1.23.0
 # Archive processing
 py7zr>=0.20.0
 rarfile>=4.1
+# LLM integration (optional)
+requests>=2.31.0

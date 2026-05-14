@@ -17,6 +17,7 @@ Document information extraction system using PaddleOCR and PP-Structure. Extract
 
 ### Core Capabilities
 - ⚡ **PaddleOCR v4 Models** - 30-37% faster than v3
+- 🤖 **LLM Integration** - AI-powered text correction and field extraction (NEW!)
 - 🔍 **Enhanced Structure Detection** - Coordinate-based table detection
 - 📊 **Multi-Page PDF Support** - Process all pages automatically
 - 🖼️ **Visual Output** - OCR boxes with region boundaries
@@ -76,15 +77,41 @@ pip install paddlepaddle-gpu==3.0.0
 ### Basic Usage
 
 ```bash
-# Process an invoice (CPU mode)
-ocr-enhanced --image invoice.pdf --lang ch --use-cpu
+# Basic OCR
+ocr-enhanced --image invoice.pdf --lang ch
+
+# With LLM post-processing (AI-powered field extraction)
+ocr-enhanced --image invoice.pdf --lang ch --use-llm
 
 # With visualization
-ocr-enhanced --image invoice.pdf --lang ch --visualize --use-cpu
-
-# GPU mode (if available)
 ocr-enhanced --image invoice.pdf --lang ch --visualize
+
+# Force CPU mode
+ocr-enhanced --image invoice.pdf --lang ch --use-cpu
 ```
+
+### 🤖 LLM Integration (NEW!)
+
+Enable AI-powered post-processing for automatic field extraction:
+
+```bash
+# Install Ollama
+# Download from: https://ollama.ai/download
+
+# Pull a small model (CPU-friendly)
+ollama pull qwen2.5:0.5b
+
+# Use LLM with OCR
+ocr-enhanced --image invoice.pdf --lang ch --use-llm
+```
+
+**LLM Features:**
+- ✅ Text correction (fix OCR errors)
+- ✅ Auto-extract invoice fields (number, date, amount, etc.)
+- ✅ Document classification (invoice/receipt/waybill)
+- ✅ CPU-friendly models (300MB-2GB)
+
+See [LLM_INTEGRATION_GUIDE.md](LLM_INTEGRATION_GUIDE.md) for details.
 
 ### Output
 

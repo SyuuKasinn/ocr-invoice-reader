@@ -42,6 +42,8 @@ Examples:
     parser.add_argument('--visualize', action='store_true', help='Generate visualization')
     parser.add_argument('--use-cpu', action='store_true', help='Force CPU mode')
     parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language (default: ch, recommended for mixed documents)')
+    parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing (requires Ollama)')
+    parser.add_argument('--llm-model', type=str, default='qwen2.5:0.5b', help='LLM model for post-processing (default: qwen2.5:0.5b)')
 
     args = parser.parse_args()
 
@@ -67,6 +69,17 @@ Examples:
             lang=args.lang
         )
 
+        # Initialize LLM processor if requested
+        llm_processor = None
+        if args.use_llm:
+            from ocr_invoice_reader.utils.llm_processor import create_llm_processor
+            print("\nInitializing LLM processor...")
+            llm_processor = create_llm_processor(args.llm_model)
+            if llm_processor:
+                print(f"✓ LLM ready: {args.llm_model}")
+            else:
+                print("✗ LLM not available, continuing without post-processing")
+
         # Process all pages
         all_results = []
         for page_idx, image_path in enumerate(images, 1):
@@ -77,6 +90,34 @@ Examples:
             # Analyze
             result = analyzer.analyze(image_path)
             result['page_number'] = page_idx
+
+            # LLM post-processing
+            if llm_processor and result.get('regions'):
+                print("  Running LLM post-processing...")
+                try:
+                    # Extract all text from regions
+                    all_text = '\n'.join([
+                        r.text for r in result['regions']
+                        if hasattr(r, 'text') and r.text
+                    ])
+
+                    if all_text.strip():
+                        # Classify document
+                        doc_type = llm_processor.classify_document(all_text[:500])
+                        result['llm_document_type'] = doc_type
+
+                        # Extract fields if it's an invoice
+                        if doc_type.get('type') == 'invoice':
+                            fields = llm_processor.extract_invoice_fields(all_text[:1500])
+                            result['llm_extracted_fields'] = fields
+                            print(f"  ✓ Detected: {doc_type.get('type')} (confidence: {doc_type.get('confidence')})")
+                        else:
+                            print(f"  ✓ Detected: {doc_type.get('type')}")
+
+                except Exception as e:
+                    print(f"  ✗ LLM processing failed: {str(e)}")
+                    result['llm_error'] = str(e)
+
             all_results.append(result)
 
         # Create output directory
