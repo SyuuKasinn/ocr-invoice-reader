@@ -55,6 +55,11 @@ setup(
             "anthropic>=0.18.0",
             "openai>=1.0.0",
         ],
+        "api": [
+            "fastapi>=0.104.0",
+            "uvicorn[standard]>=0.24.0",
+            "python-multipart>=0.0.6",
+        ],
     },
     entry_points={
         "console_scripts": [
@@ -62,6 +67,7 @@ setup(
             "ocr-simple=ocr_invoice_reader.cli.simple_cli:main",
             "ocr-raw=ocr_invoice_reader.cli.raw_structure:main",
             "ocr-enhanced=ocr_invoice_reader.cli.enhanced_extract:main",
+            "ocr-api=ocr_invoice_reader.cli.api_server:main",
         ],
     },
     include_package_data=True,

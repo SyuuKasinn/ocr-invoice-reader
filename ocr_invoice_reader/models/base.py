@@ -5,6 +5,8 @@ from pydantic import BaseModel, Field
 from typing import Optional, List, Dict, Any
 from datetime import date, datetime
 import json
+import csv
+from pathlib import Path
 
 
 class Address(BaseModel):
@@ -155,3 +157,106 @@ class BaseDocument(BaseModel):
             "confidence": self.confidence,
             "method": self.extraction_method
         }
+
+    def to_csv_row(self) -> Dict[str, Any]:
+        """Convert document to a single CSV row (flat structure)"""
+        return {
+            'document_type': self.document_type,
+            'document_number': self.document_number or '',
+            'date': self.date or '',
+            'sender_company': self.sender.company if self.sender else '',
+            'sender_address': self.sender.address if self.sender else '',
+            'sender_phone': self.sender.phone if self.sender else '',
+            'sender_contact': self.sender.contact if self.sender else '',
+            'receiver_company': self.receiver.company if self.receiver else '',
+            'receiver_address': self.receiver.address if self.receiver else '',
+            'receiver_phone': self.receiver.phone if self.receiver else '',
+            'receiver_contact': self.receiver.contact if self.receiver else '',
+            'item_count': len(self.items),
+            'subtotal': self.subtotal or '',
+            'tax': self.tax or '',
+            'total_amount': self.total_amount or '',
+            'currency': self.currency,
+            'notes': self.notes or '',
+            'reference': self.reference or '',
+            'confidence': f"{self.confidence:.2%}",
+            'extraction_method': self.extraction_method,
+            'source_file': self.source_file or ''
+        }
+
+    def to_csv_items(self) -> List[Dict[str, Any]]:
+        """Convert document items to CSV rows (one row per item)"""
+        rows = []
+        for idx, item in enumerate(self.items, 1):
+            rows.append({
+                'document_number': self.document_number or '',
+                'document_type': self.document_type,
+                'item_index': idx,
+                'description': item.description,
+                'quantity': item.quantity or '',
+                'unit': item.unit or '',
+                'unit_price': item.unit_price or '',
+                'amount': item.amount or '',
+                'notes': item.notes or '',
+                'source_file': self.source_file or ''
+            })
+        return rows
+
+    def save_to_csv(self, file_path: str, mode: str = 'summary'):
+        """
+        Save document to CSV file
+
+        Args:
+            file_path: Output CSV file path
+            mode: 'summary' (one row per document) or 'items' (one row per item)
+        """
+        file_path = Path(file_path)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if mode == 'summary':
+            rows = [self.to_csv_row()]
+            if rows:
+                with open(file_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+                    writer.writeheader()
+                    writer.writerows(rows)
+        elif mode == 'items':
+            rows = self.to_csv_items()
+            if rows:
+                with open(file_path, 'w', newline='', encoding='utf-8') as f:
+                    writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+                    writer.writeheader()
+                    writer.writerows(rows)
+        else:
+            raise ValueError(f"Invalid mode: {mode}. Use 'summary' or 'items'")
+
+    @staticmethod
+    def save_multiple_to_csv(documents: List['BaseDocument'], file_path: str, mode: str = 'summary'):
+        """
+        Save multiple documents to a single CSV file
+
+        Args:
+            documents: List of documents to save
+            file_path: Output CSV file path
+            mode: 'summary' (one row per document) or 'items' (one row per item)
+        """
+        if not documents:
+            return
+
+        file_path = Path(file_path)
+        file_path.parent.mkdir(parents=True, exist_ok=True)
+
+        if mode == 'summary':
+            rows = [doc.to_csv_row() for doc in documents]
+        elif mode == 'items':
+            rows = []
+            for doc in documents:
+                rows.extend(doc.to_csv_items())
+        else:
+            raise ValueError(f"Invalid mode: {mode}. Use 'summary' or 'items'")
+
+        if rows:
+            with open(file_path, 'w', newline='', encoding='utf-8') as f:
+                writer = csv.DictWriter(f, fieldnames=rows[0].keys())
+                writer.writeheader()
+                writer.writerows(rows)

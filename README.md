@@ -30,6 +30,7 @@ Document information extraction system using PaddleOCR and PP-Structure. Extract
 | `ocr-extract` | ⚡⚡ | Structured fields | Document classification |
 | `ocr-enhanced` | ⚡ | Full analysis | Production (Recommended) |
 | `ocr-raw` | ⚡ | PP-Structure output | Debugging |
+| `ocr-api` | 🌐 | REST API | Web services & integration |
 
 ---
 
@@ -42,13 +43,18 @@ Document information extraction system using PaddleOCR and PP-Structure. Extract
 ### Quick Install
 
 ```bash
+# Basic installation
 pip install -e .
+
+# With REST API support
+pip install -e ".[api]"
 ```
 
 This will automatically install:
 - PaddleOCR 2.8.1+ (with v4 models)
 - PaddlePaddle 3.0.0+
 - PyMuPDF, OpenCV, Pydantic, etc.
+- FastAPI & Uvicorn (with `[api]` option)
 
 ### GPU Support (Optional)
 
@@ -88,7 +94,9 @@ results/
     ├── invoice_result.json          # Structured data
     ├── invoice_all_pages.txt        # Extracted text
     ├── invoice_tables.html          # HTML tables
-    └── invoice_page_0001_viz.jpg    # Visualization
+    ├── invoice_page_0001_viz.jpg    # Visualization
+    ├── extraction_summary.csv       # Summary CSV (batch mode)
+    └── extraction_items.csv         # Items CSV (batch mode)
 ```
 
 ### Python API
@@ -105,6 +113,34 @@ result = analyzer.analyze('invoice.pdf')
 # Access results
 for region in result['regions']:
     print(f"Type: {region.type}, Text: {region.text}")
+```
+
+### REST API
+
+```bash
+# Start API server
+pip install -e ".[api]"
+ocr-api
+
+# API Documentation: http://localhost:8000/docs
+```
+
+```python
+# Python client example
+import requests
+
+url = "http://localhost:8000/api/v1/extract"
+files = {"file": open("invoice.pdf", "rb")}
+response = requests.post(url, files=files, params={"lang": "ch"})
+
+result = response.json()
+print(f"Total: {result['document']['total_amount']}")
+
+# Download CSV
+task_id = result["task_id"]
+csv_response = requests.get(f"http://localhost:8000/api/v1/result/{task_id}/csv?mode=summary")
+with open("result.csv", "wb") as f:
+    f.write(csv_response.content)
 ```
 
 ---
@@ -232,6 +268,7 @@ pdf_text = processor.get_pdf_text_for_page(image_paths[0], page_num=0)
 - **[Installation Guide](docs/INSTALLATION.md)** - Detailed setup instructions
 - **[Usage Guide](docs/USAGE.md)** - Comprehensive usage examples
 - **[API Reference](docs/API.md)** - Python API documentation
+- **[REST API Usage](docs/API_USAGE.md)** - REST API integration guide
 - **[Performance Guide](docs/PERFORMANCE.md)** - Optimization tips
 
 ### PaddleOCR v4 Upgrade
@@ -345,15 +382,17 @@ Built with:
 - ✅ 30-37% performance improvement
 - ✅ Improved accuracy
 
-### v2.2.0 (Planned)
+### v2.2.0 (Current Development)
+- ✅ REST API service with FastAPI
+- ✅ CSV export support (summary & items)
 - 🔄 Parallel processing for multi-page PDFs
 - 🔄 Result caching
 - 🔄 Image preprocessing optimization
 
 ### v3.0.0 (Future)
-- 📋 Web API service
 - 🤖 LLM-based field extraction
 - 🎨 Enhanced visualization options
+- 📊 Advanced analytics dashboard
 
 ---
 

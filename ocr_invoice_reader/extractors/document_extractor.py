@@ -157,3 +157,15 @@ class DocumentExtractor:
 
         with open(summary_file, 'w', encoding='utf-8') as f:
             json.dump(summary, f, indent=2, ensure_ascii=False)
+
+        # Generate CSV exports
+        if documents:
+            # Summary CSV (one row per document)
+            summary_csv = Path(output_dir) / "extraction_summary.csv"
+            BaseDocument.save_multiple_to_csv(documents, str(summary_csv), mode='summary')
+            print(f"Summary CSV saved to: {summary_csv}")
+
+            # Items CSV (one row per item)
+            items_csv = Path(output_dir) / "extraction_items.csv"
+            BaseDocument.save_multiple_to_csv(documents, str(items_csv), mode='items')
+            print(f"Items CSV saved to: {items_csv}")
