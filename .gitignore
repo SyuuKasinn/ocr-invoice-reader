@@ -19,11 +19,13 @@ wheels/
 *.egg-info/
 .installed.cfg
 *.egg
+MANIFEST
 
 # Virtual Environment
 venv/
 ENV/
 env/
+.venv
 
 # IDE
 .vscode/
@@ -31,28 +33,57 @@ env/
 *.swp
 *.swo
 *~
-
-# Project specific
-results/
-*.jpg
-*.png
-*.pdf
-!examples/142816_structure.jpg
-!images/examples/*.jpg
-!images/examples/*.png
-
-# OS
 .DS_Store
-Thumbs.db
 
-# Logs
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# OCR Results
+results/
+output/
+temp/
 *.log
 
-# Font files (avoid large binaries and license issues)
-fonts/*.ttf
-fonts/*.ttc
-fonts/*.otf
-!fonts/README.md
+# PaddleOCR Cache
+.paddleocr/
 
-# Docker volumes
-data/
+# Temporary files
+*.tmp
+*.bak
+*.cache
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Documentation build
+docs/_build/
+docs/.doctrees/
+
+# Project specific
+examples/output/
+tests/output/
+*.pdf
+*.jpg
+*.png
+*.jpeg
+!examples/*.jpg
+!examples/*.png
+!images/**/*.jpg
+!images/**/*.png
+
+# Development artifacts (to be removed before push)
+*_NEW.md
+*_OLD.md
+COMMIT_MESSAGE.txt
+LOCAL_DEPLOYMENT_SUCCESS.md
+TEST_REPORT.md
+UPGRADE_SUMMARY.md
+V4_UPGRADE_COMPLETE.md
+PADDLEOCR_V4_UPGRADE.md
+ADVANCED_OPTIMIZATIONS.md
+QUICK_PERFORMANCE_WINS.md
