@@ -120,10 +120,14 @@ The command generates a timestamped output directory:
 ```
 results/
 └── 20260514_123456/
-    ├── invoice_result.json          # Structured data
-    ├── invoice_all_pages.txt        # Extracted text
-    ├── invoice_tables.html          # HTML tables
-    ├── invoice_page_0001_viz.jpg    # Visualization
+    ├── invoice_page_0001.json       # Page 1 structured data
+    ├── invoice_page_0001.txt        # Page 1 extracted text
+    ├── invoice_page_0001_llm.txt    # Page 1 LLM analysis (if --use-llm)
+    ├── invoice_all_pages.json       # All pages combined (JSON)
+    ├── invoice_all_pages.txt        # All pages combined (text)
+    ├── invoice_llm_analysis.txt     # LLM analysis summary (if --use-llm)
+    ├── invoice_all_tables.html      # HTML tables
+    ├── invoice_page_0001_viz.jpg    # Visualization (if --visualize)
     ├── extraction_summary.csv       # Summary CSV (batch mode)
     └── extraction_items.csv         # Items CSV (batch mode)
 ```

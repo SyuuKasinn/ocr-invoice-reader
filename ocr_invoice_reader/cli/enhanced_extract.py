@@ -189,6 +189,14 @@ Examples:
                     region_dict['ocr_boxes'] = region.ocr_boxes
                 result_dict['regions'].append(region_dict)
 
+            # Add LLM results to result_dict if present
+            if 'llm_document_type' in result:
+                result_dict['llm_document_type'] = result['llm_document_type']
+            if 'llm_extracted_fields' in result:
+                result_dict['llm_extracted_fields'] = result['llm_extracted_fields']
+            if 'llm_error' in result:
+                result_dict['llm_error'] = result['llm_error']
+
             # Individual JSON
             page_json = output_dir / f"{page_name}.json"
             with open(page_json, 'w', encoding='utf-8') as f:
@@ -205,6 +213,45 @@ Examples:
                     f.write(f"[Region {i} - {region.type}]\n")
                     f.write(region.text + '\n\n')
             print(f"  Page {page_num} TXT: {page_txt.name}")
+
+            # Individual LLM TXT (if LLM processing was done)
+            if 'llm_document_type' in result or 'llm_extracted_fields' in result:
+                page_llm_txt = output_dir / f"{page_name}_llm.txt"
+                with open(page_llm_txt, 'w', encoding='utf-8') as f:
+                    f.write(f"LLM ANALYSIS - PAGE {page_num}\n")
+                    f.write(f"{'='*60}\n\n")
+
+                    # Document type
+                    if 'llm_document_type' in result:
+                        doc_type = result['llm_document_type']
+                        f.write(f"[Document Classification]\n")
+                        f.write(f"Type: {doc_type.get('type', 'unknown')}\n")
+                        f.write(f"Confidence: {doc_type.get('confidence', 'unknown')}\n\n")
+
+                    # Extracted fields
+                    if 'llm_extracted_fields' in result:
+                        fields = result['llm_extracted_fields']
+                        f.write(f"[Extracted Fields]\n")
+
+                        if 'error' not in fields:
+                            for key, value in fields.items():
+                                if value and key != 'raw_response':
+                                    # Format key nicely
+                                    display_key = key.replace('_', ' ').title()
+                                    f.write(f"{display_key}: {value}\n")
+                        else:
+                            f.write(f"Error: {fields.get('error')}\n")
+                            if 'raw_response' in fields:
+                                f.write(f"\nRaw Response:\n{fields['raw_response']}\n")
+
+                        f.write("\n")
+
+                    # Error (if any)
+                    if 'llm_error' in result:
+                        f.write(f"[Processing Error]\n")
+                        f.write(f"{result['llm_error']}\n")
+
+                print(f"  Page {page_num} LLM: {page_llm_txt.name}")
 
         # Save combined JSON
         print("\nCombined files:")
@@ -287,6 +334,52 @@ Examples:
             f.write('</body></html>')
 
         print(f"  Tables: {tables_output} ({table_count} tables)")
+
+        # Save LLM analysis summary (if LLM was used)
+        llm_results = [r for r in all_results if 'llm_document_type' in r or 'llm_extracted_fields' in r]
+        if llm_results:
+            llm_output = output_dir / f"{input_name}_llm_analysis.txt"
+            with open(llm_output, 'w', encoding='utf-8') as f:
+                f.write("LLM ANALYSIS SUMMARY\n")
+                f.write("="*60 + "\n")
+                f.write(f"Document: {input_name}\n")
+                f.write(f"Total pages analyzed: {len(llm_results)}\n")
+                f.write("="*60 + "\n\n")
+
+                for result in llm_results:
+                    page_num = result['page_number']
+                    f.write(f"\n{'='*60}\n")
+                    f.write(f"PAGE {page_num}\n")
+                    f.write(f"{'='*60}\n\n")
+
+                    # Document classification
+                    if 'llm_document_type' in result:
+                        doc_type = result['llm_document_type']
+                        f.write(f"[Document Classification]\n")
+                        f.write(f"  Type: {doc_type.get('type', 'unknown')}\n")
+                        f.write(f"  Confidence: {doc_type.get('confidence', 'unknown')}\n\n")
+
+                    # Extracted fields
+                    if 'llm_extracted_fields' in result:
+                        fields = result['llm_extracted_fields']
+                        f.write(f"[Extracted Fields]\n")
+
+                        if 'error' not in fields:
+                            for key, value in fields.items():
+                                if value and key != 'raw_response':
+                                    display_key = key.replace('_', ' ').title()
+                                    f.write(f"  {display_key}: {value}\n")
+                        else:
+                            f.write(f"  Error: {fields.get('error')}\n")
+
+                        f.write("\n")
+
+                    # Error (if any)
+                    if 'llm_error' in result:
+                        f.write(f"[Processing Error]\n")
+                        f.write(f"  {result['llm_error']}\n\n")
+
+            print(f"  LLM Analysis: {llm_output.name} ({len(llm_results)} pages)")
 
         # Visualize if requested
         if args.visualize:
