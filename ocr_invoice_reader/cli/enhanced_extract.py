@@ -46,9 +46,9 @@ Examples:
     parser.add_argument('--visualize', action='store_true', help='Generate visualization')
     parser.add_argument('--use-cpu', action='store_true', help='Force CPU mode')
     parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language (default: ch, recommended for mixed documents)')
-    parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing (requires Ollama)')
-    parser.add_argument('--llm-model', type=str, default='qwen2.5:14b', help='LLM model for post-processing (default: qwen2.5:14b)')
-    parser.add_argument('--auto-setup-ollama', action='store_true', help='Automatically setup Ollama without prompts (installs if needed)')
+    parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing (Qwen Direct, GPU accelerated)')
+    parser.add_argument('--llm-model', type=str, default='7b', help='LLM model size: 3b, 7b, 14b (default: 7b)')
+    parser.add_argument('--llm-quantization', type=str, default='int4', choices=['int4', 'int8', 'none'], help='Quantization (default: int4 for faster inference)')
 
     args = parser.parse_args()
 
@@ -80,78 +80,35 @@ Examples:
         # Initialize LLM processor if requested
         llm_processor = None
         if args.use_llm:
-            from ocr_invoice_reader.utils.llm_processor import create_llm_processor
-            from ocr_invoice_reader.utils.ollama_manager import OllamaManager
+            print("\nInitializing Qwen LLM (Direct, GPU accelerated)...")
 
-            print("\nInitializing LLM processor...")
+            try:
+                from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
 
-            # Try to create directly first
-            llm_processor = create_llm_processor(args.llm_model)
+                # Parse quantization
+                quantization = None if args.llm_quantization == 'none' else args.llm_quantization
 
-            if llm_processor:
-                print(f"✓ LLM ready: {args.llm_model}")
-            else:
-                # LLM not available, try auto setup
-                print("✗ LLM not available")
+                # Create processor
+                llm_processor = create_qwen_processor(
+                    model_size=args.llm_model,
+                    use_gpu=not args.use_cpu,
+                    quantization=quantization
+                )
 
-                if args.auto_setup_ollama:
-                    # Fully automatic mode
-                    print("\nAutomatic setup mode (--auto-setup-ollama)")
-                    manager = OllamaManager()
-                    success, message = manager.setup(args.llm_model, auto_confirm=True)
-
-                    if success:
-                        llm_processor = create_llm_processor(args.llm_model)
-                        if llm_processor:
-                            print(f"✓ LLM setup successful")
-                        else:
-                            print(f"✗ LLM still unavailable, continuing with OCR only")
-                    else:
-                        print(f"{message}")
-                        print("Continuing with OCR only mode")
+                if llm_processor:
+                    print(f"✓ Qwen {args.llm_model.upper()} model loaded (quantization: {quantization})")
                 else:
-                    # Interactive mode
-                    print("\nOllama service is not running or not installed")
-                    print("Options:")
-                    print("  1. Automatic setup of Ollama (recommended)")
-                    print("  2. View manual setup instructions")
-                    print("  3. Skip LLM features, continue with OCR only")
+                    print("✗ Failed to load Qwen model")
+                    print("Continuing with OCR only mode")
 
-                    choice = input("\nPlease choose (1/2/3): ").strip()
-
-                    if choice == '1':
-                        # Interactive automatic setup
-                        print("\nStarting automatic setup...")
-                        manager = OllamaManager()
-                        success, message = manager.setup(args.llm_model, auto_confirm=False)
-
-                        if success:
-                            llm_processor = create_llm_processor(args.llm_model)
-                            if llm_processor:
-                                print(f"\n✓ LLM setup successful, starting processing")
-                            else:
-                                print(f"\n✗ LLM still unavailable, continuing with OCR only")
-                        else:
-                            print(f"\n{message}")
-                            print("Continuing with OCR only mode")
-
-                    elif choice == '2':
-                        print("\n" + "=" * 60)
-                        print("Manual Ollama Setup")
-                        print("=" * 60)
-                        print("1. Visit: https://ollama.ai/download")
-                        print("2. Download and install Ollama (Windows version)")
-                        print("3. After installation, run in command line:")
-                        print(f"   ollama pull {args.llm_model}")
-                        print("4. Re-run this command:")
-                        print(f"   ocr-enhanced --image <file> --use-llm")
-                        print("\nOr use automatic installation mode:")
-                        print(f"   ocr-enhanced --image <file> --use-llm --auto-setup-ollama")
-                        print("=" * 60)
-                        return 0
-
-                    else:
-                        print("\nContinuing with OCR only mode (without LLM)")
+            except ImportError as e:
+                print(f"✗ Qwen Direct not available: {e}")
+                print("\nPlease install dependencies:")
+                print("  pip install transformers torch accelerate bitsandbytes")
+                print("\nContinuing with OCR only mode")
+            except Exception as e:
+                print(f"✗ LLM initialization error: {e}")
+                print("Continuing with OCR only mode")
 
         # Process all pages
         all_results = []
