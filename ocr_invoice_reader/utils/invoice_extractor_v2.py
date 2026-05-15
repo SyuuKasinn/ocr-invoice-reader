@@ -27,26 +27,34 @@ class InvoiceExtractorV2:
                 r'DATE[:\s_]+(\d{1,2}[-/]\d{1,2}[-/]\d{2,4})',
                 # With underscore: DATE:_2025/9/24
                 r'DATE[:：][_\s]*(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
+                # Month abbreviation: 24-Sep-25, 01-Jan-2025
+                r'DATE[:\s]*(\d{1,2}-[A-Za-z]{3}-\d{2,4})',
+                # Piped format: DATE | 2025-9-24
+                r'DATE\s*\|\s*(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
                 # Japanese style
                 r'日期[:\s]+(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
             ],
             'tracking_no': [
+                # Piped format first (more specific): Tracking No: | 506-538-938-065
+                r'Tracking\s*No[.:]?\s*\|\s*([0-9-]+)',
                 r'Tracking\s*No[.:]?\s*([0-9-]+)',
+                r'Air\s*Waybill\s*No[.:]?\s*\|\s*([0-9-]+)',
                 r'Air\s*Waybill\s*No[.:]?\s*([0-9-]+)',
                 r'AWB\s*No[.:]?\s*([0-9-]+)',
                 r'追[送]*番号[:\s：]*([A-Z0-9:-]+)',
                 r'运单号[:\s]+([0-9-]+)',
-                # Handle piped format
-                r'No[.:]?\s*\|\s*([0-9]+)',
+                # Generic piped number (last resort)
+                r'No[.:]?\s*\|\s*([0-9-]+)',
             ],
             'shipper': [
                 r'(?:SHIPPER|发货人)[:\s\|]+([^\n]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED|株式会社|有限会社))',
                 r'(?:FROM|寄件人)[:\s]+([^\n]+)',
             ],
             'consignee': [
-                r'(?:CONSIGNEE|收货人|收件人)[:\s\|]+([^\n]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED|株式会社|有限会社))',
-                r'(?:TO|至)[:\s]+([^\n]+)',
-                r'MESSRS[.:\s]+([^\n]+)',
+                # Match only the company name line, stop at TEL or next section
+                r'(?:CONSIGNEE|收货人|收件人)[:\s\|]+([A-Z][A-Z\s&.,]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED|株式会社|有限会社))(?:\s|$)',
+                r'(?:TO|至)[:\s]+([^\n]+?)(?:\s+(?:TEL|Tel|ADDRESS|Address)|\n|$)',
+                r'MESSRS[.:\s]+([A-Z][A-Z\s&.,]+(?:CO[.,]?LTD|CORPORATION|INC))(?:\s|$)',
             ],
             'company': [
                 # Match company at start of line
@@ -57,6 +65,8 @@ class InvoiceExtractorV2:
                 r'^([^\n]+(?:有限公司|股份有限公司))',
             ],
             'total_amount': [
+                # Piped format: Total | 135600
+                r'Total\s*\|\s*([\d,]+\.?\d*)',
                 r'Total[:\s]+\$?([\d,]+\.?\d*)',
                 r'Total\s*Amount[:\s]+\$?([\d,]+\.?\d*)',
                 r'Grand\s*Total[:\s]+\$?([\d,]+\.?\d*)',
