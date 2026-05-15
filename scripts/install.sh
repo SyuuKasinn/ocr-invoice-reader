@@ -139,8 +139,13 @@ if [[ "$INSTALL_API" =~ ^[Yy]$ ]]; then
 fi
 echo ""
 
+# Install the package itself
+echo "Step 7: Installing OCR Invoice Reader package..."
+pip install -e .
+echo ""
+
 # Verify installation
-echo "Step 7: Verifying installation..."
+echo "Step 8: Verifying installation..."
 
 # Check PaddlePaddle
 python3 -c "import paddle; print('✓ PaddlePaddle:', paddle.__version__)" || echo -e "${RED}✗ PaddlePaddle failed${NC}"
@@ -184,8 +189,9 @@ else
 fi
 
 echo ""
-echo "Test installation:"
-echo "  python3 ocr_invoice_reader/utils/environment.py"
+echo "Verify installation:"
+echo "  ocr-enhanced --version"
+echo "  ocr-check-env"
 echo ""
 echo "Run OCR:"
 echo "  ocr-enhanced --image examples/INVOICE.pdf --use-llm"

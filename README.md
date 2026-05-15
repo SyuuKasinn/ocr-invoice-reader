@@ -75,7 +75,8 @@ pip install -e .
 Verify your installation and see recommended settings:
 
 ```bash
-python -m ocr_invoice_reader.cli.check_env
+ocr-check-env
+# Or: python -m ocr_invoice_reader.cli.check_env
 ```
 
 ### Basic Usage
