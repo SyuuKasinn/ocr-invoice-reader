@@ -46,7 +46,7 @@ Examples:
     parser.add_argument('--use-cpu', action='store_true', help='Force CPU mode')
     parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language (default: ch, recommended for mixed documents)')
     parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing (requires Ollama)')
-    parser.add_argument('--llm-model', type=str, default='qwen2.5:7b', help='LLM model for post-processing (default: qwen2.5:7b)')
+    parser.add_argument('--llm-model', type=str, default='qwen2.5:14b', help='LLM model for post-processing (default: qwen2.5:14b)')
     parser.add_argument('--auto-setup-ollama', action='store_true', help='Automatically setup Ollama without prompts (installs if needed)')
 
     args = parser.parse_args()
