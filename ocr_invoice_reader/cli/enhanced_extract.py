@@ -297,58 +297,59 @@ Examples:
                     f.write(region.text + '\n\n')
             print(f"  Page {page_num} TXT: {page_txt.name}")
 
-            # Individual invoice extraction JSON (automatically extract from TXT)
-            page_llm_json = output_dir / f"{page_name}_llm.json"
-            try:
-                # Initialize invoice extractor
-                invoice_extractor = InvoiceExtractor()
+            # Individual invoice extraction JSON (only if --use-llm is enabled)
+            if llm_processor:
+                page_llm_json = output_dir / f"{page_name}_llm.json"
+                try:
+                    # Initialize invoice extractor
+                    invoice_extractor = InvoiceExtractor()
 
-                # Extract text from regions
-                page_text = '\n\n'.join([
-                    f"[Region {i} - {region.type}]\n{region.text}"
-                    for i, region in enumerate(result['regions'], 1)
-                ])
+                    # Extract text from regions
+                    page_text = '\n\n'.join([
+                        f"[Region {i} - {region.type}]\n{region.text}"
+                        for i, region in enumerate(result['regions'], 1)
+                    ])
 
-                # Extract invoice data
-                invoice_data = invoice_extractor.extract_from_text(page_text)
-                db_data = invoice_extractor.format_for_database(invoice_data)
+                    # Extract invoice data
+                    invoice_data = invoice_extractor.extract_from_text(page_text)
+                    db_data = invoice_extractor.format_for_database(invoice_data)
 
-                # Add metadata
-                extraction_result = {
-                    'page': result['page_number'],
-                    'source_file': page_name,
-                    'extraction_method': 'invoice_extractor',
-                    'extracted_fields': db_data,
-                    'raw_data': {
-                        'items': invoice_data.get('items', []),
-                        'items_count': invoice_data.get('items_count', 0),
+                    # Add metadata
+                    extraction_result = {
+                        'page': result['page_number'],
+                        'source_file': page_name,
+                        'extraction_method': 'invoice_extractor',
+                        'extracted_fields': db_data,
+                        'raw_data': {
+                            'items': invoice_data.get('items', []),
+                            'items_count': invoice_data.get('items_count', 0),
+                        }
                     }
-                }
 
-                # Add LLM results if available
-                if 'llm_document_type' in result:
-                    extraction_result['llm_document_type'] = result['llm_document_type']
-                if 'llm_extracted_fields' in result:
-                    extraction_result['llm_extracted_fields'] = result['llm_extracted_fields']
-                if 'llm_error' in result:
-                    extraction_result['llm_error'] = result['llm_error']
+                    # Add LLM results if available
+                    if 'llm_document_type' in result:
+                        extraction_result['llm_document_type'] = result['llm_document_type']
+                    if 'llm_extracted_fields' in result:
+                        extraction_result['llm_extracted_fields'] = result['llm_extracted_fields']
+                    if 'llm_error' in result:
+                        extraction_result['llm_error'] = result['llm_error']
 
-                # Save as JSON
-                with open(page_llm_json, 'w', encoding='utf-8') as f:
-                    json.dump(extraction_result, f, indent=2, ensure_ascii=False)
+                    # Save as JSON
+                    with open(page_llm_json, 'w', encoding='utf-8') as f:
+                        json.dump(extraction_result, f, indent=2, ensure_ascii=False)
 
-                print(f"  Page {page_num} Invoice JSON: {page_llm_json.name}")
+                    print(f"  Page {page_num} Invoice JSON: {page_llm_json.name}")
 
-                # Show extracted key fields
-                if db_data.get('invoice_number'):
-                    print(f"    ✓ Invoice: {db_data['invoice_number']}")
-                if db_data.get('company_name'):
-                    print(f"    ✓ Company: {db_data['company_name']}")
-                if db_data.get('total_amount'):
-                    print(f"    ✓ Amount: {db_data['currency']} {db_data['total_amount']}")
+                    # Show extracted key fields
+                    if db_data.get('invoice_number'):
+                        print(f"    ✓ Invoice: {db_data['invoice_number']}")
+                    if db_data.get('company_name'):
+                        print(f"    ✓ Company: {db_data['company_name']}")
+                    if db_data.get('total_amount'):
+                        print(f"    ✓ Amount: {db_data['currency']} {db_data['total_amount']}")
 
-            except Exception as e:
-                print(f"  ✗ Invoice extraction failed: {str(e)}")
+                except Exception as e:
+                    print(f"  ✗ Invoice extraction failed: {str(e)}")
 
         # Save combined JSON
         print("\nCombined files:")
@@ -449,61 +450,62 @@ Examples:
 
         print(f"  Summary CSV: {csv_summary.name}")
 
-        # Save combined invoice extraction JSON
-        invoice_json = output_dir / f"{input_name}_invoices.json"
-        try:
-            invoice_extractor = InvoiceExtractor()
-            all_invoices = []
+        # Save combined invoice extraction JSON (only if --use-llm is enabled)
+        if llm_processor:
+            invoice_json = output_dir / f"{input_name}_invoices.json"
+            try:
+                invoice_extractor = InvoiceExtractor()
+                all_invoices = []
 
-            for result in all_results:
-                page_num = result['page_number']
+                for result in all_results:
+                    page_num = result['page_number']
 
-                # Extract text from regions
-                page_text = '\n\n'.join([
-                    f"[Region {i} - {region.type}]\n{region.text}"
-                    for i, region in enumerate(result['regions'], 1)
-                ])
+                    # Extract text from regions
+                    page_text = '\n\n'.join([
+                        f"[Region {i} - {region.type}]\n{region.text}"
+                        for i, region in enumerate(result['regions'], 1)
+                    ])
 
-                # Extract invoice data
-                invoice_data = invoice_extractor.extract_from_text(page_text)
-                db_data = invoice_extractor.format_for_database(invoice_data)
+                    # Extract invoice data
+                    invoice_data = invoice_extractor.extract_from_text(page_text)
+                    db_data = invoice_extractor.format_for_database(invoice_data)
 
-                # Create invoice record
-                invoice_record = {
-                    'page': page_num,
-                    'source_file': Path(result['image_path']).stem,
-                    'extracted_fields': db_data,
-                    'items_count': invoice_data.get('items_count', 0),
+                    # Create invoice record
+                    invoice_record = {
+                        'page': page_num,
+                        'source_file': Path(result['image_path']).stem,
+                        'extracted_fields': db_data,
+                        'items_count': invoice_data.get('items_count', 0),
+                    }
+
+                    # Add LLM results if available
+                    if 'llm_document_type' in result:
+                        invoice_record['llm_document_type'] = result['llm_document_type']
+
+                    all_invoices.append(invoice_record)
+
+                # Save combined JSON
+                combined_data = {
+                    'document': input_name,
+                    'total_pages': len(all_results),
+                    'invoices': all_invoices,
+                    'summary': {
+                        'with_invoice_number': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_number')),
+                        'with_company': sum(1 for inv in all_invoices if inv['extracted_fields'].get('company_name')),
+                        'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('total_amount')),
+                    }
                 }
 
-                # Add LLM results if available
-                if 'llm_document_type' in result:
-                    invoice_record['llm_document_type'] = result['llm_document_type']
+                with open(invoice_json, 'w', encoding='utf-8') as f:
+                    json.dump(combined_data, f, indent=2, ensure_ascii=False)
 
-                all_invoices.append(invoice_record)
+                print(f"  Invoices JSON: {invoice_json.name}")
+                print(f"    Pages with invoice no: {combined_data['summary']['with_invoice_number']}")
+                print(f"    Pages with company: {combined_data['summary']['with_company']}")
+                print(f"    Pages with amount: {combined_data['summary']['with_amount']}")
 
-            # Save combined JSON
-            combined_data = {
-                'document': input_name,
-                'total_pages': len(all_results),
-                'invoices': all_invoices,
-                'summary': {
-                    'with_invoice_number': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_number')),
-                    'with_company': sum(1 for inv in all_invoices if inv['extracted_fields'].get('company_name')),
-                    'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('total_amount')),
-                }
-            }
-
-            with open(invoice_json, 'w', encoding='utf-8') as f:
-                json.dump(combined_data, f, indent=2, ensure_ascii=False)
-
-            print(f"  Invoices JSON: {invoice_json.name}")
-            print(f"    Pages with invoice no: {combined_data['summary']['with_invoice_number']}")
-            print(f"    Pages with company: {combined_data['summary']['with_company']}")
-            print(f"    Pages with amount: {combined_data['summary']['with_amount']}")
-
-        except Exception as e:
-            print(f"  ✗ Combined invoice extraction failed: {str(e)}")
+            except Exception as e:
+                print(f"  ✗ Combined invoice extraction failed: {str(e)}")
 
         # Visualize if requested
         if args.visualize:
