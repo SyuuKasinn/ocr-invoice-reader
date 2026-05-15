@@ -13,6 +13,7 @@ from typing import List, Dict
 
 from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedStructureAnalyzer
 from ocr_invoice_reader.processors.file_handler import FileProcessor
+from ocr_invoice_reader.utils.invoice_extractor import InvoiceExtractor
 from ocr_invoice_reader import __version__
 
 
@@ -296,76 +297,58 @@ Examples:
                     f.write(region.text + '\n\n')
             print(f"  Page {page_num} TXT: {page_txt.name}")
 
-            # Individual LLM TXT (if LLM processing was done)
-            if 'llm_document_type' in result or 'llm_extracted_fields' in result:
-                page_llm_txt = output_dir / f"{page_name}_llm.txt"
-                with open(page_llm_txt, 'w', encoding='utf-8') as f:
-                    f.write(f"LLM ANALYSIS - PAGE {page_num}\n")
-                    f.write(f"{'='*60}\n\n")
+            # Individual invoice extraction JSON (automatically extract from TXT)
+            page_llm_json = output_dir / f"{page_name}_llm.json"
+            try:
+                # Initialize invoice extractor
+                invoice_extractor = InvoiceExtractor()
 
-                    # Document type
-                    if 'llm_document_type' in result:
-                        doc_type = result['llm_document_type']
-                        f.write(f"[Document Classification]\n")
-                        f.write(f"Type: {doc_type.get('type', 'unknown')}\n")
-                        f.write(f"Confidence: {doc_type.get('confidence', 'unknown')}\n\n")
+                # Extract text from regions
+                page_text = '\n\n'.join([
+                    f"[Region {i} - {region.type}]\n{region.text}"
+                    for i, region in enumerate(result['regions'], 1)
+                ])
 
-                    # Extracted fields
-                    if 'llm_extracted_fields' in result:
-                        fields = result['llm_extracted_fields']
-                        f.write(f"[Extracted Fields]\n")
+                # Extract invoice data
+                invoice_data = invoice_extractor.extract_from_text(page_text)
+                db_data = invoice_extractor.format_for_database(invoice_data)
 
-                        if 'error' not in fields:
-                            for key, value in fields.items():
-                                if value and key != 'raw_response':
-                                    # Format key nicely
-                                    display_key = key.replace('_', ' ').title()
-                                    f.write(f"{display_key}: {value}\n")
-                        else:
-                            f.write(f"Error: {fields.get('error')}\n")
-                            if 'raw_response' in fields:
-                                f.write(f"\nRaw Response:\n{fields['raw_response']}\n")
-
-                        f.write("\n")
-
-                    # Error (if any)
-                    if 'llm_error' in result:
-                        f.write(f"[Processing Error]\n")
-                        f.write(f"{result['llm_error']}\n")
-
-                print(f"  Page {page_num} LLM TXT: {page_llm_txt.name}")
-
-                # Individual LLM CSV (if LLM fields were extracted)
-                if 'llm_extracted_fields' in result and 'error' not in result.get('llm_extracted_fields', {}):
-                    page_llm_csv = output_dir / f"{page_name}_llm.csv"
-                    fields = result['llm_extracted_fields']
-
-                    # Create database-friendly row
-                    row = {
-                        'page': result['page_number'],
-                        'doc_type': result.get('llm_document_type', {}).get('type', ''),
-                        'confidence': result.get('llm_document_type', {}).get('confidence', '')
+                # Add metadata
+                extraction_result = {
+                    'page': result['page_number'],
+                    'source_file': page_name,
+                    'extraction_method': 'invoice_extractor',
+                    'extracted_fields': db_data,
+                    'raw_data': {
+                        'items': invoice_data.get('items', []),
+                        'items_count': invoice_data.get('items_count', 0),
                     }
+                }
 
-                    # Add all extracted fields, handling nested data
-                    for key, value in fields.items():
-                        # Convert lists/dicts to JSON string for database storage
-                        if isinstance(value, (list, dict)):
-                            row[key] = json.dumps(value, ensure_ascii=False)
-                        else:
-                            row[key] = value if value else ''
+                # Add LLM results if available
+                if 'llm_document_type' in result:
+                    extraction_result['llm_document_type'] = result['llm_document_type']
+                if 'llm_extracted_fields' in result:
+                    extraction_result['llm_extracted_fields'] = result['llm_extracted_fields']
+                if 'llm_error' in result:
+                    extraction_result['llm_error'] = result['llm_error']
 
-                    # Sort keys: page, doc_type, confidence first, then alphabetical
-                    priority_keys = ['page', 'doc_type', 'confidence']
-                    other_keys = sorted([k for k in row.keys() if k not in priority_keys])
-                    all_keys = [k for k in priority_keys if k in row] + other_keys
+                # Save as JSON
+                with open(page_llm_json, 'w', encoding='utf-8') as f:
+                    json.dump(extraction_result, f, indent=2, ensure_ascii=False)
 
-                    with open(page_llm_csv, 'w', newline='', encoding='utf-8-sig') as f:
-                        writer = csv.DictWriter(f, fieldnames=all_keys)
-                        writer.writeheader()
-                        writer.writerow(row)
+                print(f"  Page {page_num} Invoice JSON: {page_llm_json.name}")
 
-                    print(f"  Page {page_num} LLM CSV: {page_llm_csv.name}")
+                # Show extracted key fields
+                if db_data.get('invoice_number'):
+                    print(f"    ✓ Invoice: {db_data['invoice_number']}")
+                if db_data.get('company_name'):
+                    print(f"    ✓ Company: {db_data['company_name']}")
+                if db_data.get('total_amount'):
+                    print(f"    ✓ Amount: {db_data['currency']} {db_data['total_amount']}")
+
+            except Exception as e:
+                print(f"  ✗ Invoice extraction failed: {str(e)}")
 
         # Save combined JSON
         print("\nCombined files:")
@@ -466,94 +449,61 @@ Examples:
 
         print(f"  Summary CSV: {csv_summary.name}")
 
-        # Save LLM analysis summary (if LLM was used)
-        llm_results = [r for r in all_results if 'llm_document_type' in r or 'llm_extracted_fields' in r]
-        if llm_results:
-            llm_output = output_dir / f"{input_name}_llm_analysis.txt"
-            with open(llm_output, 'w', encoding='utf-8') as f:
-                f.write("LLM ANALYSIS SUMMARY\n")
-                f.write("="*60 + "\n")
-                f.write(f"Document: {input_name}\n")
-                f.write(f"Total pages analyzed: {len(llm_results)}\n")
-                f.write("="*60 + "\n\n")
+        # Save combined invoice extraction JSON
+        invoice_json = output_dir / f"{input_name}_invoices.json"
+        try:
+            invoice_extractor = InvoiceExtractor()
+            all_invoices = []
 
-                for result in llm_results:
-                    page_num = result['page_number']
-                    f.write(f"\n{'='*60}\n")
-                    f.write(f"PAGE {page_num}\n")
-                    f.write(f"{'='*60}\n\n")
+            for result in all_results:
+                page_num = result['page_number']
 
-                    # Document classification
-                    if 'llm_document_type' in result:
-                        doc_type = result['llm_document_type']
-                        f.write(f"[Document Classification]\n")
-                        f.write(f"  Type: {doc_type.get('type', 'unknown')}\n")
-                        f.write(f"  Confidence: {doc_type.get('confidence', 'unknown')}\n\n")
+                # Extract text from regions
+                page_text = '\n\n'.join([
+                    f"[Region {i} - {region.type}]\n{region.text}"
+                    for i, region in enumerate(result['regions'], 1)
+                ])
 
-                    # Extracted fields
-                    if 'llm_extracted_fields' in result:
-                        fields = result['llm_extracted_fields']
-                        f.write(f"[Extracted Fields]\n")
+                # Extract invoice data
+                invoice_data = invoice_extractor.extract_from_text(page_text)
+                db_data = invoice_extractor.format_for_database(invoice_data)
 
-                        if 'error' not in fields:
-                            for key, value in fields.items():
-                                if value and key != 'raw_response':
-                                    display_key = key.replace('_', ' ').title()
-                                    f.write(f"  {display_key}: {value}\n")
-                        else:
-                            f.write(f"  Error: {fields.get('error')}\n")
+                # Create invoice record
+                invoice_record = {
+                    'page': page_num,
+                    'source_file': Path(result['image_path']).stem,
+                    'extracted_fields': db_data,
+                    'items_count': invoice_data.get('items_count', 0),
+                }
 
-                        f.write("\n")
+                # Add LLM results if available
+                if 'llm_document_type' in result:
+                    invoice_record['llm_document_type'] = result['llm_document_type']
 
-                    # Error (if any)
-                    if 'llm_error' in result:
-                        f.write(f"[Processing Error]\n")
-                        f.write(f"  {result['llm_error']}\n\n")
+                all_invoices.append(invoice_record)
 
-            print(f"  LLM Analysis: {llm_output.name} ({len(llm_results)} pages)")
+            # Save combined JSON
+            combined_data = {
+                'document': input_name,
+                'total_pages': len(all_results),
+                'invoices': all_invoices,
+                'summary': {
+                    'with_invoice_number': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_number')),
+                    'with_company': sum(1 for inv in all_invoices if inv['extracted_fields'].get('company_name')),
+                    'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('total_amount')),
+                }
+            }
 
-            # Save CSV if LLM extracted fields
-            csv_data = []
-            for result in llm_results:
-                if 'llm_extracted_fields' in result and 'error' not in result.get('llm_extracted_fields', {}):
-                    fields = result['llm_extracted_fields']
+            with open(invoice_json, 'w', encoding='utf-8') as f:
+                json.dump(combined_data, f, indent=2, ensure_ascii=False)
 
-                    # Create database-friendly row
-                    row = {
-                        'page': result['page_number'],
-                        'doc_type': result.get('llm_document_type', {}).get('type', ''),
-                        'confidence': result.get('llm_document_type', {}).get('confidence', '')
-                    }
+            print(f"  Invoices JSON: {invoice_json.name}")
+            print(f"    Pages with invoice no: {combined_data['summary']['with_invoice_number']}")
+            print(f"    Pages with company: {combined_data['summary']['with_company']}")
+            print(f"    Pages with amount: {combined_data['summary']['with_amount']}")
 
-                    # Add all extracted fields, handling nested data
-                    for key, value in fields.items():
-                        # Convert lists/dicts to JSON string for database storage
-                        if isinstance(value, (list, dict)):
-                            row[key] = json.dumps(value, ensure_ascii=False)
-                        else:
-                            row[key] = value if value else ''
-
-                    csv_data.append(row)
-
-            if csv_data:
-                csv_output = output_dir / f"{input_name}_llm.csv"
-
-                # Get all unique field names, with proper ordering
-                all_keys = set()
-                for row in csv_data:
-                    all_keys.update(row.keys())
-
-                # Sort: page, doc_type, confidence first, then alphabetical
-                priority_keys = ['page', 'doc_type', 'confidence']
-                other_keys = sorted([k for k in all_keys if k not in priority_keys])
-                all_keys = [k for k in priority_keys if k in all_keys] + other_keys
-
-                with open(csv_output, 'w', newline='', encoding='utf-8-sig') as f:
-                    writer = csv.DictWriter(f, fieldnames=all_keys)
-                    writer.writeheader()
-                    writer.writerows(csv_data)
-
-                print(f"  LLM CSV: {csv_output.name} ({len(csv_data)} records)")
+        except Exception as e:
+            print(f"  ✗ Combined invoice extraction failed: {str(e)}")
 
         # Visualize if requested
         if args.visualize:
