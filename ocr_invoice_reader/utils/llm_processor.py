@@ -44,7 +44,7 @@ class LLMProcessor:
         except:
             return False
 
-    def _generate(self, prompt: str, system: str = None, temperature: float = 0.3) -> str:
+    def _generate(self, prompt: str, system: str = None, temperature: float = 0.3, timeout: int = 120) -> str:
         """调用Ollama生成文本"""
         payload = {
             "model": self.model,
@@ -52,6 +52,8 @@ class LLMProcessor:
             "stream": False,
             "options": {
                 "temperature": temperature,
+                "num_ctx": 4096,  # Limit context for speed
+                "num_predict": 1024,  # Limit output tokens for speed
             }
         }
 
@@ -59,7 +61,7 @@ class LLMProcessor:
             payload["system"] = system
 
         try:
-            response = requests.post(self.api_url, json=payload, timeout=30)
+            response = requests.post(self.api_url, json=payload, timeout=timeout)
             response.raise_for_status()
             result = response.json()
             return result.get('response', '').strip()

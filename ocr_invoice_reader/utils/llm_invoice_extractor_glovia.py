@@ -210,9 +210,9 @@ JSON OUTPUT:"""
         # Prepare prompt
         prompt = self.glovia_extraction_prompt.format(text=cleaned_text)
 
-        # Call LLM
+        # Call LLM with extended timeout for large models
         try:
-            response = self.llm_processor._generate(prompt, temperature=0.3)
+            response = self.llm_processor._generate(prompt, temperature=0.3, timeout=120)
             if not response:
                 return None
 
@@ -237,9 +237,11 @@ JSON OUTPUT:"""
         text = re.sub(r'\s*\|\s*', ' | ', text)
         # Remove page markers
         text = re.sub(r'PAGE \d+\n=+\n', '', text)
-        # Limit length
-        if len(text) > 4000:
-            text = text[:4000]
+        # Remove excessive whitespace
+        text = re.sub(r'\n{3,}', '\n\n', text)
+        # Limit length to 3000 chars for faster processing
+        if len(text) > 3000:
+            text = text[:3000]
         return text.strip()
 
     def _parse_json_response(self, response: str) -> Optional[Dict]:
