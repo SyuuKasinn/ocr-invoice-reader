@@ -6,6 +6,7 @@ import sys
 import io
 import json
 import csv
+import time
 from pathlib import Path
 from datetime import datetime
 from typing import List, Dict
@@ -149,10 +150,14 @@ Examples:
 
         # Process all pages
         all_results = []
+        start_time = time.time()
+
         for page_idx, image_path in enumerate(images, 1):
             print(f"\n{'='*60}")
             print(f"Processing page {page_idx}/{len(images)}: {Path(image_path).name}")
             print('='*60)
+
+            page_start = time.time()
 
             # Analyze
             result = analyzer.analyze(image_path)
@@ -185,6 +190,10 @@ Examples:
                     print(f"  ✗ LLM processing failed: {str(e)}")
                     result['llm_error'] = str(e)
 
+            page_time = time.time() - page_start
+            result['processing_time'] = page_time
+            print(f"  ⏱ Page processed in {page_time:.2f}s")
+
             all_results.append(result)
 
         # Create output directory
@@ -193,6 +202,9 @@ Examples:
         output_dir.mkdir(parents=True, exist_ok=True)
 
         input_name = Path(args.image).stem
+
+        # Calculate timing statistics
+        total_time = time.time() - start_time
 
         # Display summary
         print("\n" + "="*60)
@@ -205,6 +217,9 @@ Examples:
 
         print(f"Total regions: {total_regions}")
         print(f"Total tables: {total_tables}")
+        print(f"\n⏱ Processing time: {total_time:.2f}s")
+        print(f"  Average per page: {total_time/len(all_results):.2f}s")
+        print(f"  Pages per minute: {len(all_results)/(total_time/60):.1f}")
         print("="*60)
 
         # Display detailed results for each page
