@@ -50,6 +50,17 @@ temp/
 *.log
 *_test.txt
 
+# Test outputs and data
+test_output/
+test_results/
+test_14b/
+test_*/
+*_test.json
+*_test.csv
+*_test.sql
+customs_*.json
+invoices_test.*
+
 # PaddleOCR Cache
 .paddleocr/
 
@@ -57,6 +68,10 @@ temp/
 *.tmp
 *.bak
 *.cache
+*.backup
+*.old
+*.patch
+.cleanup_plan.txt
 
 # OS
 Thumbs.db

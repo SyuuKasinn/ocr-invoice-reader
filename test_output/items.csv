@@ -1,3 +1,0 @@
-document_number,document_type,item_index,description,quantity,unit,unit_price,amount,notes,source_file
-TEST-001,invoice,1,Product A,10.0,pcs,100.0,1000.0,,
-TEST-001,invoice,2,Product B,5.0,pcs,200.0,1000.0,,
