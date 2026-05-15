@@ -41,23 +41,19 @@ class EnvironmentConfig:
         """Configure environment variables based on hardware"""
 
         # PaddlePaddle OpenBLAS threading
-        # Set to 1 for single-threaded operation (avoids warning)
-        if 'OMP_NUM_THREADS' not in os.environ:
-            os.environ['OMP_NUM_THREADS'] = '1'
-
-        if 'MKL_NUM_THREADS' not in os.environ:
-            os.environ['MKL_NUM_THREADS'] = '1'
-
-        # For CPU-only: optimize number of threads
-        if not self.gpu_available:
-            # Use half of available CPU cores for inference
-            optimal_threads = max(1, self.cpu_count // 2)
-            os.environ['OMP_NUM_THREADS'] = str(optimal_threads)
-            os.environ['MKL_NUM_THREADS'] = str(optimal_threads)
-
-        # Disable some CUDA warnings if GPU available
+        # Always set to 1 when GPU is available (PaddlePaddle recommendation)
+        # This avoids the "OMP_NUM_THREADS set to X, not 1" warning
         if self.gpu_available:
+            os.environ['OMP_NUM_THREADS'] = '1'
+            os.environ['MKL_NUM_THREADS'] = '1'
             os.environ['TF_CPP_MIN_LOG_LEVEL'] = '2'
+        else:
+            # For CPU-only: optimize number of threads
+            # Use half of available CPU cores for inference
+            if 'OMP_NUM_THREADS' not in os.environ:
+                optimal_threads = max(1, self.cpu_count // 2)
+                os.environ['OMP_NUM_THREADS'] = str(optimal_threads)
+                os.environ['MKL_NUM_THREADS'] = str(optimal_threads)
 
     def get_recommended_device(self) -> str:
         """Get recommended device for inference"""
