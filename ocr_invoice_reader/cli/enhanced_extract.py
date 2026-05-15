@@ -52,9 +52,12 @@ Examples:
     args = parser.parse_args()
 
     try:
+        overall_start = time.time()
+
         print("="*60)
         print("Enhanced Document Extraction")
         print(f"Version: {__version__}")
+        print(f"⏱ Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("="*60)
 
         # Convert PDF if needed
@@ -154,11 +157,11 @@ Examples:
         start_time = time.time()
 
         for page_idx, image_path in enumerate(images, 1):
-            print(f"\n{'='*60}")
-            print(f"Processing page {page_idx}/{len(images)}: {Path(image_path).name}")
-            print('='*60)
-
             page_start = time.time()
+
+            print(f"\n{'='*60}")
+            print(f"⏱ [Page {page_idx}/{len(images)}] Starting: {Path(image_path).name}")
+            print('='*60)
 
             # Analyze
             result = analyzer.analyze(image_path)
@@ -193,7 +196,9 @@ Examples:
 
             page_time = time.time() - page_start
             result['processing_time'] = page_time
-            print(f"  ⏱ Page processed in {page_time:.2f}s")
+            print(f"{'='*60}")
+            print(f"⏱ [Page {page_idx}] Completed in {page_time:.2f}s")
+            print('='*60)
 
             all_results.append(result)
 
@@ -218,9 +223,22 @@ Examples:
 
         print(f"Total regions: {total_regions}")
         print(f"Total tables: {total_tables}")
-        print(f"\n⏱ Processing time: {total_time:.2f}s")
-        print(f"  Average per page: {total_time/len(all_results):.2f}s")
-        print(f"  Pages per minute: {len(all_results)/(total_time/60):.1f}")
+
+        print("\n" + "="*60)
+        print("⏱ PERFORMANCE METRICS")
+        print("="*60)
+        print(f"Total processing time:    {total_time:.2f}s")
+        print(f"Average per page:         {total_time/len(all_results):.2f}s")
+        print(f"Processing speed:         {len(all_results)/(total_time/60):.1f} pages/min")
+
+        # Calculate per-page times
+        page_times = [r.get('processing_time', 0) for r in all_results]
+        if page_times:
+            fastest = min(page_times)
+            slowest = max(page_times)
+            print(f"Fastest page:             {fastest:.2f}s")
+            print(f"Slowest page:             {slowest:.2f}s")
+
         print("="*60)
 
         # Display detailed results for each page
@@ -594,6 +612,14 @@ Examples:
                 )
                 print(f"  Page {page_num}: {viz_output.name}")
 
+        # Final summary with total elapsed time
+        overall_elapsed = time.time() - overall_start
+        print("\n" + "="*60)
+        print("✓ PROCESSING COMPLETE")
+        print("="*60)
+        print(f"Total elapsed time:       {overall_elapsed:.2f}s ({overall_elapsed/60:.1f} minutes)")
+        print(f"Output directory:         {output_dir}")
+        print(f"Finished at:              {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("="*60)
 
         return 0
