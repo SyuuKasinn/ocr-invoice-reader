@@ -244,7 +244,7 @@ def get_optimal_workers() -> int:
     env = EnvironmentConfig()
 
     if env.gpu_available:
-/(# GPU: Limit workers to avoid memory issues
+        # GPU: Limit workers to avoid memory issues
         # Rule: 1 worker per 8GB VRAM
         if env.gpu_memory:
             return max(1, int(env.gpu_memory // 8))
