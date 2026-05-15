@@ -337,7 +337,7 @@ else:
 ocr-enhanced-parallel \
   --image invoice.pdf \
   --use-llm \
-  --llm-model qwen2.5:14b \
+  --llm-model 14b \
   --workers 3 \
   --glovia-mode
 ```

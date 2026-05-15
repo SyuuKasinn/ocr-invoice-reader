@@ -128,7 +128,7 @@ processor = create_qwen_processor(
 ```python
 from ocr_invoice_reader.utils.llm_processor import LLMProcessor
 
-llm = LLMProcessor(model="qwen2.5:7b")  # 需要Ollama
+llm = LLMProcessor(model="7b")  # 需要Ollama
 result = llm.extract_invoice_fields(text)
 ```
 

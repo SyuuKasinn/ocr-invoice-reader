@@ -1,6 +1,6 @@
 # OCR Invoice Reader - Complete Guide
 
-**Version**: 2.3.1  
+**Version**: 2.3.2  
 **Last Updated**: 2026-05-15
 
 ## Table of Contents
@@ -31,9 +31,8 @@ pip install -e .
 # 3. Basic OCR (no LLM)
 ocr-enhanced --image invoice.pdf --visualize
 
-# 4. With LLM enhancement (requires Ollama)
-ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
-```
+# 4. With LLM enhancement (uses Qwen Direct)
+ocr-enhanced --image invoice.pdf --use-llm ```
 
 ### Key Commands
 
@@ -212,13 +211,13 @@ ocr-enhanced --image invoice.pdf --use-cpu
 
 ```bash
 # Fast model (lower accuracy)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
 
 # Balanced model (recommended)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:14b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 
 # High accuracy model
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:32b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 ```
 
 ### Processing Speed Comparison
@@ -305,9 +304,9 @@ Options:
   --lang LANG           OCR language: ch|en|japan|korean (default: ch)
   --use-cpu            Force CPU mode (no GPU)
   --use-llm            Enable LLM enhancement
-  --llm-model MODEL    LLM model name (default: qwen2.5:14b)
+  --llm-model MODEL    LLM model size: 3b/7b/14b (default: 7b)
+  --llm-quantization   Quantization: int4/int8/none (default: int4)
   --visualize          Generate annotated images
-  --auto-setup-ollama  Auto-install Ollama if needed
 ```
 
 **ocr-enhanced-parallel**
@@ -344,10 +343,10 @@ print(f"Amount: {data['currency']} {data['total_amount']}")
 
 **LLM Enhancement**:
 ```python
-from ocr_invoice_reader.utils.llm_processor import create_llm_processor
+from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
 from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor
 
-llm_processor = create_llm_processor('qwen2.5:14b')
+llm_processor = create_llm_processor('14b')
 extractor = LLMInvoiceExtractor(llm_processor)
 
 result = extractor.extract_from_text(ocr_text)
@@ -364,20 +363,19 @@ if result and result.get('invoice_data'):
 **1. LLM extraction fails**
 
 ```
-⚠ LLM extraction error: Connection refused
+⚠ LLM extraction error: Model loading failed
 ```
 
 **Solution**:
 ```bash
-# Check Ollama service
-ollama list
+# Check environment
+ocr-check-env
 
-# Restart Ollama
-# Windows: Restart from system tray
-# Linux/Mac: ollama serve
+# Use smaller model for limited memory
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 3b
 
-# Or use auto-setup
-ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
+# Force CPU mode if GPU memory insufficient
+ocr-enhanced --image invoice.pdf --use-llm --use-cpu
 ```
 
 **2. Memory error with parallel processing**
@@ -422,7 +420,7 @@ ocr-enhanced --image invoice.pdf --use-cpu
 
 **Solutions**:
 - Use parallel processing: `ocr-enhanced-parallel`
-- Use smaller LLM model: `--llm-model qwen2.5:7b`
+- Use smaller LLM model: `--llm-model 7b`
 - Disable visualization: Remove `--visualize` flag
 - Use GPU: Remove `--use-cpu` flag
 
@@ -432,11 +430,11 @@ ocr-enhanced --image invoice.pdf --use-cpu
 1. Use parallel processing (`ocr-enhanced-parallel`)
 2. Increase workers: `--workers 6` (if enough RAM)
 3. Use GPU mode (remove `--use-cpu`)
-4. Use smaller LLM: `--llm-model qwen2.5:7b`
+4. Use smaller LLM: `--llm-model 7b`
 
 **Maximize Accuracy**:
 1. Use LLM enhancement: `--use-llm`
-2. Use larger model: `--llm-model qwen2.5:14b` or `qwen2.5:32b`
+2. Use larger model: `--llm-model 14b` or `14b`
 3. Use GLOVIA extractor for customs documents
 4. Check language setting: `--lang ch` for Chinese/English mixed
 
@@ -482,5 +480,5 @@ Contributions welcome! Please:
 ## Credits
 
 - **PaddleOCR**: OCR engine
-- **Ollama**: LLM inference
 - **Qwen2.5**: Language model
+- **Hugging Face Transformers**: LLM inference

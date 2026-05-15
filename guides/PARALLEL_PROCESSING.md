@@ -245,13 +245,13 @@ ocr-enhanced-parallel --image invoice.pdf --use-llm --use-cpu
 
 ```bash
 # 小模型（快但准确率稍低）
-ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model 7b
 
 # 默认模型（平衡）
-ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model qwen2.5:14b
+ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model 14b
 
 # 大模型（慢但准确率高）
-ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model qwen2.5:32b
+ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model 14b
 ```
 
 ## 实测数据
@@ -425,7 +425,7 @@ ocr-enhanced --image invoice.pdf --use-llm
 **解决方案**：
 ```bash
 # 使用更小的模型
-ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+ocr-enhanced-parallel --image invoice.pdf --use-llm --llm-model 7b
 
 # 或强制CPU模式
 ocr-enhanced-parallel --image invoice.pdf --use-llm --use-cpu

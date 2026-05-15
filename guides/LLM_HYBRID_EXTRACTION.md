@@ -169,13 +169,13 @@ Use a different model (faster/slower):
 
 ```bash
 # Use smaller model (faster, less accurate)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
 
 # Use default model (balanced)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:14b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 
 # Use larger model if available (slower, more accurate)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:32b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 ```
 
 ### Modifying Extraction Prompts
@@ -250,7 +250,7 @@ def validate_extraction_result(data: Dict) -> tuple[bool, list[str]]:
 **Expected**: This is normal for LLM extraction with 14B model
 
 **Speed it up**:
-1. Use smaller model: `--llm-model qwen2.5:7b`
+1. Use smaller model: `--llm-model 7b`
 2. Use GPU if available (check Ollama GPU support)
 3. Disable LLM for batch processing of standard formats
 4. Let regex handle standard formats (they're fast and accurate)

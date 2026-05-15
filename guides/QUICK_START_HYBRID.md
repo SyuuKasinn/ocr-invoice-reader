@@ -169,13 +169,13 @@ cat results/*/new_format_invoices.json | grep extraction_method
 
 ```bash
 # 使用更小的模型（更快，稍低准确率）
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
 
 # 使用默认模型（平衡）
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:14b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 
 # 使用更大的模型（如果有，更慢但更准确）
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:32b
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 ```
 
 ### 修改提示词
@@ -240,7 +240,7 @@ def validate_extraction_result(data: Dict) -> tuple[bool, list[str]]:
 **A**: 这是正常的（14B 模型每页 20-60 秒）
 
 **加速方法**：
-1. 使用更小的模型：`--llm-model qwen2.5:7b`
+1. 使用更小的模型：`--llm-model 7b`
 2. 使用 GPU（如果支持）
 3. 对标准格式批处理，不使用 `--use-llm`
 4. 让正则处理标准格式（它们又快又准）
