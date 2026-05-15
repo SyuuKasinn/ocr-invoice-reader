@@ -1,8 +1,13 @@
 """
-Setup configuration for OCR Invoice Reader
+Setup configuration for OCR Invoice Reader - IMPROVED
 """
 from setuptools import setup, find_packages
 import os
+import sys
+
+# Add package to path to import version
+sys.path.insert(0, os.path.abspath('.'))
+from ocr_invoice_reader import __version__
 
 # Read long description from README
 def read_long_description():
@@ -22,13 +27,13 @@ def read_requirements():
 
 setup(
     name="ocr-invoice-reader",
-    version="2.0.0",
+    version=__version__,  # Now properly imported
     author="Your Name",
     author_email="your.email@example.com",
     description="Document information extraction system using PaddleOCR and PP-Structure",
     long_description=read_long_description(),
     long_description_content_type="text/markdown",
-    url="https://github.com/yourusername/ocr-invoice-reader",
+    url="https://github.com/SyuuKasinn/ocr-invoice-reader",
     packages=find_packages(exclude=["tests", "examples", "docs"]),
     classifiers=[
         "Development Status :: 4 - Beta",
@@ -40,6 +45,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     python_requires=">=3.8",
     install_requires=read_requirements(),
@@ -59,6 +65,7 @@ setup(
             "fastapi>=0.104.0",
             "uvicorn[standard]>=0.24.0",
             "python-multipart>=0.0.6",
+            "psutil>=5.9.0",  # For health check
         ],
     },
     entry_points={
