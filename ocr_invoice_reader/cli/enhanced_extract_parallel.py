@@ -254,8 +254,8 @@ Examples:
     parser.add_argument('--use-cpu', action='store_true', help='Force CPU mode')
     parser.add_argument('--lang', type=str, default='ch', choices=['ch', 'en', 'japan', 'korean', 'latin'], help='OCR language')
     parser.add_argument('--use-llm', action='store_true', help='Enable LLM post-processing')
-    parser.add_argument('--llm-model', type=str, default='qwen2.5:14b', help='LLM model')
-    parser.add_argument('--auto-setup-ollama', action='store_true', help='Auto setup Ollama')
+    parser.add_argument('--llm-model', type=str, default='7b', choices=['3b', '7b', '14b'], help='LLM model size (3b/7b/14b)')
+    parser.add_argument('--llm-quantization', type=str, default='int4', choices=['int4', 'int8', 'none'], help='Quantization method (GPU only)')
     parser.add_argument('--workers', type=int, default=3, help='Max parallel workers (default: 3)')
 
     args = parser.parse_args()
@@ -289,21 +289,28 @@ Examples:
         # Initialize LLM processor if requested
         llm_processor = None
         if args.use_llm:
-            from ocr_invoice_reader.utils.llm_processor import create_llm_processor
-            from ocr_invoice_reader.utils.ollama_manager import OllamaManager
+            from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
+            from ocr_invoice_reader.utils.environment import EnvironmentConfig
 
-            print("\nInitializing LLM processor...")
-            llm_processor = create_llm_processor(args.llm_model)
+            env = EnvironmentConfig()
+            use_gpu = not args.use_cpu and env.gpu_available
+            quantization = None if args.llm_quantization == 'none' else args.llm_quantization
+
+            print(f"\nInitializing Qwen LLM ({args.llm_model.upper()})...")
+            print(f"  Device: {'GPU' if use_gpu else 'CPU'}")
+            if use_gpu and quantization:
+                print(f"  Quantization: {quantization}")
+
+            llm_processor = create_qwen_processor(
+                model_size=args.llm_model,
+                use_gpu=use_gpu,
+                quantization=quantization if use_gpu else None
+            )
 
             if llm_processor:
-                print(f"✓ LLM ready: {args.llm_model}")
+                print(f"✓ LLM ready: Qwen2.5-{args.llm_model.upper()}")
             else:
-                print("✗ LLM not available")
-                if args.auto_setup_ollama:
-                    manager = OllamaManager()
-                    success, message = manager.setup(args.llm_model, auto_confirm=True)
-                    if success:
-                        llm_processor = create_llm_processor(args.llm_model)
+                print("✗ LLM initialization failed")
 
         # Create parallel pipeline
         pipeline = ParallelPipeline(analyzer, llm_processor, max_workers=args.workers)
