@@ -1,0 +1,89 @@
+{
+  "page": 8,
+  "source_file": "インボイス見本_page_0008",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": null,
+    "invoice_date": null,
+    "tracking_number": null,
+    "company_name": null,
+    "total_amount": null,
+    "currency": "USD",
+    "phone": "83150820",
+    "fax": null,
+    "item_count": 7,
+    "created_at": null
+  },
+  "raw_data": {
+    "items": [
+      {
+        "line": "出口日期:2025/9/24 | 运单号码: | 820111868365",
+        "values": [
+          "2025",
+          "9",
+          "24",
+          "820111868365"
+        ],
+        "quantity": "24",
+        "amount": "820111868365"
+      },
+      {
+        "line": "ADDRESS | :AGENCY DALIAN CHINA | ZHANG JIA YAOSTR.TAI PING | ADDRESS | BIRU 1F,5-5-3 SHINJUKU",
+        "values": [
+          "1",
+          ",5",
+          "5",
+          "3"
+        ],
+        "quantity": "5",
+        "amount": "3"
+      },
+      {
+        "line": "ATTENTION MRXIA | TEL:83150820 | ATTENTION:村樣",
+        "values": [
+          "83150820"
+        ]
+      },
+      {
+        "line": "出口国 | COUNTRY OFEXPORT | 物品来源地CHINA | COUNTRY OF DESTINATION | CHINA | 地址 | ADDRESS | ATTENTION: | 1-4NIHONBASHI-ODEMMACHO.CHUO- | LIU SAMA | KU. TOKYO JAPAN | 0081-03-3661-1363 | (ITOCHU KENZAI CORPORATION)",
+        "values": [
+          "1",
+          "4",
+          "0081",
+          "03",
+          "3661",
+          "1363"
+        ],
+        "quantity": "3661",
+        "amount": "1363"
+      },
+      {
+        "line": "WOODEN FLOOR BOARD SAMPLE | board) | (Density | 1 | USD20.00 | USD20.00",
+        "values": [
+          "1",
+          "20.00",
+          "20.00"
+        ],
+        "quantity": "20.00",
+        "amount": "20.00"
+      },
+      {
+        "line": "TOTAL INVOICE VALUE | 合计总价 | USD20.00",
+        "values": [
+          "20.00"
+        ]
+      },
+      {
+        "line": "SHIPPER'S SIGNATURE | DATE | 2025/9/24",
+        "values": [
+          "2025",
+          "9",
+          "24"
+        ],
+        "quantity": "9",
+        "amount": "24"
+      }
+    ],
+    "items_count": 7
+  }
+}

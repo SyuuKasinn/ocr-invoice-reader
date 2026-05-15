@@ -138,7 +138,7 @@ JSON OUTPUT (respond with only the JSON, no other text):"""
 
         # Single LLM call for both tasks
         try:
-            response = self.llm_processor._call_ollama(prompt)
+            response = self.llm_processor._generate(prompt, temperature=0.3)
             if not response:
                 return None
 
@@ -176,7 +176,7 @@ JSON OUTPUT (respond with only the JSON, no other text):"""
 
         # Call LLM
         try:
-            response = self.llm_processor._call_ollama(prompt)
+            response = self.llm_processor._generate(prompt, temperature=0.3)
             if not response:
                 return None
 

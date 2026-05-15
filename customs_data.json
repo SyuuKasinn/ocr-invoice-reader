@@ -1,0 +1,125 @@
+{
+  "tracking_number": null,
+  "invoice_number": "CXUNTRYOF DESTINATIH",
+  "invoice_date": "2025-09-22",
+  "logistics_provider": "Global LFC logistics CO.,LTD",
+  "shipper": {
+    "company_name": "LANZHEN",
+    "account_number": null,
+    "address": "No.3-4 Building5,You Nan Residential",
+    "city": "Shimofukujima,Motosu-shi,Yi Wu,Zhe Jiang",
+    "country": "Japan"
+  },
+  "receiver": {
+    "company_name": "Global LFC logistics CO.,LTD",
+    "contact_person": null,
+    "phone": "13735702118,080-3705-8917",
+    "address": "ATTENTION: 157-00667-13-3,S E I J Y O U , S E T A G A Y A K U , T O K Y 0 , J A P A N",
+    "zip_code": null,
+    "city": null,
+    "country": "Japan"
+  },
+  "shipment_info": {
+    "category": "Parcel",
+    "total_packages": 70,
+    "total_weight": 132.0,
+    "weight_unit": "kg",
+    "dimensions": {
+      "length": null,
+      "width": null,
+      "height": null,
+      "unit": null
+    }
+  },
+  "items": [
+    {
+      "description": "knit coat women",
+      "quantity": 30,
+      "unit_price": 135.0,
+      "total_amount": 22140.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "wovcn coat women",
+      "quantity": 35,
+      "unit_price": 67.0,
+      "total_amount": 2680.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "raglan sleeves",
+      "quantity": 15,
+      "unit_price": 26.0,
+      "total_amount": 390.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven shirt women",
+      "quantity": 35,
+      "unit_price": 86.0,
+      "total_amount": 3010.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven shirt women",
+      "quantity": 18,
+      "unit_price": 63.0,
+      "total_amount": 1134.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "socks",
+      "quantity": 300,
+      "unit_price": 4.0,
+      "total_amount": 1200.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "knit swcater women",
+      "quantity": 13,
+      "unit_price": 68.0,
+      "total_amount": 884.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven Women's pants",
+      "quantity": 76,
+      "unit_price": 69.0,
+      "total_amount": 5244.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven Women's pants",
+      "quantity": 61,
+      "unit_price": 37.0,
+      "total_amount": 2257.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven Women's dress",
+      "quantity": 64,
+      "unit_price": 95.0,
+      "total_amount": 6080.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "woven Women's drcss",
+      "quantity": 28,
+      "unit_price": 53.0,
+      "total_amount": 1484.0,
+      "currency": "CNY"
+    },
+    {
+      "description": "knit Women's dress",
+      "quantity": 51,
+      "unit_price": 80.0,
+      "total_amount": 4080.0,
+      "currency": "CNY"
+    }
+  ],
+  "payment": {
+    "terms": null,
+    "currency": "CNY",
+    "total_amount": 51243.0
+  }
+}

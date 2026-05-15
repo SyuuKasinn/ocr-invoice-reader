@@ -1,0 +1,10 @@
+﻿invoice_number,invoice_date,company_name,total_amount,currency,created_at,fax,item_count,phone,source_file,source_path,tracking_number
+KTB0911-X52-S01-24538,,Importer SANEI SANSYOU CORPORATION,913.0,JPY,,,55,,インボイス見本_all_pages.txt,results\20260515_111347\インボイス見本_all_pages.txt,LDX:506538778406
+,,,,USD,,,4,,インボイス見本_page_0001.txt,results\20260515_111347\インボイス見本_page_0001.txt,
+KTB0911-X52-S01-24538,,Importer SANEI SANSYOU CORPORATION,,JPY,,,3,,インボイス見本_page_0002.txt,results\20260515_111347\インボイス見本_page_0002.txt,
+,,UK LIANTAI COLTD,,JPY,,00442084323088,18,00442084323088,インボイス見本_page_0003.txt,results\20260515_111347\インボイス見本_page_0003.txt,LDX:506538778406
+,,,,USD,,,21,,インボイス見本_page_0004.txt,results\20260515_111347\インボイス見本_page_0004.txt,
+,,,,USD,,,0,,インボイス見本_page_0005.txt,results\20260515_111347\インボイス見本_page_0005.txt,
+,,,,USD,,,2,,インボイス見本_page_0006.txt,results\20260515_111347\インボイス見本_page_0006.txt,
+,,,913.0,JPY,,86,0,86,インボイス見本_page_0007.txt,results\20260515_111347\インボイス見本_page_0007.txt,
+,,,,USD,,,7,83150820,インボイス見本_page_0008.txt,results\20260515_111347\インボイス見本_page_0008.txt,

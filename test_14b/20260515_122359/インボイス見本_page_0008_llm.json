@@ -1,0 +1,175 @@
+{
+  "page": 8,
+  "source_file": "インボイス見本_page_0008",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": null,
+    "invoice_date": "2025/9/24",
+    "tracking_number": "2406460365245",
+    "shipper_name": "发货人 | CONSIGNEE 收货人 CORP NAME DALIAN LONG SHENG WOOD | CORPNAME 公司名称 | INDUSTRY | CO.LTD | 公司名称 | 一株式会社 | SHINJUKU ADDRESS | :AGENCY DALIAN CHINA | ZHANG JIA YAOSTR.TAI PING | ADDRESS | BIRU 1F,5-5-3 SHINJUKU 地址 | 地址 | SHINJUKU KU | TOKYOTO ZIP:160-0022 | JAPAN 03-3352-7152 ATTENTION MRXIA | TEL:83150820 | ATTENTION:村樣 姓名 | 电话 | 姓名 SHIPPER MARKS | IMPORTER清关人 备注 | CORPNAME: COUNTRY OF ORIGIN | 公司名称 | 伊藤忠建材（株） 出口国 | COUNTRY OFEXPORT | 物品来源地CHINA | COUNTRY OF DESTINATION | CHINA | 地址 | ADDRESS | ATTENTION: | 1-4NIHONBASHI-ODEMMACHO.CHUO- | LIU SAMA | KU. TOKYO JAPAN | 0081-03-3661-1363 | (ITOCHU KENZAI CORPORATION",
+    "consignee_name": "ZIP:160-0022 | JAPAN 03-3352-7152 ATTENTION MRXIA",
+    "company_name": "[Region 1 - title] COMMERCIAL INVOICE [Region 2 - table] 商 | 业 | 发 | 票 Note:pleasecompleteall the information in English注意:请用英文填写所有资料 DATE OFEXPORTATION | AIR WAYBILLNO.2406460365245 出口日期:2025/9/24 | 运单号码: | 820111868365 SHIPPER | 发货人 | CONSIGNEE 收货人 CORP NAME DALIAN LONG SHENG WOOD | CORPNAME 公司名称 | INDUSTRY | CO.LTD | 公司名称 | 一株式会社",
+    "total_amount": null,
+    "currency": "USD",
+    "phone": "83150820",
+    "fax": null,
+    "item_count": 9,
+    "created_at": null,
+    "shipper_address": null,
+    "shipper_tel": null,
+    "consignee_address": null,
+    "consignee_tel": null
+  },
+  "raw_data": {
+    "items": [
+      {
+        "line": "DATE OFEXPORTATION | AIR WAYBILLNO.2406460365245",
+        "parts": [
+          "DATE OFEXPORTATION",
+          "AIR WAYBILLNO.2406460365245"
+        ],
+        "numbers": [
+          "2406460365245"
+        ],
+        "amount": "2406460365245"
+      },
+      {
+        "line": "出口日期:2025/9/24 | 运单号码: | 820111868365",
+        "parts": [
+          "出口日期:2025/9/24",
+          "运单号码:",
+          "820111868365"
+        ],
+        "numbers": [
+          "2025",
+          "9",
+          "24",
+          "820111868365"
+        ],
+        "quantity": "24",
+        "amount": "820111868365"
+      },
+      {
+        "line": "ADDRESS | :AGENCY DALIAN CHINA | ZHANG JIA YAOSTR.TAI PING | ADDRESS | BIRU 1F,5-5-3 SHINJUKU",
+        "parts": [
+          "ADDRESS",
+          ":AGENCY DALIAN CHINA",
+          "ZHANG JIA YAOSTR.TAI PING",
+          "ADDRESS",
+          "BIRU 1F,5-5-3 SHINJUKU"
+        ],
+        "numbers": [
+          "1",
+          ",5",
+          "5",
+          "3"
+        ],
+        "quantity": "5",
+        "amount": "3"
+      },
+      {
+        "line": "ZIP:160-0022 | JAPAN",
+        "parts": [
+          "ZIP:160-0022",
+          "JAPAN"
+        ],
+        "numbers": [
+          "160",
+          "0022"
+        ],
+        "quantity": "160",
+        "amount": "0022"
+      },
+      {
+        "line": "ATTENTION MRXIA | TEL:83150820 | ATTENTION:村樣",
+        "parts": [
+          "ATTENTION MRXIA",
+          "TEL:83150820",
+          "ATTENTION:村樣"
+        ],
+        "numbers": [
+          "83150820"
+        ],
+        "amount": "83150820"
+      },
+      {
+        "line": "出口国 | COUNTRY OFEXPORT | 物品来源地CHINA | COUNTRY OF DESTINATION | CHINA | 地址 | ADDRESS | ATTENTION: | 1-4NIHONBASHI-ODEMMACHO.CHUO- | LIU SAMA | KU. TOKYO JAPAN | 0081-03-3661-1363 | (ITOCHU KENZAI CORPORATION)",
+        "parts": [
+          "出口国",
+          "COUNTRY OFEXPORT",
+          "物品来源地CHINA",
+          "COUNTRY OF DESTINATION",
+          "CHINA",
+          "地址",
+          "ADDRESS",
+          "ATTENTION:",
+          "1-4NIHONBASHI-ODEMMACHO.CHUO-",
+          "LIU SAMA",
+          "KU. TOKYO JAPAN",
+          "0081-03-3661-1363",
+          "(ITOCHU KENZAI CORPORATION)"
+        ],
+        "numbers": [
+          "1",
+          "4",
+          "0081",
+          "03",
+          "3661",
+          "1363"
+        ],
+        "quantity": "3661",
+        "amount": "1363"
+      },
+      {
+        "line": "WOODEN FLOOR BOARD SAMPLE | board) | (Density | 1 | USD20.00 | USD20.00",
+        "parts": [
+          "WOODEN FLOOR BOARD SAMPLE",
+          "board)",
+          "(Density",
+          "1",
+          "USD20.00",
+          "USD20.00"
+        ],
+        "numbers": [
+          "1",
+          "20.00",
+          "20.00"
+        ],
+        "quantity": "20.00",
+        "amount": "20.00"
+      },
+      {
+        "line": "TOTAL INVOICE VALUE | 合计总价 | USD20.00",
+        "parts": [
+          "TOTAL INVOICE VALUE",
+          "合计总价",
+          "USD20.00"
+        ],
+        "numbers": [
+          "20.00"
+        ],
+        "amount": "20.00"
+      },
+      {
+        "line": "SHIPPER'S SIGNATURE | DATE | 2025/9/24",
+        "parts": [
+          "SHIPPER'S SIGNATURE",
+          "DATE",
+          "2025/9/24"
+        ],
+        "numbers": [
+          "2025",
+          "9",
+          "24"
+        ],
+        "quantity": "9",
+        "amount": "24"
+      }
+    ],
+    "items_count": 9
+  },
+  "llm_document_type": {
+    "type": "商业发票",
+    "confidence": "high"
+  }
+}

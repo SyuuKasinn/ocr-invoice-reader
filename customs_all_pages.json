@@ -1,0 +1,443 @@
+{
+  "total_pages": 8,
+  "pages": [
+    {
+      "tracking_number": null,
+      "invoice_number": "20250924",
+      "invoice_date": "2025-09-24",
+      "logistics_provider": null,
+      "shipper": {
+        "company_name": "DALIAN EVERCREDIT INTERNATIONAL TRADING CO.,LTD",
+        "account_number": null,
+        "address": "R O O M 2 7 0 2 , B L O C K B , F O R T U N E P L A Z A N O . 2 0 , H A R B O U R S T R E E T , Z H O N G S H A N D I S T R I C T , D A L I A N CHINA",
+        "city": "DALLIAN",
+        "country": "CHINA"
+      },
+      "receiver": {
+        "company_name": null,
+        "contact_person": null,
+        "phone": "+86-411-8295-0116",
+        "address": null,
+        "zip_code": null,
+        "city": null,
+        "country": null
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": null,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "Men's or Ladies | Woven or | Knit",
+          "quantity": null,
+          "unit_price": null,
+          "total_amount": null,
+          "currency": "USD"
+        },
+        {
+          "description": "Men's. | Woven | 中绵",
+          "quantity": null,
+          "unit_price": null,
+          "total_amount": null,
+          "currency": "USD"
+        }
+      ],
+      "payment": {
+        "terms": null,
+        "currency": "USD",
+        "total_amount": null
+      }
+    },
+    {
+      "tracking_number": "506-538-938-065",
+      "invoice_number": "KTB0911-X52-S01-24538",
+      "invoice_date": "2025-09-24",
+      "logistics_provider": null,
+      "shipper": {
+        "company_name": "Dalian Xinghua Trading Co.,LTD",
+        "account_number": "合同专用章",
+        "address": "1-3,NO.4,Yihuayuan Xinglin,Economic & Technical Development Zone,Dalian",
+        "city": null,
+        "country": "CHINA"
+      },
+      "receiver": {
+        "company_name": null,
+        "contact_person": "MR.GAO PENGFEI",
+        "phone": "+810782005562, +810782005571",
+        "address": "1-80 Komagabayashiminamicho,Nagata Ward,Kobe,Hyogo",
+        "zip_code": "653-0045",
+        "city": "Nagata Ward",
+        "country": "JAPAN"
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": 1,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "SEMI CONDUCTOR PACKAGING EQUIPMENT PARTS (STEEL)",
+          "quantity": 4000,
+          "unit_price": 4000.0,
+          "total_amount": 4000.0,
+          "currency": "JPY"
+        }
+      ],
+      "payment": {
+        "terms": "FOB",
+        "currency": "JPY",
+        "total_amount": 4000.0
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "INVNO",
+      "invoice_date": "2025-9-24",
+      "logistics_provider": "UK LIANTAI COLTD",
+      "shipper": {
+        "company_name": null,
+        "account_number": null,
+        "address": null,
+        "city": null,
+        "country": null
+      },
+      "receiver": {
+        "company_name": "MINORUS A N G Y O C O R P O R A T I O N",
+        "contact_person": null,
+        "phone": null,
+        "address": "T 566-00352-10-12 TSU RU N O . S E T T S U , O S A K A , J A P A N",
+        "zip_code": null,
+        "city": null,
+        "country": "J A P A N"
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": null,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "Parts for processingcenter of machine tool",
+          "quantity": 2500,
+          "unit_price": 5000.0,
+          "total_amount": 135600.0,
+          "currency": "JPY"
+        }
+      ],
+      "payment": {
+        "terms": null,
+        "currency": "JPY",
+        "total_amount": 135600.0
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "CXUNTRYOF DESTINATIH",
+      "invoice_date": "2025-09-22",
+      "logistics_provider": "Global LFC logistics CO.,LTD",
+      "shipper": {
+        "company_name": "LANZHEN",
+        "account_number": null,
+        "address": "No.3-4 Building5,You Nan Residential",
+        "city": "Shimofukujima,Motosu-shi,Yi Wu,Zhe Jiang",
+        "country": "Japan"
+      },
+      "receiver": {
+        "company_name": "Global LFC logistics CO.,LTD",
+        "contact_person": null,
+        "phone": "13735702118,080-3705-8917",
+        "address": "ATTENTION: 157-00667-13-3,S E I J Y O U , S E T A G A Y A K U , T O K Y 0 , J A P A N",
+        "zip_code": null,
+        "city": null,
+        "country": "Japan"
+      },
+      "shipment_info": {
+        "category": "Parcel",
+        "total_packages": 70,
+        "total_weight": 132.0,
+        "weight_unit": "kg",
+        "dimensions": {
+          "length": null,
+          "width": null,
+          "height": null,
+          "unit": null
+        }
+      },
+      "items": [
+        {
+          "description": "knit coat women",
+          "quantity": 30,
+          "unit_price": 135.0,
+          "total_amount": 22140.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "wovcn coat women",
+          "quantity": 35,
+          "unit_price": 67.0,
+          "total_amount": 2680.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "raglan sleeves",
+          "quantity": 15,
+          "unit_price": 26.0,
+          "total_amount": 390.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven shirt women",
+          "quantity": 35,
+          "unit_price": 86.0,
+          "total_amount": 3010.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven shirt women",
+          "quantity": 18,
+          "unit_price": 63.0,
+          "total_amount": 1134.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "socks",
+          "quantity": 300,
+          "unit_price": 4.0,
+          "total_amount": 1200.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "knit swcater women",
+          "quantity": 13,
+          "unit_price": 68.0,
+          "total_amount": 884.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven Women's pants",
+          "quantity": 76,
+          "unit_price": 69.0,
+          "total_amount": 5244.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven Women's pants",
+          "quantity": 61,
+          "unit_price": 37.0,
+          "total_amount": 2257.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven Women's dress",
+          "quantity": 64,
+          "unit_price": 95.0,
+          "total_amount": 6080.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "woven Women's drcss",
+          "quantity": 28,
+          "unit_price": 53.0,
+          "total_amount": 1484.0,
+          "currency": "CNY"
+        },
+        {
+          "description": "knit Women's dress",
+          "quantity": 51,
+          "unit_price": 80.0,
+          "total_amount": 4080.0,
+          "currency": "CNY"
+        }
+      ],
+      "payment": {
+        "terms": null,
+        "currency": "CNY",
+        "total_amount": 51243.0
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "18-2F06630430015320011",
+      "invoice_date": "2025-09-24",
+      "logistics_provider": "EXPRESS S E N D I N G CHAR",
+      "shipper": {
+        "company_name": "S H I B A T A Y U J I S A M A 樣",
+        "account_number": null,
+        "address": "ROAD QINGDAO CHINA",
+        "city": null,
+        "country": "CHINA"
+      },
+      "receiver": {
+        "company_name": "Q I N G D A O S H E N G K A I A R T S & C R A F T S C O L T D 大 阪 府",
+        "contact_person": null,
+        "phone": "+08046421079",
+        "address": "OSAKA FU H I G A S H I O S A K A SHI NAGATA NISHI 2-6-14 R O O M 6 0 2 U N I T 1 S E A V I E W D Y N A S T Y N O . 4 1 D O N G H A I XI",
+        "zip_code": null,
+        "city": "大 阪 府 大 阪 市 淀 川 I 区 西 中 島 4 - 1 1",
+        "country": "JAPAN"
+      },
+      "shipment_info": {
+        "category": "Mail Item",
+        "total_packages": 506539518892,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": {
+          "length": null,
+          "width": null,
+          "height": null,
+          "unit": null
+        }
+      },
+      "items": [
+        {
+          "description": "SYNTHETIC HAIR WIGS",
+          "quantity": 210,
+          "unit_price": 468.0,
+          "total_amount": 9261.0,
+          "currency": "USD"
+        }
+      ],
+      "payment": {
+        "terms": "C&F",
+        "currency": "USD",
+        "total_amount": 9261.0
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "6",
+      "invoice_date": null,
+      "logistics_provider": null,
+      "shipper": {
+        "company_name": "TANG YI HUA | YOSHIMA TOMORI",
+        "account_number": null,
+        "address": "ICHIKAWA CHINA CORP O RATION",
+        "city": "BEIJING WEST SHANGHAI",
+        "country": "CHINA"
+      },
+      "receiver": {
+        "company_name": "ICHIKAWA COLTD",
+        "contact_person": null,
+        "phone": "021-52120109, 0471-334-330",
+        "address": "200 N EDOKO KASHIWACHIBA 277-0831 JAPAN",
+        "zip_code": "277-0831",
+        "city": "JAPAN",
+        "country": "JAPAN"
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": 1,
+        "total_weight": 30.0,
+        "weight_unit": "KGS",
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "CONVEYOR BELT",
+          "quantity": 1,
+          "unit_price": 30.0,
+          "total_amount": 30.0,
+          "currency": "USD"
+        }
+      ],
+      "payment": {
+        "terms": null,
+        "currency": "USD",
+        "total_amount": 30.0
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "SSHIV25-1029",
+      "invoice_date": "2025-09-16",
+      "logistics_provider": null,
+      "shipper": {
+        "company_name": "SINFONIA TECHNOLOGY CO.,LTD.",
+        "account_number": null,
+        "address": "Room3006,Building B,Far East International Plaza,No317,Xianxia Road,Changning District,Shanghai,China",
+        "city": "Changning District",
+        "country": "China"
+      },
+      "receiver": {
+        "company_name": null,
+        "contact_person": null,
+        "phone": "+81-596-36-4859",
+        "address": "100 takegahana-cho,ise-city,mie,516-8550,Japan",
+        "zip_code": "516-8550",
+        "city": "Ise-city",
+        "country": "Japan"
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": null,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "Sheetmetalparts",
+          "quantity": null,
+          "unit_price": 913.0,
+          "total_amount": 913.0,
+          "currency": "JPY"
+        }
+      ],
+      "payment": {
+        "terms": "30 Days",
+        "currency": "JPY",
+        "total_amount": null
+      }
+    },
+    {
+      "tracking_number": null,
+      "invoice_number": "820111868365",
+      "invoice_date": "2025-09-24",
+      "logistics_provider": null,
+      "shipper": {
+        "company_name": "DALIAN LONG SHENG WOOD INDUSTRY CO.LTD",
+        "account_number": null,
+        "address": "AGENCY DALIAN CHINA, ZHANG JIA YAO STR. TAI PING",
+        "city": "SHINJUKU KU",
+        "country": "JAPAN"
+      },
+      "receiver": {
+        "company_name": "一株式会社 SHINJUKU",
+        "contact_person": null,
+        "phone": "03-3352-7152",
+        "address": "BIRU 1 F,5-5-3 SHINJUKU",
+        "zip_code": "160-0022",
+        "city": "SHINJUKU KU",
+        "country": "JAPAN"
+      },
+      "shipment_info": {
+        "category": null,
+        "total_packages": null,
+        "total_weight": null,
+        "weight_unit": null,
+        "dimensions": null
+      },
+      "items": [
+        {
+          "description": "WOODEN FLOOR BOARD SAMPLE (Density)",
+          "quantity": 1,
+          "unit_price": 20.0,
+          "total_amount": 20.0,
+          "currency": "USD"
+        }
+      ],
+      "payment": {
+        "terms": "FOB",
+        "currency": "USD",
+        "total_amount": 20.0
+      }
+    }
+  ]
+}

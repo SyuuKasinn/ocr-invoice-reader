@@ -1,0 +1,72 @@
+{
+  "page": 1,
+  "source_file": "インボイス見本_page_0001",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": null,
+    "invoice_date": null,
+    "tracking_number": null,
+    "company_name": null,
+    "total_amount": null,
+    "currency": "USD",
+    "phone": null,
+    "fax": null,
+    "item_count": 4,
+    "created_at": null
+  },
+  "raw_data": {
+    "items": [
+      {
+        "line": "INVOICE NO. | 20250924 | DATE:_2025/9/24",
+        "values": [
+          "20250924",
+          "2025",
+          "9",
+          "24"
+        ],
+        "quantity": "9",
+        "amount": "24"
+      },
+      {
+        "line": "2254026C2TS | 2254026C2TS | Men's | Men's. | Woven | Woven | 术中绵JKT | 中绵JKT | PE100% | PE100% | 5. | $8.20 | $6.30 | $31.50 | $8.20",
+        "values": [
+          "2254026",
+          "2",
+          "2254026",
+          "2",
+          "100",
+          "100",
+          "5.",
+          "8.20",
+          "6.30",
+          "31.50",
+          "8.20"
+        ],
+        "quantity": "31.50",
+        "amount": "8.20"
+      },
+      {
+        "line": "1254081A2HD | Men's. | Woven | 中绵 | PE100% | $4.50 | $9.00",
+        "values": [
+          "1254081",
+          "2",
+          "100",
+          "4.50",
+          "9.00"
+        ],
+        "quantity": "4.50",
+        "amount": "9.00"
+      },
+      {
+        "line": "Total | 8 | $48.70",
+        "values": [
+          "8",
+          "48.70"
+        ],
+        "quantity": "8",
+        "amount": "48.70"
+      }
+    ],
+    "items_count": 4
+  }
+}

@@ -212,7 +212,7 @@ JSON OUTPUT:"""
 
         # Call LLM
         try:
-            response = self.llm_processor._call_ollama(prompt)
+            response = self.llm_processor._generate(prompt, temperature=0.3)
             if not response:
                 return None
 

@@ -1,0 +1,102 @@
+{
+  "page": 6,
+  "source_file": "インボイス見本_page_0006",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": null,
+    "invoice_date": null,
+    "tracking_number": null,
+    "shipper_name": "| TANG YI HUA | YOSHIMA TOMORI | Consignee/收件人名 Company nam/公司名称 | Company nam/公司名称 Address/地址 | ICHIKAWA CHINA CORPORATION | Address/地址 | ICHJKAWA COLTD I1O1BEIJING WEST SHANGHAI CHINA | 200 NED0KASHIWA CHIBA277-0831 JAPAN 021-52120109 | 0471-334-330 GOODS | FULL DESCRIPTION OF | Tag/label | code | (PCS) | OTY | WEIGHT | (KGS) | VALUE | UNIT | TOTAL VALUE FOR | CUSTOMS 详细的商品名称 | 标记/唛码 | （数量） | （总重） | USD) | （单价 | （总价USD） HS CONVEYOR BELT | 3926901000 | 1 | 30 | 30 MADE IN CHINA | TOTAL (USD): | $30.00 I DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY KNOWLEDGE,（本人认为以上提供的资料属实和正确） SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+    "consignee_name": "THE BEST OF MY KNOWLEDGE,（本人认为以上提供的资料属实和正确） SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+    "company_name": "| TANG YI HUA | YOSHIMA TOMORI | Consignee/收件人名 Company nam/公司名称 | Company nam/公司名称 Address/地址 | ICHIKAWA CHINA CORPORATION | Address/地址 | ICHJKAWA COLTD I1O1BEIJING WEST SHANGHAI CHINA | 200 NED0KASHIWA CHIBA277-0831 JAPAN 021-52120109 | 0471-334-330 GOODS | FULL DESCRIPTION OF | Tag/label | code | (PCS) | OTY | WEIGHT | (KGS) | VALUE | UNIT | TOTAL VALUE FOR | CUSTOMS 详细的商品名称 | 标记/唛码 | （数量） | （总重） | USD) | （单价 | （总价USD） HS CONVEYOR BELT | 3926901000 | 1 | 30 | 30 MADE IN CHINA | TOTAL (USD): | $30.00 I DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY KNOWLEDGE,（本人认为以上提供的资料属实和正确） SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+    "total_amount": null,
+    "currency": "USD",
+    "phone": null,
+    "fax": null,
+    "item_count": 5,
+    "created_at": null,
+    "consignee_address": "KNOWLEDGE,（本人认为以上提供的资料属实和正确） SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+    "consignee_tel": null
+  },
+  "raw_data": {
+    "items": [
+      {
+        "line": "TOTALPACKAGES（总件数1件） | Country ofultimate destination/到达国家",
+        "parts": [
+          "TOTALPACKAGES（总件数1件）",
+          "Country ofultimate destination/到达国家"
+        ],
+        "numbers": [
+          "1"
+        ],
+        "amount": "1"
+      },
+      {
+        "line": "CHINA | 200 NED0KASHIWA CHIBA277-0831 JAPAN",
+        "parts": [
+          "CHINA",
+          "200 NED0KASHIWA CHIBA277-0831 JAPAN"
+        ],
+        "numbers": [
+          "200",
+          "0",
+          "277",
+          "0831"
+        ],
+        "quantity": "277",
+        "amount": "0831"
+      },
+      {
+        "line": "021-52120109 | 0471-334-330",
+        "parts": [
+          "021-52120109",
+          "0471-334-330"
+        ],
+        "numbers": [
+          "021",
+          "52120109",
+          "0471",
+          "334",
+          "330"
+        ],
+        "quantity": "334",
+        "amount": "330"
+      },
+      {
+        "line": "CONVEYOR BELT | 3926901000 | 1 | 30 | 30",
+        "parts": [
+          "CONVEYOR BELT",
+          "3926901000",
+          "1",
+          "30",
+          "30"
+        ],
+        "numbers": [
+          "3926901000",
+          "1",
+          "30",
+          "30"
+        ],
+        "quantity": "30",
+        "amount": "30"
+      },
+      {
+        "line": "MADE IN CHINA | TOTAL (USD): | $30.00",
+        "parts": [
+          "MADE IN CHINA",
+          "TOTAL (USD):",
+          "$30.00"
+        ],
+        "numbers": [
+          "30.00"
+        ],
+        "amount": "30.00"
+      }
+    ],
+    "items_count": 5
+  },
+  "llm_document_type": {
+    "type": "商业发票",
+    "confidence": "high"
+  }
+}

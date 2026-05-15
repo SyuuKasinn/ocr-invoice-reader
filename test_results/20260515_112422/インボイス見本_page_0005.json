@@ -1,0 +1,623 @@
+{
+  "page_number": 5,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images_5lo0dlt5\\インボイス見本_page_0005.png",
+  "regions": [
+    {
+      "type": "table",
+      "bbox": [
+        85,
+        427,
+        2322,
+        3293
+      ],
+      "confidence": 0.9757307517528534,
+      "text": "Signatory | TEL: | Address: | FAX: | TEL: | Sender\nShipped Per:\nTOTAL | EXPRESSSENDING CHAR | SYNTHETIC HAIR WIGS | Description | POSTC0DE:5770016 | SHIBATAYUJISAMA樣 | CROSSOVER CO LTD. | 53286026870 | ROAD QINGDAO CHINA\n08046421079\nTo: | QINGDAOSHENGKAIARTS&CRAFTSCOLTD\nOSAKA FU HIGASHIOSAKA SHI NAGATA NISHI 2-6-14\nROOM602UNIT1SEAVIEWDYNASTYNO.41DONGHAI XI\nMeterial\nTechnics\nINVOICE\nCHINA | CHINA | From: | C&F\nImporter:\nCountry of Orign | MADE IN CHINA | 211 | 210 | Quantity | Terms of Payment | 2025-09-2418:22:30 | Date of Posting | 506539518892 | Mail Item No.:\n18-2F06630430015320011\n468 | 44.1 | Currency(USD) | Unit Price | CROSSOVERCOLTD大阪府大阪市淀川I区西中島4-11-\n9729 | 468 | 9261 | Total Amount\nFreight",
+      "table_html": "<table><tr><td>Signatory</td><td>TEL:</td><td>Address:</td><td>FAX:</td><td>TEL:</td><td>Sender</td></tr><tr><td>Shipped Per:</td></tr><tr><td>TOTAL</td><td>EXPRESSSENDING CHAR</td><td>SYNTHETIC HAIR WIGS</td><td>Description</td><td>POSTC0DE:5770016</td><td>SHIBATAYUJISAMA樣</td><td>CROSSOVER CO LTD.</td><td>53286026870</td><td>ROAD QINGDAO CHINA</td></tr><tr><td>08046421079</td></tr><tr><td>To:</td><td>QINGDAOSHENGKAIARTS&CRAFTSCOLTD</td></tr><tr><td>OSAKA FU HIGASHIOSAKA SHI NAGATA NISHI 2-6-14</td></tr><tr><td>ROOM602UNIT1SEAVIEWDYNASTYNO.41DONGHAI XI</td></tr><tr><td>Meterial</td></tr><tr><td>Technics</td></tr><tr><td>INVOICE</td></tr><tr><td>CHINA</td><td>CHINA</td><td>From:</td><td>C&F</td></tr><tr><td>Importer:</td></tr><tr><td>Country of Orign</td><td>MADE IN CHINA</td><td>211</td><td>210</td><td>Quantity</td><td>Terms of Payment</td><td>2025-09-2418:22:30</td><td>Date of Posting</td><td>506539518892</td><td>Mail Item No.:</td></tr><tr><td>18-2F06630430015320011</td></tr><tr><td>468</td><td>44.1</td><td>Currency(USD)</td><td>Unit Price</td><td>CROSSOVERCOLTD大阪府大阪市淀川I区西中島4-11-</td></tr><tr><td>9729</td><td>468</td><td>9261</td><td>Total Amount</td></tr><tr><td>Freight</td></tr></table>",
+      "rows": 17,
+      "columns": 10,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            132,
+            427,
+            219,
+            673
+          ],
+          "text": "Signatory",
+          "confidence": 0.9905487895011902,
+          "center_y": 550.0,
+          "center_x": 175.5
+        },
+        {
+          "bbox": [
+            1047,
+            448,
+            1113,
+            550
+          ],
+          "text": "TEL:",
+          "confidence": 0.9806691408157349,
+          "center_y": 499.0,
+          "center_x": 1080.0
+        },
+        {
+          "bbox": [
+            1472,
+            445,
+            1537,
+            655
+          ],
+          "text": "Address:",
+          "confidence": 0.9936893582344055,
+          "center_y": 550.0,
+          "center_x": 1504.5
+        },
+        {
+          "bbox": [
+            1565,
+            450,
+            1621,
+            559
+          ],
+          "text": "FAX:",
+          "confidence": 0.979373574256897,
+          "center_y": 504.5,
+          "center_x": 1593.0
+        },
+        {
+          "bbox": [
+            1650,
+            450,
+            1706,
+            548
+          ],
+          "text": "TEL:",
+          "confidence": 0.9865391850471497,
+          "center_y": 499.0,
+          "center_x": 1678.0
+        },
+        {
+          "bbox": [
+            2075,
+            450,
+            2127,
+            618
+          ],
+          "text": "Sender",
+          "confidence": 0.993151843547821,
+          "center_y": 534.0,
+          "center_x": 2101.0
+        },
+        {
+          "bbox": [
+            871,
+            435,
+            949,
+            753
+          ],
+          "text": "Shipped Per:",
+          "confidence": 0.9946998953819275,
+          "center_y": 594.0,
+          "center_x": 910.0
+        },
+        {
+          "bbox": [
+            398,
+            661,
+            459,
+            842
+          ],
+          "text": "TOTAL",
+          "confidence": 0.9880837202072144,
+          "center_y": 751.5,
+          "center_x": 428.5
+        },
+        {
+          "bbox": [
+            473,
+            482,
+            535,
+            1075
+          ],
+          "text": "EXPRESSSENDING CHAR",
+          "confidence": 0.9563053250312805,
+          "center_y": 778.5,
+          "center_x": 504.0
+        },
+        {
+          "bbox": [
+            550,
+            464,
+            613,
+            1042
+          ],
+          "text": "SYNTHETIC HAIR WIGS",
+          "confidence": 0.9272910952568054,
+          "center_y": 753.0,
+          "center_x": 581.5
+        },
+        {
+          "bbox": [
+            642,
+            606,
+            717,
+            900
+          ],
+          "text": "Description",
+          "confidence": 0.9528505802154541,
+          "center_y": 753.0,
+          "center_x": 679.5
+        },
+        {
+          "bbox": [
+            964,
+            442,
+            1026,
+            969
+          ],
+          "text": "POSTC0DE:5770016",
+          "confidence": 0.9667900800704956,
+          "center_y": 705.5,
+          "center_x": 995.0
+        },
+        {
+          "bbox": [
+            1307,
+            442,
+            1370,
+            958
+          ],
+          "text": "SHIBATAYUJISAMA樣",
+          "confidence": 0.9884257316589355,
+          "center_y": 700.0,
+          "center_x": 1338.5
+        },
+        {
+          "bbox": [
+            1388,
+            442,
+            1459,
+            925
+          ],
+          "text": "CROSSOVER CO LTD.",
+          "confidence": 0.936177670955658,
+          "center_y": 683.5,
+          "center_x": 1423.5
+        },
+        {
+          "bbox": [
+            1650,
+            643,
+            1713,
+            983
+          ],
+          "text": "53286026870",
+          "confidence": 0.9972168207168579,
+          "center_y": 813.0,
+          "center_x": 1681.5
+        },
+        {
+          "bbox": [
+            1761,
+            446,
+            1813,
+            1012
+          ],
+          "text": "ROAD QINGDAO CHINA",
+          "confidence": 0.9469677805900574,
+          "center_y": 729.0,
+          "center_x": 1787.0
+        },
+        {
+          "bbox": [
+            1056,
+            735,
+            1119,
+            1071
+          ],
+          "text": "08046421079",
+          "confidence": 0.9967368841171265,
+          "center_y": 903.0,
+          "center_x": 1087.5
+        },
+        {
+          "bbox": [
+            882,
+            932,
+            938,
+            1016
+          ],
+          "text": "To:",
+          "confidence": 0.9658095836639404,
+          "center_y": 974.0,
+          "center_x": 910.0
+        },
+        {
+          "bbox": [
+            1990,
+            446,
+            2053,
+            1499
+          ],
+          "text": "QINGDAOSHENGKAIARTS&CRAFTSCOLTD",
+          "confidence": 0.9662476778030396,
+          "center_y": 972.5,
+          "center_x": 2021.5
+        },
+        {
+          "bbox": [
+            1226,
+            439,
+            1300,
+            1700
+          ],
+          "text": "OSAKA FU HIGASHIOSAKA SHI NAGATA NISHI 2-6-14",
+          "confidence": 0.9429532289505005,
+          "center_y": 1069.5,
+          "center_x": 1263.0
+        },
+        {
+          "bbox": [
+            1820,
+            442,
+            1894,
+            1817
+          ],
+          "text": "ROOM602UNIT1SEAVIEWDYNASTYNO.41DONGHAI XI",
+          "confidence": 0.9599807262420654,
+          "center_y": 1129.5,
+          "center_x": 1857.0
+        },
+        {
+          "bbox": [
+            653,
+            1148,
+            716,
+            1360
+          ],
+          "text": "Meterial",
+          "confidence": 0.9926646947860718,
+          "center_y": 1254.0,
+          "center_x": 684.5
+        },
+        {
+          "bbox": [
+            650,
+            1517,
+            713,
+            1744
+          ],
+          "text": "Technics",
+          "confidence": 0.9943984746932983,
+          "center_y": 1630.5,
+          "center_x": 681.5
+        },
+        {
+          "bbox": [
+            2193,
+            1524,
+            2322,
+            2018
+          ],
+          "text": "INVOICE",
+          "confidence": 0.9937077164649963,
+          "center_y": 1771.0,
+          "center_x": 2257.5
+        },
+        {
+          "bbox": [
+            85,
+            1828,
+            140,
+            1999
+          ],
+          "text": "CHINA",
+          "confidence": 0.9843465089797974,
+          "center_y": 1913.5,
+          "center_x": 112.5
+        },
+        {
+          "bbox": [
+            801,
+            1831,
+            857,
+            1988
+          ],
+          "text": "CHINA",
+          "confidence": 0.9933674931526184,
+          "center_y": 1909.5,
+          "center_x": 829.0
+        },
+        {
+          "bbox": [
+            874,
+            1830,
+            935,
+            1975
+          ],
+          "text": "From:",
+          "confidence": 0.9901894330978394,
+          "center_y": 1902.5,
+          "center_x": 904.5
+        },
+        {
+          "bbox": [
+            1650,
+            1831,
+            1706,
+            1952
+          ],
+          "text": "C&F",
+          "confidence": 0.9325776100158691,
+          "center_y": 1891.5,
+          "center_x": 1678.0
+        },
+        {
+          "bbox": [
+            1480,
+            1839,
+            1521,
+            2065
+          ],
+          "text": "Importer:",
+          "confidence": 0.9616127014160156,
+          "center_y": 1952.0,
+          "center_x": 1500.5
+        },
+        {
+          "bbox": [
+            137,
+            1824,
+            210,
+            2230
+          ],
+          "text": "Country of Orign",
+          "confidence": 0.9412596225738525,
+          "center_y": 2027.0,
+          "center_x": 173.5
+        },
+        {
+          "bbox": [
+            218,
+            1831,
+            281,
+            2215
+          ],
+          "text": "MADE IN CHINA",
+          "confidence": 0.9247307181358337,
+          "center_y": 2023.0,
+          "center_x": 249.5
+        },
+        {
+          "bbox": [
+            406,
+            1948,
+            450,
+            2032
+          ],
+          "text": "211",
+          "confidence": 0.9993559718132019,
+          "center_y": 1990.0,
+          "center_x": 428.0
+        },
+        {
+          "bbox": [
+            554,
+            1937,
+            609,
+            2054
+          ],
+          "text": "210",
+          "confidence": 0.9988481402397156,
+          "center_y": 1995.5,
+          "center_x": 581.5
+        },
+        {
+          "bbox": [
+            653,
+            1890,
+            705,
+            2098
+          ],
+          "text": "Quantity",
+          "confidence": 0.997677743434906,
+          "center_y": 1994.0,
+          "center_x": 679.0
+        },
+        {
+          "bbox": [
+            1712,
+            1827,
+            1806,
+            2271
+          ],
+          "text": "Terms of Payment",
+          "confidence": 0.9616633057594299,
+          "center_y": 2049.0,
+          "center_x": 1759.0
+        },
+        {
+          "bbox": [
+            1809,
+            1817,
+            1883,
+            2332
+          ],
+          "text": "2025-09-2418:22:30",
+          "confidence": 0.9871776103973389,
+          "center_y": 2074.5,
+          "center_x": 1846.0
+        },
+        {
+          "bbox": [
+            1886,
+            1823,
+            1972,
+            2209
+          ],
+          "text": "Date of Posting",
+          "confidence": 0.972143828868866,
+          "center_y": 2016.0,
+          "center_x": 1929.0
+        },
+        {
+          "bbox": [
+            1982,
+            1827,
+            2053,
+            2190
+          ],
+          "text": "506539518892",
+          "confidence": 0.9986977577209473,
+          "center_y": 2008.5,
+          "center_x": 2017.5
+        },
+        {
+          "bbox": [
+            2063,
+            1834,
+            2138,
+            2179
+          ],
+          "text": "Mail Item No.:",
+          "confidence": 0.9051579236984253,
+          "center_y": 2006.5,
+          "center_x": 2100.5
+        },
+        {
+          "bbox": [
+            1329,
+            1831,
+            1392,
+            2522
+          ],
+          "text": "18-2F06630430015320011",
+          "confidence": 0.9974614977836609,
+          "center_y": 2176.5,
+          "center_x": 1360.5
+        },
+        {
+          "bbox": [
+            473,
+            2361,
+            528,
+            2467
+          ],
+          "text": "468",
+          "confidence": 0.9988560676574707,
+          "center_y": 2414.0,
+          "center_x": 500.5
+        },
+        {
+          "bbox": [
+            550,
+            2347,
+            605,
+            2475
+          ],
+          "text": "44.1",
+          "confidence": 0.9990655779838562,
+          "center_y": 2411.0,
+          "center_x": 577.5
+        },
+        {
+          "bbox": [
+            613,
+            2241,
+            679,
+            2584
+          ],
+          "text": "Currency(USD)",
+          "confidence": 0.9811207056045532,
+          "center_y": 2412.5,
+          "center_x": 646.0
+        },
+        {
+          "bbox": [
+            679,
+            2287,
+            754,
+            2541
+          ],
+          "text": "Unit Price",
+          "confidence": 0.9583994150161743,
+          "center_y": 2414.0,
+          "center_x": 716.5
+        },
+        {
+          "bbox": [
+            1392,
+            1820,
+            1466,
+            3059
+          ],
+          "text": "CROSSOVERCOLTD大阪府大阪市淀川I区西中島4-11-",
+          "confidence": 0.9672536849975586,
+          "center_y": 2439.5,
+          "center_x": 1429.0
+        },
+        {
+          "bbox": [
+            391,
+            2804,
+            458,
+            2950
+          ],
+          "text": "9729",
+          "confidence": 0.9975497126579285,
+          "center_y": 2877.0,
+          "center_x": 424.5
+        },
+        {
+          "bbox": [
+            460,
+            2806,
+            533,
+            2948
+          ],
+          "text": "468",
+          "confidence": 0.9984963536262512,
+          "center_y": 2877.0,
+          "center_x": 496.5
+        },
+        {
+          "bbox": [
+            550,
+            2800,
+            605,
+            2942
+          ],
+          "text": "9261",
+          "confidence": 0.9974058866500854,
+          "center_y": 2871.0,
+          "center_x": 577.5
+        },
+        {
+          "bbox": [
+            646,
+            2709,
+            709,
+            3052
+          ],
+          "text": "Total Amount",
+          "confidence": 0.9734049439430237,
+          "center_y": 2880.5,
+          "center_x": 677.5
+        },
+        {
+          "bbox": [
+            458,
+            3085,
+            535,
+            3293
+          ],
+          "text": "Freight",
+          "confidence": 0.9774377942085266,
+          "center_y": 3189.0,
+          "center_x": 496.5
+        }
+      ]
+    }
+  ]
+}

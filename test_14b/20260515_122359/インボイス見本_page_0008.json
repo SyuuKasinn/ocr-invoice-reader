@@ -1,0 +1,1035 @@
+{
+  "page_number": 8,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images_a9trfmse\\インボイス見本_page_0008.png",
+  "regions": [
+    {
+      "type": "title",
+      "bbox": [
+        657,
+        413,
+        1702,
+        490
+      ],
+      "confidence": 0.9790919423103333,
+      "text": "COMMERCIAL INVOICE",
+      "table_html": null
+    },
+    {
+      "type": "table",
+      "bbox": [
+        262,
+        552,
+        2090,
+        2687
+      ],
+      "confidence": 0.9794180723557989,
+      "text": "商 | 业 | 发 | 票\nNote:pleasecompleteall the information in English注意:请用英文填写所有资料\nDATE OFEXPORTATION | AIR WAYBILLNO.2406460365245\n出口日期:2025/9/24 | 运单号码: | 820111868365\nSHIPPER | 发货人 | CONSIGNEE 收货人\nCORP NAME DALIAN LONG SHENG WOOD | CORPNAME\n公司名称 | INDUSTRY | CO.LTD | 公司名称 | 一株式会社 | SHINJUKU\nADDRESS | :AGENCY DALIAN CHINA | ZHANG JIA YAOSTR.TAI PING | ADDRESS | BIRU 1F,5-5-3 SHINJUKU\n地址 | 地址 | SHINJUKU KU | TOKYOTO\nZIP:160-0022 | JAPAN\n03-3352-7152\nATTENTION MRXIA | TEL:83150820 | ATTENTION:村樣\n姓名 | 电话 | 姓名\nSHIPPER MARKS | IMPORTER清关人\n备注 | CORPNAME:\nCOUNTRY OF ORIGIN | 公司名称 | 伊藤忠建材（株）\n出口国 | COUNTRY OFEXPORT | 物品来源地CHINA | COUNTRY OF DESTINATION | CHINA | 地址 | ADDRESS | ATTENTION: | 1-4NIHONBASHI-ODEMMACHO.CHUO- | LIU SAMA | KU. TOKYO JAPAN | 0081-03-3661-1363 | (ITOCHU KENZAI CORPORATION)\n物品目的地JAPAN | 姓名\nFOB\nDESCRIPTION OFGOODS MATERIAL | QUANTITYUNITVALUFOTALVALU\n货品详细描述材质 | 货品数量 | 单价 | 总价\nWOODEN FLOOR BOARD SAMPLE | board) | (Density | 1 | USD20.00 | USD20.00\nTOTAL INVOICE VALUE | 合计总价 | USD20.00\nNO COMMERCIAL VALUE\nSHIPPER'S SIGNATURE | DATE | 2025/9/24\n发货人签名 | 日期",
+      "table_html": "<table><tr><td>商</td><td>业</td><td>发</td><td>票</td></tr><tr><td>Note:pleasecompleteall the information in English注意:请用英文填写所有资料</td></tr><tr><td>DATE OFEXPORTATION</td><td>AIR WAYBILLNO.2406460365245</td></tr><tr><td>出口日期:2025/9/24</td><td>运单号码:</td><td>820111868365</td></tr><tr><td>SHIPPER</td><td>发货人</td><td>CONSIGNEE 收货人</td></tr><tr><td>CORP NAME DALIAN LONG SHENG WOOD</td><td>CORPNAME</td></tr><tr><td>公司名称</td><td>INDUSTRY</td><td>CO.LTD</td><td>公司名称</td><td>一株式会社</td><td>SHINJUKU</td></tr><tr><td>ADDRESS</td><td>:AGENCY DALIAN CHINA</td><td>ZHANG JIA YAOSTR.TAI PING</td><td>ADDRESS</td><td>BIRU 1F,5-5-3 SHINJUKU</td></tr><tr><td>地址</td><td>地址</td><td>SHINJUKU KU</td><td>TOKYOTO</td></tr><tr><td>ZIP:160-0022</td><td>JAPAN</td></tr><tr><td>03-3352-7152</td></tr><tr><td>ATTENTION MRXIA</td><td>TEL:83150820</td><td>ATTENTION:村樣</td></tr><tr><td>姓名</td><td>电话</td><td>姓名</td></tr><tr><td>SHIPPER MARKS</td><td>IMPORTER清关人</td></tr><tr><td>备注</td><td>CORPNAME:</td></tr><tr><td>COUNTRY OF ORIGIN</td><td>公司名称</td><td>伊藤忠建材（株）</td></tr><tr><td>出口国</td><td>COUNTRY OFEXPORT</td><td>物品来源地CHINA</td><td>COUNTRY OF DESTINATION</td><td>CHINA</td><td>地址</td><td>ADDRESS</td><td>ATTENTION:</td><td>1-4NIHONBASHI-ODEMMACHO.CHUO-</td><td>LIU SAMA</td><td>KU. TOKYO JAPAN</td><td>0081-03-3661-1363</td><td>(ITOCHU KENZAI CORPORATION)</td></tr><tr><td>物品目的地JAPAN</td><td>姓名</td></tr><tr><td>FOB</td></tr><tr><td>DESCRIPTION OFGOODS MATERIAL</td><td>QUANTITYUNITVALUFOTALVALU</td></tr><tr><td>货品详细描述材质</td><td>货品数量</td><td>单价</td><td>总价</td></tr><tr><td>WOODEN FLOOR BOARD SAMPLE</td><td>board)</td><td>(Density</td><td>1</td><td>USD20.00</td><td>USD20.00</td></tr><tr><td>TOTAL INVOICE VALUE</td><td>合计总价</td><td>USD20.00</td></tr><tr><td>NO COMMERCIAL VALUE</td></tr><tr><td>SHIPPER'S SIGNATURE</td><td>DATE</td><td>2025/9/24</td></tr><tr><td>发货人签名</td><td>日期</td></tr></table>",
+      "rows": 26,
+      "columns": 13,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            938,
+            559,
+            1012,
+            621
+          ],
+          "text": "商",
+          "confidence": 0.9998817443847656,
+          "center_y": 590.0,
+          "center_x": 975.0
+        },
+        {
+          "bbox": [
+            1067,
+            559,
+            1152,
+            618
+          ],
+          "text": "业",
+          "confidence": 0.9930480122566223,
+          "center_y": 588.5,
+          "center_x": 1109.5
+        },
+        {
+          "bbox": [
+            1207,
+            559,
+            1292,
+            621
+          ],
+          "text": "发",
+          "confidence": 0.9999887943267822,
+          "center_y": 590.0,
+          "center_x": 1249.5
+        },
+        {
+          "bbox": [
+            1263,
+            552,
+            1436,
+            636
+          ],
+          "text": "票",
+          "confidence": 0.9997718930244446,
+          "center_y": 594.0,
+          "center_x": 1349.5
+        },
+        {
+          "bbox": [
+            269,
+            621,
+            2064,
+            702
+          ],
+          "text": "Note:pleasecompleteall the information in English注意:请用英文填写所有资料",
+          "confidence": 0.949780285358429,
+          "center_y": 661.5,
+          "center_x": 1166.5
+        },
+        {
+          "bbox": [
+            281,
+            713,
+            809,
+            764
+          ],
+          "text": "DATE OFEXPORTATION",
+          "confidence": 0.9651634693145752,
+          "center_y": 738.5,
+          "center_x": 545.0
+        },
+        {
+          "bbox": [
+            1071,
+            702,
+            2068,
+            779
+          ],
+          "text": "AIR WAYBILLNO.2406460365245",
+          "confidence": 0.9615516662597656,
+          "center_y": 740.5,
+          "center_x": 1569.5
+        },
+        {
+          "bbox": [
+            273,
+            804,
+            761,
+            855
+          ],
+          "text": "出口日期:2025/9/24",
+          "confidence": 0.9879344701766968,
+          "center_y": 829.5,
+          "center_x": 517.0
+        },
+        {
+          "bbox": [
+            1074,
+            808,
+            1325,
+            859
+          ],
+          "text": "运单号码:",
+          "confidence": 0.9978763461112976,
+          "center_y": 833.5,
+          "center_x": 1199.5
+        },
+        {
+          "bbox": [
+            1300,
+            804,
+            1791,
+            866
+          ],
+          "text": "820111868365",
+          "confidence": 0.9993348717689514,
+          "center_y": 835.0,
+          "center_x": 1545.5
+        },
+        {
+          "bbox": [
+            273,
+            925,
+            484,
+            976
+          ],
+          "text": "SHIPPER",
+          "confidence": 0.9777432680130005,
+          "center_y": 950.5,
+          "center_x": 378.5
+        },
+        {
+          "bbox": [
+            495,
+            925,
+            639,
+            976
+          ],
+          "text": "发货人",
+          "confidence": 0.9976494908332825,
+          "center_y": 950.5,
+          "center_x": 567.0
+        },
+        {
+          "bbox": [
+            1063,
+            917,
+            1451,
+            987
+          ],
+          "text": "CONSIGNEE 收货人",
+          "confidence": 0.9313986897468567,
+          "center_y": 952.0,
+          "center_x": 1257.0
+        },
+        {
+          "bbox": [
+            277,
+            972,
+            986,
+            1023
+          ],
+          "text": "CORP NAME DALIAN LONG SHENG WOOD",
+          "confidence": 0.9308407306671143,
+          "center_y": 997.5,
+          "center_x": 631.5
+        },
+        {
+          "bbox": [
+            1067,
+            969,
+            1266,
+            1031
+          ],
+          "text": "CORPNAME",
+          "confidence": 0.9847484230995178,
+          "center_y": 1000.0,
+          "center_x": 1166.5
+        },
+        {
+          "bbox": [
+            295,
+            1023,
+            454,
+            1075
+          ],
+          "text": "公司名称",
+          "confidence": 0.9996280670166016,
+          "center_y": 1049.0,
+          "center_x": 374.5
+        },
+        {
+          "bbox": [
+            502,
+            1027,
+            724,
+            1067
+          ],
+          "text": "INDUSTRY",
+          "confidence": 0.9869057536125183,
+          "center_y": 1047.0,
+          "center_x": 613.0
+        },
+        {
+          "bbox": [
+            709,
+            1027,
+            879,
+            1067
+          ],
+          "text": "CO.LTD",
+          "confidence": 0.9812358021736145,
+          "center_y": 1047.0,
+          "center_x": 794.0
+        },
+        {
+          "bbox": [
+            1088,
+            1019,
+            1253,
+            1083
+          ],
+          "text": "公司名称",
+          "confidence": 0.9979729652404785,
+          "center_y": 1051.0,
+          "center_x": 1170.5
+        },
+        {
+          "bbox": [
+            1303,
+            1009,
+            1709,
+            1082
+          ],
+          "text": "一株式会社",
+          "confidence": 0.9015942811965942,
+          "center_y": 1045.5,
+          "center_x": 1506.0
+        },
+        {
+          "bbox": [
+            1776,
+            1016,
+            2020,
+            1078
+          ],
+          "text": "SHINJUKU",
+          "confidence": 0.9925044775009155,
+          "center_y": 1047.0,
+          "center_x": 1898.0
+        },
+        {
+          "bbox": [
+            277,
+            1118,
+            432,
+            1170
+          ],
+          "text": "ADDRESS",
+          "confidence": 0.987450897693634,
+          "center_y": 1144.0,
+          "center_x": 354.5
+        },
+        {
+          "bbox": [
+            473,
+            1122,
+            941,
+            1173
+          ],
+          "text": ":AGENCY DALIAN CHINA",
+          "confidence": 0.9580804109573364,
+          "center_y": 1147.5,
+          "center_x": 707.0
+        },
+        {
+          "bbox": [
+            498,
+            1071,
+            1056,
+            1122
+          ],
+          "text": "ZHANG JIA YAOSTR.TAI PING",
+          "confidence": 0.9741752743721008,
+          "center_y": 1096.5,
+          "center_x": 777.0
+        },
+        {
+          "bbox": [
+            1071,
+            1122,
+            1229,
+            1173
+          ],
+          "text": "ADDRESS",
+          "confidence": 0.9836778044700623,
+          "center_y": 1147.5,
+          "center_x": 1150.0
+        },
+        {
+          "bbox": [
+            1296,
+            1078,
+            1942,
+            1148
+          ],
+          "text": "BIRU 1F,5-5-3 SHINJUKU",
+          "confidence": 0.9586471319198608,
+          "center_y": 1113.0,
+          "center_x": 1619.0
+        },
+        {
+          "bbox": [
+            325,
+            1170,
+            417,
+            1228
+          ],
+          "text": "地址",
+          "confidence": 0.999553918838501,
+          "center_y": 1199.0,
+          "center_x": 371.0
+        },
+        {
+          "bbox": [
+            1122,
+            1173,
+            1218,
+            1228
+          ],
+          "text": "地址",
+          "confidence": 0.9997765421867371,
+          "center_y": 1200.5,
+          "center_x": 1170.0
+        },
+        {
+          "bbox": [
+            1300,
+            1151,
+            1632,
+            1214
+          ],
+          "text": "SHINJUKU KU",
+          "confidence": 0.9932472109794617,
+          "center_y": 1182.5,
+          "center_x": 1466.0
+        },
+        {
+          "bbox": [
+            1724,
+            1155,
+            1972,
+            1217
+          ],
+          "text": "TOKYOTO",
+          "confidence": 0.9965320825576782,
+          "center_y": 1186.0,
+          "center_x": 1848.0
+        },
+        {
+          "bbox": [
+            1296,
+            1221,
+            1665,
+            1283
+          ],
+          "text": "ZIP:160-0022",
+          "confidence": 0.9945910573005676,
+          "center_y": 1252.0,
+          "center_x": 1480.5
+        },
+        {
+          "bbox": [
+            1636,
+            1221,
+            1831,
+            1283
+          ],
+          "text": "JAPAN",
+          "confidence": 0.9899204969406128,
+          "center_y": 1252.0,
+          "center_x": 1733.5
+        },
+        {
+          "bbox": [
+            1295,
+            1279,
+            1655,
+            1353
+          ],
+          "text": "03-3352-7152",
+          "confidence": 0.9988014698028564,
+          "center_y": 1316.0,
+          "center_x": 1475.0
+        },
+        {
+          "bbox": [
+            265,
+            1326,
+            643,
+            1401
+          ],
+          "text": "ATTENTION MRXIA",
+          "confidence": 0.9387648105621338,
+          "center_y": 1363.5,
+          "center_x": 454.0
+        },
+        {
+          "bbox": [
+            705,
+            1334,
+            1049,
+            1396
+          ],
+          "text": "TEL:83150820",
+          "confidence": 0.9638738036155701,
+          "center_y": 1365.0,
+          "center_x": 877.0
+        },
+        {
+          "bbox": [
+            1047,
+            1322,
+            1486,
+            1423
+          ],
+          "text": "ATTENTION:村樣",
+          "confidence": 0.9572797417640686,
+          "center_y": 1372.5,
+          "center_x": 1266.5
+        },
+        {
+          "bbox": [
+            325,
+            1385,
+            414,
+            1444
+          ],
+          "text": "姓名",
+          "confidence": 0.9993934631347656,
+          "center_y": 1414.5,
+          "center_x": 369.5
+        },
+        {
+          "bbox": [
+            713,
+            1389,
+            801,
+            1447
+          ],
+          "text": "电话",
+          "confidence": 0.9998273849487305,
+          "center_y": 1418.0,
+          "center_x": 757.0
+        },
+        {
+          "bbox": [
+            1122,
+            1389,
+            1215,
+            1447
+          ],
+          "text": "姓名",
+          "confidence": 0.9989255666732788,
+          "center_y": 1418.0,
+          "center_x": 1168.5
+        },
+        {
+          "bbox": [
+            269,
+            1476,
+            569,
+            1539
+          ],
+          "text": "SHIPPER MARKS",
+          "confidence": 0.9619611501693726,
+          "center_y": 1507.5,
+          "center_x": 419.0
+        },
+        {
+          "bbox": [
+            1078,
+            1491,
+            1436,
+            1542
+          ],
+          "text": "IMPORTER清关人",
+          "confidence": 0.9867235422134399,
+          "center_y": 1516.5,
+          "center_x": 1257.0
+        },
+        {
+          "bbox": [
+            273,
+            1546,
+            373,
+            1601
+          ],
+          "text": "备注",
+          "confidence": 0.9995535612106323,
+          "center_y": 1573.5,
+          "center_x": 323.0
+        },
+        {
+          "bbox": [
+            1071,
+            1550,
+            1296,
+            1601
+          ],
+          "text": "CORPNAME:",
+          "confidence": 0.9427066445350647,
+          "center_y": 1575.5,
+          "center_x": 1183.5
+        },
+        {
+          "bbox": [
+            270,
+            1605,
+            631,
+            1656
+          ],
+          "text": "COUNTRY OF ORIGIN",
+          "confidence": 0.9515812993049622,
+          "center_y": 1630.5,
+          "center_x": 450.5
+        },
+        {
+          "bbox": [
+            1074,
+            1608,
+            1229,
+            1663
+          ],
+          "text": "公司名称",
+          "confidence": 0.99941486120224,
+          "center_y": 1635.5,
+          "center_x": 1151.5
+        },
+        {
+          "bbox": [
+            1495,
+            1594,
+            1861,
+            1656
+          ],
+          "text": "伊藤忠建材（株）",
+          "confidence": 0.9786770343780518,
+          "center_y": 1625.0,
+          "center_x": 1678.0
+        },
+        {
+          "bbox": [
+            273,
+            1773,
+            402,
+            1828
+          ],
+          "text": "出口国",
+          "confidence": 0.9989895820617676,
+          "center_y": 1800.5,
+          "center_x": 337.5
+        },
+        {
+          "bbox": [
+            270,
+            1718,
+            620,
+            1769
+          ],
+          "text": "COUNTRY OFEXPORT",
+          "confidence": 0.9640364050865173,
+          "center_y": 1743.5,
+          "center_x": 445.0
+        },
+        {
+          "bbox": [
+            273,
+            1667,
+            690,
+            1718
+          ],
+          "text": "物品来源地CHINA",
+          "confidence": 0.9977273941040039,
+          "center_y": 1692.5,
+          "center_x": 481.5
+        },
+        {
+          "bbox": [
+            270,
+            1831,
+            724,
+            1882
+          ],
+          "text": "COUNTRY OF DESTINATION",
+          "confidence": 0.9590730667114258,
+          "center_y": 1856.5,
+          "center_x": 497.0
+        },
+        {
+          "bbox": [
+            498,
+            1773,
+            694,
+            1835
+          ],
+          "text": "CHINA",
+          "confidence": 0.9893871545791626,
+          "center_y": 1804.0,
+          "center_x": 596.0
+        },
+        {
+          "bbox": [
+            1071,
+            1663,
+            1170,
+            1722
+          ],
+          "text": "地址",
+          "confidence": 0.9996438026428223,
+          "center_y": 1692.5,
+          "center_x": 1120.5
+        },
+        {
+          "bbox": [
+            1071,
+            1725,
+            1237,
+            1776
+          ],
+          "text": "ADDRESS",
+          "confidence": 0.9761055707931519,
+          "center_y": 1750.5,
+          "center_x": 1154.0
+        },
+        {
+          "bbox": [
+            1071,
+            1835,
+            1296,
+            1886
+          ],
+          "text": "ATTENTION:",
+          "confidence": 0.9372504949569702,
+          "center_y": 1860.5,
+          "center_x": 1183.5
+        },
+        {
+          "bbox": [
+            1292,
+            1688,
+            2060,
+            1758
+          ],
+          "text": "1-4NIHONBASHI-ODEMMACHO.CHUO-",
+          "confidence": 0.9635261297225952,
+          "center_y": 1723.0,
+          "center_x": 1676.0
+        },
+        {
+          "bbox": [
+            1568,
+            1794,
+            1795,
+            1857
+          ],
+          "text": "LIU SAMA",
+          "confidence": 0.9378490447998047,
+          "center_y": 1825.5,
+          "center_x": 1681.5
+        },
+        {
+          "bbox": [
+            1498,
+            1740,
+            1880,
+            1810
+          ],
+          "text": "KU. TOKYO JAPAN",
+          "confidence": 0.9021478891372681,
+          "center_y": 1775.0,
+          "center_x": 1689.0
+        },
+        {
+          "bbox": [
+            1477,
+            1846,
+            1905,
+            1912
+          ],
+          "text": "0081-03-3661-1363",
+          "confidence": 0.9963030815124512,
+          "center_y": 1879.0,
+          "center_x": 1691.0
+        },
+        {
+          "bbox": [
+            1366,
+            1645,
+            2020,
+            1704
+          ],
+          "text": "(ITOCHU KENZAI CORPORATION)",
+          "confidence": 0.9538533687591553,
+          "center_y": 1674.5,
+          "center_x": 1693.0
+        },
+        {
+          "bbox": [
+            262,
+            1882,
+            694,
+            1948
+          ],
+          "text": "物品目的地JAPAN",
+          "confidence": 0.9967731237411499,
+          "center_y": 1915.0,
+          "center_x": 478.0
+        },
+        {
+          "bbox": [
+            1067,
+            1893,
+            1159,
+            1948
+          ],
+          "text": "姓名",
+          "confidence": 0.9991415739059448,
+          "center_y": 1920.5,
+          "center_x": 1113.0
+        },
+        {
+          "bbox": [
+            1672,
+            2010,
+            1761,
+            2054
+          ],
+          "text": "FOB",
+          "confidence": 0.9937927722930908,
+          "center_y": 2032.0,
+          "center_x": 1716.5
+        },
+        {
+          "bbox": [
+            365,
+            2054,
+            1193,
+            2109
+          ],
+          "text": "DESCRIPTION OFGOODS MATERIAL",
+          "confidence": 0.946246325969696,
+          "center_y": 2081.5,
+          "center_x": 779.0
+        },
+        {
+          "bbox": [
+            1285,
+            2050,
+            2090,
+            2120
+          ],
+          "text": "QUANTITYUNITVALUFOTALVALU",
+          "confidence": 0.9743201732635498,
+          "center_y": 2085.0,
+          "center_x": 1687.5
+        },
+        {
+          "bbox": [
+            580,
+            2102,
+            989,
+            2164
+          ],
+          "text": "货品详细描述材质",
+          "confidence": 0.9945746660232544,
+          "center_y": 2133.0,
+          "center_x": 784.5
+        },
+        {
+          "bbox": [
+            1311,
+            2105,
+            1510,
+            2168
+          ],
+          "text": "货品数量",
+          "confidence": 0.9984246492385864,
+          "center_y": 2136.5,
+          "center_x": 1410.5
+        },
+        {
+          "bbox": [
+            1621,
+            2109,
+            1709,
+            2164
+          ],
+          "text": "单价",
+          "confidence": 0.9995861053466797,
+          "center_y": 2136.5,
+          "center_x": 1665.0
+        },
+        {
+          "bbox": [
+            1894,
+            2113,
+            1994,
+            2168
+          ],
+          "text": "总价",
+          "confidence": 0.999326229095459,
+          "center_y": 2140.5,
+          "center_x": 1944.0
+        },
+        {
+          "bbox": [
+            277,
+            2255,
+            816,
+            2306
+          ],
+          "text": "WOODEN FLOOR BOARD SAMPLE",
+          "confidence": 0.9685598015785217,
+          "center_y": 2280.5,
+          "center_x": 546.5
+        },
+        {
+          "bbox": [
+            709,
+            2310,
+            845,
+            2361
+          ],
+          "text": "board)",
+          "confidence": 0.9974825382232666,
+          "center_y": 2335.5,
+          "center_x": 777.0
+        },
+        {
+          "bbox": [
+            1103,
+            2247,
+            1290,
+            2322
+          ],
+          "text": "(Density",
+          "confidence": 0.9763664603233337,
+          "center_y": 2284.5,
+          "center_x": 1196.5
+        },
+        {
+          "bbox": [
+            1384,
+            2285,
+            1432,
+            2339
+          ],
+          "text": "1",
+          "confidence": 0.9812428951263428,
+          "center_y": 2312.0,
+          "center_x": 1408.0
+        },
+        {
+          "bbox": [
+            1558,
+            2277,
+            1772,
+            2343
+          ],
+          "text": "USD20.00",
+          "confidence": 0.9951406717300415,
+          "center_y": 2310.0,
+          "center_x": 1665.0
+        },
+        {
+          "bbox": [
+            1835,
+            2281,
+            2049,
+            2343
+          ],
+          "text": "USD20.00",
+          "confidence": 0.9958193302154541,
+          "center_y": 2312.0,
+          "center_x": 1942.0
+        },
+        {
+          "bbox": [
+            716,
+            2434,
+            1178,
+            2486
+          ],
+          "text": "TOTAL INVOICE VALUE",
+          "confidence": 0.964678943157196,
+          "center_y": 2460.0,
+          "center_x": 947.0
+        },
+        {
+          "bbox": [
+            1484,
+            2438,
+            1595,
+            2493
+          ],
+          "text": "合计总价",
+          "confidence": 0.9852962493896484,
+          "center_y": 2465.5,
+          "center_x": 1539.5
+        },
+        {
+          "bbox": [
+            1764,
+            2401,
+            1987,
+            2475
+          ],
+          "text": "USD20.00",
+          "confidence": 0.9941147565841675,
+          "center_y": 2438.0,
+          "center_x": 1875.5
+        },
+        {
+          "bbox": [
+            465,
+            2497,
+            1089,
+            2559
+          ],
+          "text": "NO COMMERCIAL VALUE",
+          "confidence": 0.9568374752998352,
+          "center_y": 2528.0,
+          "center_x": 777.0
+        },
+        {
+          "bbox": [
+            266,
+            2570,
+            731,
+            2621
+          ],
+          "text": "SHIPPER'S SIGNATURE",
+          "confidence": 0.9650043845176697,
+          "center_y": 2595.5,
+          "center_x": 498.5
+        },
+        {
+          "bbox": [
+            1285,
+            2570,
+            1410,
+            2624
+          ],
+          "text": "DATE",
+          "confidence": 0.9908928275108337,
+          "center_y": 2597.0,
+          "center_x": 1347.5
+        },
+        {
+          "bbox": [
+            1484,
+            2565,
+            1717,
+            2629
+          ],
+          "text": "2025/9/24",
+          "confidence": 0.9949191212654114,
+          "center_y": 2597.0,
+          "center_x": 1600.5
+        },
+        {
+          "bbox": [
+            480,
+            2624,
+            716,
+            2687
+          ],
+          "text": "发货人签名",
+          "confidence": 0.9988764524459839,
+          "center_y": 2655.5,
+          "center_x": 598.0
+        },
+        {
+          "bbox": [
+            1292,
+            2628,
+            1396,
+            2687
+          ],
+          "text": "日期",
+          "confidence": 0.9986988306045532,
+          "center_y": 2657.5,
+          "center_x": 1344.0
+        }
+      ]
+    }
+  ],
+  "llm_document_type": {
+    "type": "商业发票",
+    "confidence": "high"
+  }
+}

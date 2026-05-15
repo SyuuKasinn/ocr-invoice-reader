@@ -1,0 +1,304 @@
+============================================================
+PAGE 1
+============================================================
+
+[Region 1 - title]
+DALIAN EVERCREDIT INTERNATIONAL TRADING CO.,LTD
+
+[Region 2 - title]
+ROOM2702,BLOCKB,FORTUNEPLAZANO.20,HARBOUR
+
+[Region 3 - text]
+STREET,ZHONGSHANDISTRICT,DALIAN CHINATeI86-411-8295-0116
+
+[Region 4 - title]
+COMMERCIALINVOICE
+
+[Region 5 - table]
+INVOICE NO. | 20250924 | DATE:_2025/9/24
+MESSRS. | TOKOLIMYCO.,LTD
+9FMITSUBISHI HEAVY INDUSTRISE,OSAKA BLDG..
+1-3-20,TOSABORI,NISHI-KU,OSAKA550-0001,JAPAN
+Tel81-6-6479-3596 | Fax81-6-6479-3546
+凳送方法 | LDX
+送以状番号 | 5065-3894-564o
+目的
+原産国 | 中国
+品番 | Men's or Ladies | Woven or | Knit | 品名 | 混率 | 数量 | 金额
+2254026C2TS | 2254026C2TS | Men's | Men's. | Woven | Woven | 术中绵JKT | 中绵JKT | PE100% | PE100% | 5. | $8.20 | $6.30 | $31.50 | $8.20
+1254081A2HD | Men's. | Woven | 中绵 | PE100% | $4.50 | $9.00
+Total | 8 | $48.70
+packingsize
+packingweight
+weight
+cartonNo.
+
+
+
+============================================================
+PAGE 2
+============================================================
+
+[Region 1 - title]
+INVOICE
+
+[Region 2 - table]
+Tracking No: | 506-538-938-065 INV No:KTB0911-X52-S01-24538
+DATE:24-Sep-25
+Importer SANEI SANSYOU CORPORATION
+Address: | 1-80 Komagabayashiminamicho,Nagata Ward,Kobe,
+Hyogo
+亍: | 653-0045
+Attn: | MR.GAO PENGFEI
+Tel: | 0081-078-200-5562 | FAX: | 0081-078-200-5571
+Item No. | PO.NO. | PRODUCTNAME | (nrs) | QTY | Unit Price(JPY) | Total Amount(JPY)
+1 | 4 | 1000 | 4000.00
+SEMICONDUCTOR PACKAGING
+EQUIPMENTPARTS(STEEL) | Total: | 4000.00
+FOB | Total numer of packages:1
+Shipper Address | Dalian Xinghua Trading Co.,LTD
+杏花贸易有限 | 1-3,NO.4,Yihuayuan Xinglin,Economic & Technical Development
+Zone,Dalian
+合同专用章 | CHINA
+21024100000 | T:116600
+Signed by:LIU CAIYUN
+Tel:13304280988
+第1页,共1页
+
+
+
+============================================================
+PAGE 3
+============================================================
+
+[Region 1 - title]
+追番号:LDX:506538778406
+
+[Region 2 - title]
+UK LIANTAI COLTD
+
+[Region 3 - text]
+ADD:RM101,MAPLEHOUSE 118HIGH STREET PURLEY.LONDONUNITEDKINGDOMCR82AD
+
+[Region 4 - title]
+TEL:00442084323088FAX:00442084323088
+
+[Region 5 - table]
+INVNO | NCY250924
+INVOICE | DATE | 2025-9-24
+CONSIGNEE | MINORUSANGYOCORPORATION
+T566-00352-10-12TSURUNO.SETTSU,OSAKA,JAPAN
+TEL:
+PORT OF LOADING | FINAL DESTINATION | TERMSOFDELIVERY&PAYMENT
+DALIAN,CHINA | SETTSU,OSAKA | DAP SETTSU
+NO | ORDER NO | Parts for processingcenter of machine tool | DESCRIPTION | ZRON | QIY(PCS) | UNIT PRICE | (JPY) | AMOUNT | (JPY) | REFFRENCE
+25T1676 | 41F371-89 | 2 | 2500 | 5000
+2 | 2511691 | To-3921-31-1-固定部品 | 6180 | 6180
+3 | 25T1691 | To3921-3142 | 2190 | 2191
+4 | 2511691 | 1o3921-46-3七 | 2 | 1000 | 10000
+5 | 25T1670 | 16A8183-2-1 | 15600 | 15600
+25T1670 | 16A-8181-2-2 | 1 | 15600 | 15600
+25T1670 | 16A-8185-5-1 | 15600 | 15500
+8 | 25T1670 | 16A81856 | 2000 | 8000
+9 | 25T1670 | 16A81865-2 | 1 | 15500 | 15500
+10 | 2571687 | 25-A-0241-19 | 2270 | 2270
+11 | 25T1687 | 25入024223 | 7620 | 7620
+12 | 25T1687 | 25:A-0242-21 | 1 | 5820 | 5820
+13 | 25T1722 | 10-3916-29-1固定部品 | 1 | 6180 | 6180
+14 | 25T1722 | HO-3946-29-3-七> | 1 | 4560 | 4560
+15 | 2571722 | 10-2946-931-回邮止 | 1 | 5100 | 5100
+16 | 25T0110 | RI355B206 | 10480 | 10480
+Total | 135600
+UK"LIANTACO,LIMITED
+
+
+
+============================================================
+PAGE 4
+============================================================
+
+[Region 1 - title]
+COMMERCIAL INVOICE
+
+[Region 2 - title]
+商业发票
+
+[Region 3 - table]
+Note:please complete all tho information in English | 注意:请用英文填写所有资料
+DATEOFEXPORTATION | AIR WAYBILLNO.
+出口日期:2025/9/22 | 运单号码:820112163732
+IPPER | 发货人 | ONSIGNFE收货人
+公司名称 | LANZHEN | CORPNAHE:YIWU LILA JINCHUKOU SHANGHANG LV | 会社名 | Global LFC logistics CO.,LTD
+No.3-4 Building5,YouNan Residential | 501-0472 SectorlI,113, Shimofukujima,Motosu-shi,
+DRESS | Province | Compound,FoTang Town,YiWu,ZheJiang | ADDRESS | Gifu, Japan
+地址 | 地址
+TENTION: | LV LAN ZHEN | TELHO: | 13735702118 | ATTENTION | Huguoli | TELNO: | 080-3705-8917
+姓名 | 电话 | 姓名 | 电话
+EXPORTREFERENCES | IWPORTER-IFOTHERTHAN CONSIGNEE 清关人（进口商）
+出口编号 | CORPHAME | 401090105031207么口座（扣税账号）00095977186149 | JASTPRO一F（进出口商代码）P002CM300000法人番号（法人号码）
+CXUNTRY OFORIGIH | 物品来源地 CHINA | 公司名称 | ADDRSS | 365CO.,LTD
+出口国 | COUNTRYOFEXPORT | CXUNTRYOF DESTINATIH | CHINA | 地址 | ATTENTION | 157-00667-13-3,SEIJYOU,SETAGAYAKU,T0KY0,JAPAN | TELNO:
+物品目的地JAPAN | 姓名 | 电话 | 080-3705-8917
+包装件数 | PKGS | NO.OF | 品名 | DESCRIPTION OF GOODS | 材质material | 用途purpose | 货品数量（PCS） | QUANTITY | UNITVALUE | 单价（CHY） | 总价（CHY) | TOTAL VALUE
+表地
+70%
+knit coat women | 30% | 穿着 | 164 | ￥135.00 | ￥22,140.00
+真地
+100%
+本体
+65%
+wovcn coat women | 35% | 部分 | 穿着 | 40 | ￥67.00 | ￥2,680.00
+95%
+5%
+raglan sleeves | 100% | 穿者 | 15 | Y26.00 | ￥390.00
+73%
+woven shirt women | 21% | 穿看 | 35 | ￥86.00 | ￥3,010.00
+6%
+woven shirt women | 100% | 穿者 | 18 | ￥63.00 | ￥1,134.00
+22 | socks | 穿若 | 300 | Y4.00 | ￥1,200.00
+2%
+knit swcater women | 30% | 穿着 | 13 | ￥68.00 | ￥884.00
+28%
+woven Women's pants | 97% | 3% | 穿看 | 76 | ￥69.00 | ￥5,244.00
+woven Women's pants | 表地:棉100%/别布:称100% | 穿看 | 61 | ￥37.00 | ￥2,257.00
+woven Women's pants | 表地:棉65%35% | 穿着 | 11 | ￥48.00 | ￥528.00
+woven Women's dress | 95% | 5% | 穿者 | 64 | ￥95.00 | ￥6,080.00
+表地:100%夏地:
+woven Women's drcss | 穿者 | 28 | ￥53.00 | ￥1,484.00
+5%
+knit Women's dress | 栋100% | 穿着 | 51 | ￥80.00 | ￥4,080.00
+捆包手数料&資材料金 | ￥132.00
+TOTALINVOICEVALUE | 合计总价 | Y51,243.00
+SHIPPER'S SIGNATURE | LV LAN ZHEN | DATE
+发货人签名 | 日期
+
+
+
+============================================================
+PAGE 5
+============================================================
+
+[Region 1 - table]
+Signatory | TEL: | Address: | FAX: | TEL: | Sender
+Shipped Per:
+TOTAL | EXPRESSSENDING CHAR | SYNTHETIC HAIR WIGS | Description | POSTC0DE:5770016 | SHIBATAYUJISAMA樣 | CROSSOVER CO LTD. | 53286026870 | ROAD QINGDAO CHINA
+08046421079
+To: | QINGDAOSHENGKAIARTS&CRAFTSCOLTD
+OSAKA FU HIGASHIOSAKA SHI NAGATA NISHI 2-6-14
+ROOM602UNIT1SEAVIEWDYNASTYNO.41DONGHAI XI
+Meterial
+Technics
+INVOICE
+CHINA | CHINA | From: | C&F
+Importer:
+Country of Orign | MADE IN CHINA | 211 | 210 | Quantity | Terms of Payment | 2025-09-2418:22:30 | Date of Posting | 506539518892 | Mail Item No.:
+18-2F06630430015320011
+468 | 44.1 | Currency(USD) | Unit Price | CROSSOVERCOLTD大阪府大阪市淀川I区西中島4-11-
+9729 | 468 | 9261 | Total Amount
+Freight
+
+
+
+============================================================
+PAGE 6
+============================================================
+
+[Region 1 - title]
+COMMERCIAL INVOICE
+
+[Region 2 - title]
+商业发票
+
+[Region 3 - table]
+DATEOFEXPORTATION（发货日期） | AIR WAYBILLNO（运单号码）
+506539170421
+TOTALPACKAGES（总件数1件） | Country ofultimate destination/到达国家
+LJAPAN
+寄件人 | TANG YI HUA | YOSHIMA TOMORI | Consignee/收件人名
+Company nam/公司名称 | Company nam/公司名称
+Address/地址 | ICHIKAWA CHINA CORPORATION | Address/地址 | ICHJKAWA COLTD
+I1O1BEIJING WEST SHANGHAI
+CHINA | 200 NED0KASHIWA CHIBA277-0831 JAPAN
+021-52120109 | 0471-334-330
+GOODS | FULL DESCRIPTION OF | Tag/label | code | (PCS) | OTY | WEIGHT | (KGS) | VALUE | UNIT | TOTAL VALUE FOR | CUSTOMS
+详细的商品名称 | 标记/唛码 | （数量） | （总重） | USD) | （单价 | （总价USD）
+HS
+CONVEYOR BELT | 3926901000 | 1 | 30 | 30
+MADE IN CHINA | TOTAL (USD): | $30.00
+I DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY
+KNOWLEDGE,（本人认为以上提供的资料属实和正确）
+SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.
+
+
+
+============================================================
+PAGE 7
+============================================================
+
+[Region 1 - text]
+Room3006,Building BFarEast International Plaza,No317,Xianxia Road
+Changning District,Shanghai,China
+TEL:86(21)-6275-0606
+FAX:86(21)-3209-8975
+
+[Region 2 - text]
+SINFONIA TECHNOLOGY(SHANGHAI)CO.,LTD.
+http: //www.sinfo-t.jp/cn
+
+[Region 3 - text]
+DATE:
+INVOICE#
+DEPARTMENT:
+
+[Region 4 - table]
+TO: TERMS MR.Ara SINFONIA TECHNOLOGY CO.,LTD. 100 takegahana-cho,ise-city,mie,516-8550,Japan Term of Sales: Country of Origin: Port of Loading: Port of Destination: DAP MADE IN CHINA SHANGHAI NAGOYA TEL:81-596-36-4859 FAX:81-596-36-0355 PARTS NO Terms of Payment: QTY(PCS) UNIT PRICE(JPY) 30 Days TOTAL(JPY) PO No. Sheetmetalparts 4502552015-00010 Y37A18311 1 913 913 Use for Controller Iron SUBTOTAL 913 FREIGHT 2,112 TOTAL JPY 3,025 Make all checks payable to
+
+[Region 5 - header]
+INVOICE
+
+[Region 6 - header]
+2025/9/16
+SSHIV25-1029
+
+[Region 7 - reference]
+SINFONIA TECHNOLOGY(SHANGHAI)CO.,LTD.
+
+
+
+============================================================
+PAGE 8
+============================================================
+
+[Region 1 - title]
+COMMERCIAL INVOICE
+
+[Region 2 - table]
+商 | 业 | 发 | 票
+Note:pleasecompleteall the information in English注意:请用英文填写所有资料
+DATE OFEXPORTATION | AIR WAYBILLNO.2406460365245
+出口日期:2025/9/24 | 运单号码: | 820111868365
+SHIPPER | 发货人 | CONSIGNEE 收货人
+CORP NAME DALIAN LONG SHENG WOOD | CORPNAME
+公司名称 | INDUSTRY | CO.LTD | 公司名称 | 一株式会社 | SHINJUKU
+ADDRESS | :AGENCY DALIAN CHINA | ZHANG JIA YAOSTR.TAI PING | ADDRESS | BIRU 1F,5-5-3 SHINJUKU
+地址 | 地址 | SHINJUKU KU | TOKYOTO
+ZIP:160-0022 | JAPAN
+03-3352-7152
+ATTENTION MRXIA | TEL:83150820 | ATTENTION:村樣
+姓名 | 电话 | 姓名
+SHIPPER MARKS | IMPORTER清关人
+备注 | CORPNAME:
+COUNTRY OF ORIGIN | 公司名称 | 伊藤忠建材（株）
+出口国 | COUNTRY OFEXPORT | 物品来源地CHINA | COUNTRY OF DESTINATION | CHINA | 地址 | ADDRESS | ATTENTION: | 1-4NIHONBASHI-ODEMMACHO.CHUO- | LIU SAMA | KU. TOKYO JAPAN | 0081-03-3661-1363 | (ITOCHU KENZAI CORPORATION)
+物品目的地JAPAN | 姓名
+FOB
+DESCRIPTION OFGOODS MATERIAL | QUANTITYUNITVALUFOTALVALU
+货品详细描述材质 | 货品数量 | 单价 | 总价
+WOODEN FLOOR BOARD SAMPLE | board) | (Density | 1 | USD20.00 | USD20.00
+TOTAL INVOICE VALUE | 合计总价 | USD20.00
+NO COMMERCIAL VALUE
+SHIPPER'S SIGNATURE | DATE | 2025/9/24
+发货人签名 | 日期
+
+
+

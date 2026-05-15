@@ -1,0 +1,147 @@
+{
+  "document": "インボイス見本",
+  "total_pages": 8,
+  "invoices": [
+    {
+      "page": 1,
+      "source_file": "インボイス見本_page_0001",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": null,
+        "currency": "USD",
+        "phone": null,
+        "fax": null,
+        "item_count": 4,
+        "created_at": null
+      },
+      "items_count": 4
+    },
+    {
+      "page": 2,
+      "source_file": "インボイス見本_page_0002",
+      "extracted_fields": {
+        "invoice_number": "KTB0911-X52-S01-24538",
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": "Importer SANEI SANSYOU CORPORATION",
+        "total_amount": null,
+        "currency": "JPY",
+        "phone": "",
+        "fax": "",
+        "item_count": 3,
+        "created_at": null
+      },
+      "items_count": 3
+    },
+    {
+      "page": 3,
+      "source_file": "インボイス見本_page_0003",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": "LDX:506538778406",
+        "company_name": "UK LIANTAI COLTD",
+        "total_amount": null,
+        "currency": "JPY",
+        "phone": "00442084323088",
+        "fax": "00442084323088",
+        "item_count": 18,
+        "created_at": null
+      },
+      "items_count": 18
+    },
+    {
+      "page": 4,
+      "source_file": "インボイス見本_page_0004",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": null,
+        "currency": "USD",
+        "phone": null,
+        "fax": null,
+        "item_count": 21,
+        "created_at": null
+      },
+      "items_count": 21
+    },
+    {
+      "page": 5,
+      "source_file": "インボイス見本_page_0005",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": null,
+        "currency": "USD",
+        "phone": "",
+        "fax": "",
+        "item_count": 0,
+        "created_at": null
+      },
+      "items_count": 0
+    },
+    {
+      "page": 6,
+      "source_file": "インボイス見本_page_0006",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": null,
+        "currency": "USD",
+        "phone": null,
+        "fax": null,
+        "item_count": 2,
+        "created_at": null
+      },
+      "items_count": 2
+    },
+    {
+      "page": 7,
+      "source_file": "インボイス見本_page_0007",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": 913.0,
+        "currency": "JPY",
+        "phone": "86",
+        "fax": "86",
+        "item_count": 0,
+        "created_at": null
+      },
+      "items_count": 0
+    },
+    {
+      "page": 8,
+      "source_file": "インボイス見本_page_0008",
+      "extracted_fields": {
+        "invoice_number": null,
+        "invoice_date": null,
+        "tracking_number": null,
+        "company_name": null,
+        "total_amount": null,
+        "currency": "USD",
+        "phone": "83150820",
+        "fax": null,
+        "item_count": 7,
+        "created_at": null
+      },
+      "items_count": 7
+    }
+  ],
+  "summary": {
+    "with_invoice_number": 1,
+    "with_company": 2,
+    "with_amount": 1
+  }
+}

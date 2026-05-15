@@ -1,0 +1,48 @@
+{
+  "tracking_number": "506-538-938-065",
+  "invoice_number": "KTB0911-X52-S01-24538",
+  "invoice_date": "2025-09-24",
+  "logistics_provider": null,
+  "shipper": {
+    "company_name": "Dalian Xinghua Trading Co.,LTD",
+    "account_number": "合同专用章",
+    "address": "1-3,NO.4,Yihuayuan Xinglin,Economic & Technical Development Zone,Dalian",
+    "city": null,
+    "country": "CHINA"
+  },
+  "receiver": {
+    "company_name": null,
+    "contact_person": "MR.GAO PENGFEI",
+    "phone": "0081-078-200-5562 | FAX: 0081-078-200-5571",
+    "address": null,
+    "zip_code": "653-0045",
+    "city": "Nagata Ward,Kobe,Hyogo",
+    "country": "JAPAN"
+  },
+  "shipment_info": {
+    "category": "Parcel",
+    "total_packages": 1,
+    "total_weight": null,
+    "weight_unit": null,
+    "dimensions": {
+      "length": null,
+      "width": null,
+      "height": null,
+      "unit": null
+    }
+  },
+  "items": [
+    {
+      "description": "SEMI CONDUCTOR PACKAGING EQUIPMENT PARTS (STEEL)",
+      "quantity": 4000,
+      "unit_price": 4000.0,
+      "total_amount": 4000.0,
+      "currency": "JPY"
+    }
+  ],
+  "payment": {
+    "terms": "FOB",
+    "currency": "JPY",
+    "total_amount": 4000.0
+  }
+}

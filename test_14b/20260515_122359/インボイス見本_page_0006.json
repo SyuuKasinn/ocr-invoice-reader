@@ -1,0 +1,675 @@
+{
+  "page_number": 6,
+  "method": "coordinate_based",
+  "image_path": "C:\\Users\\kants\\AppData\\Local\\Temp\\pdf_images_a9trfmse\\インボイス見本_page_0006.png",
+  "regions": [
+    {
+      "type": "title",
+      "bbox": [
+        897,
+        347,
+        1533,
+        436
+      ],
+      "confidence": 0.9863569736480713,
+      "text": "COMMERCIAL INVOICE",
+      "table_html": null
+    },
+    {
+      "type": "title",
+      "bbox": [
+        1062,
+        430,
+        1422,
+        520
+      ],
+      "confidence": 0.9959646463394165,
+      "text": "商业发票",
+      "table_html": null
+    },
+    {
+      "type": "table",
+      "bbox": [
+        228,
+        486,
+        2105,
+        2577
+      ],
+      "confidence": 0.9660935826026477,
+      "text": "DATEOFEXPORTATION（发货日期） | AIR WAYBILLNO（运单号码）\n506539170421\nTOTALPACKAGES（总件数1件） | Country ofultimate destination/到达国家\nLJAPAN\n寄件人 | TANG YI HUA | YOSHIMA TOMORI | Consignee/收件人名\nCompany nam/公司名称 | Company nam/公司名称\nAddress/地址 | ICHIKAWA CHINA CORPORATION | Address/地址 | ICHJKAWA COLTD\nI1O1BEIJING WEST SHANGHAI\nCHINA | 200 NED0KASHIWA CHIBA277-0831 JAPAN\n021-52120109 | 0471-334-330\nGOODS | FULL DESCRIPTION OF | Tag/label | code | (PCS) | OTY | WEIGHT | (KGS) | VALUE | UNIT | TOTAL VALUE FOR | CUSTOMS\n详细的商品名称 | 标记/唛码 | （数量） | （总重） | USD) | （单价 | （总价USD）\nHS\nCONVEYOR BELT | 3926901000 | 1 | 30 | 30\nMADE IN CHINA | TOTAL (USD): | $30.00\nI DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY\nKNOWLEDGE,（本人认为以上提供的资料属实和正确）\nSAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+      "table_html": "<table><tr><td>DATEOFEXPORTATION（发货日期）</td><td>AIR WAYBILLNO（运单号码）</td></tr><tr><td>506539170421</td></tr><tr><td>TOTALPACKAGES（总件数1件）</td><td>Country ofultimate destination/到达国家</td></tr><tr><td>LJAPAN</td></tr><tr><td>寄件人</td><td>TANG YI HUA</td><td>YOSHIMA TOMORI</td><td>Consignee/收件人名</td></tr><tr><td>Company nam/公司名称</td><td>Company nam/公司名称</td></tr><tr><td>Address/地址</td><td>ICHIKAWA CHINA CORPORATION</td><td>Address/地址</td><td>ICHJKAWA COLTD</td></tr><tr><td>I1O1BEIJING WEST SHANGHAI</td></tr><tr><td>CHINA</td><td>200 NED0KASHIWA CHIBA277-0831 JAPAN</td></tr><tr><td>021-52120109</td><td>0471-334-330</td></tr><tr><td>GOODS</td><td>FULL DESCRIPTION OF</td><td>Tag/label</td><td>code</td><td>(PCS)</td><td>OTY</td><td>WEIGHT</td><td>(KGS)</td><td>VALUE</td><td>UNIT</td><td>TOTAL VALUE FOR</td><td>CUSTOMS</td></tr><tr><td>详细的商品名称</td><td>标记/唛码</td><td>（数量）</td><td>（总重）</td><td>USD)</td><td>（单价</td><td>（总价USD）</td></tr><tr><td>HS</td></tr><tr><td>CONVEYOR BELT</td><td>3926901000</td><td>1</td><td>30</td><td>30</td></tr><tr><td>MADE IN CHINA</td><td>TOTAL (USD):</td><td>$30.00</td></tr><tr><td>I DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY</td></tr><tr><td>KNOWLEDGE,（本人认为以上提供的资料属实和正确）</td></tr><tr><td>SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.</td></tr></table>",
+      "rows": 18,
+      "columns": 12,
+      "ocr_boxes": [
+        {
+          "bbox": [
+            269,
+            486,
+            1008,
+            567
+          ],
+          "text": "DATEOFEXPORTATION（发货日期）",
+          "confidence": 0.9725447297096252,
+          "center_y": 526.5,
+          "center_x": 638.5
+        },
+        {
+          "bbox": [
+            1059,
+            511,
+            1677,
+            589
+          ],
+          "text": "AIR WAYBILLNO（运单号码）",
+          "confidence": 0.9511042237281799,
+          "center_y": 550.0,
+          "center_x": 1368.0
+        },
+        {
+          "bbox": [
+            1457,
+            606,
+            1777,
+            681
+          ],
+          "text": "506539170421",
+          "confidence": 0.9995344281196594,
+          "center_y": 643.5,
+          "center_x": 1617.0
+        },
+        {
+          "bbox": [
+            269,
+            661,
+            894,
+            735
+          ],
+          "text": "TOTALPACKAGES（总件数1件）",
+          "confidence": 0.9903111457824707,
+          "center_y": 698.0,
+          "center_x": 581.5
+        },
+        {
+          "bbox": [
+            1055,
+            683,
+            1998,
+            768
+          ],
+          "text": "Country ofultimate destination/到达国家",
+          "confidence": 0.9708245396614075,
+          "center_y": 725.5,
+          "center_x": 1526.5
+        },
+        {
+          "bbox": [
+            1055,
+            733,
+            1212,
+            809
+          ],
+          "text": "LJAPAN",
+          "confidence": 0.9228866696357727,
+          "center_y": 771.0,
+          "center_x": 1133.5
+        },
+        {
+          "bbox": [
+            273,
+            779,
+            425,
+            833
+          ],
+          "text": "寄件人",
+          "confidence": 0.9922681450843811,
+          "center_y": 806.0,
+          "center_x": 349.0
+        },
+        {
+          "bbox": [
+            258,
+            829,
+            543,
+            900
+          ],
+          "text": "TANG YI HUA",
+          "confidence": 0.9533798098564148,
+          "center_y": 864.5,
+          "center_x": 400.5
+        },
+        {
+          "bbox": [
+            1055,
+            847,
+            1404,
+            922
+          ],
+          "text": "YOSHIMA TOMORI",
+          "confidence": 0.9446350932121277,
+          "center_y": 884.5,
+          "center_x": 1229.5
+        },
+        {
+          "bbox": [
+            1052,
+            796,
+            1499,
+            867
+          ],
+          "text": "Consignee/收件人名",
+          "confidence": 0.967975914478302,
+          "center_y": 831.5,
+          "center_x": 1275.5
+        },
+        {
+          "bbox": [
+            265,
+            888,
+            754,
+            958
+          ],
+          "text": "Company nam/公司名称",
+          "confidence": 0.9584271907806396,
+          "center_y": 923.0,
+          "center_x": 509.5
+        },
+        {
+          "bbox": [
+            1048,
+            902,
+            1551,
+            991
+          ],
+          "text": "Company nam/公司名称",
+          "confidence": 0.9373457431793213,
+          "center_y": 946.5,
+          "center_x": 1299.5
+        },
+        {
+          "bbox": [
+            258,
+            1001,
+            562,
+            1072
+          ],
+          "text": "Address/地址",
+          "confidence": 0.986260712146759,
+          "center_y": 1036.5,
+          "center_x": 410.0
+        },
+        {
+          "bbox": [
+            265,
+            943,
+            894,
+            1020
+          ],
+          "text": "ICHIKAWA CHINA CORPORATION",
+          "confidence": 0.9577717185020447,
+          "center_y": 981.5,
+          "center_x": 579.5
+        },
+        {
+          "bbox": [
+            1052,
+            1023,
+            1356,
+            1093
+          ],
+          "text": "Address/地址",
+          "confidence": 0.9927253723144531,
+          "center_y": 1058.0,
+          "center_x": 1204.0
+        },
+        {
+          "bbox": [
+            1395,
+            975,
+            1821,
+            1053
+          ],
+          "text": "ICHJKAWA COLTD",
+          "confidence": 0.9298796057701111,
+          "center_y": 1014.0,
+          "center_x": 1608.0
+        },
+        {
+          "bbox": [
+            258,
+            1122,
+            927,
+            1188
+          ],
+          "text": "I1O1BEIJING WEST SHANGHAI",
+          "confidence": 0.897864580154419,
+          "center_y": 1155.0,
+          "center_x": 592.5
+        },
+        {
+          "bbox": [
+            254,
+            1176,
+            400,
+            1240
+          ],
+          "text": "CHINA",
+          "confidence": 0.9873975515365601,
+          "center_y": 1208.0,
+          "center_x": 327.0
+        },
+        {
+          "bbox": [
+            1048,
+            1165,
+            1943,
+            1251
+          ],
+          "text": "200 NED0KASHIWA CHIBA277-0831 JAPAN",
+          "confidence": 0.9366081357002258,
+          "center_y": 1208.0,
+          "center_x": 1495.5
+        },
+        {
+          "bbox": [
+            254,
+            1297,
+            536,
+            1357
+          ],
+          "text": "021-52120109",
+          "confidence": 0.9985421299934387,
+          "center_y": 1327.0,
+          "center_x": 395.0
+        },
+        {
+          "bbox": [
+            1040,
+            1312,
+            1330,
+            1386
+          ],
+          "text": "0471-334-330",
+          "confidence": 0.9959762692451477,
+          "center_y": 1349.0,
+          "center_x": 1185.0
+        },
+        {
+          "bbox": [
+            427,
+            1435,
+            577,
+            1511
+          ],
+          "text": "GOODS",
+          "confidence": 0.9959759712219238,
+          "center_y": 1473.0,
+          "center_x": 502.0
+        },
+        {
+          "bbox": [
+            265,
+            1378,
+            746,
+            1448
+          ],
+          "text": "FULL DESCRIPTION OF",
+          "confidence": 0.9594648480415344,
+          "center_y": 1413.0,
+          "center_x": 505.5
+        },
+        {
+          "bbox": [
+            746,
+            1367,
+            1045,
+            1429
+          ],
+          "text": "Tag/label",
+          "confidence": 0.9773432612419128,
+          "center_y": 1398.0,
+          "center_x": 895.5
+        },
+        {
+          "bbox": [
+            845,
+            1429,
+            960,
+            1484
+          ],
+          "text": "code",
+          "confidence": 0.9934700727462769,
+          "center_y": 1456.5,
+          "center_x": 902.5
+        },
+        {
+          "bbox": [
+            1078,
+            1458,
+            1226,
+            1524
+          ],
+          "text": "(PCS)",
+          "confidence": 0.9692715406417847,
+          "center_y": 1491.0,
+          "center_x": 1152.0
+        },
+        {
+          "bbox": [
+            1108,
+            1404,
+            1200,
+            1458
+          ],
+          "text": "OTY",
+          "confidence": 0.9899217486381531,
+          "center_y": 1431.0,
+          "center_x": 1154.0
+        },
+        {
+          "bbox": [
+            1287,
+            1403,
+            1445,
+            1467
+          ],
+          "text": "WEIGHT",
+          "confidence": 0.9812934994697571,
+          "center_y": 1435.0,
+          "center_x": 1366.0
+        },
+        {
+          "bbox": [
+            1296,
+            1462,
+            1436,
+            1528
+          ],
+          "text": "(KGS)",
+          "confidence": 0.9572702646255493,
+          "center_y": 1495.0,
+          "center_x": 1366.0
+        },
+        {
+          "bbox": [
+            1501,
+            1461,
+            1652,
+            1536
+          ],
+          "text": "VALUE",
+          "confidence": 0.9899042844772339,
+          "center_y": 1498.5,
+          "center_x": 1576.5
+        },
+        {
+          "bbox": [
+            1521,
+            1415,
+            1639,
+            1469
+          ],
+          "text": "UNIT",
+          "confidence": 0.9722849130630493,
+          "center_y": 1442.0,
+          "center_x": 1580.0
+        },
+        {
+          "bbox": [
+            1723,
+            1414,
+            2105,
+            1488
+          ],
+          "text": "TOTAL VALUE FOR",
+          "confidence": 0.9751854538917542,
+          "center_y": 1451.0,
+          "center_x": 1914.0
+        },
+        {
+          "bbox": [
+            1820,
+            1484,
+            2008,
+            1542
+          ],
+          "text": "CUSTOMS",
+          "confidence": 0.9944515228271484,
+          "center_y": 1513.0,
+          "center_x": 1914.0
+        },
+        {
+          "bbox": [
+            324,
+            1549,
+            673,
+            1627
+          ],
+          "text": "详细的商品名称",
+          "confidence": 0.9971551895141602,
+          "center_y": 1588.0,
+          "center_x": 498.5
+        },
+        {
+          "bbox": [
+            775,
+            1560,
+            1012,
+            1635
+          ],
+          "text": "标记/唛码",
+          "confidence": 0.9048725962638855,
+          "center_y": 1597.5,
+          "center_x": 893.5
+        },
+        {
+          "bbox": [
+            1078,
+            1575,
+            1222,
+            1630
+          ],
+          "text": "（数量）",
+          "confidence": 0.9696274399757385,
+          "center_y": 1602.5,
+          "center_x": 1150.0
+        },
+        {
+          "bbox": [
+            1285,
+            1575,
+            1444,
+            1641
+          ],
+          "text": "（总重）",
+          "confidence": 0.954364538192749,
+          "center_y": 1608.0,
+          "center_x": 1364.5
+        },
+        {
+          "bbox": [
+            1517,
+            1616,
+            1624,
+            1674
+          ],
+          "text": "USD)",
+          "confidence": 0.9942334890365601,
+          "center_y": 1645.0,
+          "center_x": 1570.5
+        },
+        {
+          "bbox": [
+            1505,
+            1541,
+            1645,
+            1624
+          ],
+          "text": "（单价",
+          "confidence": 0.889851987361908,
+          "center_y": 1582.5,
+          "center_x": 1575.0
+        },
+        {
+          "bbox": [
+            1801,
+            1586,
+            2024,
+            1660
+          ],
+          "text": "（总价USD）",
+          "confidence": 0.9448954463005066,
+          "center_y": 1623.0,
+          "center_x": 1912.5
+        },
+        {
+          "bbox": [
+            864,
+            1718,
+            927,
+            1769
+          ],
+          "text": "HS",
+          "confidence": 0.9867417812347412,
+          "center_y": 1743.5,
+          "center_x": 895.5
+        },
+        {
+          "bbox": [
+            332,
+            1813,
+            654,
+            1876
+          ],
+          "text": "CONVEYOR BELT",
+          "confidence": 0.9937516450881958,
+          "center_y": 1844.5,
+          "center_x": 493.0
+        },
+        {
+          "bbox": [
+            764,
+            1824,
+            1026,
+            1886
+          ],
+          "text": "3926901000",
+          "confidence": 0.998853325843811,
+          "center_y": 1855.0,
+          "center_x": 895.0
+        },
+        {
+          "bbox": [
+            1130,
+            1839,
+            1163,
+            1882
+          ],
+          "text": "1",
+          "confidence": 0.8690665364265442,
+          "center_y": 1860.5,
+          "center_x": 1146.5
+        },
+        {
+          "bbox": [
+            1532,
+            1842,
+            1606,
+            1901
+          ],
+          "text": "30",
+          "confidence": 0.9974843859672546,
+          "center_y": 1871.5,
+          "center_x": 1569.0
+        },
+        {
+          "bbox": [
+            1872,
+            1850,
+            1946,
+            1908
+          ],
+          "text": "30",
+          "confidence": 0.9984117150306702,
+          "center_y": 1879.0,
+          "center_x": 1909.0
+        },
+        {
+          "bbox": [
+            346,
+            2273,
+            676,
+            2344
+          ],
+          "text": "MADE IN CHINA",
+          "confidence": 0.9226115345954895,
+          "center_y": 2308.5,
+          "center_x": 511.0
+        },
+        {
+          "bbox": [
+            1388,
+            2240,
+            1673,
+            2303
+          ],
+          "text": "TOTAL (USD):",
+          "confidence": 0.9391922950744629,
+          "center_y": 2271.5,
+          "center_x": 1530.5
+        },
+        {
+          "bbox": [
+            1820,
+            2259,
+            1979,
+            2310
+          ],
+          "text": "$30.00",
+          "confidence": 0.9983380436897278,
+          "center_y": 2284.5,
+          "center_x": 1899.5
+        },
+        {
+          "bbox": [
+            232,
+            2346,
+            1994,
+            2446
+          ],
+          "text": "I DECLARE THAT THE ABOVE INFORMATION IS TRUE AND CORRECT TO THE BEST OF MY",
+          "confidence": 0.9429665803909302,
+          "center_y": 2396.0,
+          "center_x": 1113.0
+        },
+        {
+          "bbox": [
+            228,
+            2405,
+            1304,
+            2490
+          ],
+          "text": "KNOWLEDGE,（本人认为以上提供的资料属实和正确）",
+          "confidence": 0.9812813997268677,
+          "center_y": 2447.5,
+          "center_x": 766.0
+        },
+        {
+          "bbox": [
+            228,
+            2485,
+            1813,
+            2577
+          ],
+          "text": "SAMPLES WITH NO COMMERCIAL VALUE NOMINAI VALUE FOR CUSTOMS PUROSES.",
+          "confidence": 0.9530652761459351,
+          "center_y": 2531.0,
+          "center_x": 1020.5
+        }
+      ]
+    }
+  ],
+  "llm_document_type": {
+    "type": "商业发票",
+    "confidence": "high"
+  }
+}

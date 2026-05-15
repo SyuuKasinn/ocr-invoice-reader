@@ -1,0 +1,21 @@
+{
+  "page": 7,
+  "source_file": "インボイス見本_page_0007",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": null,
+    "invoice_date": null,
+    "tracking_number": null,
+    "company_name": null,
+    "total_amount": 913.0,
+    "currency": "JPY",
+    "phone": "86",
+    "fax": "86",
+    "item_count": 0,
+    "created_at": null
+  },
+  "raw_data": {
+    "items": [],
+    "items_count": 0
+  }
+}
