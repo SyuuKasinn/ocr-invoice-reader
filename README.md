@@ -105,15 +105,15 @@ ocr-enhanced --image invoice.pdf --lang ch --use-llm
 
 **What gets installed automatically:**
 - ✅ Ollama service (if not installed)
-- ✅ LLM model (qwen2.5:0.5b by default)
+- ✅ LLM model (qwen2.5:3b by default)
 - ✅ All dependencies configured
 
 **LLM Features:**
 - ✅ Text correction (fix OCR errors)
 - ✅ Auto-extract invoice fields (number, date, amount, etc.)
 - ✅ Document classification (invoice/receipt/waybill)
-- ✅ CPU-friendly models (300MB-2GB)
-- ✅ Database-ready CSV export
+- ✅ CPU-friendly models (qwen2.5:3b recommended)
+- ✅ Database-ready JSON/CSV export
 
 **Manual setup (if needed):**
 ```bash
