@@ -1,5 +1,21 @@
 # Ollama GPU Setup Guide
 
+> ⚠️ **DEPRECATED - This guide is for historical reference only**
+> 
+> **As of v2.3.2, this project uses direct Qwen integration instead of Ollama.**
+> 
+> **Please see [QWEN_DIRECT_SETUP.md](QWEN_DIRECT_SETUP.md) for current installation instructions.**
+> 
+> **Benefits of Qwen Direct:**
+> - ✅ 4-15x faster inference
+> - ✅ 95% GPU utilization (vs 0% with Ollama)
+> - ✅ Simpler installation (no Ollama needed)
+> - ✅ Better CUDA compatibility (supports 11.x, 12.x, 13.x)
+
+---
+
+## Historical Content (Deprecated)
+
 This guide helps you configure Ollama to use GPU acceleration for faster LLM processing.
 
 ## 🚀 Quick Setup
