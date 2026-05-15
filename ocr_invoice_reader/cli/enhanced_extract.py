@@ -13,7 +13,7 @@ from typing import List, Dict
 
 from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedStructureAnalyzer
 from ocr_invoice_reader.processors.file_handler import FileProcessor
-from ocr_invoice_reader.utils.invoice_extractor import InvoiceExtractor
+from ocr_invoice_reader.utils.invoice_extractor_v2 import InvoiceExtractorV2
 from ocr_invoice_reader import __version__
 
 
@@ -301,8 +301,8 @@ Examples:
             if llm_processor:
                 page_llm_json = output_dir / f"{page_name}_llm.json"
                 try:
-                    # Initialize invoice extractor
-                    invoice_extractor = InvoiceExtractor()
+                    # Initialize invoice extractor V2 (enhanced)
+                    invoice_extractor = InvoiceExtractorV2()
 
                     # Extract text from regions
                     page_text = '\n\n'.join([
@@ -454,7 +454,7 @@ Examples:
         if llm_processor:
             invoice_json = output_dir / f"{input_name}_invoices.json"
             try:
-                invoice_extractor = InvoiceExtractor()
+                invoice_extractor = InvoiceExtractorV2()
                 all_invoices = []
 
                 for result in all_results:
