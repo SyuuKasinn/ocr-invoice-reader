@@ -19,6 +19,62 @@ class LLMInvoiceExtractor:
             llm_processor: Instance of LLMDocumentProcessor
         """
         self.llm_processor = llm_processor
+
+        # Combined prompt for classification + extraction (one LLM call)
+        self.combined_extraction_prompt = """You are an expert document analysis and invoice extraction system.
+
+TASK 1: Classify the document type
+TASK 2: If it's an invoice, extract structured invoice data
+
+Return a JSON with this structure:
+{
+  "document_type": "invoice|receipt|waybill|customs|other",
+  "confidence": "high|medium|low",
+  "invoice_data": {
+    // Only if document_type is "invoice", otherwise null
+    "invoice_number": "...",
+    "invoice_date": "YYYY-MM-DD",
+    "tracking_number": "...",
+    "total_amount": 123.45,
+    "currency": "USD",
+    "shipper_name": "...",
+    "consignee_name": "...",
+    "shipper_address": "...",
+    "consignee_address": "...",
+    "phone": "...",
+    "fax": "..."
+  }
+}
+
+CLASSIFICATION KEYWORDS:
+- Invoice: "INVOICE", "发票", "インボイス", "COMMERCIAL INVOICE"
+- Receipt: "RECEIPT", "收据", "領収書"
+- Waybill: "WAYBILL", "AIR WAYBILL", "运单"
+- Customs: "CUSTOMS", "海关", "税関"
+
+INVOICE EXTRACTION RULES (if classified as invoice):
+1. invoice_number: Invoice/bill number (e.g., "INV-2025-001", "NCY250924")
+2. invoice_date: Date in YYYY-MM-DD format (convert any date format)
+3. tracking_number: Shipping/tracking/AWB number
+4. total_amount: Total amount as decimal number only (no currency symbols)
+5. currency: Currency code (USD, JPY, CNY, EUR, GBP, etc.)
+6. shipper_name: Sender company name (clean, no address)
+7. consignee_name: Receiver company name (clean, no address)
+8. shipper_address: Sender's full address
+9. consignee_address: Receiver's full address
+10. phone: Phone/telephone number
+11. fax: Fax number
+
+IMPORTANT:
+- Return ONLY valid JSON, no explanations or markdown
+- Set missing fields to null
+- For non-invoice documents, set invoice_data to null
+
+OCR TEXT:
+{text}
+
+JSON OUTPUT:"""
+
         self.extraction_prompt_template = """You are an expert invoice data extraction system. Extract structured data from the following OCR text.
 
 REQUIRED FIELDS (extract if present):
@@ -55,6 +111,49 @@ OCR TEXT:
 {text}
 
 JSON OUTPUT (respond with only the JSON, no other text):"""
+
+    def extract_with_classification(self, text: str) -> Optional[Dict]:
+        """
+        Combined extraction: classify document + extract invoice data in ONE LLM call
+
+        Args:
+            text: OCR extracted text
+
+        Returns:
+            Dictionary with:
+            {
+                'document_type': 'invoice|receipt|...',
+                'confidence': 'high|medium|low',
+                'invoice_data': {...} or None
+            }
+        """
+        if not self.llm_processor:
+            return None
+
+        # Clean text
+        cleaned_text = self._clean_text(text)
+
+        # Prepare combined prompt
+        prompt = self.combined_extraction_prompt.format(text=cleaned_text)
+
+        # Single LLM call for both tasks
+        try:
+            response = self.llm_processor._call_ollama(prompt)
+            if not response:
+                return None
+
+            # Parse JSON response
+            result = self._parse_json_response(response)
+
+            if result and result.get('invoice_data'):
+                # Post-process invoice data
+                result['invoice_data'] = self._post_process(result['invoice_data'])
+
+            return result
+
+        except Exception as e:
+            print(f"⚠ Combined LLM extraction error: {e}")
+            return None
 
     def extract_from_text(self, text: str) -> Optional[Dict]:
         """
