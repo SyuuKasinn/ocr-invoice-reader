@@ -139,7 +139,7 @@ class LLMProcessor:
 
         prompt = f"""请判断以下文档的类型：
 
-{text[:500]}
+{' '.join(text.split())[:2000]}
 
 返回JSON格式分类结果："""
 
@@ -276,15 +276,15 @@ def enhance_ocr_result(text: str, model: str = "qwen2.5:0.5b") -> Dict[str, Any]
 
     try:
         # 文本纠错
-        corrected = processor.correct_text(text[:2000])  # 限制长度避免太慢
+        corrected = processor.correct_text(' '.join(text.split())[:2000])  # 限制长度避免太慢
 
         # 文档分类
-        doc_type = processor.classify_document(text[:500])
+        doc_type = processor.classify_document(' '.join(text.split())[:2000])
 
         # 字段提取（如果是发票）
         fields = None
         if doc_type.get('type') == 'invoice':
-            fields = processor.extract_invoice_fields(text[:1500])
+            fields = processor.extract_invoice_fields(text[:3000])
 
         return {
             "original_text": text,
