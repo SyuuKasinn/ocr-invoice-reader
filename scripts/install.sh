@@ -150,6 +150,11 @@ echo "Step 8: Verifying installation..."
 # Check PaddlePaddle
 python3 -c "import paddle; print('✓ PaddlePaddle:', paddle.__version__)" || echo -e "${RED}✗ PaddlePaddle failed${NC}"
 
+if [ "$USE_GPU" = true ]; then
+    # Check if PaddlePaddle has CUDA support
+    python3 -c "import paddle; print('  CUDA compiled:', paddle.is_compiled_with_cuda()); print('  CUDA available:', paddle.device.is_compiled_with_cuda())" 2>/dev/null || echo -e "${YELLOW}  ⚠ PaddlePaddle CUDA check failed${NC}"
+fi
+
 # Check PyTorch
 python3 -c "import torch; print('✓ PyTorch:', torch.__version__); print('  CUDA available:', torch.cuda.is_available())" || echo -e "${RED}✗ PyTorch failed${NC}"
 
@@ -173,8 +178,21 @@ if [ "$USE_GPU" = true ]; then
     echo "  ✓ PyTorch-GPU installed"
     echo "  ✓ Quantization support (bitsandbytes)"
     echo ""
+
+    # Check if PaddlePaddle GPU is actually working
+    PADDLE_GPU_CHECK=$(python3 -c "import paddle; print(paddle.is_compiled_with_cuda())" 2>/dev/null)
+    if [ "$PADDLE_GPU_CHECK" = "True" ]; then
+        echo -e "${GREEN}  ✓ PaddlePaddle CUDA support verified${NC}"
+    else
+        echo -e "${YELLOW}  ⚠ Warning: PaddlePaddle may not have CUDA support${NC}"
+        echo -e "${YELLOW}    OCR will use CPU (slower), but LLM will use GPU${NC}"
+        echo -e "${YELLOW}    To fix, run: pip install paddlepaddle-gpu==2.6.2.post${PADDLE_CUDA:-120} -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html${NC}"
+    fi
+
+    echo ""
     echo "Test GPU:"
     echo "  python3 -c 'import torch; print(torch.cuda.is_available())'"
+    echo "  python3 -c 'import paddle; print(paddle.is_compiled_with_cuda())'"
     echo "  nvidia-smi"
     echo ""
     echo "Recommended usage:"

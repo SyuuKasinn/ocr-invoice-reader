@@ -324,8 +324,26 @@ VALUES ('NCY250924', '2025-09-24', 135600.0, 'JPY');
 
 ```bash
 # Diagnose hardware and dependencies
-python -m ocr_invoice_reader.cli.check_env
+ocr-check-env
 ```
+
+### PaddlePaddle GPU Not Working
+
+If you see "WARNING: PaddlePaddle not compiled with CUDA":
+
+```bash
+# Quick fix script
+bash scripts/fix_paddle_gpu.sh
+
+# Or manually:
+pip uninstall -y paddlepaddle paddlepaddle-gpu
+pip install paddlepaddle-gpu==2.6.2.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+
+# Verify
+python -c "import paddle; print(paddle.is_compiled_with_cuda())"
+```
+
+**Note**: LLM uses GPU regardless of PaddlePaddle status. This fix accelerates OCR portion.
 
 ### LLM Loading Error
 

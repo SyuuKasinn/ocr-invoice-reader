@@ -75,6 +75,19 @@ def main():
             mod = __import__(module)
             version = getattr(mod, '__version__', 'unknown')
             print(f"✓ {name:20s} {version}")
+
+            # Special check for PaddlePaddle CUDA support
+            if name == 'PaddlePaddle' and env.gpu_available:
+                try:
+                    import paddle
+                    has_cuda = paddle.is_compiled_with_cuda()
+                    if has_cuda:
+                        print(f"  └─ CUDA support: ✓ Enabled")
+                    else:
+                        print(f"  └─ CUDA support: ✗ Not compiled with CUDA")
+                        print(f"     Run: bash scripts/fix_paddle_gpu.sh")
+                except:
+                    pass
         except ImportError:
             optional = name in ['BitsAndBytes', 'FastAPI']
             prefix = '⚠' if optional else '✗'
