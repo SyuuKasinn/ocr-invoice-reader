@@ -14,6 +14,7 @@ from typing import List, Dict
 from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedStructureAnalyzer
 from ocr_invoice_reader.processors.file_handler import FileProcessor
 from ocr_invoice_reader.utils.invoice_extractor_v2 import InvoiceExtractorV2
+from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor, validate_extraction_result
 from ocr_invoice_reader import __version__
 
 
@@ -319,36 +320,68 @@ Examples:
             if llm_processor:
                 page_llm_json = output_dir / f"{page_name}_llm.json"
                 try:
-                    # Initialize invoice extractor V2 (enhanced)
-                    invoice_extractor = InvoiceExtractorV2()
-
                     # Extract text from regions
                     page_text = '\n\n'.join([
                         f"[Region {i} - {region.type}]\n{region.text}"
                         for i, region in enumerate(result['regions'], 1)
                     ])
 
-                    # Extract invoice data
-                    invoice_data = invoice_extractor.extract_from_text(page_text)
-                    db_data = invoice_extractor.format_for_database(invoice_data)
+                    # HYBRID EXTRACTION: Try LLM first, fallback to regex
+                    db_data = None
+                    extraction_method = None
+                    llm_validation_issues = []
+
+                    # 1. Try LLM extraction first
+                    print(f"    → Attempting LLM extraction...")
+                    llm_extractor = LLMInvoiceExtractor(llm_processor)
+                    llm_result = llm_extractor.extract_from_text(page_text)
+
+                    if llm_result:
+                        # Validate LLM result
+                        is_valid, issues = validate_extraction_result(llm_result)
+
+                        if is_valid:
+                            db_data = llm_extractor.format_for_database(llm_result)
+                            extraction_method = 'llm'
+                            print(f"    ✓ LLM extraction successful")
+                        else:
+                            llm_validation_issues = issues
+                            print(f"    ⚠ LLM extraction validation failed: {', '.join(issues)}")
+                            print(f"    → Falling back to regex extraction...")
+                    else:
+                        print(f"    ⚠ LLM extraction returned no data")
+                        print(f"    → Falling back to regex extraction...")
+
+                    # 2. Fallback to regex if LLM failed
+                    if not db_data:
+                        invoice_extractor = InvoiceExtractorV2()
+                        invoice_data = invoice_extractor.extract_from_text(page_text)
+                        db_data = invoice_extractor.format_for_database(invoice_data)
+                        extraction_method = 'regex_fallback'
+                        print(f"    ✓ Regex extraction completed")
 
                     # Add metadata
                     extraction_result = {
                         'page': result['page_number'],
                         'source_file': page_name,
-                        'extraction_method': 'invoice_extractor',
+                        'extraction_method': extraction_method,
                         'extracted_fields': db_data,
-                        'raw_data': {
+                    }
+
+                    # Add validation issues if any
+                    if llm_validation_issues:
+                        extraction_result['llm_validation_issues'] = llm_validation_issues
+
+                    # Add raw item data if available (from regex method)
+                    if extraction_method == 'regex_fallback' and 'invoice_data' in locals():
+                        extraction_result['raw_data'] = {
                             'items': invoice_data.get('items', []),
                             'items_count': invoice_data.get('items_count', 0),
                         }
-                    }
 
-                    # Add LLM results if available
+                    # Add LLM document classification if available
                     if 'llm_document_type' in result:
                         extraction_result['llm_document_type'] = result['llm_document_type']
-                    if 'llm_extracted_fields' in result:
-                        extraction_result['llm_extracted_fields'] = result['llm_extracted_fields']
                     if 'llm_error' in result:
                         extraction_result['llm_error'] = result['llm_error']
 
@@ -472,7 +505,8 @@ Examples:
         if llm_processor:
             invoice_json = output_dir / f"{input_name}_invoices.json"
             try:
-                invoice_extractor = InvoiceExtractorV2()
+                llm_extractor = LLMInvoiceExtractor(llm_processor)
+                invoice_extractor_v2 = InvoiceExtractorV2()
                 all_invoices = []
 
                 for result in all_results:
@@ -484,19 +518,33 @@ Examples:
                         for i, region in enumerate(result['regions'], 1)
                     ])
 
-                    # Extract invoice data
-                    invoice_data = invoice_extractor.extract_from_text(page_text)
-                    db_data = invoice_extractor.format_for_database(invoice_data)
+                    # HYBRID EXTRACTION: Try LLM first, fallback to regex
+                    db_data = None
+                    extraction_method = None
+
+                    # Try LLM first
+                    llm_result = llm_extractor.extract_from_text(page_text)
+                    if llm_result:
+                        is_valid, issues = validate_extraction_result(llm_result)
+                        if is_valid:
+                            db_data = llm_extractor.format_for_database(llm_result)
+                            extraction_method = 'llm'
+
+                    # Fallback to regex
+                    if not db_data:
+                        invoice_data = invoice_extractor_v2.extract_from_text(page_text)
+                        db_data = invoice_extractor_v2.format_for_database(invoice_data)
+                        extraction_method = 'regex_fallback'
 
                     # Create invoice record
                     invoice_record = {
                         'page': page_num,
                         'source_file': Path(result['image_path']).stem,
+                        'extraction_method': extraction_method,
                         'extracted_fields': db_data,
-                        'items_count': invoice_data.get('items_count', 0),
                     }
 
-                    # Add LLM results if available
+                    # Add LLM document type if available
                     if 'llm_document_type' in result:
                         invoice_record['llm_document_type'] = result['llm_document_type']
 
@@ -511,6 +559,8 @@ Examples:
                         'with_invoice_number': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_number')),
                         'with_company': sum(1 for inv in all_invoices if inv['extracted_fields'].get('company_name')),
                         'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('total_amount')),
+                        'llm_extracted': sum(1 for inv in all_invoices if inv.get('extraction_method') == 'llm'),
+                        'regex_fallback': sum(1 for inv in all_invoices if inv.get('extraction_method') == 'regex_fallback'),
                     }
                 }
 
@@ -521,6 +571,8 @@ Examples:
                 print(f"    Pages with invoice no: {combined_data['summary']['with_invoice_number']}")
                 print(f"    Pages with company: {combined_data['summary']['with_company']}")
                 print(f"    Pages with amount: {combined_data['summary']['with_amount']}")
+                print(f"    LLM extracted: {combined_data['summary']['llm_extracted']}")
+                print(f"    Regex fallback: {combined_data['summary']['regex_fallback']}")
 
             except Exception as e:
                 print(f"  ✗ Combined invoice extraction failed: {str(e)}")
