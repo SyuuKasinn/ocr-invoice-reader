@@ -47,8 +47,10 @@ class InvoiceExtractorV2:
                 r'No[.:]?\s*\|\s*([0-9-]+)',
             ],
             'shipper': [
-                r'(?:SHIPPER|发货人)[:\s\|]+([^\n]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED|株式会社|有限会社))',
-                r'(?:FROM|寄件人)[:\s]+([^\n]+)',
+                # Match company name only, stop at address/tel keywords
+                r'(?:SHIPPER|发货人)[:\s\|]+([A-Z][A-Z\s&.,]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED|株式会社|有限会社))(?:\s+(?:ADDRESS|Tel|TEL|ADD)|\n|$)',
+                r'Shipper\s+Address\s*\|\s*([A-Z][A-Z\s&.,]+(?:CO[.,]?LTD|CORPORATION|INC|LIMITED))',
+                r'(?:FROM|寄件人)[:\s]+([A-Z][^\n|]+(?:CO[.,]?LTD|CORPORATION))(?:\s|$)',
             ],
             'consignee': [
                 # Match only the company name line, stop at TEL or next section
@@ -65,7 +67,9 @@ class InvoiceExtractorV2:
                 r'^([^\n]+(?:有限公司|股份有限公司))',
             ],
             'total_amount': [
-                # Piped format: Total | 135600
+                # Total: | 4000.00 (with colon)
+                r'Total:\s*\|\s*([\d,]+\.?\d*)',
+                # Total | 135600 (without colon)
                 r'Total\s*\|\s*([\d,]+\.?\d*)',
                 r'Total[:\s]+\$?([\d,]+\.?\d*)',
                 r'Total\s*Amount[:\s]+\$?([\d,]+\.?\d*)',
@@ -225,6 +229,11 @@ class InvoiceExtractorV2:
                        ['ITEM NO', 'DESCRIPTION', 'QTY', 'QUANTITY', 'PRICE', 'AMOUNT', 'UNIT']):
                     continue
 
+                # Skip metadata lines (Tel, Fax, Address, etc.)
+                if any(keyword in line for keyword in
+                       ['Tel:', 'TEL:', 'Fax:', 'FAX:', 'Address:', 'ADDRESS:', '亍:', 'Tracking No:', 'Shipper Address']):
+                    continue
+
                 # Skip very short lines
                 if len(line.strip()) < 5:
                     continue
@@ -233,8 +242,13 @@ class InvoiceExtractorV2:
                 parts = [p.strip() for p in line.split('|') if p.strip()]
 
                 if len(parts) >= 2:
-                    # Extract all numeric values
-                    numbers = re.findall(r'[\d,]+\.?\d*', line)
+                    # Extract all numeric values (but filter out phone-like patterns)
+                    # Exclude numbers that look like phone numbers (e.g., 0081-078-200-5562)
+                    numbers = []
+                    for num in re.findall(r'[\d,]+\.?\d*', line):
+                        # Skip if it's part of a phone/fax number pattern
+                        if not re.search(rf'\b(?:0081|081|086|080|090)-.*{re.escape(num)}', line):
+                            numbers.append(num)
 
                     if numbers:
                         item = {
