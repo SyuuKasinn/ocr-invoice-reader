@@ -15,6 +15,7 @@ from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedSt
 from ocr_invoice_reader.processors.file_handler import FileProcessor
 from ocr_invoice_reader.utils.invoice_extractor_v2 import InvoiceExtractorV2
 from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor, validate_extraction_result
+from ocr_invoice_reader.utils.environment import EnvironmentConfig, configure_paddle_environment
 from ocr_invoice_reader import __version__
 
 
@@ -55,11 +56,25 @@ Examples:
     try:
         overall_start = time.time()
 
+        # Configure environment
+        env = EnvironmentConfig()
+
         print("="*60)
         print("Enhanced Document Extraction")
         print(f"Version: {__version__}")
         print(f"⏱ Started at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}")
         print("="*60)
+        print()
+
+        # Show environment info
+        print("Environment:")
+        print(f"  Device: {'GPU' if env.gpu_available else 'CPU'}")
+        if env.gpu_available:
+            print(f"  GPU: {env.gpu_name}")
+            print(f"  VRAM: {env.gpu_memory:.1f} GB")
+        else:
+            print(f"  CPU Cores: {env.cpu_count}")
+        print()
 
         # Convert PDF if needed
         file_processor = FileProcessor()
@@ -80,19 +95,32 @@ Examples:
         # Initialize LLM processor if requested
         llm_processor = None
         if args.use_llm:
-            print("\nInitializing Qwen LLM (Direct, GPU accelerated)...")
+            # Get recommended LLM config based on hardware
+            recommended = env.get_recommended_llm_config()
+
+            # Override with user settings
+            model_size = args.llm_model
+            use_gpu = not args.use_cpu
+            quantization = None if args.llm_quantization == 'none' else args.llm_quantization
+
+            # If user didn't specify, use recommendations
+            if args.llm_model == '7b' and not env.gpu_available:
+                model_size = recommended['model_size']
+                print(f"\n⚠ No GPU detected, using CPU-optimized model: {model_size}")
+
+            print(f"\nInitializing Qwen LLM ({model_size.upper()})...")
+            print(f"  Device: {'GPU' if use_gpu and env.gpu_available else 'CPU'}")
+            if use_gpu and env.gpu_available and quantization:
+                print(f"  Quantization: {quantization}")
 
             try:
                 from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
 
-                # Parse quantization
-                quantization = None if args.llm_quantization == 'none' else args.llm_quantization
-
                 # Create processor
                 llm_processor = create_qwen_processor(
-                    model_size=args.llm_model,
-                    use_gpu=not args.use_cpu,
-                    quantization=quantization
+                    model_size=model_size,
+                    use_gpu=use_gpu and env.gpu_available,  # Only use GPU if available
+                    quantization=quantization if use_gpu else None  # No quantization on CPU
                 )
 
                 if llm_processor:

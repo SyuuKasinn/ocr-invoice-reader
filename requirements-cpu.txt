@@ -1,0 +1,43 @@
+# OCR Invoice Reader - CPU Version
+# For systems without NVIDIA GPU or for CPU-only inference
+
+# Core Dependencies
+paddlepaddle==3.0.0.b2  # CPU version
+paddleocr>=2.8.1
+paddlenlp>=2.8.0
+
+# PyMuPDF for PDF processing
+pymupdf>=1.24.0
+fitz
+
+# Computer Vision
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Data Processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# LLM Support (CPU-compatible)
+torch>=2.0.0  # CPU version will be installed by default
+transformers>=4.36.0
+accelerate>=0.25.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Note: bitsandbytes (quantization) not needed for CPU
+
+# API Support (optional)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.0.0
+
+# Utilities
+requests>=2.31.0
+tqdm>=4.66.0
+
+# Development (optional)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0

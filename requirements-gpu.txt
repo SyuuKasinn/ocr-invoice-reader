@@ -1,0 +1,56 @@
+# OCR Invoice Reader - GPU Version
+# For systems with NVIDIA GPU (CUDA 11.8 or 12.0+)
+
+# Core Dependencies (GPU versions)
+# PaddlePaddle GPU - Choose based on your CUDA version:
+# CUDA 11.8:
+paddlepaddle-gpu==3.0.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+# CUDA 12.0:
+# paddlepaddle-gpu==3.0.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+
+paddleocr>=2.8.1
+paddlenlp>=2.8.0
+
+# PyMuPDF for PDF processing
+pymupdf>=1.24.0
+fitz
+
+# Computer Vision
+opencv-python>=4.8.0
+Pillow>=10.0.0
+numpy>=1.24.0
+
+# Data Processing
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# LLM Support (GPU-optimized)
+# PyTorch with CUDA - Choose based on your CUDA version:
+# CUDA 11.8:
+torch>=2.0.0 --index-url https://download.pytorch.org/whl/cu118
+# CUDA 12.1:
+# torch>=2.0.0 --index-url https://download.pytorch.org/whl/cu121
+
+torchvision
+torchaudio
+transformers>=4.36.0
+accelerate>=0.25.0
+sentencepiece>=0.1.99
+protobuf>=3.20.0
+
+# Quantization support (GPU only)
+bitsandbytes>=0.41.0  # For INT4/INT8 quantization
+
+# API Support (optional)
+fastapi>=0.104.0
+uvicorn[standard]>=0.24.0
+python-multipart>=0.0.6
+pydantic>=2.0.0
+
+# Utilities
+requests>=2.31.0
+tqdm>=4.66.0
+
+# Development (optional)
+# pytest>=7.4.0
+# pytest-cov>=4.1.0
