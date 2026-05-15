@@ -35,10 +35,14 @@ class InvoiceExtractorV2:
                 r'日期[:\s]+(\d{4}[-/]\d{1,2}[-/]\d{1,2})',
             ],
             'tracking_no': [
-                # Piped format first (more specific): Tracking No: | 506-538-938-065
+                # 运单号码: | 820111868365 (Chinese format, piped - highest priority)
+                r'运单号[码：:]+\s*[|：]\s*([0-9]+)',
+                # Tracking No: | 506-538-938-065 (piped format)
                 r'Tracking\s*No[.:]?\s*\|\s*([0-9-]+)',
                 r'Tracking\s*No[.:]?\s*([0-9-]+)',
+                # Air Waybill (piped)
                 r'Air\s*Waybill\s*No[.:]?\s*\|\s*([0-9-]+)',
+                r'AIR\s*WAYBILLNO[.:]?\s*([0-9]+)',
                 r'Air\s*Waybill\s*No[.:]?\s*([0-9-]+)',
                 r'AWB\s*No[.:]?\s*([0-9-]+)',
                 r'追[送]*番号[:\s：]*([A-Z0-9:-]+)',
@@ -67,6 +71,8 @@ class InvoiceExtractorV2:
                 r'^([^\n]+(?:有限公司|股份有限公司))',
             ],
             'total_amount': [
+                # TOTAL INVOICE VALUE | 合计总价 | USD20.00
+                r'TOTAL\s+INVOICE\s+VALUE\s*\|[^|]*\|\s*(?:USD|JPY|CNY)?([\d,]+\.?\d*)',
                 # Total: | 4000.00 (with colon)
                 r'Total:\s*\|\s*([\d,]+\.?\d*)',
                 # Total | 135600 (without colon)
@@ -74,6 +80,7 @@ class InvoiceExtractorV2:
                 r'Total[:\s]+\$?([\d,]+\.?\d*)',
                 r'Total\s*Amount[:\s]+\$?([\d,]+\.?\d*)',
                 r'Grand\s*Total[:\s]+\$?([\d,]+\.?\d*)',
+                r'合计总价\s*\|\s*(?:USD|JPY|CNY)?([\d,]+\.?\d*)',
                 r'合计[:\s]+([\d,]+\.?\d*)',
             ],
             'tel': [
@@ -147,6 +154,8 @@ class InvoiceExtractorV2:
 
     def _clean_text(self, text: str) -> str:
         """Clean OCR artifacts from text"""
+        # Remove [Region X - type] markers
+        text = re.sub(r'\[Region \d+ - \w+\]', '', text)
         # Remove excessive pipes used as separators
         text = re.sub(r'\s*\|\s*', ' | ', text)
         # Normalize whitespace
@@ -229,9 +238,11 @@ class InvoiceExtractorV2:
                        ['ITEM NO', 'DESCRIPTION', 'QTY', 'QUANTITY', 'PRICE', 'AMOUNT', 'UNIT']):
                     continue
 
-                # Skip metadata lines (Tel, Fax, Address, etc.)
+                # Skip metadata lines (Tel, Fax, Address, ZIP, Date, etc.)
                 if any(keyword in line for keyword in
-                       ['Tel:', 'TEL:', 'Fax:', 'FAX:', 'Address:', 'ADDRESS:', '亍:', 'Tracking No:', 'Shipper Address']):
+                       ['Tel:', 'TEL:', 'Fax:', 'FAX:', 'Address:', 'ADDRESS:', 'ZIP:', '亍:',
+                        'Tracking No:', 'Shipper Address', 'DATE OF', 'SHIPPER\'S SIGNATURE',
+                        '出口日期:', '运单号码:', 'COUNTRY OF']):
                     continue
 
                 # Skip very short lines
