@@ -63,6 +63,26 @@ ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
 ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
 ```
 
+### 🚀 GPU Acceleration for LLM
+
+**Ollama LLM now supports GPU acceleration for 3-5x faster processing!**
+
+```bash
+# Setup GPU (one-time)
+bash scripts/fix_ollama_gpu.sh
+
+# Use GPU-optimized models
+ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+```
+
+**Model Selection Guide:**
+- `qwen2.5:0.5b` - Fast, CPU-friendly (300MB) ⚡
+- `qwen2.5:3b` - Balanced (2GB) ⚡⚡
+- `qwen2.5:7b` - High accuracy, requires GPU (6GB VRAM) ⚡⚡⚡
+- `qwen2.5:14b` - Maximum accuracy, requires powerful GPU (12GB VRAM) ⚡⚡⚡⚡
+
+See [docs/OLLAMA_GPU_SETUP.md](docs/OLLAMA_GPU_SETUP.md) for detailed configuration.
+
 ### Output
 
 ```

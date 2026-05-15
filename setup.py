@@ -27,10 +27,10 @@ def read_requirements():
 
 setup(
     name="ocr-invoice-reader",
-    version=__version__,  # Now properly imported
-    author="Your Name",
+    version="2.2.7",
+    author="SyuuKasinn",
     author_email="your.email@example.com",
-    description="Document information extraction system using PaddleOCR and PP-Structure",
+    description="Document information extraction system using PaddleOCR and PP-Structure with LLM integration and GPU support",
     long_description=read_long_description(),
     long_description_content_type="text/markdown",
     url="https://github.com/SyuuKasinn/ocr-invoice-reader",

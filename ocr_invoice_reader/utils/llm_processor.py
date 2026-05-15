@@ -15,15 +15,29 @@ class LLMProcessor:
     - 内容理解和分类
     """
 
-    def __init__(self, model: str = "qwen2.5:0.5b", base_url: str = "http://localhost:11434"):
+    def __init__(self, model: str = "qwen2.5:0.5b", base_url: str = "http://localhost:11434", timeout: int = None):
         """
         Args:
             model: Ollama模型名称（推荐: qwen2.5:0.5b, phi3:mini）
             base_url: Ollama服务地址
+            timeout: LLM生成超时时间(秒)，None则根据模型大小自动设置
         """
         self.model = model
         self.base_url = base_url
         self.api_url = f"{base_url}/api/generate"
+
+        # 根据模型大小自动设置超时
+        if timeout is None:
+            if '14b' in model.lower() or '13b' in model.lower():
+                self.timeout = 180  # 3分钟 for 14B models
+            elif '7b' in model.lower():
+                self.timeout = 120  # 2分钟 for 7B models
+            elif 'mini' in model.lower() or '0.5b' in model.lower():
+                self.timeout = 60   # 1分钟 for small models
+            else:
+                self.timeout = 300  # 5分钟 default for unknown size
+        else:
+            self.timeout = timeout
 
     def is_available(self) -> bool:
         """检查Ollama服务是否可用"""
@@ -59,7 +73,7 @@ class LLMProcessor:
             payload["system"] = system
 
         try:
-            response = requests.post(self.api_url, json=payload, timeout=30)
+            response = requests.post(self.api_url, json=payload, timeout=self.timeout)
             response.raise_for_status()
             result = response.json()
             return result.get('response', '').strip()
