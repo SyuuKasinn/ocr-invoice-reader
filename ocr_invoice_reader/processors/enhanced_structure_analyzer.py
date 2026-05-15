@@ -228,7 +228,7 @@ class EnhancedStructureAnalyzer:
                             continue
 
                         # Process text to fix concatenation issues
-                        text = self.text_processor.process_ocr_result(text, split_words=True)
+                        text = self.text_processor.process_ocr_result(text, split_words=False)
                         texts.append(text)
 
                     region.text = '\n'.join(texts)
@@ -263,7 +263,7 @@ class EnhancedStructureAnalyzer:
                 x2, y2 = box_np[:, 0].max(), box_np[:, 1].max()
 
                 # Process text to improve quality
-                processed_text = self.text_processor.process_ocr_result(text, split_words=True)
+                processed_text = self.text_processor.process_ocr_result(text, split_words=False)
 
                 boxes.append({
                     'bbox': [int(x1), int(y1), int(x2), int(y2)],
@@ -519,7 +519,7 @@ class EnhancedStructureAnalyzer:
                     _, (text, conf) = line
                     if conf > 0.5:  # Only use high confidence results
                         # Process text
-                        text = self.text_processor.process_ocr_result(text, split_words=True)
+                        text = self.text_processor.process_ocr_result(text, split_words=False)
                         lines.append(text)
 
             return '\n'.join(lines)
