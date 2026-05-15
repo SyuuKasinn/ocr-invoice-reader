@@ -31,8 +31,8 @@ Examples:
     parser.add_argument(
         '--model',
         type=str,
-        default='qwen2.5:3b',
-        help='LLM model to use (default: qwen2.5:3b)'
+        default='qwen2.5:7b',
+        help='LLM model to use (default: qwen2.5:7b)'
     )
 
     parser.add_argument(
