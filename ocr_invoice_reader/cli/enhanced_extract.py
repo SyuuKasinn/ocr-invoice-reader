@@ -14,7 +14,7 @@ from typing import List, Dict
 from ocr_invoice_reader.processors.enhanced_structure_analyzer import EnhancedStructureAnalyzer
 from ocr_invoice_reader.processors.file_handler import FileProcessor
 from ocr_invoice_reader.utils.invoice_extractor_v2 import InvoiceExtractorV2
-from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor, validate_extraction_result
+from ocr_invoice_reader.utils.llm_invoice_extractor_glovia import GLOVIAInvoiceExtractor, validate_glovia_extraction
 from ocr_invoice_reader import __version__
 
 
@@ -326,37 +326,39 @@ Examples:
                         for i, region in enumerate(result['regions'], 1)
                     ])
 
-                    # HYBRID EXTRACTION: Try LLM first, fallback to regex
-                    db_data = None
+                    # HYBRID EXTRACTION: Try GLOVIA LLM first, fallback to regex
+                    glovia_data = None
                     extraction_method = None
                     llm_validation_issues = []
+                    llm_raw_result = None
 
-                    # 1. Try LLM extraction first
-                    print(f"    → Attempting LLM extraction...")
-                    llm_extractor = LLMInvoiceExtractor(llm_processor)
-                    llm_result = llm_extractor.extract_from_text(page_text)
+                    # 1. Try GLOVIA LLM extraction first
+                    print(f"    → Attempting GLOVIA LLM extraction...")
+                    glovia_extractor = GLOVIAInvoiceExtractor(llm_processor)
+                    glovia_result = glovia_extractor.extract_from_text(page_text)
 
-                    if llm_result:
-                        # Validate LLM result
-                        is_valid, issues = validate_extraction_result(llm_result)
+                    if glovia_result:
+                        # Validate GLOVIA result
+                        is_valid, issues = validate_glovia_extraction(glovia_result)
 
                         if is_valid:
-                            db_data = llm_extractor.format_for_database(llm_result)
-                            extraction_method = 'llm'
-                            print(f"    ✓ LLM extraction successful")
+                            glovia_data = glovia_extractor.format_for_glovia_db(glovia_result)
+                            llm_raw_result = glovia_result.get('invoice_data')
+                            extraction_method = 'glovia_llm'
+                            print(f"    ✓ GLOVIA LLM extraction successful")
                         else:
                             llm_validation_issues = issues
-                            print(f"    ⚠ LLM extraction validation failed: {', '.join(issues)}")
+                            print(f"    ⚠ GLOVIA validation failed: {', '.join(issues)}")
                             print(f"    → Falling back to regex extraction...")
                     else:
-                        print(f"    ⚠ LLM extraction returned no data")
+                        print(f"    ⚠ GLOVIA LLM extraction returned no data")
                         print(f"    → Falling back to regex extraction...")
 
                     # 2. Fallback to regex if LLM failed
-                    if not db_data:
+                    if not glovia_data:
                         invoice_extractor = InvoiceExtractorV2()
                         invoice_data = invoice_extractor.extract_from_text(page_text)
-                        db_data = invoice_extractor.format_for_database(invoice_data)
+                        glovia_data = invoice_extractor.format_for_database(invoice_data)
                         extraction_method = 'regex_fallback'
                         print(f"    ✓ Regex extraction completed")
 
@@ -365,8 +367,12 @@ Examples:
                         'page': result['page_number'],
                         'source_file': page_name,
                         'extraction_method': extraction_method,
-                        'extracted_fields': db_data,
+                        'extracted_fields': glovia_data,
                     }
+
+                    # Add GLOVIA structured data if available
+                    if llm_raw_result:
+                        extraction_result['glovia_structured_data'] = llm_raw_result
 
                     # Add validation issues if any
                     if llm_validation_issues:
@@ -505,7 +511,7 @@ Examples:
         if llm_processor:
             invoice_json = output_dir / f"{input_name}_invoices.json"
             try:
-                llm_extractor = LLMInvoiceExtractor(llm_processor)
+                glovia_extractor = GLOVIAInvoiceExtractor(llm_processor)
                 invoice_extractor_v2 = InvoiceExtractorV2()
                 all_invoices = []
 
@@ -518,22 +524,24 @@ Examples:
                         for i, region in enumerate(result['regions'], 1)
                     ])
 
-                    # HYBRID EXTRACTION: Try LLM first, fallback to regex
-                    db_data = None
+                    # HYBRID EXTRACTION: Try GLOVIA LLM first, fallback to regex
+                    glovia_data = None
                     extraction_method = None
+                    glovia_structured = None
 
-                    # Try LLM first
-                    llm_result = llm_extractor.extract_from_text(page_text)
-                    if llm_result:
-                        is_valid, issues = validate_extraction_result(llm_result)
+                    # Try GLOVIA LLM first
+                    glovia_result = glovia_extractor.extract_from_text(page_text)
+                    if glovia_result:
+                        is_valid, issues = validate_glovia_extraction(glovia_result)
                         if is_valid:
-                            db_data = llm_extractor.format_for_database(llm_result)
-                            extraction_method = 'llm'
+                            glovia_data = glovia_extractor.format_for_glovia_db(glovia_result)
+                            glovia_structured = glovia_result.get('invoice_data')
+                            extraction_method = 'glovia_llm'
 
                     # Fallback to regex
-                    if not db_data:
+                    if not glovia_data:
                         invoice_data = invoice_extractor_v2.extract_from_text(page_text)
-                        db_data = invoice_extractor_v2.format_for_database(invoice_data)
+                        glovia_data = invoice_extractor_v2.format_for_database(invoice_data)
                         extraction_method = 'regex_fallback'
 
                     # Create invoice record
@@ -541,8 +549,12 @@ Examples:
                         'page': page_num,
                         'source_file': Path(result['image_path']).stem,
                         'extraction_method': extraction_method,
-                        'extracted_fields': db_data,
+                        'extracted_fields': glovia_data,
                     }
+
+                    # Add GLOVIA structured data if available
+                    if glovia_structured:
+                        invoice_record['glovia_structured_data'] = glovia_structured
 
                     # Add LLM document type if available
                     if 'llm_document_type' in result:
@@ -557,9 +569,10 @@ Examples:
                     'invoices': all_invoices,
                     'summary': {
                         'with_invoice_number': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_number')),
-                        'with_company': sum(1 for inv in all_invoices if inv['extracted_fields'].get('company_name')),
-                        'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('total_amount')),
-                        'llm_extracted': sum(1 for inv in all_invoices if inv.get('extraction_method') == 'llm'),
+                        'with_mawb_hawb': sum(1 for inv in all_invoices if inv['extracted_fields'].get('mawb_number') or inv['extracted_fields'].get('hawb_number')),
+                        'with_importer_tel': sum(1 for inv in all_invoices if inv['extracted_fields'].get('importer_tel')),
+                        'with_amount': sum(1 for inv in all_invoices if inv['extracted_fields'].get('invoice_value')),
+                        'glovia_llm_extracted': sum(1 for inv in all_invoices if inv.get('extraction_method') == 'glovia_llm'),
                         'regex_fallback': sum(1 for inv in all_invoices if inv.get('extraction_method') == 'regex_fallback'),
                     }
                 }
@@ -569,9 +582,10 @@ Examples:
 
                 print(f"  Invoices JSON: {invoice_json.name}")
                 print(f"    Pages with invoice no: {combined_data['summary']['with_invoice_number']}")
-                print(f"    Pages with company: {combined_data['summary']['with_company']}")
+                print(f"    Pages with MAWB/HAWB: {combined_data['summary']['with_mawb_hawb']}")
+                print(f"    Pages with importer TEL: {combined_data['summary']['with_importer_tel']}")
                 print(f"    Pages with amount: {combined_data['summary']['with_amount']}")
-                print(f"    LLM extracted: {combined_data['summary']['llm_extracted']}")
+                print(f"    GLOVIA LLM extracted: {combined_data['summary']['glovia_llm_extracted']}")
                 print(f"    Regex fallback: {combined_data['summary']['regex_fallback']}")
 
             except Exception as e:
