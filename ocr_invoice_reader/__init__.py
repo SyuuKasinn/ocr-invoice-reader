@@ -5,7 +5,7 @@ A comprehensive document information extraction system using PaddleOCR and PP-St
 Extracts structured information from invoices, waybills, and other business documents.
 """
 
-__version__ = "2.3.1"
+__version__ = "2.3.2"
 __author__ = "Your Name"
 __license__ = "MIT"
 

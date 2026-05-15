@@ -27,7 +27,7 @@ def read_requirements():
 
 setup(
     name="ocr-invoice-reader",
-    version="2.2.7",
+    version="2.3.2",
     author="SyuuKasinn",
     author_email="your.email@example.com",
     description="Document information extraction system using PaddleOCR and PP-Structure with LLM integration and GPU support",
@@ -76,7 +76,7 @@ setup(
             "ocr-enhanced=ocr_invoice_reader.cli.enhanced_extract:main",
             "ocr-enhanced-parallel=ocr_invoice_reader.cli.enhanced_extract_parallel:main",
             "ocr-api=ocr_invoice_reader.cli.api_server:main",
-            "ocr-setup-ollama=ocr_invoice_reader.cli.setup_ollama:main",
+            "ocr-check-env=ocr_invoice_reader.cli.check_env:main",
         ],
     },
     include_package_data=True,

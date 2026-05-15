@@ -1,13 +1,13 @@
 # OCR Invoice Reader
 
-> 🚀 **Version 2.3.1 - Parallel Processing & GLOVIA Integration**
+> 🚀 **Version 2.3.2 - Direct Qwen Integration & CPU/GPU Auto-Detection**
 
 High-performance document extraction system using PaddleOCR v4 and LLM enhancement. Extract structured data from invoices, waybills, and customs documents with **3-7x parallel speedup** and **93% accuracy**.
 
 [![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![PaddleOCR](https://img.shields.io/badge/PaddleOCR-v4-orange)](https://github.com/PaddlePaddle/PaddleOCR)
-[![Version](https://img.shields.io/badge/version-2.3.1-blue)](setup.py)
+[![Version](https://img.shields.io/badge/version-2.3.2-blue)](setup.py)
 
 ## 📚 Documentation
 
@@ -44,10 +44,38 @@ High-performance document extraction system using PaddleOCR v4 and LLM enhanceme
 
 ### Installation
 
+#### Auto-Installation (Recommended)
+
+The smart installer automatically detects your hardware (CPU/GPU) and installs the appropriate dependencies:
+
 ```bash
 git clone https://github.com/SyuuKasinn/ocr-invoice-reader.git
 cd ocr-invoice-reader
+
+# Smart installer - auto-detects GPU and installs correct packages
+bash scripts/install.sh
+```
+
+#### Manual Installation
+
+**For GPU systems** (NVIDIA GPU with CUDA):
+```bash
+pip install -r requirements-gpu.txt
 pip install -e .
+```
+
+**For CPU-only systems**:
+```bash
+pip install -r requirements-cpu.txt
+pip install -e .
+```
+
+#### Check Environment
+
+Verify your installation and see recommended settings:
+
+```bash
+python -m ocr_invoice_reader.cli.check_env
 ```
 
 ### Basic Usage
@@ -56,32 +84,38 @@ pip install -e .
 # Simple OCR (no LLM)
 ocr-enhanced --image invoice.pdf --visualize
 
-# With LLM enhancement
-ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
+# With LLM enhancement (auto-detects best model for your hardware)
+ocr-enhanced --image invoice.pdf --use-llm
 
 # Parallel processing (3-7x faster)
 ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
 ```
 
-### 🚀 GPU Acceleration for LLM
+### 🚀 GPU Acceleration
 
-**Ollama LLM now supports GPU acceleration for 3-5x faster processing!**
+**Direct Qwen integration with automatic GPU acceleration!**
 
-```bash
-# Setup GPU (one-time)
-bash scripts/fix_ollama_gpu.sh
-
-# Use GPU-optimized models
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
-```
+The system automatically detects your hardware and uses:
+- **GPU available**: Fast inference with INT4/INT8 quantization
+- **CPU only**: Optimized for CPU with smaller models
 
 **Model Selection Guide:**
-- `qwen2.5:0.5b` - Fast, CPU-friendly (300MB) ⚡
-- `qwen2.5:3b` - Balanced (2GB) ⚡⚡
-- `qwen2.5:7b` - High accuracy, requires GPU (6GB VRAM) ⚡⚡⚡
-- `qwen2.5:14b` - Maximum accuracy, requires powerful GPU (12GB VRAM) ⚡⚡⚡⚡
+- `3b` - Fast, CPU-friendly (2GB) ⚡
+- `7b` - Balanced, recommended for GPU (4GB VRAM with quantization) ⚡⚡
+- `14b` - High accuracy, requires powerful GPU (8GB VRAM with quantization) ⚡⚡⚡
 
-See [docs/OLLAMA_GPU_SETUP.md](docs/OLLAMA_GPU_SETUP.md) for detailed configuration.
+```bash
+# Auto-select model based on hardware
+ocr-enhanced --image invoice.pdf --use-llm
+
+# Manually specify model size
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
+
+# Control quantization (GPU only)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b --llm-quantization int4
+```
+
+See [docs/QWEN_DIRECT_SETUP.md](docs/QWEN_DIRECT_SETUP.md) for detailed configuration.
 
 ### Output
 
@@ -132,10 +166,10 @@ ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 6
 
 ```python
 from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor
-from ocr_invoice_reader.utils.llm_processor import create_llm_processor
+from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
 
-# Initialize
-llm_processor = create_llm_processor('qwen2.5:14b')
+# Initialize (auto-detects GPU and selects optimal settings)
+llm_processor = create_qwen_processor(model_size='7b', use_gpu=True, quantization='int4')
 extractor = LLMInvoiceExtractor(llm_processor)
 
 # Extract
@@ -208,14 +242,14 @@ done
 ### LLM Models
 
 ```bash
-# Fast model (7B, faster but less accurate)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+# Fast model (3B, CPU-friendly)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 3b
 
-# Balanced model (14B, recommended)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:14b
+# Balanced model (7B, recommended for GPU)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
 
-# High accuracy model (32B, slower but more accurate)
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:32b
+# High accuracy model (14B, requires powerful GPU)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
 ```
 
 ### Hybrid Extraction
@@ -258,35 +292,48 @@ VALUES ('NCY250924', '2025-09-24', 135600.0, 'JPY');
 
 ## 📋 System Requirements
 
-### Minimum
+### Minimum (CPU-only)
 - Python 3.8+
-- 4GB RAM
-- 2GB disk space
+- 8GB RAM
+- 5GB disk space
 - CPU (any)
 
-### Recommended
+### Recommended (GPU-accelerated)
 - Python 3.10+
 - 16GB RAM
-- 10GB disk space
-- NVIDIA GPU with CUDA
+- 15GB disk space
+- NVIDIA GPU with 8GB+ VRAM
+- CUDA 11.8 or 12.0+
 
 ### For Parallel Processing
 - 8GB+ RAM (3 workers)
 - 16GB+ RAM (6 workers)
 - Multi-core CPU (4+ cores)
 
+### Model Requirements
+- **3B model**: 2-4GB RAM (CPU) or 2GB VRAM (GPU)
+- **7B model**: 6-8GB RAM (CPU) or 4GB VRAM with quantization (GPU)
+- **14B model**: 12-16GB RAM (CPU) or 8GB VRAM with quantization (GPU)
+
 ---
 
 ## 🔧 Troubleshooting
 
-### LLM Connection Error
+### Check Your Environment
 
 ```bash
-# Check Ollama
-ollama list
+# Diagnose hardware and dependencies
+python -m ocr_invoice_reader.cli.check_env
+```
 
-# Auto-setup
-ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
+### LLM Loading Error
+
+```bash
+# Use smaller model for limited memory
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 3b
+
+# Force CPU mode
+ocr-enhanced --image invoice.pdf --use-llm --use-cpu
 ```
 
 ### Memory Error
@@ -295,18 +342,21 @@ ocr-enhanced --image invoice.pdf --use-llm --auto-setup-ollama
 # Reduce workers
 ocr-enhanced-parallel --image invoice.pdf --workers 2
 
-# Or use serial
+# Or use serial processing
 ocr-enhanced --image invoice.pdf --use-llm
 ```
 
 ### Slow Processing
 
 ```bash
-# Use smaller model
-ocr-enhanced --image invoice.pdf --use-llm --llm-model qwen2.5:7b
+# Use GPU if available (check with check_env)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
 
-# Use parallel
+# Use parallel processing
 ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
+
+# Use quantization (GPU only)
+ocr-enhanced --image invoice.pdf --use-llm --llm-quantization int4
 ```
 
 More solutions: [Complete Guide](docs/COMPLETE_GUIDE.md#troubleshooting)
@@ -369,8 +419,8 @@ MIT License - see [LICENSE](LICENSE) file for details.
 ## 🙏 Acknowledgments
 
 - **[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)** - OCR engine
-- **[Ollama](https://ollama.ai/)** - LLM inference
 - **[Qwen2.5](https://github.com/QwenLM/Qwen2.5)** - Language model
+- **[Hugging Face Transformers](https://github.com/huggingface/transformers)** - LLM inference
 
 ---
 
