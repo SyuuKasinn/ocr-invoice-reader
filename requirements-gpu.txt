@@ -3,10 +3,10 @@
 
 # Core Dependencies (GPU versions)
 # PaddlePaddle GPU - Choose based on your CUDA version:
-# CUDA 11.8:
-paddlepaddle-gpu==3.0.0.post118 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
-# CUDA 12.0:
-# paddlepaddle-gpu==3.0.0.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+# CUDA 11.x:
+# paddlepaddle-gpu==2.6.2.post117 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+# CUDA 12.0+ (including 13.0):
+paddlepaddle-gpu==2.6.2.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 
 paddleocr>=2.8.1
 paddlenlp>=2.8.0

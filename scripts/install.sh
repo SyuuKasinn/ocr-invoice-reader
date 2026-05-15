@@ -79,23 +79,28 @@ if [ "$USE_GPU" = true ]; then
     echo "Step 5: Installing GPU packages..."
 
     # Detect CUDA version for appropriate packages
-    if [[ "$CUDA_VERSION" == 12.* ]]; then
-        echo "  Detected CUDA 12.x"
-        CUDA_SHORT="120"
+    if [[ "$CUDA_VERSION" == 13.* ]]; then
+        echo "  Detected CUDA 13.x (using CUDA 12.0 packages)"
+        PADDLE_CUDA="120"
         TORCH_CUDA="cu121"
-    elif [[ "$CUDA_VERSION" == 11.8* ]]; then
-        echo "  Detected CUDA 11.8"
-        CUDA_SHORT="118"
+    elif [[ "$CUDA_VERSION" == 12.* ]]; then
+        echo "  Detected CUDA 12.x"
+        PADDLE_CUDA="120"
+        TORCH_CUDA="cu121"
+    elif [[ "$CUDA_VERSION" == 11.8* ]] || [[ "$CUDA_VERSION" == 11.* ]]; then
+        echo "  Detected CUDA 11.x"
+        PADDLE_CUDA="117"
         TORCH_CUDA="cu118"
     else
-        echo -e "${YELLOW}  ⚠ Unknown CUDA version, using CUDA 11.8 packages${NC}"
-        CUDA_SHORT="118"
-        TORCH_CUDA="cu118"
+        echo -e "${YELLOW}  ⚠ Unknown CUDA version, using CUDA 12.0 packages${NC}"
+        PADDLE_CUDA="120"
+        TORCH_CUDA="cu121"
     fi
 
-    # Install PaddlePaddle GPU
+    # Install PaddlePaddle GPU (use latest stable version)
     echo "  Installing PaddlePaddle-GPU..."
-    pip install paddlepaddle-gpu==3.0.0.post${CUDA_SHORT} -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+    pip install paddlepaddle-gpu==2.6.2.post${PADDLE_CUDA} -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html || \
+    pip install paddlepaddle-gpu -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
 
     # Install PyTorch GPU
     echo "  Installing PyTorch-GPU..."
@@ -111,7 +116,7 @@ else
 
     # Install PaddlePaddle CPU
     echo "  Installing PaddlePaddle-CPU..."
-    pip install paddlepaddle==3.0.0.b2
+    pip install paddlepaddle==2.6.2 || pip install paddlepaddle
 
     # Install PyTorch CPU
     echo "  Installing PyTorch-CPU..."
