@@ -4,9 +4,20 @@ This guide explains how to extract structured invoice data from OCR results for 
 
 ## Overview
 
-The invoice extraction tool (`invoice_extractor.py`) parses OCR text files and extracts key invoice fields for database import. It generates:
+Starting from version 2.2.7, invoice extraction is **automatically performed** during OCR processing. The invoice extraction tool (`invoice_extractor.py`) parses OCR text and extracts key invoice fields.
+
+### Automatic Extraction (NEW)
+
+When running `ocr-enhanced`, invoice data is automatically extracted and saved as JSON:
+
+- **Individual page JSON** (`*_llm.json`) - Per-page invoice data with extracted fields
+- **Combined invoices JSON** (`*_invoices.json`) - All pages with summary statistics
+
+### Manual Batch Extraction
+
+For processing existing results directories, use the batch extraction script to generate:
 - **CSV files** for Excel/spreadsheet import
-- **JSON files** for API integration
+- **JSON files** for API integration  
 - **SQL files** with INSERT statements for direct database import
 
 ## Extracted Fields
@@ -29,19 +40,30 @@ The tool extracts the following invoice fields:
 
 ## Quick Start
 
-### 1. Run OCR Extraction
+### Automatic Extraction (Recommended)
 
-First, process your invoice documents with OCR:
+Run OCR and get invoice data automatically:
 
 ```bash
 ocr-enhanced --image invoice.pdf --lang ch --use-cpu
 ```
 
-This creates a results directory like `results/20260515_104903/` with TXT files.
+Output files in `results/TIMESTAMP/`:
+- `invoice_page_0001_llm.json` - Page 1 invoice data
+- `invoice_page_0002_llm.json` - Page 2 invoice data  
+- `invoice_invoices.json` - **All pages combined with summary**
 
-### 2. Extract Invoice Data
+During processing, you'll see extracted fields:
+```
+Page 2 Invoice JSON: invoice_page_0002_llm.json
+  ✓ Invoice: KTB0911-X52-S01-24538
+  ✓ Company: SANEI SANSYOU CORPORATION
+  ✓ Amount: JPY 4000.00
+```
 
-Process all OCR results to generate database-ready files:
+### Manual Batch Extraction (Optional)
+
+For existing results or to generate CSV/SQL:
 
 ```bash
 python scripts/extract_invoices.py --dir results/20260515_104903
@@ -52,7 +74,7 @@ This generates three files:
 - `invoices_extracted_TIMESTAMP.json` - JSON format
 - `invoices_extracted_TIMESTAMP.sql` - SQL INSERT statements
 
-### 3. Import to Database
+### Import to Database
 
 **Option A: Using SQL file (MySQL/PostgreSQL)**
 
@@ -104,14 +126,58 @@ python scripts/extract_invoices.py --dir results
 
 ## Output Format
 
-### CSV Output
+### Automatic Extraction JSON (NEW)
+
+**Individual Page JSON** (`*_page_0002_llm.json`):
+```json
+{
+  "page": 2,
+  "source_file": "invoice_page_0002",
+  "extraction_method": "invoice_extractor",
+  "extracted_fields": {
+    "invoice_number": "KTB0911-X52-S01-24538",
+    "company_name": "SANEI SANSYOU CORPORATION",
+    "total_amount": 4000.0,
+    "currency": "JPY",
+    "phone": "0081-078-200-5562",
+    "item_count": 3
+  },
+  "raw_data": {
+    "items": [...],
+    "items_count": 3
+  }
+}
+```
+
+**Combined Invoices JSON** (`*_invoices.json`):
+```json
+{
+  "document": "invoice",
+  "total_pages": 8,
+  "invoices": [
+    {
+      "page": 2,
+      "source_file": "invoice_page_0002",
+      "extracted_fields": {...},
+      "items_count": 3
+    }
+  ],
+  "summary": {
+    "with_invoice_number": 2,
+    "with_company": 3,
+    "with_amount": 1
+  }
+}
+```
+
+### Manual Extraction CSV Output
 
 ```csv
 invoice_number,invoice_date,company_name,total_amount,currency,phone,fax,item_count
 KTB0911-X52-S01-24538,,Importer SANEI SANSYOU CORPORATION,913.0,JPY,,,55
 ```
 
-### JSON Output
+### Manual Extraction JSON Output
 
 ```json
 [
