@@ -1,23 +1,34 @@
 """
-OCR Invoice Reader - Document Information Extraction System
+OCR Invoice Reader — PaddleOCR-VL 1.5 document parsing.
 
-A comprehensive document information extraction system using PaddleOCR and PP-Structure.
-Extracts structured information from invoices, waybills, and other business documents.
+Single-pass parsing of invoices, waybills, customs declarations, and
+other business documents using PaddleOCR-VL 1.5. Outputs structured
+JSON, Markdown, and a self-contained HTML report.
+
+Primary entry point: `ocr-extract` CLI.
 """
 
-__version__ = "2.3.1"
+__version__ = "4.0.0"
 __author__ = "Your Name"
 __license__ = "MIT"
 
-from ocr_invoice_reader.extractors.document_extractor import DocumentExtractor
-from ocr_invoice_reader.extractors.simple_ocr import SimpleOCR
-from ocr_invoice_reader.models.base import BaseDocument, Address, DocumentItem
+from ocr_invoice_reader.core import (
+    Block,
+    DocumentResult,
+    IOConfig,
+    PageResult,
+    Pipeline,
+    PipelineConfig,
+    VLConfig,
+)
 
 __all__ = [
-    "DocumentExtractor",
-    "SimpleOCR",
-    "BaseDocument",
-    "Address",
-    "DocumentItem",
+    "Pipeline",
+    "PipelineConfig",
+    "VLConfig",
+    "IOConfig",
+    "Block",
+    "PageResult",
+    "DocumentResult",
     "__version__",
 ]

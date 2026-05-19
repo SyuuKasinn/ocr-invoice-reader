@@ -1,0 +1,105 @@
+"""
+ocr-extract: parse a PDF or image with PaddleOCR-VL 1.5.
+
+Usage:
+  ocr-extract invoice.pdf
+  ocr-extract invoice.pdf -o results --cpu
+  ocr-extract invoice.pdf --no-html --no-markdown
+"""
+from __future__ import annotations
+
+import argparse
+import io
+import logging
+import sys
+
+from ocr_invoice_reader import __version__
+from ocr_invoice_reader.core import IOConfig, Pipeline, PipelineConfig, VLConfig
+
+
+def _build_parser() -> argparse.ArgumentParser:
+    p = argparse.ArgumentParser(
+        prog="ocr-extract",
+        description="Parse documents with PaddleOCR-VL 1.5.",
+    )
+    p.add_argument("--version", action="version", version=f"%(prog)s {__version__}")
+    p.add_argument("input", help="Path to PDF or image file")
+    p.add_argument("-o", "--output-dir", default="results", help="Output root directory")
+
+    p.add_argument("--cpu", action="store_true", help="Force CPU mode")
+    p.add_argument("--lang", default=None,
+                   help="Language hint passed to PaddleOCR-VL (optional)")
+    p.add_argument("--unwarp", action="store_true",
+                   help="Enable document unwarping (slower)")
+    p.add_argument("--orient", action="store_true",
+                   help="Enable document orientation classification")
+
+    p.add_argument("--no-html", action="store_true", help="Skip HTML report")
+    p.add_argument("--no-markdown", action="store_true", help="Skip per-page markdown")
+    p.add_argument("--no-viz", action="store_true",
+                   help="Skip per-page PaddleOCR-VL visualization images")
+    p.add_argument("--no-inline-images", action="store_true",
+                   help="Reference the source file instead of base64-embedding it")
+    p.add_argument("-v", "--verbose", action="store_true", help="Enable debug logging")
+    return p
+
+
+def _setup_console() -> None:
+    if sys.platform == "win32":
+        try:
+            sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+            sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+        except (AttributeError, ValueError):
+            pass
+
+
+def main() -> int:
+    _setup_console()
+    args = _build_parser().parse_args()
+
+    logging.basicConfig(
+        level=logging.DEBUG if args.verbose else logging.INFO,
+        format="%(asctime)s [%(levelname)s] %(name)s: %(message)s",
+    )
+
+    config = PipelineConfig(
+        vl=VLConfig(
+            use_gpu=not args.cpu,
+            lang=args.lang,
+            use_doc_orientation_classify=args.orient,
+            use_doc_unwarping=args.unwarp,
+        ),
+        io=IOConfig(
+            output_dir=args.output_dir,
+            save_markdown=not args.no_markdown,
+            save_visualization=not args.no_viz,
+            inline_images_in_html=not args.no_inline_images,
+        ),
+    )
+
+    pipeline = Pipeline(config)
+
+    try:
+        out_dir = pipeline.run_and_save(args.input)
+    except FileNotFoundError as e:
+        print(f"Input not found: {e}", file=sys.stderr)
+        return 2
+    except ImportError as e:
+        print(f"\n{e}\n", file=sys.stderr)
+        return 3
+    except KeyboardInterrupt:
+        print("\nInterrupted", file=sys.stderr)
+        return 130
+    except Exception as e:
+        logging.exception("Pipeline error")
+        print(f"\nError: {e}", file=sys.stderr)
+        return 1
+
+    print(f"\nResults: {out_dir}")
+    if not args.no_html:
+        print(f"  open: {out_dir / (out_dir.name.split('_')[0] + '_report.html')}")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())
