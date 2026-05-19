@@ -1,11 +1,19 @@
 """Setup configuration for OCR Invoice Reader (PaddleOCR-VL 1.5)."""
-import os
-import sys
+import re
+from pathlib import Path
 
 from setuptools import find_packages, setup
 
-sys.path.insert(0, os.path.abspath("."))
-from ocr_invoice_reader import __version__  # noqa: E402
+
+def read_version() -> str:
+    text = Path("ocr_invoice_reader/__init__.py").read_text(encoding="utf-8")
+    match = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', text, re.MULTILINE)
+    if not match:
+        raise RuntimeError("Could not parse __version__ from ocr_invoice_reader/__init__.py")
+    return match.group(1)
+
+
+__version__ = read_version()
 
 
 def read_long_description() -> str:
