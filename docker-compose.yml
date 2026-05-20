@@ -19,9 +19,8 @@ services:
       ocr-extract
       /app/data/invoice.pdf
       --output-dir /app/results
-      --cpu
 
-    # For GPU support, uncomment below and remove --cpu above:
+    # Device is auto-detected. To expose an NVIDIA GPU, uncomment below:
     # deploy:
     #   resources:
     #     reservations:

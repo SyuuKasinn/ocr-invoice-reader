@@ -37,10 +37,9 @@ Complete rewrite around PaddleOCR-VL 1.5.
   importing, so `pip install -e .` no longer needs runtime deps in
   the build env.
 
-### Known issues
-- The default `native` Paddle backend for PaddleOCR-VL is impractical
-  on CPU (hours per page). On CPU, configure the `llama-cpp-server`
-  backend per upstream PaddleOCR-VL docs.
+### Notes
+- Device selection is automatic (CUDA-capable PaddlePaddle → GPU,
+  otherwise CPU). `--cpu` is kept as an override for debugging.
 - Docs under `docs/` and `guides/` from previous releases were removed;
   current docs live in this README.
 

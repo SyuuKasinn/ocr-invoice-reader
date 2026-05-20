@@ -1,9 +1,13 @@
 """
 ocr-extract: parse a PDF or image with PaddleOCR-VL 1.5.
 
+The pipeline auto-detects a CUDA-capable PaddlePaddle install and uses
+GPU when present, otherwise CPU. Pass --cpu to force CPU for debugging.
+
 Usage:
   ocr-extract invoice.pdf
-  ocr-extract invoice.pdf -o results --cpu
+  ocr-extract invoice.pdf -o results
+  ocr-extract invoice.pdf --max-pages 1 -v
   ocr-extract invoice.pdf --no-html --no-markdown
 """
 from __future__ import annotations
@@ -26,7 +30,8 @@ def _build_parser() -> argparse.ArgumentParser:
     p.add_argument("input", help="Path to PDF or image file")
     p.add_argument("-o", "--output-dir", default="results", help="Output root directory")
 
-    p.add_argument("--cpu", action="store_true", help="Force CPU mode")
+    p.add_argument("--cpu", action="store_true",
+                   help="Force CPU even when a GPU is detected (debugging)")
     p.add_argument("--lang", default=None,
                    help="Language hint passed to PaddleOCR-VL (optional)")
     p.add_argument("--unwarp", action="store_true",

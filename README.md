@@ -45,57 +45,27 @@ upstream PaddleOCR-VL UI.
 
 ---
 
-## Performance: pick a backend
-
-PaddleOCR-VL 1.5 is a 0.9B vision-language model. The default `native`
-Paddle backend is fast on GPU but **unusable on CPU** (multi-page PDFs
-take hours). PaddleOCR-VL ships with backend adapters for accelerated
-runtimes — pick one that matches your hardware:
-
-| Backend | Hardware | When to use |
-|---|---|---|
-| `native` (default) | NVIDIA GPU | You have CUDA-capable Paddle install |
-| `vllm-server` / `sglang-server` / `fastdeploy-server` | NVIDIA GPU | High-throughput batch processing |
-| `llama-cpp-server` | CPU | CPU-only inference |
-| `mlx-vlm-server` | Apple Silicon | M-series Macs |
-
-Backend selection lives in upstream PaddleOCR — see the
-[PaddleOCR-VL backend guide](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version3.x/pipeline_usage/PaddleOCR-VL.md)
-for install + server-launch instructions. Future versions of this
-wrapper will expose `--backend` and `--server-url` flags directly.
-
-Until then, you can wire one up in Python:
-
-```python
-from ocr_invoice_reader.core.vl_engine import VLEngine
-from ocr_invoice_reader.core.config import VLConfig
-
-engine = VLEngine(VLConfig(use_gpu=False))
-engine.config = VLConfig(use_gpu=False)
-# Inject backend kwargs through the underlying pipeline
-engine._pipeline = engine._build()  # no-op if already built
-```
-
----
-
 ## CLI
 
 ```
-ocr-extract INPUT [-o OUTPUT_DIR] [--cpu] [--lang LANG] [--unwarp] [--orient]
+ocr-extract INPUT [-o OUTPUT_DIR] [--lang LANG] [--unwarp] [--orient]
                   [--max-pages N] [--no-html] [--no-markdown] [--no-viz]
-                  [--no-inline-images] [-v]
+                  [--no-inline-images] [--cpu] [-v]
 ```
+
+Device selection is automatic — the pipeline probes for a CUDA-capable
+PaddlePaddle install at startup and uses GPU when present, otherwise CPU.
 
 Common flags:
 
 | Flag | Meaning |
 |---|---|
-| `--cpu` | Force CPU mode (still goes through whatever backend is configured) |
 | `--max-pages N` | Stop after N pages — useful for quick smoke tests on long PDFs |
 | `--unwarp` | Enable document unwarping (slower, better on curved scans) |
 | `--orient` | Enable orientation classification |
 | `--no-html` | Skip the HTML report |
 | `--no-inline-images` | Reference the source file instead of base64-embedding it |
+| `--cpu` | Force CPU even when a GPU is detected (debugging) |
 | `-v` | Debug logging (shows per-page progress) |
 
 ---
@@ -106,7 +76,7 @@ Common flags:
 from ocr_invoice_reader import Pipeline, PipelineConfig, VLConfig, IOConfig
 
 pipeline = Pipeline(PipelineConfig(
-    vl=VLConfig(use_gpu=False),
+    vl=VLConfig(),  # use_gpu=True by default; auto-falls back to CPU if no GPU
     io=IOConfig(output_dir="my_results", save_markdown=True),
 ))
 
@@ -168,8 +138,9 @@ pip install -e .
 pip install "paddlex[ocr]>=3.5.0"
 ```
 
-For accelerated backends (recommended), install per the
-[PaddleOCR-VL docs](https://github.com/PaddlePaddle/PaddleOCR/blob/main/docs/version3.x/pipeline_usage/PaddleOCR-VL.md).
+For GPU acceleration, install the CUDA build of PaddlePaddle from the
+[official channel](https://www.paddlepaddle.org.cn/install/quick).
+The pipeline auto-detects CUDA on startup; no flags needed.
 
 ---
 
@@ -180,8 +151,9 @@ docker compose up
 ```
 
 The default `docker-compose.yml` mounts `./data` (input) and `./results`
-(output) and runs `ocr-extract /app/data/invoice.pdf --cpu`. Uncomment
-the `deploy.resources` block to enable NVIDIA GPU.
+(output) and runs `ocr-extract /app/data/invoice.pdf`. Uncomment the
+`deploy.resources` block to expose an NVIDIA GPU to the container; the
+pipeline picks it up automatically.
 
 ---
 
