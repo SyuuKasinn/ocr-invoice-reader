@@ -8,8 +8,13 @@ JSON, Markdown, and a self-contained HTML report.
 Primary entry point: `ocr-extract` CLI.
 """
 
-__version__ = "4.0.0"
-__author__ = "Your Name"
+from importlib.metadata import PackageNotFoundError, version as _pkg_version
+
+try:
+    __version__ = _pkg_version("ocr-invoice-reader")
+except PackageNotFoundError:  # editable / un-installed checkout
+    __version__ = "0.0.0+local"
+
 __license__ = "MIT"
 
 from ocr_invoice_reader.core import (

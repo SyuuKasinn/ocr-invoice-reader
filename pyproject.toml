@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ocr-invoice-reader"
+version = "4.0.0"
+description = "Document parsing built on PaddleOCR-VL 1.5: structured JSON + Markdown + HTML report from PDFs and images."
+readme = "README.md"
+license = { file = "LICENSE" }
+requires-python = ">=3.10"
+authors = [{ name = "SyuuKasinn" }]
+keywords = ["ocr", "paddleocr", "paddleocr-vl", "invoice", "document-parsing"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Image Recognition",
+    "Topic :: Text Processing",
+]
+dependencies = [
+    "paddleocr>=3.0.0",
+    "paddlepaddle>=3.0.0",
+    "paddlex[ocr]>=3.5.0",
+    "opencv-python>=4.8.0,<5.0.0",
+    "numpy>=1.24.0,<2.1.0",
+    "Pillow>=10.0.0,<11.0.0",
+    "pydantic>=2.0.0,<3.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.5",
+]
+
+[project.urls]
+Homepage = "https://github.com/SyuuKasinn/ocr-invoice-reader"
+Repository = "https://github.com/SyuuKasinn/ocr-invoice-reader"
+Changelog = "https://github.com/SyuuKasinn/ocr-invoice-reader/blob/main/CHANGELOG.md"
+
+[project.scripts]
+ocr-extract = "ocr_invoice_reader.cli.extract:main"
+
+[tool.setuptools.packages.find]
+include = ["ocr_invoice_reader*"]
+exclude = ["tests*", "examples*"]
+
+[tool.setuptools.package-data]
+ocr_invoice_reader = ["py.typed"]

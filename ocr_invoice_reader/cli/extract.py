@@ -16,6 +16,7 @@ import argparse
 import io
 import logging
 import sys
+from pathlib import Path
 
 from ocr_invoice_reader import __version__
 from ocr_invoice_reader.core import IOConfig, Pipeline, PipelineConfig, VLConfig
@@ -104,7 +105,8 @@ def main() -> int:
 
     print(f"\nResults: {out_dir}")
     if not args.no_html:
-        print(f"  open: {out_dir / (out_dir.name.split('_')[0] + '_report.html')}")
+        report = out_dir / f"{Path(args.input).stem}_report.html"
+        print(f"  open: {report}")
     return 0
 
 

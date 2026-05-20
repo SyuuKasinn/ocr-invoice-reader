@@ -9,6 +9,7 @@ Requires paddleocr >= 3.0 (which ships the PaddleOCRVL pipeline).
 from __future__ import annotations
 
 import logging
+import time
 from pathlib import Path
 from typing import Any, Callable, Dict, List, Optional
 
@@ -96,8 +97,6 @@ class VLEngine:
         Returns:
             Normalized page dicts; see _normalize_result.
         """
-        import time
-
         pipeline = self._build()
         path = str(Path(input_path).resolve())
         logger.info("VL predict: %s", path)

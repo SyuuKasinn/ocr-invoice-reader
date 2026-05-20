@@ -1,5 +1,7 @@
 include README.md
+include CHANGELOG.md
 include LICENSE
 include requirements.txt
+include ocr_invoice_reader/py.typed
 recursive-exclude * __pycache__
 recursive-exclude * *.py[co]
