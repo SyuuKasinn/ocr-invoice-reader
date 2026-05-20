@@ -12,6 +12,14 @@ Usage:
 """
 from __future__ import annotations
 
+# Must run BEFORE any import that transitively loads paddle: paddle prints
+# a loud warning (and risks OpenBLAS failures) when OMP_NUM_THREADS != 1.
+# Container images often set it to the CPU count; force 1 unless the user
+# really wants their own value.
+import os
+if os.environ.get("OCR_KEEP_OMP", "0") != "1":
+    os.environ["OMP_NUM_THREADS"] = "1"
+
 import argparse
 import io
 import logging
