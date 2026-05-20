@@ -5,27 +5,16 @@ __pycache__/
 *.so
 .Python
 build/
-develop-eggs/
 dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
 *.egg-info/
-.installed.cfg
 *.egg
 MANIFEST
 
-# Virtual Environment
+# Virtual environments
+.venv/
 venv/
 ENV/
 env/
-.venv
 
 # IDE
 .vscode/
@@ -40,67 +29,28 @@ env/
 .coverage
 htmlcov/
 .tox/
-.hypothesis/
 
-# OCR Results (keep only examples)
+# OCR output / model cache
 results/
-results_*/
+my_results/
 output/
-temp/
-*.log
-*_test.txt
-
-# Test outputs and data
-test_output/
-test_results/
-test_14b/
-test_*/
-*_test.json
-*_test.csv
-*_test.sql
-customs_*.json
-invoices_test.*
-
-# PaddleOCR Cache
 .paddleocr/
+.paddlex/
 
-# Temporary files
+# Sample documents (bring your own to test)
+examples/*.pdf
+examples/*.jpg
+examples/*.jpeg
+examples/*.png
+examples/*.tif
+examples/*.tiff
+
+# Logs / temp
+*.log
 *.tmp
 *.bak
 *.cache
-*.backup
-*.old
-*.patch
-.cleanup_plan.txt
 
 # OS
 Thumbs.db
-.DS_Store
-
-# Documentation build
-docs/_build/
-docs/.doctrees/
-
-# Project specific
-examples/output/
-tests/output/
-*.pdf
-*.jpg
-*.png
-*.jpeg
-!examples/*.jpg
-!examples/*.png
-!images/**/*.jpg
-!images/**/*.png
-
-# Development artifacts (to be removed before push)
-*_NEW.md
-*_OLD.md
-COMMIT_MESSAGE.txt
-LOCAL_DEPLOYMENT_SUCCESS.md
-TEST_REPORT.md
-UPGRADE_SUMMARY.md
-V4_UPGRADE_COMPLETE.md
-PADDLEOCR_V4_UPGRADE.md
-ADVANCED_OPTIMIZATIONS.md
-QUICK_PERFORMANCE_WINS.md
+desktop.ini

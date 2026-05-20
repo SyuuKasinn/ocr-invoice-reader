@@ -1,57 +1,33 @@
-# OCR Invoice Reader Dockerfile
 FROM python:3.10-slim
 
-# Set working directory
 WORKDIR /app
 
-# Install system dependencies and Chinese fonts
-RUN apt-get update && apt-get install -y \
-    libgomp1 \
-    libglib2.0-0 \
-    libsm6 \
-    libxext6 \
-    libxrender-dev \
-    libgl1-mesa-glx \
-    wget \
-    fontconfig \
-    # Install Chinese fonts
-    fonts-wqy-microhei \
-    fonts-wqy-zenhei \
+# System libraries required by PaddleOCR / OpenCV / PaddlePaddle at runtime.
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libgomp1 \
+        libgl1 \
+        libglib2.0-0 \
+        libsm6 \
+        libxext6 \
+        libxrender1 \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Alternative: Download Microsoft YaHei font (optional, for better quality)
-# Note: Ensure you have proper license for font usage
-RUN mkdir -p /usr/share/fonts/truetype/msyh && \
-    wget -q https://github.com/SyuuKasinn/ocr-invoice-reader/releases/download/fonts/msyh.ttc \
-    -O /usr/share/fonts/truetype/msyh/msyh.ttc 2>/dev/null || \
-    echo "Using system fonts instead"
-
-# Refresh font cache
-RUN fc-cache -fv
-
-# Copy requirements
+# Install Python deps first for better layer caching.
 COPY requirements.txt .
-
-# Install Python dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy application code
+# Copy the package and install in editable mode (entry point: ocr-extract).
 COPY . .
+RUN pip install --no-cache-dir --no-build-isolation -e .
 
-# Install the package
-RUN pip install -e .
+ENV PYTHONUNBUFFERED=1 \
+    LANG=C.UTF-8 \
+    LC_ALL=C.UTF-8
 
-# Set environment variables
-ENV PYTHONUNBUFFERED=1
-ENV LANG=C.UTF-8
-ENV LC_ALL=C.UTF-8
-
-# Create output directory
-RUN mkdir -p /app/results
-
-# Expose volume for input/output
+RUN mkdir -p /app/data /app/results
 VOLUME ["/app/data", "/app/results"]
 
-# Default command
-CMD ["bash"]
+# Device auto-detection picks GPU when paddlepaddle-gpu is installed,
+# otherwise CPU. Override with --cpu for debugging.
+CMD ["ocr-extract", "--help"]

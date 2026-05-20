@@ -15,17 +15,30 @@ Single-pass document parsing built on **[PaddleOCR-VL 1.5](https://github.com/Pa
 
 ## Quick start
 
+**Python 3.10+ is required** (PaddleOCR-VL pulls `safetensors>=0.7` which
+dropped Python 3.8/3.9). On systems whose default Python is older — autodl
+containers, Debian/Ubuntu LTS, etc. — create a fresh env first:
+
+```bash
+conda create -n vl python=3.10 -y && conda activate vl
+# or: python3.10 -m venv .venv && source .venv/bin/activate
+```
+
+Then install and run:
+
 ```bash
 git clone https://github.com/SyuuKasinn/ocr-invoice-reader.git
 cd ocr-invoice-reader
-pip install -e .
+pip install -e . --no-build-isolation
+
+ocr-extract path/to/your_invoice.pdf
 ```
 
-Then run:
+`requirements.txt` already pins `paddlex[ocr]>=3.5.0`, so the VL pipeline
+extras come in with the editable install — no extra step needed.
 
-```bash
-ocr-extract examples/INVOICE.pdf
-```
+> `examples/INVOICE.pdf` is gitignored (sample documents are not redistributed).
+> Drop your own PDF or image in to test.
 
 Output lands under `results/<doc>_<timestamp>/`:
 
@@ -126,21 +139,19 @@ server — those layers were collapsed into PaddleOCR-VL itself.
 
 ## Requirements
 
-- Python 3.10+
-- `paddleocr >= 3.0`, `paddlepaddle >= 3.0`
-- `opencv-python`, `numpy`, `Pillow`, `pydantic >= 2`
+| | |
+|---|---|
+| Python | **3.10+** (required by `safetensors>=0.7` which `paddlex[ocr]` pulls) |
+| Runtime | `paddleocr>=3.0`, `paddlepaddle>=3.0`, `paddlex[ocr]>=3.5.0` |
+| Libraries | `opencv-python`, `numpy`, `Pillow`, `pydantic>=2` |
 
-Install via:
-
-```bash
-pip install -e .
-# Plus the PaddleOCR-VL extras (needed for the VL pipeline)
-pip install "paddlex[ocr]>=3.5.0"
-```
+All of these are in `requirements.txt`, so `pip install -e .` covers
+everything except optional GPU acceleration.
 
 For GPU acceleration, install the CUDA build of PaddlePaddle from the
-[official channel](https://www.paddlepaddle.org.cn/install/quick).
-The pipeline auto-detects CUDA on startup; no flags needed.
+[official channel](https://www.paddlepaddle.org.cn/install/quick) before
+running `pip install -e .`. The pipeline auto-detects CUDA on startup;
+no flags needed.
 
 ---
 

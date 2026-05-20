@@ -10,13 +10,14 @@ __pycache__
 *.so
 .Python
 *.egg-info
-dist/
 build/
+dist/
 .pytest_cache/
 .coverage
 htmlcov/
 
-# Virtual environments
+# Virtual envs
+.venv/
 venv/
 env/
 ENV/
@@ -26,21 +27,13 @@ ENV/
 .idea/
 *.swp
 *.swo
-*~
 
-# Documentation
-*.md
-docs/
-!README.md
-
-# Results and test files
+# Local output / cache
 results/
-examples/*.jpg
-examples/*.png
-examples/*.pdf
-test_*.jpg
-test_*.png
-debug_*.jpg
+my_results/
+output/
+.paddleocr/
+.paddlex/
 
 # OS
 .DS_Store

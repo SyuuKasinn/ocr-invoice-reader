@@ -1,6 +1,7 @@
-# PaddleOCR-VL 1.5 (requires paddleocr >= 3.0)
+# PaddleOCR-VL 1.5 (requires paddleocr >= 3.0 + paddlex[ocr] for the VL pipeline)
 paddleocr>=3.0.0
 paddlepaddle>=3.0.0
+paddlex[ocr]>=3.5.0
 
 # Image processing
 opencv-python>=4.8.0,<5.0.0
