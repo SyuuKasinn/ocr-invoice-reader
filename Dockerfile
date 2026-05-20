@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # CPU vs GPU at install time, but Docker builds don't see GPUs).
 # For GPU, build from an nvidia/cuda base image and re-run install.sh.
 COPY requirements.txt .
-RUN pip install --no-cache-dir "paddlepaddle>=3.0.0" \
+RUN pip install --no-cache-dir "paddlepaddle>=3.2.0" \
     && pip install --no-cache-dir -r requirements.txt
 
 # Copy the package and install in editable mode (entry point: ocr-extract).

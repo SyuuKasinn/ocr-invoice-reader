@@ -60,11 +60,11 @@ $PIP uninstall -y paddlepaddle paddlepaddle-gpu >/dev/null 2>&1 || true
 
 if [[ "$flavor" == "gpu" ]]; then
     echo "[install] Installing paddlepaddle-gpu (CUDA index: $idx)"
-    $PIP install --upgrade "paddlepaddle-gpu>=3.0.0" \
+    $PIP install --upgrade "paddlepaddle-gpu>=3.2.0" \
         -i "https://www.paddlepaddle.org.cn/packages/stable/$idx/"
 else
     echo "[install] Installing CPU paddlepaddle"
-    $PIP install --upgrade "paddlepaddle>=3.0.0"
+    $PIP install --upgrade "paddlepaddle>=3.2.0"
 fi
 
 # ---- install the rest via pyproject --------------------------------------

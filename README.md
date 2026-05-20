@@ -58,10 +58,10 @@ If you can't run `install.sh`:
 
 ```bash
 # 1. install paddle (pick ONE)
-pip install "paddlepaddle>=3.0.0"                            # CPU
-pip install "paddlepaddle-gpu>=3.0.0" \
+pip install "paddlepaddle>=3.2.0"                            # CPU
+pip install "paddlepaddle-gpu>=3.2.0" \
     -i https://www.paddlepaddle.org.cn/packages/stable/cu118/   # GPU CUDA 11.8
-pip install "paddlepaddle-gpu>=3.0.0" \
+pip install "paddlepaddle-gpu>=3.2.0" \
     -i https://www.paddlepaddle.org.cn/packages/stable/cu126/   # GPU CUDA 12.x
 
 # 2. install the rest
@@ -170,7 +170,7 @@ server — those layers were collapsed into PaddleOCR-VL itself.
 | | |
 |---|---|
 | Python | **3.10+** (required by `safetensors>=0.7` which `paddlex[ocr]` pulls) |
-| PaddlePaddle | `paddlepaddle>=3.0` (CPU) **or** `paddlepaddle-gpu>=3.0` (GPU). Picked by `install.sh` based on `nvidia-smi`; not pinned in `pyproject.toml` so the editable install does not overwrite the GPU build. |
+| PaddlePaddle | `paddlepaddle>=3.2` (CPU) **or** `paddlepaddle-gpu>=3.2` (GPU). 3.2 is the minimum that ships the `fused_rms_norm_ext` op the VL-1.5 weights need. Picked by `install.sh` based on `nvidia-smi`; not pinned in `pyproject.toml` so the editable install does not overwrite the GPU build. |
 | Runtime | `paddleocr>=3.0`, `paddlex[ocr]>=3.5.0` |
 | Libraries | `opencv-python`, `numpy`, `Pillow`, `pydantic>=2` |
 
