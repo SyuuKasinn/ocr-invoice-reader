@@ -34,6 +34,8 @@ def _build_parser() -> argparse.ArgumentParser:
     p.add_argument("--orient", action="store_true",
                    help="Enable document orientation classification")
 
+    p.add_argument("--max-pages", type=int, default=None,
+                   help="Stop after N pages (useful for testing on long PDFs)")
     p.add_argument("--no-html", action="store_true", help="Skip HTML report")
     p.add_argument("--no-markdown", action="store_true", help="Skip per-page markdown")
     p.add_argument("--no-viz", action="store_true",
@@ -80,7 +82,7 @@ def main() -> int:
     pipeline = Pipeline(config)
 
     try:
-        out_dir = pipeline.run_and_save(args.input)
+        out_dir = pipeline.run_and_save(args.input, max_pages=args.max_pages)
     except FileNotFoundError as e:
         print(f"Input not found: {e}", file=sys.stderr)
         return 2

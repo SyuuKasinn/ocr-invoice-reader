@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import logging
 from pathlib import Path
-from typing import Any, Dict, List, Optional
+from typing import Any, Callable, Dict, List, Optional
 
 from ocr_invoice_reader.core.config import VLConfig
 
@@ -76,33 +76,56 @@ class VLEngine:
             logger.warning("GPU probe failed (%s); using CPU", e)
             return False
 
-    def predict(self, input_path: str) -> List[Dict[str, Any]]:
+    def predict(
+        self,
+        input_path: str,
+        *,
+        max_pages: Optional[int] = None,
+        on_page: Optional[Callable[[Dict[str, Any]], None]] = None,
+    ) -> List[Dict[str, Any]]:
         """
         Run the VL pipeline on a single PDF or image.
 
-        Returns a list of normalized page dicts:
-          {
-            "page_index": int,
-            "input_path": str,
-            "image_path": str | None,
-            "blocks": [ {label, bbox, text, html, image_path?, ...}, ... ],
-            "raw": <original result.json>,
-            "markdown": str | None,
-            "markdown_images": dict | None,
-          }
+        Args:
+            input_path: PDF or image path.
+            max_pages: optional cap on the number of pages to process.
+            on_page: optional callback(page_dict) invoked after each page
+                     so callers can stream results to disk without waiting
+                     for the whole document.
+
+        Returns:
+            Normalized page dicts; see _normalize_result.
         """
+        import time
+
         pipeline = self._build()
         path = str(Path(input_path).resolve())
         logger.info("VL predict: %s", path)
 
         output = pipeline.predict(input=path)
         pages: List[Dict[str, Any]] = []
+        t_start = time.time()
+        t_prev = t_start
 
         for idx, res in enumerate(output):
             page = _normalize_result(res, page_index=idx, source=path)
+            now = time.time()
+            logger.info(
+                "VL page %d done (%.1fs page / %.1fs total, %d blocks)",
+                idx + 1, now - t_prev, now - t_start, len(page["blocks"]),
+            )
+            t_prev = now
             pages.append(page)
+            if on_page is not None:
+                try:
+                    on_page(page)
+                except Exception as e:
+                    logger.warning("on_page callback failed for page %d: %s", idx + 1, e)
+            if max_pages and len(pages) >= max_pages:
+                logger.info("VL max_pages=%d reached; stopping", max_pages)
+                break
 
-        logger.info("VL produced %d page(s)", len(pages))
+        logger.info("VL produced %d page(s) in %.1fs", len(pages), time.time() - t_start)
         return pages
 
 

@@ -1,10 +1,13 @@
 """
 End-to-end pipeline: file → PaddleOCR-VL → schemas → JSON / markdown / HTML.
+
+Pages are written to disk as soon as each one finishes inference, so on
+slow CPU runs you can see partial output immediately instead of waiting
+for the entire document.
 """
 from __future__ import annotations
 
 import logging
-import time
 from datetime import datetime
 from pathlib import Path
 from typing import Optional
@@ -25,66 +28,40 @@ class Pipeline:
         self.config = config or PipelineConfig()
         self.engine = VLEngine(self.config.vl)
 
-    def run(self, input_path: str) -> DocumentResult:
+    def run(self, input_path: str, *, max_pages: Optional[int] = None) -> DocumentResult:
         p = validate_input(input_path)
-        t0 = time.time()
-        pages_raw = self.engine.predict(str(p))
-        logger.info("VL produced %d page(s) in %.2fs", len(pages_raw), time.time() - t0)
+        pages_raw = self.engine.predict(str(p), max_pages=max_pages)
+        pages = [_page_from_raw(page, p.name) for page in pages_raw]
+        return DocumentResult(document=p.stem, total_pages=len(pages), pages=pages)
 
-        pages = []
-        for page in pages_raw:
-            blocks = [Block(**b) for b in page["blocks"]]
-            pages.append(PageResult(
-                page_index=page["page_index"],
-                source_file=p.name,
-                image_path=page.get("image_path"),
-                blocks=blocks,
-                markdown=page.get("markdown"),
-            ))
-
-        return DocumentResult(
-            document=p.stem,
-            total_pages=len(pages),
-            pages=pages,
-        )
-
-    def run_and_save(self, input_path: str) -> Path:
+    def run_and_save(self, input_path: str, *, max_pages: Optional[int] = None) -> Path:
         p = validate_input(input_path)
         timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
         out_dir = Path(self.config.io.output_dir) / f"{p.stem}_{timestamp}"
         writer = ResultWriter(out_dir)
 
-        pages_raw = self.engine.predict(str(p))
-
         pages: list[PageResult] = []
-        markdown_images_merged = {}
 
-        for page in pages_raw:
-            page_idx = page["page_index"] + 1
-            page_name = f"{p.stem}_page_{page_idx:04d}"
-
-            blocks = [Block(**b) for b in page["blocks"]]
-            page_result = PageResult(
-                page_index=page["page_index"],
-                source_file=p.name,
-                image_path=page.get("image_path"),
-                blocks=blocks,
-                markdown=page.get("markdown"),
-            )
+        def on_page(page_raw: dict) -> None:
+            """Stream one finished page straight to disk."""
+            page_result = _page_from_raw(page_raw, p.name)
             pages.append(page_result)
+            page_name = f"{p.stem}_page_{page_result.page_index + 1:04d}"
 
             if self.config.io.save_per_page_json:
                 writer.write_page_json(page_name, page_result.model_dump())
+                logger.info("wrote %s.json", page_name)
 
             if self.config.io.save_markdown and page_result.markdown:
                 writer.write_page_markdown(page_name, page_result.markdown)
 
-            if self.config.io.save_visualization and page.get("_result_obj") is not None:
-                _try_save_visualization(page["_result_obj"], out_dir, page_name)
+            if self.config.io.save_visualization and page_raw.get("_result_obj") is not None:
+                _try_save_visualization(page_raw["_result_obj"], out_dir, page_name)
 
-            if page.get("markdown_images"):
-                saved = writer.save_markdown_images(page["markdown_images"])
-                markdown_images_merged.update(saved)
+            if page_raw.get("markdown_images"):
+                writer.save_markdown_images(page_raw["markdown_images"])
+
+        self.engine.predict(str(p), max_pages=max_pages, on_page=on_page)
 
         document = DocumentResult(
             document=p.stem,
@@ -113,6 +90,17 @@ class Pipeline:
 
         logger.info("Output written to %s", out_dir)
         return out_dir
+
+
+def _page_from_raw(page_raw: dict, source_name: str) -> PageResult:
+    blocks = [Block(**b) for b in page_raw["blocks"]]
+    return PageResult(
+        page_index=page_raw["page_index"],
+        source_file=source_name,
+        image_path=page_raw.get("image_path"),
+        blocks=blocks,
+        markdown=page_raw.get("markdown"),
+    )
 
 
 def _try_save_visualization(result_obj, out_dir: Path, page_name: str) -> None:
