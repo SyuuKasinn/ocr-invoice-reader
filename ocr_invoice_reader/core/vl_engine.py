@@ -66,16 +66,29 @@ class VLEngine:
 
     def _gpu_ok(self) -> bool:
         if not self.config.use_gpu:
+            logger.info("GPU disabled via VLConfig(use_gpu=False); using CPU")
             return False
         try:
             import paddle
-            return (
-                paddle.device.is_compiled_with_cuda()
-                and paddle.device.cuda.device_count() > 0
-            )
-        except Exception as e:
-            logger.warning("GPU probe failed (%s); using CPU", e)
+        except ImportError as e:
+            logger.warning("paddle import failed (%s); using CPU", e)
             return False
+        if not paddle.device.is_compiled_with_cuda():
+            logger.warning(
+                "Installed paddlepaddle was NOT built with CUDA — using CPU. "
+                "Install the GPU build to enable GPU: "
+                "https://www.paddlepaddle.org.cn/install/quick (paddlepaddle-gpu)."
+            )
+            return False
+        count = paddle.device.cuda.device_count()
+        if count == 0:
+            logger.warning(
+                "paddlepaddle was built with CUDA but no GPU device is visible "
+                "(nvidia-smi / CUDA_VISIBLE_DEVICES?); using CPU"
+            )
+            return False
+        logger.info("CUDA GPU detected (%d device(s)); using GPU", count)
+        return True
 
     def predict(
         self,
