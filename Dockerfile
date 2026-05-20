@@ -13,9 +13,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install Python deps first for better layer caching.
+# Image targets CPU by default — paddlepaddle (CPU build) is installed
+# explicitly because pyproject.toml no longer pins it (install.sh chooses
+# CPU vs GPU at install time, but Docker builds don't see GPUs).
+# For GPU, build from an nvidia/cuda base image and re-run install.sh.
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir "paddlepaddle>=3.0.0" \
+    && pip install --no-cache-dir -r requirements.txt
 
 # Copy the package and install in editable mode (entry point: ocr-extract).
 COPY . .

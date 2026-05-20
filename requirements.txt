@@ -1,6 +1,6 @@
-# PaddleOCR-VL 1.5 (requires paddleocr >= 3.0 + paddlex[ocr] for the VL pipeline)
+# PaddleOCR-VL 1.5 dependencies (paddlepaddle itself is installed by
+# install.sh, which auto-picks CPU vs GPU build; see README for details).
 paddleocr>=3.0.0
-paddlepaddle>=3.0.0
 paddlex[ocr]>=3.5.0
 
 # Image processing

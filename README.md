@@ -24,21 +24,49 @@ conda create -n vl python=3.10 -y && conda activate vl
 # or: python3.10 -m venv .venv && source .venv/bin/activate
 ```
 
-Then install and run:
+Then clone and run the installer:
 
 ```bash
 git clone https://github.com/SyuuKasinn/ocr-invoice-reader.git
 cd ocr-invoice-reader
-pip install -e . --no-build-isolation
+./install.sh
 
 ocr-extract path/to/your_invoice.pdf
 ```
 
-`requirements.txt` already pins `paddlex[ocr]>=3.5.0`, so the VL pipeline
-extras come in with the editable install — no extra step needed.
+`install.sh` probes for `nvidia-smi`; if a GPU is visible it installs the
+matching `paddlepaddle-gpu` wheel (CUDA 11.x → `cu118`, CUDA 12.x → `cu126`),
+otherwise it installs the CPU build. Override with:
 
-> `examples/INVOICE.pdf` is gitignored (sample documents are not redistributed).
-> Drop your own PDF or image in to test.
+```bash
+FORCE_CPU=1 ./install.sh          # ignore GPU, install CPU build
+CUDA_INDEX=cu118 ./install.sh     # pick a specific wheel index
+```
+
+After paddle is in place the script runs `pip install -e .` to pull the
+remaining deps (paddleocr, paddlex[ocr], pydantic, ...).
+
+> **Windows**: run via Git Bash or WSL. Pure PowerShell users can run
+> the two install steps manually — see *Manual install* below.
+
+> `examples/INVOICE.pdf` is gitignored (sample documents are not
+> redistributed). Drop your own PDF or image in to test.
+
+### Manual install
+
+If you can't run `install.sh`:
+
+```bash
+# 1. install paddle (pick ONE)
+pip install "paddlepaddle>=3.0.0"                            # CPU
+pip install "paddlepaddle-gpu>=3.0.0" \
+    -i https://www.paddlepaddle.org.cn/packages/stable/cu118/   # GPU CUDA 11.8
+pip install "paddlepaddle-gpu>=3.0.0" \
+    -i https://www.paddlepaddle.org.cn/packages/stable/cu126/   # GPU CUDA 12.x
+
+# 2. install the rest
+pip install -e . --no-build-isolation
+```
 
 Output lands under `results/<doc>_<timestamp>/`:
 
@@ -142,16 +170,15 @@ server — those layers were collapsed into PaddleOCR-VL itself.
 | | |
 |---|---|
 | Python | **3.10+** (required by `safetensors>=0.7` which `paddlex[ocr]` pulls) |
-| Runtime | `paddleocr>=3.0`, `paddlepaddle>=3.0`, `paddlex[ocr]>=3.5.0` |
+| PaddlePaddle | `paddlepaddle>=3.0` (CPU) **or** `paddlepaddle-gpu>=3.0` (GPU). Picked by `install.sh` based on `nvidia-smi`; not pinned in `pyproject.toml` so the editable install does not overwrite the GPU build. |
+| Runtime | `paddleocr>=3.0`, `paddlex[ocr]>=3.5.0` |
 | Libraries | `opencv-python`, `numpy`, `Pillow`, `pydantic>=2` |
 
-All of these are in `requirements.txt`, so `pip install -e .` covers
-everything except optional GPU acceleration.
-
-For GPU acceleration, install the CUDA build of PaddlePaddle from the
-[official channel](https://www.paddlepaddle.org.cn/install/quick) before
-running `pip install -e .`. The pipeline auto-detects CUDA on startup;
-no flags needed.
+Everything except paddlepaddle is in `requirements.txt`; `install.sh`
+takes care of paddle and then runs `pip install -e .`. At runtime,
+`vl_engine._gpu_ok()` checks `paddle.device.is_compiled_with_cuda()` and
+`paddle.device.cuda.device_count()`, and logs which backend it picked
+(and why if it falls back to CPU).
 
 ---
 
