@@ -59,9 +59,16 @@ $PIP uninstall -y paddlepaddle paddlepaddle-gpu >/dev/null 2>&1 || true
 # ---- install the right paddle --------------------------------------------
 
 if [[ "$flavor" == "gpu" ]]; then
-    echo "[install] Installing paddlepaddle-gpu (CUDA index: $idx)"
-    $PIP install --upgrade "paddlepaddle-gpu>=3.2.0" \
-        -i "https://www.paddlepaddle.org.cn/packages/stable/$idx/"
+    # Try the stable wheel index first. It often lags (3.0.x only) while
+    # PaddleOCR-VL 1.5 needs >=3.2, so fall back to the develop channel
+    # which carries the post-CUDA-suffixed 3.2+ wheels.
+    echo "[install] Installing paddlepaddle-gpu (try stable cu$idx -> develop fallback)"
+    if ! $PIP install --upgrade "paddlepaddle-gpu>=3.2.0" \
+            -i "https://www.paddlepaddle.org.cn/packages/stable/$idx/"; then
+        echo "[install] Stable index lacks >=3.2.0; trying develop channel ..."
+        $PIP install --upgrade --pre paddlepaddle-gpu \
+            -f https://www.paddlepaddle.org.cn/whl/linux/gpu/develop.html
+    fi
 else
     echo "[install] Installing CPU paddlepaddle"
     $PIP install --upgrade "paddlepaddle>=3.2.0"
