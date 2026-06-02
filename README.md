@@ -356,12 +356,53 @@ ocr-enhanced --image invoice.pdf --use-llm --llm-quantization int4
 
 ---
 
+## 🧪 Testing
+
+### Running Tests
+
+The project includes comprehensive test scripts to validate OCR functionality:
+
+```bash
+# Simple test (basic OCR without LLM)
+python simple_pdf_test.py
+
+# Comprehensive test (full configuration with LLM)
+python test_invoice_pdfs.py
+
+# Existing integration tests
+python test_full_integration.py
+python test_enhanced_features.py
+python test_enhancements.py
+```
+
+### Test Scripts
+
+- **`simple_pdf_test.py`** - Basic OCR test for quick validation
+- **`test_invoice_pdfs.py`** - Comprehensive test with visualization and JSON output
+- **`test_full_integration.py`** - Full pipeline integration test
+- **`test_enhanced_features.py`** - Feature-specific tests
+- **`test_enhancements.py`** - Enhancement validation tests
+
+### Expected Output
+
+Tests generate results in `test_results/<test_name>_<timestamp>/`:
+- **Markdown files** (`*.md`) - Structured text output
+- **JSON files** (`*_page_*.json`) - Structured data with regions, confidence scores, bounding boxes
+- **Visualization files** (`*_viz.jpg`) - Annotated images showing detected regions
+
+### Test Results
+
+For detailed test results and validation reports, see [TEST_RESULTS.md](TEST_RESULTS.md).
+
+---
+
 ## 🗺️ Roadmap
 
 - [x] PaddleOCR v4 integration
 - [x] LLM-based extraction
 - [x] Parallel processing (3-7x speedup)
 - [x] GLOVIA optimization
+- [x] Comprehensive test suite
 - [ ] Web UI
 - [ ] Docker support
 - [ ] Cloud deployment

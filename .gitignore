@@ -34,6 +34,8 @@ htmlcov/
 results/
 my_results/
 output/
+test_results/
+quick_test_results/
 .paddleocr/
 .paddlex/
 
@@ -50,6 +52,10 @@ examples/*.tiff
 *.tmp
 *.bak
 *.cache
+*_output.txt
+test_output.txt
+test_invoice_results.txt
+simple_test_output.txt
 
 # OS
 Thumbs.db
