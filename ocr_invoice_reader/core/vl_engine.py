@@ -56,8 +56,8 @@ class VLEngine:
             "use_doc_orientation_classify": self.config.use_doc_orientation_classify,
             "use_doc_unwarping": self.config.use_doc_unwarping,
         }
-        if self.config.lang:
-            kwargs["lang"] = self.config.lang
+        # Note: paddleocr >= 3.0 removed the 'lang' parameter for PaddleOCRVL
+        # The model now handles multi-language automatically
         kwargs["device"] = "gpu" if self._gpu_ok() else "cpu"
 
         logger.info("Initializing PaddleOCR-VL pipeline: %s", kwargs)
