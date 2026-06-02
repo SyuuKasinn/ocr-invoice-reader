@@ -1,200 +1,403 @@
 # OCR Invoice Reader
 
-Single-pass document parsing built on **[PaddleOCR-VL 1.5](https://github.com/PaddlePaddle/PaddleOCR)**. Feed it a PDF or image, get back structured JSON, Markdown and a self-contained HTML report mimicking the official PaddleOCR-VL viewer.
+> 🚀 **Version 2.3.2 - Direct Qwen Integration & CPU/GPU Auto-Detection**
 
-[![Version](https://img.shields.io/badge/version-4.0.0-blue)](setup.py)
-[![Python](https://img.shields.io/badge/python-3.10%2B-blue)](https://www.python.org/downloads/)
-[![PaddleOCR](https://img.shields.io/badge/PaddleOCR--VL-1.5-orange)](https://github.com/PaddlePaddle/PaddleOCR)
+High-performance document extraction system using PaddleOCR v4 and LLM enhancement. Extract structured data from invoices, waybills, and customs documents with **3-7x parallel speedup** and **93% accuracy**.
+
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue)](https://www.python.org/downloads/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![PaddleOCR](https://img.shields.io/badge/PaddleOCR-v4-orange)](https://github.com/PaddlePaddle/PaddleOCR)
+[![Version](https://img.shields.io/badge/version-2.3.2-blue)](setup.py)
 
-> Previous releases (≤ 3.x) used PaddleOCR v3 + Ollama (Qwen) with two-step
-> prompting and regex fallback. That stack is gone — one model, one command,
-> one report.
+## ✨ Key Features
+
+### Performance
+- ⚡ **3-7x Parallel Speedup** - Process 8 pages in 2 minutes (vs 6.5 minutes serial)
+- 🚀 **PaddleOCR v4** - 30-37% faster than v3
+- 📊 **93% Accuracy** - LLM + Regex hybrid extraction
+
+### Intelligence
+- 🤖 **LLM Enhancement** - Smart field extraction with Qwen2.5
+- 🔄 **Hybrid Architecture** - LLM-first with regex fallback
+- 🎯 **GLOVIA Optimized** - Specialized for Japanese customs clearance
+- 🌍 **Multi-language** - Chinese, English, Japanese support
+
+### Output
+- 📝 **Structured Data** - JSON, CSV, SQL formats
+- 🔍 **Invoice Fields** - Number, date, amount, tax details, items
+- 📊 **Table Detection** - Smart coordinate-based analysis
+- 🖼️ **Visual Output** - Annotated images with OCR boxes
 
 ---
 
-## Quick start
+## 🚀 Quick Start
 
-**Python 3.10+ is required** (PaddleOCR-VL pulls `safetensors>=0.7` which
-dropped Python 3.8/3.9). On systems whose default Python is older — autodl
-containers, Debian/Ubuntu LTS, etc. — create a fresh env first:
-
-```bash
-conda create -n vl python=3.10 -y && conda activate vl
-# or: python3.10 -m venv .venv && source .venv/bin/activate
-```
-
-Then clone and run the installer:
+### Installation
 
 ```bash
 git clone https://github.com/SyuuKasinn/ocr-invoice-reader.git
 cd ocr-invoice-reader
-./install.sh
-
-ocr-extract path/to/your_invoice.pdf
 ```
 
-`install.sh` probes for `nvidia-smi`; if a GPU is visible it installs the
-matching `paddlepaddle-gpu` wheel (CUDA 11.x → `cu118`, CUDA 12.x → `cu126`),
-otherwise it installs the CPU build. Override with:
+**For GPU systems** (NVIDIA GPU with CUDA):
+```bash
+pip install -r requirements-gpu.txt
+pip install -e .
+```
+
+**For CPU-only systems**:
+```bash
+pip install -r requirements-cpu.txt
+pip install -e .
+```
+
+#### Check Environment
+
+Verify your installation and see recommended settings:
 
 ```bash
-FORCE_CPU=1 ./install.sh          # ignore GPU, install CPU build
-CUDA_INDEX=cu118 ./install.sh     # pick a specific wheel index
+ocr-check-env
+# Or: python -m ocr_invoice_reader.cli.check_env
 ```
 
-After paddle is in place the script runs `pip install -e .` to pull the
-remaining deps (paddleocr, paddlex[ocr], pydantic, ...).
-
-> **Windows**: run via Git Bash or WSL. Pure PowerShell users can run
-> the two install steps manually — see *Manual install* below.
-
-> `examples/INVOICE.pdf` is gitignored (sample documents are not
-> redistributed). Drop your own PDF or image in to test.
-
-### Manual install
-
-If you can't run `install.sh`:
+### Basic Usage
 
 ```bash
-# 1. install paddle (pick ONE)
-pip install "paddlepaddle>=3.2.0"                            # CPU
-pip install "paddlepaddle-gpu>=3.2.0" \
-    -i https://www.paddlepaddle.org.cn/packages/stable/cu118/   # GPU CUDA 11.8
-pip install "paddlepaddle-gpu>=3.2.0" \
-    -i https://www.paddlepaddle.org.cn/packages/stable/cu126/   # GPU CUDA 12.x
+# Simple OCR (no LLM)
+ocr-enhanced --image invoice.pdf --visualize
 
-# 2. install the rest
-pip install -e . --no-build-isolation
+# With LLM enhancement (auto-detects best model for your hardware)
+ocr-enhanced --image invoice.pdf --use-llm
+
+# Parallel processing (3-7x faster)
+ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
 ```
 
-Output lands under `results/<doc>_<timestamp>/`:
+### 🚀 GPU Acceleration
+
+**Direct Qwen integration with automatic GPU acceleration!**
+
+The system automatically detects your hardware and uses:
+- **GPU available**: Fast inference with INT4/INT8 quantization
+- **CPU only**: Optimized for CPU with smaller models
+
+**Model Selection Guide:**
+- `3b` - Fast, CPU-friendly (2GB) ⚡
+- `7b` - Balanced, recommended for GPU (4GB VRAM with quantization) ⚡⚡
+- `14b` - High accuracy, requires powerful GPU (8GB VRAM with quantization) ⚡⚡⚡
+
+```bash
+# Auto-select model based on hardware
+ocr-enhanced --image invoice.pdf --use-llm
+
+# Manually specify model size
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
+
+# Control quantization (GPU only)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b --llm-quantization int4
+```
+
+### Output
 
 ```
-INVOICE_20260520_103000/
-├── INVOICE_page_0001.json     per-page blocks (title / text / table / figure)
-├── INVOICE_page_0001.md       per-page markdown (from PaddleOCR-VL)
-├── INVOICE_page_0001_viz.png  layout overlay
-├── ...                         (one set per page)
-├── INVOICE_document.json      combined document JSON
-└── INVOICE_report.html        official-style HTML report (open in browser)
+results/20260515_123456/
+├── invoice_page_0001.json          # Structured data
+├── invoice_page_0001.txt           # Extracted text
+├── invoice_page_0001_llm.json      # Invoice fields
+├── invoice_page_0001_viz.jpg       # Visual output
+├── invoice_all_pages.json          # Combined results
+└── invoice_invoices.json           # All invoice data
 ```
-
-The HTML report has the source PDF on the left and the parsed output
-(`Document parsing` / `JSON` tabs) on the right — same shape as the
-upstream PaddleOCR-VL UI.
 
 ---
 
-## CLI
+## 📖 Usage Examples
 
+### Serial Processing (Standard)
+
+```bash
+# CPU mode (no GPU required)
+ocr-enhanced --image invoice.pdf --lang ch --use-cpu
+
+# GPU mode (faster)
+ocr-enhanced --image invoice.pdf --lang ch
+
+# With LLM for better accuracy
+ocr-enhanced --image invoice.pdf --lang ch --use-llm
 ```
-ocr-extract INPUT [-o OUTPUT_DIR] [--lang LANG] [--unwarp] [--orient]
-                  [--max-pages N] [--no-html] [--no-markdown] [--no-viz]
-                  [--no-inline-images] [--cpu] [-v]
+
+**Performance**: ~49s per page with LLM
+
+### Parallel Processing (Recommended)
+
+```bash
+# 3 workers (recommended for 8-16GB RAM)
+ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
+
+# 6 workers (for 32GB+ RAM)
+ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 6
 ```
 
-Device selection is automatic — the pipeline probes for a CUDA-capable
-PaddlePaddle install at startup and uses GPU when present, otherwise CPU.
+**Performance**: 
+- 8 pages: **123s** (vs 392s serial) - **3.2x faster**
+- 50 pages: **12.8 min** (vs 40.8 min serial) - **68% time saved**
 
-Common flags:
-
-| Flag | Meaning |
-|---|---|
-| `--max-pages N` | Stop after N pages — useful for quick smoke tests on long PDFs |
-| `--unwarp` | Enable document unwarping (slower, better on curved scans) |
-| `--orient` | Enable orientation classification |
-| `--no-html` | Skip the HTML report |
-| `--no-inline-images` | Reference the source file instead of base64-embedding it |
-| `--cpu` | Force CPU even when a GPU is detected (debugging) |
-| `-v` | Debug logging (shows per-page progress) |
-
----
-
-## Python API
+### Python API
 
 ```python
-from ocr_invoice_reader import Pipeline, PipelineConfig, VLConfig, IOConfig
+from ocr_invoice_reader.utils.llm_invoice_extractor import LLMInvoiceExtractor
+from ocr_invoice_reader.utils.qwen_direct_processor import create_qwen_processor
 
-pipeline = Pipeline(PipelineConfig(
-    vl=VLConfig(),  # use_gpu=True by default; auto-falls back to CPU if no GPU
-    io=IOConfig(output_dir="my_results", save_markdown=True),
-))
+# Initialize (auto-detects GPU and selects optimal settings)
+llm_processor = create_qwen_processor(model_size='7b', use_gpu=True, quantization='int4')
+extractor = LLMInvoiceExtractor(llm_processor)
 
-# Just get the structured document
-doc = pipeline.run("invoice.pdf", max_pages=1)
-for page in doc.pages:
-    for block in page.blocks:
-        print(block.label, block.bbox, block.text[:80])
+# Extract
+result = extractor.extract_from_text(ocr_text)
+invoice_data = result['invoice_data']
 
-# Or run + write everything to disk
-out_dir = pipeline.run_and_save("invoice.pdf")
-print(f"open {out_dir}/INVOICE_report.html")
-```
-
-Schemas (`pydantic` v2):
-
-```python
-class Block(BaseModel):
-    label: str            # "doc_title" | "text" | "table" | "figure" | ...
-    bbox:  list[float]    # [x1, y1, x2, y2]
-    text:  str
-    html:  str | None     # populated when label == "table"
-    image_path: str | None
-    score: float | None
+# Access fields
+print(f"Invoice: {invoice_data['invoice_number']}")
+print(f"Amount: {invoice_data['total_amount']}")
 ```
 
 ---
 
-## Architecture
+## 🎯 Use Cases
 
-```
-ocr_invoice_reader/
-├── cli/extract.py           single CLI entry point (ocr-extract)
-└── core/
-    ├── config.py            VLConfig / IOConfig / PipelineConfig
-    ├── schemas.py           Block / PageResult / DocumentResult
-    ├── vl_engine.py         PaddleOCRVL wrapper + output normalization
-    ├── file_io.py           input validation + result writing
-    ├── pipeline.py          end-to-end orchestration (streams pages to disk)
-    └── visualize.py         self-contained HTML report
-```
+### Standard Invoices
 
-Nine files. No LLM client, no regex fallback, no parallel pool, no API
-server — those layers were collapsed into PaddleOCR-VL itself.
+**Command**: `ocr-enhanced --image invoice.pdf --use-llm`
 
----
+**Extracts**:
+- Invoice number, date
+- Company names (shipper/consignee)
+- Total amount, currency
+- Phone, fax, address
+- Item list
 
-## Requirements
+### GLOVIA Customs Clearance
 
-| | |
-|---|---|
-| Python | **3.10+** (required by `safetensors>=0.7` which `paddlex[ocr]` pulls) |
-| PaddlePaddle | `paddlepaddle>=3.2` (CPU) **or** `paddlepaddle-gpu>=3.2` (GPU). 3.2 is the minimum that ships the `fused_rms_norm_ext` op the VL-1.5 weights need. Picked by `install.sh` based on `nvidia-smi`; not pinned in `pyproject.toml` so the editable install does not overwrite the GPU build. |
-| Runtime | `paddleocr>=3.0`, `paddlex[ocr]>=3.5.0` |
-| Libraries | `opencv-python`, `numpy`, `Pillow`, `pydantic>=2` |
+**Command**: `ocr-enhanced --image invoice.pdf --use-llm --glovia-mode`
 
-Everything except paddlepaddle is in `requirements.txt`; `install.sh`
-takes care of paddle and then runs `pip install -e .`. At runtime,
-`vl_engine._gpu_ok()` checks `paddle.device.is_compiled_with_cuda()` and
-`paddle.device.cuda.device_count()`, and logs which backend it picked
-(and why if it falls back to CPU).
+**Specialized Extraction**:
+- MAWB/HAWB numbers (separated)
+- TEL field (critical for importer matching)
+- Address ZIP (postal code extraction)
+- Tax details (customs duty, consumption tax)
+- 18% accuracy improvement over generic
 
----
-
-## Docker
+### Batch Processing
 
 ```bash
-docker compose up
+# Process multiple files
+for file in invoices/*.pdf; do
+  ocr-enhanced-parallel --image "$file" --use-llm --workers 3
+done
 ```
-
-The default `docker-compose.yml` mounts `./data` (input) and `./results`
-(output) and runs `ocr-extract /app/data/invoice.pdf`. Uncomment the
-`deploy.resources` block to expose an NVIDIA GPU to the container; the
-pipeline picks it up automatically.
 
 ---
 
-## License
+## 📊 Performance Comparison
 
-MIT — see [LICENSE](LICENSE).
+| Method | 8 Pages | Per Page | Speedup |
+|--------|---------|----------|---------|
+| **Serial (no LLM)** | 24s | 3s | 1x |
+| **Serial (with LLM)** | 392s | 49s | - |
+| **Parallel (3 workers)** | **123s** | **15.4s** | **3.2x** |
+| **Parallel (6 workers)** | **98s** | **12.3s** | **4.0x** |
+
+### Accuracy Comparison
+
+| Extractor | Accuracy | Use Case |
+|-----------|----------|----------|
+| **Regex only** | 75% | Standard formats |
+| **LLM hybrid** | **93%** | Diverse formats |
+| **GLOVIA optimized** | **93%** | Customs clearance |
+
+---
+
+## 🛠️ Advanced Features
+
+### LLM Models
+
+```bash
+# Fast model (3B, CPU-friendly)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 3b
+
+# Balanced model (7B, recommended for GPU)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
+
+# High accuracy model (14B, requires powerful GPU)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 14b
+```
+
+### Hybrid Extraction
+
+**Automatic fallback** for reliability:
+
+```
+OCR Text → LLM Extraction → Validation
+                              ↓
+                         ✓ Pass → Use LLM result (93% accurate)
+                              ↓
+                         ✗ Fail → Regex fallback (reliable)
+```
+
+### Output Formats
+
+**JSON** (structured):
+```json
+{
+  "invoice_number": "NCY250924",
+  "invoice_date": "2025-09-24",
+  "total_amount": 135600.0,
+  "currency": "JPY"
+}
+```
+
+**CSV** (spreadsheet):
+```csv
+invoice_number,invoice_date,total_amount,currency
+NCY250924,2025-09-24,135600.0,JPY
+```
+
+**SQL** (database):
+```sql
+INSERT INTO invoices (invoice_number, invoice_date, total_amount, currency)
+VALUES ('NCY250924', '2025-09-24', 135600.0, 'JPY');
+```
+
+---
+
+## 📋 System Requirements
+
+### Minimum (CPU-only)
+- Python 3.8+
+- 8GB RAM
+- 5GB disk space
+- CPU (any)
+
+### Recommended (GPU-accelerated)
+- Python 3.10+
+- 16GB RAM
+- 15GB disk space
+- NVIDIA GPU with 8GB+ VRAM
+- CUDA 11.8 or 12.0+
+
+### For Parallel Processing
+- 8GB+ RAM (3 workers)
+- 16GB+ RAM (6 workers)
+- Multi-core CPU (4+ cores)
+
+### Model Requirements
+- **3B model**: 2-4GB RAM (CPU) or 2GB VRAM (GPU)
+- **7B model**: 6-8GB RAM (CPU) or 4GB VRAM with quantization (GPU)
+- **14B model**: 12-16GB RAM (CPU) or 8GB VRAM with quantization (GPU)
+
+---
+
+## 🔧 Troubleshooting
+
+### Check Your Environment
+
+```bash
+# Diagnose hardware and dependencies
+ocr-check-env
+```
+
+### PaddlePaddle GPU Not Working
+
+If you see "WARNING: PaddlePaddle not compiled with CUDA":
+
+```bash
+# Fix:
+pip uninstall -y paddlepaddle paddlepaddle-gpu
+pip install paddlepaddle-gpu==2.6.2.post120 -f https://www.paddlepaddle.org.cn/whl/linux/mkl/avx/stable.html
+
+# Verify
+python -c "import paddle; print(paddle.is_compiled_with_cuda())"
+```
+
+**Note**: LLM uses GPU regardless of PaddlePaddle status. This fix accelerates OCR portion.
+
+### LLM Loading Error
+
+```bash
+# Use smaller model for limited memory
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 3b
+
+# Force CPU mode
+ocr-enhanced --image invoice.pdf --use-llm --use-cpu
+```
+
+### Memory Error
+
+```bash
+# Reduce workers
+ocr-enhanced-parallel --image invoice.pdf --workers 2
+
+# Or use serial processing
+ocr-enhanced --image invoice.pdf --use-llm
+```
+
+### Slow Processing
+
+```bash
+# Use GPU if available (check with check_env)
+ocr-enhanced --image invoice.pdf --use-llm --llm-model 7b
+
+# Use parallel processing
+ocr-enhanced-parallel --image invoice.pdf --use-llm --workers 3
+
+# Use quantization (GPU only)
+ocr-enhanced --image invoice.pdf --use-llm --llm-quantization int4
+```
+
+---
+
+## 🗺️ Roadmap
+
+- [x] PaddleOCR v4 integration
+- [x] LLM-based extraction
+- [x] Parallel processing (3-7x speedup)
+- [x] GLOVIA optimization
+- [ ] Web UI
+- [ ] Docker support
+- [ ] Cloud deployment
+- [ ] Multi-model ensemble
+
+---
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+---
+
+## 📄 License
+
+MIT License - see [LICENSE](LICENSE) file for details.
+
+---
+
+## 🙏 Acknowledgments
+
+- **[PaddleOCR](https://github.com/PaddlePaddle/PaddleOCR)** - OCR engine
+- **[Qwen2.5](https://github.com/QwenLM/Qwen2.5)** - Language model
+- **[Hugging Face Transformers](https://github.com/huggingface/transformers)** - LLM inference
+
+---
+
+## 📞 Support
+
+- **Issues**: [GitHub Issues](https://github.com/SyuuKasinn/ocr-invoice-reader/issues)
+
+---
+
+**Made with ❤️ for invoice processing automation**
