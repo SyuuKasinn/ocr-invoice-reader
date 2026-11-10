@@ -17,6 +17,7 @@ from pathlib import Path
 from typing import List
 
 from ocr_invoice_reader.core.schemas import Block, DocumentResult, PageResult
+from ocr_invoice_reader.utils.sanitize import sanitize_table_html
 
 logger = logging.getLogger(__name__)
 
@@ -79,7 +80,7 @@ def _render_block(block: Block) -> str:
         return (
             f'<div class="block block-table" data-bbox="{_bbox_attr(block)}">'
             f'  <div class="block-label">TABLE</div>'
-            f'  <div class="table-wrap">{block.html}</div>'
+            f'  <div class="table-wrap">{sanitize_table_html(block.html)}</div>'
             f"</div>"
         )
 

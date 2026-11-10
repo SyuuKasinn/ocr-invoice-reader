@@ -72,7 +72,11 @@ class ResultWriter:
         saved: Dict[str, Path] = {}
         for rel, value in images.items():
             try:
-                dest = self.output_dir / rel
+                dest = (self.output_dir / rel).resolve()
+                # Keys come from model output; refuse anything that escapes output_dir.
+                if not dest.is_relative_to(self.output_dir.resolve()):
+                    logger.warning("Skipping markdown image outside output dir: %s", rel)
+                    continue
                 dest.parent.mkdir(parents=True, exist_ok=True)
                 if hasattr(value, "save"):
                     value.save(str(dest))
